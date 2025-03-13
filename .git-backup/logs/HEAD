@@ -1,0 +1,6 @@
+0000000000000000000000000000000000000000 2955bb413c0276713541843add29119b0405401c haim <haim@fhenix.io> 1741852111 +0200	clone: from github.com:FhenixProtocol/fhenix-docs.git
+2955bb413c0276713541843add29119b0405401c 2955bb413c0276713541843add29119b0405401c haim <haim@fhenix.io> 1741854418 +0200	checkout: moving from main to cofhe-docs
+2955bb413c0276713541843add29119b0405401c 90cc72f090a451c8eb5a2f807f0d81f79f7b9c93 haim <haim@fhenix.io> 1741854466 +0200	commit: Initial packages
+90cc72f090a451c8eb5a2f807f0d81f79f7b9c93 0ff2c1ecbb3ad214ec6e79dbd05e349551b2c9c5 haim <haim@fhenix.io> 1741854772 +0200	commit: upgrade docusarus
+0ff2c1ecbb3ad214ec6e79dbd05e349551b2c9c5 a4a3c43f96098ff0cc8edcb2f33f747a0a1e6680 haim <haim@fhenix.io> 1741866562 +0200	commit: Layout
+a4a3c43f96098ff0cc8edcb2f33f747a0a1e6680 f9c5d208c766cda5baec6b0a800e9aaf123399d5 haim <haim@fhenix.io> 1741872226 +0200	commit: Layout

@@ -1,0 +1,43 @@
+.additionalFeatures {
+  margin-top: 5rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 3rem;
+}
+
+.randomImage {
+    height: 85%;
+    object-fit: cover;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    margin-left: 100px;
+}
+
+@media  (max-width: 996px) {
+  .randomImage {
+    display: none;
+  }
+}
+
+
+.secondaryButton {
+  margin-left: 1rem;
+}
+
+@media  (max-width: 996px) {
+  .secondaryButton {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 800px) {
+
+
+}
+
+@media screen and (min-width: 996px) {
+
+}

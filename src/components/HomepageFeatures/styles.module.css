@@ -1,0 +1,115 @@
+.features {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.featureSvg {
+  height: 45px;
+  width: 45px;
+}
+
+.link {
+  color: var(--ifm-color-text);
+}
+.link:hover {
+  text-decoration: none;
+  color: var(--ifm-color-text);
+}
+.link:visited {
+  text-decoration: none;
+}
+
+
+.custom__card:hover {
+  background: linear-gradient(180deg, rgba(87, 100, 170, 0.2) 0%, rgba(143, 152, 197, 0.2) 100%);
+  box-shadow: 4px 4px 8px rgba(87, 100, 170, 0.3);
+  color: white;
+}
+
+
+.custom__card {
+  /* Rectangle 39 */
+  height: 308px;
+  box-sizing: border-box;
+  transition: box-shadow .3s;
+  width: 100%;
+  /* background: var(--ifm-color-background); */
+  border: 1.5px solid var(--ifm-color-text);
+  /* box-shadow: 0px 0px 25px 0px rgba(255, 255, 255, 0.10); */
+  border-radius: 20.2632px;
+  /* justify-content: center; */
+
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(39.0119514465332px);
+
+  border: 1px solid #7040C832;
+}
+
+.custom__card_1 {
+  /* Rectangle 39 */
+  height: 308px;
+  box-sizing: border-box;
+  transition: box-shadow .3s;
+  width: 100%;
+  min-width: 325px;
+  /* background: var(--ifm-color-background); */
+  border: 1.5px solid var(--ifm-color-text);
+  /* box-shadow: 0px 0px 25px 0px rgba(255, 255, 255, 0.10); */
+  border-radius: 20.2632px;
+  /* justify-content: center; */
+
+  background: rgba(28, 28, 28, 0.05);
+  backdrop-filter: blur(39.0119514465332px);
+
+  border: 1px solid #7040C832;
+}
+
+
+
+@media  (max-width: 1440px) {
+  .custom__card {
+    height: 400px;
+    display: flex;
+    justify-content: flex-start;
+  }
+}
+
+@media  (max-width: 996px) {
+  .features {
+    width: 75%;
+    margin-left: 5rem;
+  }
+  .featureSvg {
+    display: none;
+  }
+  .custom__card {
+    margin-top: 1rem;
+    height: 85%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 800px) {
+  .features {
+    width: 75%;
+    margin-left: 3rem;
+  }
+
+  .custom__card_1 {
+    /* Rectangle 39 */
+    height: 250px !important;
+  }  
+}
+
+@media (max-width: 450px) {
+  .custom__card_1 {
+    /* Rectangle 39 */
+    height: 270px !important;
+  }  
+}
+
+@media screen and (min-width: 996px) {
+  .features {
+  }
+}

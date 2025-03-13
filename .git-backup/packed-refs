@@ -1,0 +1,26 @@
+# pack-refs with: peeled fully-peeled sorted 
+f9c5ba4fe1abaaf820071cd6cd9946e7abc7bfd3 refs/remotes/origin/JS-INTRO
+d3383f90e0b680a818a8d2586905a33672a907b9 refs/remotes/origin/add-randomness-demo
+33ed49e3a19e8da89f9eeacdd6d93e523e2931a7 refs/remotes/origin/arch-details
+d0b4f9a86a13e05787cc865e939654348840c1fe refs/remotes/origin/cofhe
+05b1f94b00480e7d8c1372bb6edc176a3c778ac3 refs/remotes/origin/compatibility-version-table
+ae3f54b54a167ed349ddc10136aea2773e30d212 refs/remotes/origin/console-log-and-solidity-highlighting
+f0d6df6927441391fcf5bd311de584d49116875d refs/remotes/origin/enable_search
+190321a2c9b8f4d31516cf150458c4f0399fcd70 refs/remotes/origin/examples-update-2
+97d6a7f497fdfde49cb3288736ce1a0f4af613e2 refs/remotes/origin/exmples-update
+de5dcea06eeb14a2ffab962c5de22d08b455dd72 refs/remotes/origin/exposed-encrypted-variables
+7f717233d6dad4a8792e72ef07795f7cfa59c1cb refs/remotes/origin/find-and-replace-helium-nitrogen
+ca6aeffdca3d2122cecd93e8627a48652ad9f645 refs/remotes/origin/gh-pages
+2955bb413c0276713541843add29119b0405401c refs/remotes/origin/main
+142616f281eb6917124a3ad6fab05da519dda49f refs/remotes/origin/more-ui-updates
+99e1568a3b90a1e68b1fd50142f03774fd8ac2c7 refs/remotes/origin/networkpublickey-with-param
+4fdcaf4fbd197cf8523ab10ebe6288cc9f5effd5 refs/remotes/origin/nitrogen
+92b6612386f8ea494564f498a88d67c2c5d3dc30 refs/remotes/origin/nitrogen-changelog
+4ad9263ce58fc5f638f1ac53b0bf9591a157ddaa refs/remotes/origin/nitrogen-with-main
+4bc76594793111b5c6352d7d7df9e9bf86c558c7 refs/remotes/origin/randomness
+d9521942f01413d0d397cce65e96ed491a25dcec refs/remotes/origin/randomness-2
+15099008554de69faea2a326ce401b8751549045 refs/remotes/origin/randomness-3
+18a85559a207e08d8583bfefb2478b5ebac91f88 refs/remotes/origin/randomness-emoji
+ac6a5c554da3c4ae85807b8bb1020d0ba7ac6c25 refs/remotes/origin/search-tests
+fb57c63fe4d071b91e2088fde3fa655e31a6f64a refs/remotes/origin/testnet-v2
+8d29cf534e4f43422fe23fd6469e22f47c08afae refs/remotes/origin/yonatan
