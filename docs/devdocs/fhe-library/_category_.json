@@ -1,0 +1,8 @@
+{
+  "label": "FHE Library",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Documentation for the FHE.sol library and smart contract development"
+  }
+} 

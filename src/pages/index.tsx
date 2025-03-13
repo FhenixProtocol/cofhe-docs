@@ -53,7 +53,7 @@ function HomepageHeader() {
                           <div className='col col--4'>
                               <Link
                                   className='tutorial-button minimum'
-                                  to={"/docs/devdocs/Tutorials/Your-First-FHE-Contract"}>
+                                  to={"/docs/category/tutorials/Your-First-FHE-Contract"}>
                                   Tutorials
                               </Link>
                           </div>
