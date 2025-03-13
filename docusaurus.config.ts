@@ -35,21 +35,7 @@ const config: Config = {
       'classic',
       {
         docs: {
-          lastVersion: 'current',
-          versions: {
-            current: {
-              label: 'Nitrogen',
-              badge: true
-            },
-            Helium: {
-              label: 'Helium',
-              path: 'helium',
-              badge: true
-            }
-          },
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/fhenixprotocol/fhenix-docs/tree/main/',
         },
@@ -106,17 +92,6 @@ const config: Config = {
           position: 'left',
           label: 'Developer Docs',
         },
-        {
-          type: "docsVersionDropdown",
-          position: 'right'
-        },
-        // {
-        //   type: 'docSidebar',
-        //   sidebarId: 'tutorialSidebar',
-        //   position: 'left',
-        //   label: 'Tutorial',
-        // },
-        // {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/fhenixprotocol/',
           className: 'header-github-link',
