@@ -70,30 +70,22 @@ function Feature({title, Svg, description, linkTo, buttonTitle}: FeatureItem) {
 
   return (
       <div className={clsx("card", styles.custom__card)} style={{ height: '100%' }}>
-          <Link
-              className={clsx(styles.link)}
-              to={linkTo}
-              style={{ height: '100%' }}
-          >
-              <div className="card__body custom__body_flex">
-                  <div>
-                    <Svg className={svgClassName} role="img"/>
-                  </div>
-
-                  <Heading as="h2" className="" style={{ fontSize: 22 }} >{title}</Heading>
-                  <p>{description}</p>
-                  <div className="row" style={{ flex: 1 }}></div>
-                  <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                    <Link
-                        className='tutorial-button minimum'
-                        to={linkTo}>
-                        {buttonTitle}
-                    </Link>
-
-                  </div>
-
+          <div className="card__body custom__body_flex">
+              <div>
+                <Svg className={svgClassName} role="img"/>
               </div>
-          </Link>
+
+              <Heading as="h2" className="" style={{ fontSize: 22 }} >{title}</Heading>
+              <p>{description}</p>
+              <div className="row" style={{ flex: 1 }}></div>
+              <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                <Link
+                    className='tutorial-button minimum'
+                    to={linkTo}>
+                    {buttonTitle}
+                </Link>
+              </div>
+          </div>
       </div>
   );
 }
@@ -110,10 +102,10 @@ export default function HomepageFeatures(): JSX.Element {
           {/* style={{ gap: "20px"}} */}
           <div className="row feature_container" >
             {FeatureList.map((props, idx) => (
-                <div className="col col--3"> 
-                    <Feature key={idx} {...props} />
+                <div key={idx} className="col col--3"> 
+                    <Feature {...props} />
                 </div>
-                    ))}
+            ))}
           </div>
           <div className="row" style={{ display: 'flex', justifyContent: 'center', marginTop: '40px'}}>
             <img src="img/vertical-bullet.webp"/>

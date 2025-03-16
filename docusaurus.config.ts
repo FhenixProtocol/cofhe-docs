@@ -30,6 +30,21 @@ const config: Config = {
     locales: ['en'],
   },
 
+  // Add styled-components configuration
+  stylesheets: [
+    {
+      rel: 'stylesheet',
+      href: '/styles/global.css',
+    },
+  ],
+  
+  scripts: [
+    {
+      src: '/scripts/styled-components-fix.js',
+      async: true,
+    },
+  ],
+
   presets: [
     [
       'classic',
