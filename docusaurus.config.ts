@@ -108,7 +108,7 @@ const config: Config = {
           sidebarId: 'docsSidebar',
           position: 'left',
           label: 'Getting Started',
-          to: '/docs/getting-started',
+          to: '/',
         },
         {
           type: 'docSidebar',
