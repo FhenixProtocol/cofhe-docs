@@ -1,8 +1,6 @@
 name: Preview Deployment
 
 on:
-  pull_request:
-    branches: [master]
   push:
     branches: [master]
 
@@ -10,10 +8,10 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  pull-requests: write
 
 jobs:
-  build-and-preview:
+  build-and-deploy:
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -36,14 +34,6 @@ jobs:
         run: npm run build
         env:
           GITHUB_PAGES: true
-          PR_NUMBER: ${{ github.event.number }}
-
-      - name: Debug Build Output
-        run: |
-          echo "Build directory contents:"
-          ls -la build/
-          echo "\nIndex file contents:"
-          cat build/index.html || echo "No index.html found"
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
