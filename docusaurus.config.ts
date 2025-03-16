@@ -6,13 +6,8 @@ const isDeployPreview = process.env.GITHUB_PAGES === 'true';
 const isPR = process.env.GITHUB_EVENT_NAME === 'pull_request';
 const prNumber = process.env.GITHUB_EVENT_NAME === 'pull_request' ? process.env.GITHUB_EVENT_NUMBER : '';
 
-let baseUrl = '/';
-if (isDeployPreview) {
-  baseUrl = '/cofhe-docs/';
-  if (isPR) {
-    baseUrl = `/cofhe-docs/pr-preview/pr-${prNumber}/`;
-  }
-}
+// Set a fixed baseUrl for GitHub Pages
+const baseUrl = '/cofhe-docs/';
 
 const config: Config = {
   title: 'Fhenix',
