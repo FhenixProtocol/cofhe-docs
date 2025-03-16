@@ -24,7 +24,7 @@ const FeatureList: FeatureItem[] = [
 
       </>
     ),
-      linkTo: "/docs/devdocs/Writing%20Smart%20Contracts/FHE-sol",
+      linkTo: "/docs/devdocs/tutorials/Your-First-FHE-Contract",
       buttonTitle: "Build"
   },
   {
