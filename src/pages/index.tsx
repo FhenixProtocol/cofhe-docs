@@ -46,14 +46,14 @@ function HomepageHeader() {
                           <div className='col col--3'>
                               <Link
                                   className='docs-button minimum'
-                                  to="/docs/devdocs/intro">
+                                  to="/docs/devdocs/overview">
                                   Docs
                               </Link>
                           </div>
                           <div className='col col--4'>
                               <Link
                                   className='tutorial-button minimum'
-                                  to={"/docs/category/tutorials/Your-First-FHE-Contract"}>
+                                  to={"/docs/devdocs/tutorials/Your-First-FHE-Contract"}>
                                   Tutorials
                               </Link>
                           </div>
@@ -64,14 +64,14 @@ function HomepageHeader() {
                       <div className={clsx("row", styles.ButtonRowMobile)}>
                           <Link
                               className='docs-button minimum padding'
-                              to="/docs/devdocs/intro">
+                              to="/docs/devdocs/overview">
                               Docs
                           </Link>
                       </div>
                       <div className={clsx("row", styles.ButtonRowMobile)}>
                           <Link
                               className='tutorial-button minimum padding'
-                              to={"/docs/devdocs/Tutorials/Your-First-FHE-Contract"}>
+                              to={"/docs/devdocs/tutorials/Your-First-FHE-Contract"}>
                               Tutorials
                           </Link>
                       </div>
