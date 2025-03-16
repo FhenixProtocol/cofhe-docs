@@ -2,21 +2,35 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
+const isDeployPreview = process.env.GITHUB_PAGES === 'true';
+const isPR = process.env.GITHUB_EVENT_NAME === 'pull_request';
+const prNumber = process.env.GITHUB_EVENT_NAME === 'pull_request' ? process.env.GITHUB_EVENT_NUMBER : '';
+
+let baseUrl = '/';
+if (isDeployPreview) {
+  baseUrl = '/cofhe-docs/';
+  if (isPR) {
+    baseUrl = `/cofhe-docs/pr-preview/pr-${prNumber}/`;
+  }
+}
+
 const config: Config = {
   title: 'Fhenix',
   tagline: 'Unlock Onchain Confidentiality on Ethereum',
   favicon: 'img/Favicon_Dark.svg',
 
   // Set the production url of your site here
-  url: 'https://docs.fhenix.zone',
+  url: 'https://fhenixprotocol.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: baseUrl,
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'fhenixprotocol', // Usually your GitHub org/user name.
-  projectName: 'fhenix-docs', // Usually your repo name.
+  projectName: 'cofhe-docs', // Usually your repo name.
+  trailingSlash: false,
+  deploymentBranch: 'gh-pages',
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
@@ -24,7 +38,6 @@ const config: Config = {
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
-  trailingSlash: false,
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
