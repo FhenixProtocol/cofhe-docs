@@ -97,22 +97,16 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'docsSidebar',
           position: 'left',
           label: 'Home',
           to: '/',
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'docsSidebar',
           position: 'left',
-          label: 'Getting Started2',
-          to: '/',
+          label: 'Getting Started',
+          to: '/getting-started',
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'docsSidebar',
           position: 'left',
           label: 'Developer Docs',
           to: '/docs/devdocs/overview',
@@ -140,16 +134,16 @@ const config: Config = {
           title: 'Quick Links',
           items: [
             {
-              label: 'Dev Docs',
-              to: '/docs/devdocs/overview',
+              label: 'Home',
+              to: '/',
             },
             {
-              label: 'Introduction',
-              to: '/docs/devdocs/overview',
+              label: 'Getting Started',
+              to: '/getting-started',
             },
             {
-              label: 'Get Started',
-              to: '/docs/devdocs/tutorials/local-development',
+              label: 'Developer Docs',
+              to: '/docs/devdocs/overview',
             },
             // {
             //   label: 'Tutorial',
