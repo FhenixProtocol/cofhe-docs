@@ -91,9 +91,12 @@ function HomepageHeader() {
 export default function Home(): JSX.Element {
     const {siteConfig} = useDocusaurusContext();
     useEffect(() => {
-      TagManager.initialize(tagManagerArgs)
-      ReactGA.initialize("G-NKHXME4286");
-    });
+      // Initialize analytics only once
+      if (typeof window !== 'undefined') {
+        TagManager.initialize(tagManagerArgs);
+        ReactGA.initialize("G-NKHXME4286");
+      }
+    }, []); // Empty dependency array to run only once
     
 
     return (
