@@ -1,9 +1,14 @@
 ---
 title: Threshold Network
-sidebar_position: 7
+sidebar_position: 8
 ---
 
 # Threshold Network
+| Aspect | Description |
+|--------|-------------|
+| **Type** |  |
+| **Function** |  |
+| **Responsibilities** | |
 
 The distributed network that handles key management and computation.
 
