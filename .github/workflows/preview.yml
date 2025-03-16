@@ -15,9 +15,6 @@ permissions:
 jobs:
   build-and-preview:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     
     steps:
       - name: Checkout
@@ -45,11 +42,6 @@ jobs:
         with:
           path: build
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        if: github.event_name != 'pull_request'
-        uses: actions/deploy-pages@v4
-
       - name: Deploy PR Preview
         if: github.event_name == 'pull_request'
         uses: rossjrw/pr-preview-action@v1
@@ -69,5 +61,11 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `🚀 Preview deployment is ready!\n\nURL: ${previewUrl}\n\nThis preview will be automatically updated as you make changes to your PR.`
+              body: `🚀 Preview deployment is ready!\n\nURL: ${previewUrl}\n\nBuilt with commit: ${context.sha}\nThis preview will be automatically updated as you make changes to your PR.`
             });
+
+      - name: Deploy to GitHub Pages
+        if: github.event_name != 'pull_request'
+        uses: actions/deploy-pages@v4
+        with:
+          path: build
