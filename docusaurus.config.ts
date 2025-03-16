@@ -101,7 +101,7 @@ const config: Config = {
           sidebarId: 'docsSidebar',
           position: 'left',
           label: 'Home',
-          to: '/docs/devdocs/overview',
+          to: '/',
         },
         {
           type: 'docSidebar',
