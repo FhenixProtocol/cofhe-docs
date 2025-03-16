@@ -4,8 +4,8 @@
   <ShortName>Fhenix</ShortName>
   <Description>Search Fhenix</Description>
   <InputEncoding>UTF-8</InputEncoding>
-  <Image width="16" height="16" type="image/x-icon">https://fhenixprotocol.github.io/cofhe-docs/img/Favicon_Dark.svg</Image>
-  <Url type="text/html" method="get" template="https://fhenixprotocol.github.io/cofhe-docs/search?q={searchTerms}"/>
-  <Url type="application/opensearchdescription+xml" rel="self" template="https://fhenixprotocol.github.io/cofhe-docs/opensearch.xml" />
-  <moz:SearchForm>https://fhenixprotocol.github.io/cofhe-docs/</moz:SearchForm>
+  <Image width="16" height="16" type="image/x-icon">https://fhenixprotocol.github.io/cofhe-docs/pr-6/img/Favicon_Dark.svg</Image>
+  <Url type="text/html" method="get" template="https://fhenixprotocol.github.io/cofhe-docs/pr-6/search?q={searchTerms}"/>
+  <Url type="application/opensearchdescription+xml" rel="self" template="https://fhenixprotocol.github.io/cofhe-docs/pr-6/opensearch.xml" />
+  <moz:SearchForm>https://fhenixprotocol.github.io/cofhe-docs/pr-6/</moz:SearchForm>
 </OpenSearchDescription>
