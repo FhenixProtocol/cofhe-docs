@@ -60,7 +60,7 @@ export function AdditionalFeatures(): JSX.Element {
                   <div className={styles.secondaryButton}>
                       <Link
                           className={clsx('button button--primary', )}
-                          to="/docs/devdocs/intro">
+                          to="/docs/devdocs/overview">
                           Start Building
                       </Link>
                   </div>

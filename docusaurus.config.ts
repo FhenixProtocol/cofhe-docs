@@ -30,6 +30,21 @@ const config: Config = {
     locales: ['en'],
   },
 
+  // Add styled-components configuration
+  stylesheets: [
+    {
+      rel: 'stylesheet',
+      href: '/styles/global.css',
+    },
+  ],
+  
+  scripts: [
+    {
+      src: '/scripts/styled-components-fix.js',
+      async: true,
+    },
+  ],
+
   presets: [
     [
       'classic',
@@ -116,15 +131,15 @@ const config: Config = {
           items: [
             {
               label: 'Dev Docs',
-              to: '/docs/devdocs/intro',
+              to: '/docs/devdocs/overview',
             },
             {
               label: 'Introduction',
-              to: '/docs/devdocs/intro',
+              to: '/docs/devdocs/overview',
             },
             {
               label: 'Get Started',
-              to: '/docs/devdocs/Setting%20Up%20Your%20Environment/intro',
+              to: '/docs/devdocs/tutorials/local-development',
             },
             // {
             //   label: 'Tutorial',
