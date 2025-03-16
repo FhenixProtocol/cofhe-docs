@@ -57,16 +57,22 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
+      - name: Debug Deployment
+        run: |
+          echo "Deployment URL: ${{ steps.deployment.outputs.page_url }}"
+          echo "PR Number: ${{ github.event.number }}"
+          echo "Is PR: ${{ github.event_name == 'pull_request' }}"
+
       - name: Comment PR with Preview URL
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
         with:
           script: |
             const prNumber = context.issue.number;
-            const previewUrl = `https://fhenixprotocol.github.io/cofhe-docs/`;
+            const deploymentUrl = process.env.DEPLOYMENT_URL || '${{ steps.deployment.outputs.page_url }}';
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `🚀 Preview deployment is ready!\n\nURL: ${previewUrl}\n\nBuilt with commit: ${context.sha}\nThis preview will be automatically updated as you make changes to your PR.`
+              body: `🚀 Preview deployment is ready!\n\nURL: ${deploymentUrl}\n\nBuilt with commit: ${context.sha}\nThis preview will be automatically updated as you make changes to your PR.`
             });
