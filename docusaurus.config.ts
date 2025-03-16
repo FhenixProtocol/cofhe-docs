@@ -61,7 +61,7 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           editUrl:
             'https://github.com/fhenixprotocol/fhenix-docs/tree/main/',
-          routeBasePath: 'docs',
+          routeBasePath: '/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -101,20 +101,21 @@ const config: Config = {
           sidebarId: 'docsSidebar',
           position: 'left',
           label: 'Home',
-          href: '/',
+          to: '/docs/devdocs/overview',
         },
         {
           type: 'docSidebar',
           sidebarId: 'docsSidebar',
           position: 'left',
           label: 'Getting Started',
-          href: '/getting-started',
+          to: '/docs/getting-started',
         },
         {
           type: 'docSidebar',
           sidebarId: 'docsSidebar',
           position: 'left',
           label: 'Developer Docs',
+          to: '/docs/devdocs/overview',
         },
         {
           href: 'https://github.com/fhenixprotocol/',
