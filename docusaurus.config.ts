@@ -61,7 +61,7 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           editUrl:
             'https://github.com/fhenixprotocol/fhenix-docs/tree/main/',
-          routeBasePath: '/',
+          routeBasePath: 'docs',
         },
         theme: {
           customCss: './src/css/custom.css',
