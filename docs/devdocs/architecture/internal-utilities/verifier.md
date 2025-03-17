@@ -24,7 +24,7 @@ ZKPoKs protect against potential malicious vectors, including but not limited to
 
 Requiring a ZKPoK for each encrypted input helps running an encryption system in the public space that is a blockchain runtime. It ensures that only users with knowledge of the original plaintext can produce valid proofs. This approach eliminates multiple security risks, protecting sensitive user data and maintaining the system’s integrity.
 
-< insert flow diagram here >
+![ZK Proof of Knowledge Flow](../../../../static/img/zk-pok.svg)
 
 ## Sending encrypted inputs
 
