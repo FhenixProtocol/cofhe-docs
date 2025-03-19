@@ -60,7 +60,7 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
           editUrl:
-            'https://github.com/fhenixprotocol/fhenix-docs/tree/main/',
+            'https://github.com/fhenixprotocol/cofhe-docs/tree/master/',
           routeBasePath: 'docs',
         },
         theme: {
