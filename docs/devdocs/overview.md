@@ -26,10 +26,10 @@ Blockchain is often praised for its **decentralization, immutability, and transp
 
 ### **Why Transparency is a Problem**
 
-In public blockchains like Ethereum, every transaction, smart contract interaction, and account balance is **completely visible** to anyone. While this fosters trustlessness and auditability, it **fails to protect user privacy**.
+In public blockchains like Ethereum, every transaction, smart contract interaction, and account balance is **completely visible** to anyone. This radical transparency, while crucial for establishing trust and enabling verification, creates significant privacy challenges. FHE solves this fundamental tradeoff by allowing data to remain **fully encrypted** while still maintaining the network's ability to verify its accuracy and authenticity. This means sensitive information can be processed and validated without ever being exposed, combining the best of both worlds - **bulletproof privacy with trustless verification**.
 
-**Real-world consequences of blockchain transparency: \
-** ✅ **Front-running & MEV** – Traders can analyze mempools and exploit pending transactions before they are executed. \
+**Real-world consequences of blockchain transparency:** \
+ ✅ **Front-running & MEV** – Traders can analyze mempools and exploit pending transactions before they are executed. \
  ✅ **Confidentiality leaks** – Sensitive financial transactions, payroll information, or business logic are exposed. \
  ✅ **Enterprise adoption hurdles** – Companies are reluctant to use public blockchains if competitors can access proprietary data.
 
@@ -90,8 +90,6 @@ CoFhe enables developers to build confidential smart contracts that weren’t po
 **Secure Voting** – Votes remain private while ensuring integrity and preventing manipulation.
 
  **Identity Management** – Users can verify credentials without exposing personal data.
-
- **Confidential AI** – Train and run AI models on encrypted data, allowing machine learning without exposing sensitive inputs.
 
 By leveraging FHE, these use cases—and many more—become possible while keeping data confidential at every stage.
 
