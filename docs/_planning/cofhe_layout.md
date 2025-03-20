@@ -78,6 +78,8 @@ graph LR
 ### **ACL Usage Examples**
 ### **Best Practices**
 
+## SolidityAPI
+
 ## 🛠️ SDK
 - CoFHE.js Integration
 - Browser-based Wallet SDK

@@ -46,7 +46,7 @@ In the back-end, encrypted integers are FHE ciphertexts. The library abstracts a
 
 ## Operations
 
-There are three ways to perform operations with FHE.sol:
+There are two ways to perform operations with FHE.sol:
 
 ### Using Direct Function Calls
 
@@ -78,52 +78,38 @@ The `ebool` type is not a real boolean type. It is implemented as a `euint8`
 A documentation of every function in FHE.sol (including inputs and outputs) can be found in [FHE.sol](../Solidity%20API/FHE.md)
 :::
 
-All operations supported by FHE.sol are listed in the table below. For performance reasons, not all operations are supported for all types.
+All operations supported by FHE.sol are listed in the table below.
 
-Please refer to the table below for a comprehensive list of supported operations. This list will evolve as the network matures.
-
-Note that all functions are supported in both direct function calls and library bindings. However, operator overloading is only supported for the operations listed in the table (solidity please support operator overloading for boolean return types!).
+Note that all functions are supported in both direct function calls and library bindings.
 
 
 | Name                  | FHE.sol function  | Operator  |  euint8  | euint16  | euint32  |  euint64  |  euint128   |   euint256    |  ebool   |  eaddress   |
 |-----------------------|-------------------|:---------:|:--------:|:--------:|:--------:|:---------:|:-----------:|:-------------:|:--------:|:-----------:|
-| Addition              | `add`             |    `+`    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <r>✘</r>    |   n/a    |     n/a     |
-| Subtraction           | `sub`             |    `-`    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <r>✘</r>    |   n/a    |     n/a     |
-| Multiplication        | `mul`             |    `*`    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <r>✘</r>   |   <r>✘</r>    |   n/a    |     n/a     |
-| Bitwise And           | `and`             |    `&`    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <r>✘</r>    | <g>✔</g> |     n/a     |
-| Bitwise Or            | `or`              |   `\|`    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <r>✘</r>    | <g>✔</g> |     n/a     |
-| Bitwise Xor           | `xor`             |    `^`    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <r>✘</r>    | <g>✔</g> |     n/a     |
-| Division              | `div`             |    `/`    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <r>✘</r>  |  <r>✘</r>   |   <r>✘</r>    |   n/a    |     n/a     |
-| Remainder             | `rem`             |    `%`    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <r>✘</r>  |  <r>✘</r>   |   <r>✘</r>    |   n/a    |     n/a     |
-| Square                | `square`          |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <r>✔</r>  |  <r>✘</r>   |   <r>✘</r>    |   n/a    |     n/a     |
-| Shift Right           | `shr`             |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <r>✘</r>    |   n/a    |     n/a     |
-| Shift Left            | `shl`             |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <r>✘</r>    |   n/a    |     n/a     |
-| Rotate Right          | `ror`             |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <r>✘</r>    |   n/a    |     n/a     |
-| Rotate Left           | `rol`             |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <r>✘</r>    |   n/a    |     n/a     |
+| Addition              | `add`             |    `+`    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    |   n/a    |     n/a     |
+| Subtraction           | `sub`             |    `-`    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    |   n/a    |     n/a     |
+| Multiplication        | `mul`             |    `*`    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    |   n/a    |     n/a     |
+| Bitwise And           | `and`             |    `&`    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    | <g>✔</g> |     n/a     |
+| Bitwise Or            | `or`              |   `\|`    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    | <g>✔</g> |     n/a     |
+| Bitwise Xor           | `xor`             |    `^`    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    | <g>✔</g> |     n/a     |
+| Division              | `div`             |    `/`    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    |   n/a    |     n/a     |
+| Remainder             | `rem`             |    `%`    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    |   n/a    |     n/a     |
+| Square                | `square`          |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    |   n/a    |     n/a     |
+| Shift Right           | `shr`             |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    |   n/a    |     n/a     |
+| Shift Left            | `shl`             |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    |   n/a    |     n/a     |
+| Rotate Right          | `ror`             |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    |   n/a    |     n/a     |
+| Rotate Left           | `rol`             |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    |   n/a    |     n/a     |
 | Equal                 | `eq`              |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    | <g>✔</g> |  <g>✔</g>   |
 | Not equal             | `ne`              |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    | <g>✔</g> |  <g>✔</g>   |
-| Greater than or equal | `gte`             |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <r>✘</r>    |   n/a    |     n/a     |
-| Greater than          | `gt`              |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <r>✘</r>    |   n/a    |     n/a     |
-| Less than or equal    | `lte`             |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <r>✘</r>    |   n/a    |     n/a     |
-| Less than             | `lt`              |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <r>✘</r>    |   n/a    |     n/a     |
-| Min                   | `min`             |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <r>✘</r>    |   n/a    |     n/a     |
-| Max                   | `max`             |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <r>✘</r>    |   n/a    |     n/a     |
-| Not                   | `not`             |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <r>✘</r>    | <g>✔</g> |     n/a     |
+| Greater than or equal | `gte`             |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    |   n/a    |     n/a     |
+| Greater than          | `gt`              |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    |   n/a    |     n/a     |
+| Less than or equal    | `lte`             |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    |   n/a    |     n/a     |
+| Less than             | `lt`              |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    |   n/a    |     n/a     |
+| Min                   | `min`             |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    |   n/a    |     n/a     |
+| Max                   | `max`             |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    |   n/a    |     n/a     |
+| Not                   | `not`             |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    | <g>✔</g> |     n/a     |
 | Select                | `select`          |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    | <g>✔</g> |  <g>✔</g>   |
-| Require               | `req`             |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    | <g>✔</g> |  <g>✔</g>   |
 | Decrypt               | `decrypt`         |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    | <g>✔</g> |  <g>✔</g>   |
-| Seal Output           | `sealOutput`      |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    | <g>✔</g> |  <g>✔</g>   |
-
-:::danger[Caveat]
-At the moment it is not possible to do `ebool result = (lhs == rhs)` and others that return a boolean result. This is because FHE.sol expects a `ebool`, while Solidity only allows overloading to return a regular boolean.
-Instead, we recommend `ebool result = lhs.eq(rhs)`.
-:::
-
-:::danger
-Using require and decrypt in a TX is dangerous as it can break the confidentiality of the data. Please refer to [Useful-Tips](./Useful-Tips.md) to read some more
-:::
 
 :::tip
 Division and Remainder by `0` will output with an encrypted representation of the maximal value of the uint that is used (Ex. encrypted 255 for euint8)
 :::
-
