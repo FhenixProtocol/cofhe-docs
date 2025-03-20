@@ -39,7 +39,7 @@ These challenges can all be mitigated by using FHE in your smart contracts.
 ---
 
 
-## **WTF is FHE?**
+## **What is FHE?**
 
 **Fully Homomorphic Encryption (FHE)** is a cryptographic technique that allows computations to be performed on encrypted data **without decrypting it**. Most cryptographic techniques secure data only until it needs to be used—FHE keeps it hidden even while processing, preventing leaks at every step.
 
