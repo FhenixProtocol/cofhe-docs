@@ -9,7 +9,7 @@ description: A comprehensive overview of CoFHE, its features, and use cases
 
 ## **Introduction**
 
-Blockchains are great for transparency and trust, but that transparency comes at a cost—**everything is public**. Every transaction, smart contract interaction, and account balance is out in the open, which isn’t ideal for things like finance, healthcare, or any use case that requires confidentiality.
+Blockchains are great for transparency, security and trust, but that transparency comes at a cost—**everything is public**. Every transaction, smart contract interaction, and account balance is out in the open, which isn’t ideal for things like finance, healthcare, or any use case that deal with sensitive data.
 
 **Fully Homomorphic Encryption (FHE) fixes this.** Instead of exposing raw data on-chain, FHE allows computations to happen **directly on encrypted data**. The blockchain never sees the actual inputs or outputs—only encrypted values—yet the results are still valid when decrypted by an authorized recipient.
 
