@@ -34,14 +34,14 @@ In the back-end, encrypted integers are FHE ciphertexts. The library abstracts a
 
 | name         | Bit Size | Usage   |
 |--------------|----------| ------- |
-| `inEuint8`   | 8        | Input   |
-| `inEuint16`  | 16       | Input   |
-| `inEuint32`  | 32       | Input   |
-| `inEuint64`  | 64       | Input   |
-| `inEuint128` | 128      | Input   |
-| `inEuint256` | 256      | Input   |
-| `inEbool`    | 8        | Input   |
-| `inEaddress` | 160      | Input   |
+| `InEuint8`   | 8        | Input   |
+| `InEuint16`  | 16       | Input   |
+| `InEuint32`  | 32       | Input   |
+| `InEuint64`  | 64       | Input   |
+| `InEuint128` | 128      | Input   |
+| `InEuint256` | 256      | Input   |
+| `InEbool`    | 8        | Input   |
+| `InEaddress` | 160      | Input   |
 </td></tr> </table>
 
 ## Operations

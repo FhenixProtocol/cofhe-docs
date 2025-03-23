@@ -25,139 +25,201 @@ The library supports the following encrypted data types:
 
 ### Type Conversion
 
-#### asEbool
+#### asEbool (from uint/bool)
 ```solidity
-asEbool(uint8 value) → ebool
+asEbool(bool value) → ebool
+asEbool(bool value, int32 securityZone) → ebool
 ```
-Converts a plaintext boolean value (represented as uint8) to an encrypted boolean.
+Converts a plaintext boolean value to an encrypted boolean.
 
-#### asEuint8
+#### asEuint8 (from uint)
 ```solidity
-asEuint8(uint8 value) → euint8
+asEuint8(uint256 value) → euint8
+asEuint8(uint256 value, int32 securityZone) → euint8
 ```
-Converts a plaintext uint8 value to an encrypted uint8.
+Converts a plaintext value to an encrypted 8-bit unsigned integer.
 
-#### asEuint16
+#### asEuint16 (from uint)
 ```solidity
-asEuint16(uint16 value) → euint16
+asEuint16(uint256 value) → euint16
+asEuint16(uint256 value, int32 securityZone) → euint16
 ```
-Converts a plaintext uint16 value to an encrypted uint16.
+Converts a plaintext value to an encrypted 16-bit unsigned integer.
 
-#### asEuint32
+#### asEuint32 (from uint)
 ```solidity
-asEuint32(uint32 value) → euint32
+asEuint32(uint256 value) → euint32
+asEuint32(uint256 value, int32 securityZone) → euint32
 ```
-Converts a plaintext uint32 value to an encrypted uint32.
+Converts a plaintext value to an encrypted 32-bit unsigned integer.
 
-#### asEuint64
+#### asEuint64 (from uint)
 ```solidity
-asEuint64(uint64 value) → euint64
+asEuint64(uint256 value) → euint64
+asEuint64(uint256 value, int32 securityZone) → euint64
 ```
-Converts a plaintext uint64 value to an encrypted uint64.
+Converts a plaintext value to an encrypted 64-bit unsigned integer.
 
-#### asEuint128
+#### asEuint128 (from uint)
 ```solidity
-asEuint128(uint128 value) → euint128
+asEuint128(uint256 value) → euint128
+asEuint128(uint256 value, int32 securityZone) → euint128
 ```
-Converts a plaintext uint128 value to an encrypted uint128.
+Converts a plaintext value to an encrypted 128-bit unsigned integer.
 
-#### asEuint256
+#### asEuint256 (from uint)
 ```solidity
 asEuint256(uint256 value) → euint256
+asEuint256(uint256 value, int32 securityZone) → euint256
 ```
-Converts a plaintext uint256 value to an encrypted uint256.
+Converts a plaintext value to an encrypted 256-bit unsigned integer.
 
-#### asEaddress
+#### asEaddress (from address)
 ```solidity
 asEaddress(address value) → eaddress
+asEaddress(address value, int32 securityZone) → eaddress
 ```
 Converts a plaintext address value to an encrypted address.
 
-### Type Casting
-
-#### cast (ebool to euint8)
+#### asEbool (from InEbool)
 ```solidity
-cast(ebool value) → euint8
+asEbool(InEbool memory value) → ebool
 ```
-Casts an encrypted boolean to an encrypted uint8.
+Converts an encrypted input structure to an encrypted boolean.
 
-#### cast (euint8 to ebool)
+#### asEuint8 (from InEuint8)
 ```solidity
-cast(euint8 value) → ebool
+asEuint8(InEuint8 memory value) → euint8
 ```
-Casts an encrypted uint8 to an encrypted boolean.
+Converts an encrypted input structure to an encrypted 8-bit unsigned integer.
 
-#### cast (euint8 to euint16)
+#### asEuint16 (from InEuint16)
 ```solidity
-cast(euint8 value) → euint16
+asEuint16(InEuint16 memory value) → euint16
 ```
-Casts an encrypted uint8 to an encrypted uint16.
+Converts an encrypted input structure to an encrypted 16-bit unsigned integer.
 
-#### cast (euint16 to euint8)
+#### asEuint32 (from InEuint32)
 ```solidity
-cast(euint16 value) → euint8
+asEuint32(InEuint32 memory value) → euint32
 ```
-Casts an encrypted uint16 to an encrypted uint8.
+Converts an encrypted input structure to an encrypted 32-bit unsigned integer.
 
-#### cast (euint16 to euint32)
+#### asEuint64 (from InEuint64)
 ```solidity
-cast(euint16 value) → euint32
+asEuint64(InEuint64 memory value) → euint64
 ```
-Casts an encrypted uint16 to an encrypted uint32.
+Converts an encrypted input structure to an encrypted 64-bit unsigned integer.
 
-#### cast (euint32 to euint16)
+#### asEuint128 (from InEuint128)
 ```solidity
-cast(euint32 value) → euint16
+asEuint128(InEuint128 memory value) → euint128
 ```
-Casts an encrypted uint32 to an encrypted uint16.
+Converts an encrypted input structure to an encrypted 128-bit unsigned integer.
 
-#### cast (euint32 to euint64)
+#### asEuint256 (from InEuint256)
 ```solidity
-cast(euint32 value) → euint64
+asEuint256(InEuint256 memory value) → euint256
 ```
-Casts an encrypted uint32 to an encrypted uint64.
+Converts an encrypted input structure to an encrypted 256-bit unsigned integer.
 
-#### cast (euint64 to euint32)
+#### asEaddress (from InEaddress)
 ```solidity
-cast(euint64 value) → euint32
+asEaddress(InEaddress memory value) → eaddress
 ```
-Casts an encrypted uint64 to an encrypted uint32.
+Converts an encrypted input structure to an encrypted address.
 
-#### cast (euint64 to euint128)
-```solidity
-cast(euint64 value) → euint128
-```
-Casts an encrypted uint64 to an encrypted uint128.
+### Type Conversion Between Encrypted Types
 
-#### cast (euint128 to euint64)
+#### asEbool (from euint)
 ```solidity
-cast(euint128 value) → euint64
+asEbool(euint8 value) → ebool
+asEbool(euint16 value) → ebool
+asEbool(euint32 value) → ebool
+asEbool(euint64 value) → ebool
+asEbool(euint128 value) → ebool
+asEbool(euint256 value) → ebool
+asEbool(eaddress value) → ebool
 ```
-Casts an encrypted uint128 to an encrypted uint64.
+Converts an encrypted integer to an encrypted boolean.
 
-#### cast (euint128 to euint256)
+#### asEuint8 (from other encrypted types)
 ```solidity
-cast(euint128 value) → euint256
+asEuint8(ebool value) → euint8
+asEuint8(euint16 value) → euint8
+asEuint8(euint32 value) → euint8
+asEuint8(euint64 value) → euint8
+asEuint8(euint128 value) → euint8
+asEuint8(euint256 value) → euint8
+asEuint8(eaddress value) → euint8
 ```
-Casts an encrypted uint128 to an encrypted uint256.
+Converts various encrypted types to an encrypted 8-bit unsigned integer.
 
-#### cast (euint256 to euint128)
+#### asEuint16 (from other encrypted types)
 ```solidity
-cast(euint256 value) → euint128
+asEuint16(ebool value) → euint16
+asEuint16(euint8 value) → euint16
+asEuint16(euint32 value) → euint16
+asEuint16(euint64 value) → euint16
+asEuint16(euint128 value) → euint16
+asEuint16(euint256 value) → euint16
+asEuint16(eaddress value) → euint16
 ```
-Casts an encrypted uint256 to an encrypted uint128.
+Converts various encrypted types to an encrypted 16-bit unsigned integer.
 
-#### cast (eaddress to euint256)
+#### asEuint32 (from other encrypted types)
 ```solidity
-cast(eaddress value) → euint256
+asEuint32(ebool value) → euint32
+asEuint32(euint8 value) → euint32
+asEuint32(euint16 value) → euint32
+asEuint32(euint64 value) → euint32
+asEuint32(euint128 value) → euint32
+asEuint32(euint256 value) → euint32
+asEuint32(eaddress value) → euint32
 ```
-Casts an encrypted address to an encrypted uint256.
+Converts various encrypted types to an encrypted 32-bit unsigned integer.
 
-#### cast (euint256 to eaddress)
+#### asEuint64 (from other encrypted types)
 ```solidity
-cast(euint256 value) → eaddress
+asEuint64(ebool value) → euint64
+asEuint64(euint8 value) → euint64
+asEuint64(euint16 value) → euint64
+asEuint64(euint32 value) → euint64
+asEuint64(euint128 value) → euint64
+asEuint64(euint256 value) → euint64
+asEuint64(eaddress value) → euint64
 ```
-Casts an encrypted uint256 to an encrypted address.
+Converts various encrypted types to an encrypted 64-bit unsigned integer.
+
+#### asEuint128 (from other encrypted types)
+```solidity
+asEuint128(ebool value) → euint128
+asEuint128(euint8 value) → euint128
+asEuint128(euint16 value) → euint128
+asEuint128(euint32 value) → euint128
+asEuint128(euint64 value) → euint128
+asEuint128(euint256 value) → euint128
+asEuint128(eaddress value) → euint128
+```
+Converts various encrypted types to an encrypted 128-bit unsigned integer.
+
+#### asEuint256 (from other encrypted types)
+```solidity
+asEuint256(ebool value) → euint256
+asEuint256(euint8 value) → euint256
+asEuint256(euint16 value) → euint256
+asEuint256(euint32 value) → euint256
+asEuint256(euint64 value) → euint256
+asEuint256(euint128 value) → euint256
+asEuint256(eaddress value) → euint256
+```
+Converts various encrypted types to an encrypted 256-bit unsigned integer.
+
+#### asEaddress (from euint256)
+```solidity
+asEaddress(euint256 value) → eaddress
+```
+Converts an encrypted 256-bit unsigned integer to an encrypted address.
 
 ### Arithmetic Operations
 
@@ -1569,8 +1631,12 @@ Each encrypted type has a corresponding binding library that includes all the op
 
 #### Arithmetic Operations
 ```solidity
-euint8 a = FHE.asEuint8(5);
-euint8 b = FHE.asEuint8(3);
+// Use secure encrypted input
+InEuint8 encryptedInputA;  // This would be provided by the user's client-side encryption
+InEuint8 encryptedInputB;  // This would be provided by the user's client-side encryption
+
+euint8 a = FHE.asEuint8(encryptedInputA);
+euint8 b = FHE.asEuint8(encryptedInputB);
 
 euint8 sum = a.add(b);        // Addition
 euint8 diff = a.sub(b);       // Subtraction
@@ -1645,9 +1711,12 @@ These examples show how to perform private computations (if b>a then sum else pr
 
 ### Basic Usage
 ```solidity
-// Encrypt values
-euint8 a = FHE.asEuint8(5);
-euint8 b = FHE.asEuint8(10);
+// Use secure encrypted input
+InEuint8 encryptedInputA;  // This would be provided by the user's client-side encryption
+InEuint8 encryptedInputB;  // This would be provided by the user's client-side encryption
+
+euint8 a = FHE.asEuint8(encryptedInputA);
+euint8 b = FHE.asEuint8(encryptedInputB);
 
 // Perform operations
 euint8 sum = FHE.add(a, b);  // Encrypted addition
@@ -1664,12 +1733,12 @@ uint8 decryptedResult = FHE.decrypt(result);
 
 ### With Bindings
 ```solidity
-using BindingsEuint8 for euint8;
-using BindingsEbool for ebool;
+// Use secure encrypted input
+InEuint8 encryptedInputA;  // This would be provided by the user's client-side encryption
+InEuint8 encryptedInputB;  // This would be provided by the user's client-side encryption
 
-// Encrypt values
-euint8 a = FHE.asEuint8(5);
-euint8 b = FHE.asEuint8(10);
+euint8 a = FHE.asEuint8(encryptedInputA);
+euint8 b = FHE.asEuint8(encryptedInputB);
 
 // Perform operations using dot notation
 euint8 sum = a.add(b);               // Encrypted addition
