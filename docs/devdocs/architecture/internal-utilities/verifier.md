@@ -5,7 +5,7 @@ sidebar_position: 6
 
 # ZK Verifier
 
-In this document, we describe the **ZK-Verifier**, an essential component for encrypting and providing data as inputs to confidential smart contracts.
+**ZK-Verifier** is an essential component for encrypting and providing data as inputs to confidential smart contracts.
 
 | Aspect               | Description                                                                                                                                                                     |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
