@@ -5,15 +5,15 @@ sidebar_position: 8
 
 # Threshold Network
 
-| Aspect               | Description |
-| -------------------- | ----------- |
-| **Type**             |             |
-| **Function**         |             |
-| **Responsibilities** |             |
-
-## Intro
+| Aspect               | Description                                                                                                                       |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Type**             | Offchain, distributed network.                                                                                                    |
+| **Function**         | Process and execute decryption requests.                                                                                          |
+| **Responsibilities** | • Gets ciphertext decryption requests<br/>• Authenticates and validates them<br/>• Runs an MPC protocol to decrypt the ciphertext |
 
 In any system utilizing encryption, a crucial step is the eventual decryption of data. For example, if we were to build a privacy-preserving ERC20 contract, users would ultimately need to access their encrypted balances. In the case of CoFHE, this decryption process is managed by the Threshold Network.
+
+## Motivation
 
 The Threshold Network is a component of a complex cryptographic system with the sole purpose of enhancing the security and trustworthiness of the system by distributing control of the decryption process. Rather than having a single secret key stored and used for the decryption by a centralized entity, we distribute secret shares (i.e. shares of a decryption key) among multiple parties. This enforces collaboration among parties in order to decrypt; the parties perform an MPC (Multi-Party Computation) protocol that results in the decrypted value of a given ciphertext, ensuring that no information about the full secret key is leaked at any time.
 
@@ -21,7 +21,7 @@ A practical example of a threshold network in practice is vote counting. Multipl
 
 ## Concept
 
-Threshold Network performs decryption operations. The Threshold Network is currently initialized by a Trusted Dealer (in the future, we plan to eliminate the Trusted Dealer) that is running in a Trusted Execution Environment (TEE). The Trusted Dealer initially generates a key. Then, the Dealer uses a secret-sharing algorithm to generate Secret Shares of the key to share among individual members. Each member holds exactly one secret share. To perform a decryption, the secret shares are used to perform partial decryptions through a multiparty computation (MPC) protocol. These partial decryptions are then combined into the final plaintext. The protocol requires cooperation from all participants to perform a decryption, ensuring no single entity can decrypt the ciphertext alone. This distributed control mechanism enhances security by preventing unilateral access to encrypted data.
+Threshold Network performs decryption operations. The Threshold Network is currently initialized by a Trusted Dealer (in the future, we plan to eliminate the Trusted Dealer). The Dealer initially generates a key. Then, the Dealer uses a secret-sharing algorithm to generate Secret Shares of the key to share among individual members. Each member holds exactly one secret share. To perform a decryption, the secret shares are used to perform partial decryptions through a multiparty computation (MPC) protocol. These partial decryptions are then combined into the final plaintext. The protocol requires cooperation from all participants to perform a decryption, ensuring no single entity can decrypt the ciphertext alone. This distributed control mechanism enhances security by preventing unilateral access to encrypted data.
 
 ## Decryption Process
 
@@ -31,7 +31,9 @@ The Threshold network includes three main components:
 - Party Members - the individual parties that hold a secret share and execute the MPC protocol.
 - Trusted Dealer - responsible for initializing the protocol, and for providing random data to the party members, needed to perform the protocol securely.
 
-All incoming decryption requests reach the Coordinator.
-The coordinator upon receiving a decryption request splits the CT into individual Learning With Errors (LWE) CT blocks. These blocks then get broadcast to partymembers. During this process data is exchanged back and forth until the decryption of all blocks is complete upon which the coordinator reassembles the plaintext from decrypted LWE CT blocks. The plaintext then gets sent back to the user.
+<put diagram here>
+
+All incoming decryption requests reach the Coordinator (1).
+The coordinator splits the CT into individual Learning With Errors (LWE) CT blocks. These blocks then get broadcast to partymembers (2). During this process data is exchanged back and forth until the decryption of all blocks is complete upon which the coordinator reassembles the plaintext from decrypted LWE CT blocks. The plaintext value then gets sent back to the user.
 
 The MPC protocol consists of multiple stages. In each stage, a partymember performs a calculation on a received input and returns the result (a.k.a. intermediate result) to the Coordinator. Each intermediate result gets sent back to the coordinator in order to get distributed among other partymembers as an input for the next stage.
