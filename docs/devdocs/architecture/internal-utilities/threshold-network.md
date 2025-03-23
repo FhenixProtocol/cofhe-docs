@@ -31,7 +31,7 @@ The Threshold network includes three main components:
 - Party Members - the individual parties that hold a secret share and execute the MPC protocol.
 - Trusted Dealer - responsible for initializing the protocol, and for providing random data to the party members, needed to perform the protocol securely.
 
-<put diagram here>
+![Threshold Network Flow](../../../../static/img/threshold-network.svg)
 
 All incoming decryption requests reach the Coordinator (1).
 The coordinator splits the CT into individual Learning With Errors (LWE) CT blocks. These blocks then get broadcast to partymembers (2). During this process data is exchanged back and forth until the decryption of all blocks is complete upon which the coordinator reassembles the plaintext from decrypted LWE CT blocks. The plaintext value then gets sent back to the user.
