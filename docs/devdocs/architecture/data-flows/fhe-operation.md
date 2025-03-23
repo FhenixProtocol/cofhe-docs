@@ -7,7 +7,7 @@ sidebar_position: 2
 
 ## Overview
 
-This document outlines the complete flow of an FHE (Fully Homomorphic Encryption) operation request in the CoFHE ecosystem. Understanding this process is essential for developers integrating private computation capabilities into their smart contracts.
+This document outlines the complete flow of an FHE (Fully Homomorphic Encryption) operation request in the CoFHE ecosystem through Smart Contracts. Understanding this process is essential for developers integrating private computation capabilities into their smart contracts.
 
 
 ## Key Components
@@ -91,28 +91,5 @@ For standard FHE operations (not decryption):
 
 1. **Update ciphertext registry** with the new encrypted result
 2. **Complete the operation cycle** without revealing any encrypted values
-
-### 📌 Step 7: Decryption Operations (When Applicable)
-
-For operations requiring decryption:
-
-1. **fheOS server calls the threshold network** with:
-   - The ciphertext to be decrypted
-   - Transaction hash from the host chain
-   - Original operation handle
-
-2. **Threshold network security protocol**:
-   - Verify the host chain requested the desired decryption
-   - Retrieve the actual ciphertext hash from private storage
-   - Validate ciphertext hash integrity
-   - Perform secure decryption
-
-3. **Return decrypt result to the aggregatr**:
-   - Call appropriate callback function on the aggregator
-   - Call the TaskManager with relevant result.
-
-4. **TaskManager emit event with decryption result**:    
-   - Provide decrypted result by emitting an event `DecryptionResult`
-   - The event consists of `ciphertext handle`, `result`, `requestor` (of that decrypt operation)
 
 ---
