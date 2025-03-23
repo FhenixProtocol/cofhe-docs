@@ -12,23 +12,29 @@ This document outlines the complete flow of an FHE (Fully Homomorphic Encryption
 
 ## Key Components
 
-- **dApp**: The decentralized application that requests FHE operations
-- **FHE.sol**: The library providing FHE operation functions
-- **Task Manager**: Verifies and forwards operation requests
-- **Aggregator**: Manages the request queue and communicates with the execution layer
-- **fheOS Server**: Executes the actual FHE operations
-- **Threshold Network**: (When applicable) Handles secure decryption operations
+| Component | Description |
+|-----------|-------------|
+| **dApp** | The decentralized application that requests FHE operations |
+| **FHE.sol** | The library providing FHE operation functions |
+| **Task Manager** | Verifies and forwards operation requests |
+| **Aggregator** | Manages the request queue and communicates with the execution layer |
+| **fheOS Server** | Executes the actual FHE operations |
+| **Threshold Network** | (When applicable) Handles secure decryption operations |
+
+---
 
 ## Step-by-Step Flow
 
-### Step 1: Integration with CoFHE.js
+### 📌 Step 1: Integration with CoFHE.js
 
 1. The decentralized application (dApp) integrates with CoFHE by utilizing **Cofhe.js** for encryption.
 [See in GitHub](https://github.com/FhenixProtocol/cofhe.js)
 
 2. [Encrypt request](./encryption-request.md) using CoFHE.js, returns `InEuint` structure.
 
-### Step 2: Requesting an FHE Operation
+> 📝 **Note:** This step happens on the client side before blockchain interaction.
+
+### 📌 Step 2: Requesting an FHE Operation
 
 When the dApp needs to perform an encrypted operation within the a smart contract:
 1. **Import the FHE library in Solidity**:
@@ -49,7 +55,7 @@ When the dApp needs to perform an encrypted operation within the a smart contrac
 
 3. **FHE.sol forwards the request** to the Task Manager contract
 
-### Step 3: Task Manager Processing
+### 📌 Step 3: Task Manager Processing
 
 The Task Manager serves as the gateway for all FHE operation requests:
 
@@ -59,7 +65,7 @@ The Task Manager serves as the gateway for all FHE operation requests:
 4. **Return the handle** to the calling dApp contract
 5. **Emit an event** containing the operation details for the Aggregator to process
 
-### Step 4: Aggregator Processing
+### 📌 Step 4: Aggregator Processing
 
 The Aggregator manages the queue of FHE operation requests:
 
@@ -68,7 +74,7 @@ The Aggregator manages the queue of FHE operation requests:
 3. **Forward request details** to the fheOS server
 4. **Track the request status** throughout its lifecycle
 
-### Step 5: FheOS server - FHE Operation Execution
+### 📌 Step 5: FheOS server - FHE Operation Execution
 
 The FheOS server handles requests:
 
@@ -79,14 +85,14 @@ The FheOS server handles requests:
 5. **Make result available** for subsequent operations
 6. **Notify the Aggregator** of operation completion
 
-### Step 6: Result Handling (For Standard Operations)
+### 📌 Step 6: Result Handling (For Standard Operations)
 
 For standard FHE operations (not decryption):
 
 1. **Update ciphertext registry** with the new encrypted result
 2. **Complete the operation cycle** without revealing any encrypted values
 
-### Step 7: Decryption Operations (When Applicable)
+### 📌 Step 7: Decryption Operations (When Applicable)
 
 For operations requiring decryption:
 
@@ -105,6 +111,8 @@ For operations requiring decryption:
    - Call appropriate callback function on the aggregator
    - Call the TaskManager with relevant result.
 
-4. **TaskManager emit event with decryption result**    
+4. **TaskManager emit event with decryption result**:    
    - Provide decrypted result by emitting an event `DecryptionResult`
    - The event consists of `ciphertext handle`, `result`, `requestor` (of that decrypt operation)
+
+---
