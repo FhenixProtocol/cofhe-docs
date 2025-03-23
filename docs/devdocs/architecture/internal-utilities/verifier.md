@@ -17,16 +17,16 @@ In this document, we describe the **ZK-Verifier**, an essential component for en
 
 **Zero-Knowledge Proof of Knowledge (ZKPoK)** provides a crucial security mechanism in CoFHE. It allows users to prove they know the plaintext of an encrypted input they're sending to a smart contract, without revealing the plaintext itself.
 
-ZKPoKs protect against potential malicious vectors, including but not limited to:
+ZKPoKs protect against potential malicious vectors, including:
 
 1. Malleability Attacks: Without ZKPoK protection, attackers could manipulate encrypted data by applying transformations to observed ciphertexts, even without knowing what's inside them. For example, they might combine existing ciphertexts with encrypted zero values to create new valid-looking encrypted data, potentially compromising user's confidentiality.
 2. Chosen Ciphertext Attacks (CCAs): Attackers can submit modified ciphertexts to the system and observe the results, potentially exploiting homomorphic operations to infer sensitive information, manipulate data, or even recover the secret key.
 
 Requiring a ZKPoK for each encrypted input helps running an encryption system in the public space that is a blockchain runtime. It ensures that only users with knowledge of the original plaintext can produce valid proofs. This approach eliminates multiple security risks, protecting sensitive user data and maintaining the system’s integrity.
 
-![ZK Proof of Knowledge Flow](../../../../static/img/zk-pok.svg)
-
 ## Sending encrypted inputs
+
+![ZK Proof of Knowledge Flow](../../../../static/img/zk-pok.svg)
 
 As mentioned before, when providing ciphertexts as an input to a smart contract, users have to generate a ZKPoK and get a verification approval first. Although most of the work will be handled by cofhe.js and FHE.sol, we will describe the high level flow of this mechanism (also in the diagram above).
 The users will encrypt an input(s) and generate a ZK proof of knowledge for it. Next, they will send the ciphertext(s) and proof(s) to the ZKVerifier, which will in turn verify the proof and sign a verification message.
