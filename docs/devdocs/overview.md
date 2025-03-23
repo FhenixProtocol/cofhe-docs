@@ -77,9 +77,21 @@ CoFhe, an FHE enabled coprocessor, is a privacy tool for Ethereum and other EVM-
  ✅ **Scalability with security** – Leverages cryptographic optimizations to make FHE practical. \
  ✅ **Ethereum compatibility** – Works within the existing Ethereum ecosystem, allowing developers to integrate seamlessly.
 
+### **Main Features**
+
+- **Encryption on your preferred chain** - CoFHE lets you integrate encrypted variables and state in your Smart Contract on the EVM chain you're already using. No need to migrate to a different chain or runtime.
+- **Simple integration** - It's as straightforward as adding an `import`. You write the logic, and everything else is handled behind the scenes.
+- **Async Execution** - FHE is notorious for not being as performant as regular, native EVM
+  code. CoFHE is processing FHE operations asynchronously, allowing for
+  quick finality and cheap transactions.
+- **Comprehensive developer tools** - We've adapted common developer tools to support confidential dApp development. Foundry, Hardhat, and more are available so you feel right at home.
+- **Decentralized and trustless** - The CoFHE protocol is designed with decentralization and trustlessness as core principles:
+  - Threshold Network (TN) - The decryption key is split between multiple parties, reducing the risk of inappropriate use.
+  - Verifiability - Every component in CoFHE is designed to be verifiable. In the future,
+    there will be mechanisms in place to validate and enforce correct execution and honest
+    participation of all components.
 
 ---
-
 
 ## **Unlocked Use Cases**
 
