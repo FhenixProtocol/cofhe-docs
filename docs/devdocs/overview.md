@@ -86,7 +86,7 @@ CoFhe, an FHE enabled coprocessor, is a privacy tool for Ethereum and other EVM-
   quick finality and cheap transactions.
 - **Comprehensive developer tools** - We've adapted common developer tools to support confidential dApp development. Foundry, Hardhat, and more are available so you feel right at home.
 - **Decentralized and trustless** - The CoFHE protocol is designed with decentralization and trustlessness as core principles:
-  - Threshold Network (TN) - The decryption key is split between multiple parties, reducing the risk of inappropriate use.
+  - Threshold Network (TN) - The decryption key is split between multiple parties, reducing the risk of inappropriate use or being leaked.
   - Verifiability - Every component in CoFHE is designed to be verifiable. In the future,
     there will be mechanisms in place to validate and enforce correct execution and honest
     participation of all components.
