@@ -9,7 +9,7 @@ sidebar_position: 6
 
 | Aspect               | Description                                                                                                                                                                     |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Type**             | Off-chain service, used by clients (like cofhe.js).                                                                                                                             |
+| **Type**             | Off-chain service, used by clients.                                                                                                                             |
 | **Function**         | Verifies the user's input, ensuring that it is safe to use.                                                                                                                     |
 | **Responsibilities** | • Receives a user's ZKPoK of their inputs.<br/>• Verifies said ZK proofs.<br/>• Generates a signature, allowing the user to use these inputs in a smart contract function call. |
 
