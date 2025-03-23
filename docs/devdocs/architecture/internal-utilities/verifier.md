@@ -26,12 +26,21 @@ Requiring a ZKPoK for each encrypted input helps running an encryption system in
 
 ## Sending encrypted inputs
 
+As mentioned before, when providing ciphertexts as an input to a smart contract, users have to generate a ZKPoK and get a verification approval first. Although most of the work will be handled by cofhe.js and FHE.sol, we will describe this mechanism in high-level (also in the diagram below).
+
 ![ZK Proof of Knowledge Flow](../../../../static/img/zk-pok.svg)
 
-As mentioned before, when providing ciphertexts as an input to a smart contract, users have to generate a ZKPoK and get a verification approval first. Although most of the work will be handled by cofhe.js and FHE.sol, we will describe the high level flow of this mechanism (also in the diagram above).
-The users will encrypt an input(s) and generate a ZK proof of knowledge for it. Next, they will send the ciphertext(s) and proof(s) to the ZKVerifier, which will in turn verify the proof and sign a verification message.
+The process of sending input(s) to a Smart Contract:
 
-The users can then send this ciphertext(s) and verification(s) as input(s) to a smart contract. The smart contract will first verify the ZKVerifier’s signature, and only if valid will allow the processing of the input(s).
+1. User encrypts an input(s) and generate a ZK proof of knowledge for it.
+2. User sends the ciphertext(s) and proof(s) to the ZKVerifier.
+3. ZK-Verifier verifies the proof. If valid, sign a message that approves input(s).
+4. ZK-Verifier returns the signed approval to User.
+5. User sends `(ciphertext, signed_approve)` (one or more) as input(s) to a contract call.
+6. Contract verifies the signed message, approving the input(s).
+7. Cotnract peforms actual logic.
+
+As mentioned, most of this process is abstracted away. In fact, steps 1-6 are all handled behind the scenes, while step 7 (the actual logic) is, of course, up to the user to write.
 
 ## ZK-Verifier
 
@@ -42,4 +51,4 @@ The ZK-Verifier is a zk-verification program. It has two purposes:
 
 The signed message that the ZK-Verifier outputs will then be verified by the receiving contract using `ecrecover`. That means that the ZKVerifier’s public key will be predetermined and well-known.
 
-The ZKVerifier runs in a TEE to reduce trust and ensure the integrity of the inputs and signed verification messages.
+The ZKVerifier is intended to run in a TEE to reduce trust and ensure the integrity of the inputs and signed verification messages.
