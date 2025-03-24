@@ -36,7 +36,7 @@ This document outlines the complete flow of an FHE (Fully Homomorphic Encryption
 
 ### 📌 Step 2: Requesting an FHE Operation
 
-When the dApp needs to perform an encrypted operation within the a smart contract:
+When the dApp needs to perform an encrypted operation within the smart contract:
 1. **Import the FHE library in Solidity**:
    ```solidity
    import "@fhenixprotocol/cofhe-contracts/FHE.sol";
@@ -44,13 +44,14 @@ When the dApp needs to perform an encrypted operation within the a smart contrac
 
 2. **Call the appropriate FHE function** from the imported library:
    ```solidity
-   // using trivial encrypt / or the returned structures from the previous step.
-   InEuint32 encryptedInput;
-   euint32 lhs = FHE.asEuint32(encryptedInput);
-   euint32 rhs = FHE.asEuint32(10);
-   
-   // Request an operation (addition in this example)
-   euint32 result = FHE.add(lhs, rhs);
+   // using trivial encrypt or the returned structures from the previous step.
+   function addExample(InEuint32 encryptedInput)  {
+    euint32 lhs = FHE.asEuint32(encryptedInput);
+    euint32 rhs = FHE.asEuint32(10);
+    
+    // Request an operation (addition in this example)
+    euint32 result = FHE.add(lhs, rhs);
+   }
    ```
 
 3. **FHE.sol forwards the request** to the Task Manager contract
