@@ -1,6 +1,6 @@
 ---
 title: Gas and Benchmarks
-sidebar_position: 9
+sidebar_position: 8
 ---
 
 # Gas and Benchmarks
