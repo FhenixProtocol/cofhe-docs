@@ -91,6 +91,7 @@ The FheOS server handles requests:
 For standard FHE operations (not decryption):
 
 1. **Update ciphertext registry** with the new encrypted result
-2. **Complete the operation cycle** without revealing any encrypted values
+
+At this point **the operation cycle is completed**, preserving the confidentiality of all encrypted values
 
 ---
