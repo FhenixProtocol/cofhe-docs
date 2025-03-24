@@ -33,7 +33,7 @@ euint32 amount = FHE.asEuint32(inAmount);
 ```
 
 :::tip
-You should avoid storing encrypted input types (e.g. `inEuint8`, etc) directly - it will be more expensive as these types contain more data, and it could lead to unexpected results. You should always prefer to convert it to a regular encrypted type using `FHE.asE...()`.
+You should avoid storing encrypted input types (e.g. `inEuint8`, etc) directly in your contract's state - it will be more expensive as these types contain more data, and it could lead to unexpected results. You should always prefer to convert it to a regular encrypted type using `FHE.asE...()`.
 :::
 
 Now that `value` is of type `euint32`, we can store or manipulate it:
