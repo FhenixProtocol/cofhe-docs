@@ -24,7 +24,7 @@ Notice in the example above the distinction between **`inEuint32`** and **`euint
 
 ### Input Types Conversion
 
-The **input types** `inEuintxx` (and `inEbool`, `inEaddress`) are special encrypted types that represent **user input**. Input types contain additional info required to authenticate and validate ciphertexts. For more info on that, read on the [ZK-Verifier](../architecture/internal-utilities/verifier.md).
+The **input types** `inEuintxx` (and `inEbool`, `inEaddress`) are special encrypted types that represent **user input**. Input types contain additional information required to authenticate and validate ciphertexts. For more on that, read on the [ZK-Verifier](../architecture/internal-utilities/verifier.md).
 
 Before we can use an encrypted input, we need to convert it to a regular **encrypted type**:
 
