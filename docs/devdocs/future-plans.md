@@ -11,21 +11,21 @@ Integrating FHE into a blockchain-runtime is a hard and complex task. Our engine
 
 Outlined here is a non-exhaustive list of trust-points, centralized components and compromises made to ship CoFHE to users as fast as possible, along with how we plan to address them in the future. This list will be updated as things progress.
 
-| Component              | Compromise                                                   | Plan to solve                   | Timeline | Status |
-| ---------------------- | ------------------------------------------------------------ | ------------------------------- | -------- | ------ |
-| Threshold Network (TN) | Parties are all run by Fhenix                                | N/A                             | N/A      | ❌     |
-| Threshold Network (TN) | Use of a Trusted dealer for keys and random data generation  | N/A                             | N/A      | ❌     |
-| Threshold Network (TN) | Parties blindly trust the Coordinator                        | N/A                             | N/A      | ❌     |
-| Threshold Network (TN) | TN bilndly trusts CoFHE (tx-flow decryptions)                | N/A                             | N/A      | ❌     |
-| Threshold Network (TN) | Parties blindly trust Trusted Dealer                         | Run TD in a TEE                 | N/A      | ❌     |
-| Threshold Network (TN) | Parties are not using unique random data within the protocol | Pull random data from the TD    | N/A      | ❌     |
-| Threshold Network (TN) | Sealoutput reencryption performed in a centralized manner    | N/A                             | N/A      | ❌     |
-| Threshold Network (TN) | Use of Additive Secret Sharing for keys, randomness          | Implement Shamir Secret Sharing | N/A      | ❌     |
-| ZK-Verifier (ZKV)      | CoFHE blindly trusts ZK-Verifier                             | Run ZKV in a TEE                | N/A      | ❌     |
-| CoFHE                  | Trust on CoFHE to peform correct FHE computations            | External verification using AVS | N/A      | ❌     |
-| CoFHE                  | User inputs stored in a centralized manner                   | Use a decentralized DA          | N/A      | ❌     |
-| All                    | Codebase is unaudited                                        | Perform a security audit        | N/A      | ❌     |
-| All                    | Codebase is not fully open-source                            | Open-source entire codebase     | N/A      | ❌     |
+| Component              | Compromise                                                   | Plan to solve                          | Timeline | Status |
+| ---------------------- | ------------------------------------------------------------ | -------------------------------------- | -------- | ------ |
+| Threshold Network (TN) | Parties are all run by Fhenix                                | N/A                                    | N/A      | ❌     |
+| Threshold Network (TN) | Use of a Trusted dealer for keys and random data generation  | N/A                                    | N/A      | ❌     |
+| Threshold Network (TN) | Parties blindly trust the Coordinator                        | N/A                                    | N/A      | ❌     |
+| Threshold Network (TN) | TN bilndly trusts CoFHE (tx-flow decryptions)                | N/A                                    | N/A      | ❌     |
+| Threshold Network (TN) | Parties blindly trust a Trusted Dealer                       | 1. Run TD in a TEE</br>2. Eliminate TD | N/A      | ❌     |
+| Threshold Network (TN) | Parties are not using unique random data within the protocol | Pull random data from the TD           | N/A      | ❌     |
+| Threshold Network (TN) | Sealoutput reencryption performed in a centralized manner    | N/A                                    | N/A      | ❌     |
+| Threshold Network (TN) | Use of Additive Secret Sharing for keys, randomness          | Implement Shamir Secret Sharing        | N/A      | ❌     |
+| ZK-Verifier (ZKV)      | CoFHE blindly trusts ZK-Verifier                             | Run ZKV in a TEE                       | N/A      | ❌     |
+| CoFHE                  | Trust on CoFHE to peform correct FHE computations            | External verification using AVS        | N/A      | ❌     |
+| CoFHE                  | User inputs stored in a centralized manner                   | Use a decentralized DA                 | N/A      | ❌     |
+| All                    | Codebase is unaudited                                        | Perform a security audit               | N/A      | ❌     |
+| All                    | Codebase is not fully open-source                            | Open-source entire codebase            | N/A      | ❌     |
 
 ## Upcoming Features
 
