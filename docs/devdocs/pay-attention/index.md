@@ -8,6 +8,7 @@ sidebar_position: 1
 
 ## Common Issues
 1. `Missing revert data`- In case of getting such error, please verify [here](component-compatibility.md), that you are using the latest cofhe-contracts version.
+2. **Avoid FHE Operations in Constructors**: FHE operations must not be used within smart contract constructors. Each FHE operation generates events that are critical for the operation's execution. However, events emitted during constructor execution are not recorded in transaction logs and are not captured by event listeners, resulting in the FHE operation failing to execute properly.
 
 #### *Will be filled overtime, when a new issue will arise.
 
