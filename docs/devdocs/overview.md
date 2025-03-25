@@ -71,26 +71,25 @@ These challenges can all be mitigated by using FHE in your smart contracts.
 CoFhe, an FHE enabled coprocessor, is a privacy tool for Ethereum and other EVM-compatible chains that allows computation directly on encrypted data. It means your smart contracts can handle sensitive information (like bids, votes, or user data) without ever exposing it to the network. CoFhe works off-chain, so it’s fast and scalable, and its stateless design makes integration as easy as adding a single solidity library. Whether you're building in DeFi, DAOs, or Gaming, CoFhe adds encrypted data handling to your contracts while keeping them lightweight and performant.
 
 
-### **What CoFHE Enables**
-
-✅ **Confidential smart contracts** – Execute logic on encrypted data while maintaining composability. \
- ✅ **Scalability with security** – Leverages cryptographic optimizations to make FHE practical. \
- ✅ **Ethereum compatibility** – Works within the existing Ethereum ecosystem, allowing developers to integrate seamlessly.
-
 ### **Main Features**
 
-- **Encryption on your preferred chain** - CoFHE lets you integrate encrypted variables and state in your Smart Contract on the EVM chain you're already using. No need to migrate to a different chain or runtime.
-- **Effortless integration** - Adding CoFHE is as simple as an `import`. You define the logic, CoFHE handles the rest behind the scenes.
+- ✅**Encryption on your preferred chain** - CoFHE lets you integrate encrypted variables and state in your Smart Contract on the EVM chain you're already using. No need to migrate to a different chain or runtime.
+-  ✅**Effortless integration** - Adding CoFHE is as simple as an `import`. You define the logic, CoFHE handles the rest behind the scenes.
 - **Async Execution** - FHE is notorious for not being as performant as regular, native EVM
   code. CoFHE is processing FHE operations asynchronously, allowing for
   quick finality and cheap transactions.
-- **Comprehensive developer tools** - We've adapted common developer tools to support confidential dApp development. Foundry, Hardhat, and more are available so you feel right at home.
-- **Decentralized and trustless** - The CoFHE protocol is designed with decentralization and trustlessness as core principles:
+- ✅**Comprehensive developer tools** - We've adapted common developer tools to support confidential dApp development. Foundry, Hardhat, and more are available so you feel right at home.
+- ✅**Decentralized and trustless** - The CoFHE protocol is designed with decentralization and trustlessness as core principles:
   - Threshold Network (TN) - The decryption key is split between multiple parties, reducing the risk of inappropriate use or being leaked.
   - Verifiability - Every component in CoFHE is designed to be verifiable. In the future,
     there will be mechanisms in place to validate and enforce correct execution and honest
     participation of all components.
+    
+### **What CoFHE Enables**
 
+ **Confidential smart contracts** – Execute logic on encrypted data while maintaining composability. \
+ **Scalability with security** – Leverages cryptographic optimizations to make FHE practical. \
+  **Ethereum compatibility** – Works within the existing Ethereum ecosystem, allowing developers to integrate seamlessly.
 ---
 
 ## **Unlocked Use Cases**
