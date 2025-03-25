@@ -25,7 +25,9 @@ This document outlines the complete flow of an FHE (Fully Homomorphic Encryption
 ## Flow Diagram
 
 The following diagram illustrates the complete flow of an FHE operation request in the CoFHE ecosystem:
+<a href="/docs/assets/Transactions.svg" target="_blank">
 ![Diagram](../../../assets/Transactions.svg)
+</a>
 *Figure 1: End-to-end flow of an FHE operation request through the CoFHE system components*
 
 ## Step-by-Step Flow

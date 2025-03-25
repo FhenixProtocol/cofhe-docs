@@ -10,7 +10,9 @@ Here we'll continue from FheOS server handling such request as follows:
 ### Flow Diagram
 
 The following diagram illustrates the complete flow of an FHE Decryption request in the CoFHE ecosystem:
+<a href="/docs/assets/Decryption%20Transactions.svg" target="_blank">
 ![Diagram](../../../assets/Decryption%20Transactions.svg)
+</a>
 *Figure 1: End-to-end flow of an FHE Decryption request through the CoFHE system components*
 
 ### 📌 [Step 1-4](fhe-operation.md) 
