@@ -172,3 +172,133 @@ contract WrappingERC20 is ERC20, Permissioned {
 }
 ```
 In the above example since allowing the users on every step of the way, the users can use decrypt/sealoutput directly from cofhe.js or using fhe.decrypt as above while listening on the event `DecryptResult`.
+
+
+## Frontend Fhenix.js to CoFHE.js
+
+The main difference between Fhenix.js and CoFHE.js is that CoFHE.js is asynchronous and uses symbolic execution.  
+This means that the encrypted values are not revealed until the user requests a decryption.  
+
+### 1. Initialization
+
+```javascript
+    // diff-remove
+    const fhenixClient = new fhenixjs.FhenixClient({ provider: provider });
+    // diff-add
+    await cofhejs.initialize({
+        // diff-add
+        provider,
+        // diff-add
+        signer,
+        // diff-add
+        environment: "LOCAL",
+        // diff-add
+    });    
+```
+
+### 2. Encrypting values
+
+With CoFHE.js the encryption is done asynchronously, for this reason we can provide a callback function to log the encryption state (read about it [here](/docs/devdocs/cofhejs/encryption-operations))
+
+```javascript
+// diff-remove
+    const envValue = await fhenixClient.encrypt_uint128(value);
+// diff-add
+    const logState = (state) => {
+// diff-add        
+        console.log(`Log Encrypt State :: ${state}`);
+// diff-add        
+    };
+// diff-add
+    const encryptedValues = await cofhejs.encrypt(logState, [Encryptable.uint32(10n), Encryptable.uint64(20n)]);
+```
+
+### 3. Permits and Unsealing
+
+In Fhenix.js the permit system was tied to contract address.  
+The application required to request a permit for each contract address.  
+In addition, to unseal the value, the contract function needs to use the permit in order to seal the value.
+
+In CoFHE.js the permit system is tied to the user address (issuer).  
+The user can use default permit or create a new one using the `createPermit` function (read about it [here](/docs/devdocs/cofhejs/permits-management)).  
+To unseal the value, the contract need to return the encrypted value handle and the sealing process done off-chain.
+
+```javascript
+// diff-remove
+    const getExtractedPermit = async (contractAddress: string) => {
+// diff-remove        
+        if (fhenixClient != null && provider != null) {
+// diff-remove
+            try {
+// diff-remove
+                let permit = await fhenixjs.getPermit(contractAddress, provider);
+// diff-remove
+                fhenixClient.storePermit(permit);
+// diff-remove
+                return fhenixClient.extractPermitPermission(permit);
+// diff-remove
+            } catch (err) { 
+// diff-remove
+                console.log(err);
+// diff-remove
+            }
+// diff-remove
+        }
+// diff-remove
+        return null;  
+// diff-remove
+    }
+// diff-remove
+    const permit = await getExtractedPermit(CONTRACT_ADDRESS);
+// diff-remove
+    const sealedValue = await contract.getSealedValue(permit);
+
+// diff-add
+    // use default permit
+// diff-add    
+    const encryptedValueHandle = await contract.getEncryptedValue();
+// diff-add
+    const unsealed = await cofhejs.unseal(encryptedValueHandle, FheTypes.Uint32);
+// diff-add
+    // or generate a new permit
+// diff-add    
+    const permit = await cofhejs.createPermit({
+// diff-add
+        type: "self",
+// diff-add
+        issuer: wallet.address,
+// diff-add
+    });
+// diff-add
+    const encryptedValueHandle = await contract.getEncryptedValue();
+// diff-add
+    const unsealed = await cofhejs.unseal(encryptedValueHandle, FheTypes.Uint32, permit.data.issuer, permit.data.getHash());
+// diff-add
+```
+### 4. Decryption
+
+In Fhenix L2 the decryption was done on-chain using the `FHE.decrypt` function.  
+With Fhenix Co-Processor the decryption can be done in two ways:
+
+1. Using `FHE.decrypt` in your solidity contract.
+2. Off-chain using the `cofhejs.decrypt` function.
+
+```javascript
+// diff-add
+    const encryptedValueHandle = await contract.getEncryptedValue();
+// diff-add
+    const decrypted = await cofhejs.decrypt(encryptedValueHandle, FheTypes.Uint32);
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
