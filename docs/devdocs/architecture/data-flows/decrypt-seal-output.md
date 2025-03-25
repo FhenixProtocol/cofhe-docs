@@ -7,7 +7,9 @@ sidebar_position: 4
 
 ## Overview
 
-This document lays out the complete flow of an off-chain decrypt or sealoutput request.
+This document lays out the complete flow of an off-chain sealoutput request. It is recommended to always use `cofhejs.unseal` rather than `cofhejs.decrypt` as `.unseal` internally seals the user's data before returning it from the Threshold Network.
+
+> Note: The example below is of `cofhejs.unseal`, however `cofhejs.decrypt` uses the same API and returns the same result.
 
 ## Key Components
 
