@@ -1,6 +1,6 @@
 ---
 title: TaskManager
-sidebar_position: 1
+sidebar_position: 1m
 ---
 
 # TaskManager
@@ -10,5 +10,5 @@ sidebar_position: 1
 |---------|-------------|
 | **Type** | Contract deployed on the destination blockchain |
 | **Function** | Acts as the on-chain entry point for CoFHE integration |
-| **Responsibilities** | • The Task Manager Contract is called by the dApp contract to execute an FHE operation<br/>• Creates a handle to represent the resulting ciphertext, which will be calculated asynchronously<br/>• Creates structured events from these requests<br/>• Emits the events |
+| **Responsibilities** | • Initiates FHE operations by serving as the on-chain entry point. The dApp contract calls the TaskManager to submit a new encrypted computation task.<br/>• Generates unique handles that act as references to the results of FHE operations. These results are computed asynchronously off-chain.<br/>• Emits structured events containing ciphertext inputs, operation type, and any required metadata to enable off-chain processing.<br/>• Enables off-chain processing by allowing CoFHE relayers to monitor and pick up emitted events, perform the computation, and link the result back to the original handle. |
 | **Deployment** | A separate Task Manager Contract is deployed for each supported destination chain, enabling chain-specific integrations |
