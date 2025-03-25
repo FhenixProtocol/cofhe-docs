@@ -3,13 +3,13 @@ title: Error Handling
 sidebar_position: 7
 ---
 
-# Error Handling in CoFHE.js
+# Error Handling
 
-CoFHE.js uses a consistent error handling pattern based on the `Result` type to provide predictable and type-safe error handling throughout the library. This guide explains how error handling works and how to properly handle errors in your applications.
+`cofhejs` uses a consistent error handling pattern based on the `Result` type to provide predictable and type-safe error handling throughout the library. This guide explains how error handling works and how to properly handle errors in your applications.
 
 ## The Result Type
 
-CoFHE.js uses a functional approach to error handling with the `Result` type. This pattern avoids exceptions and provides explicit error information.
+`cofhejs` uses a functional approach to error handling with the `Result` type. This pattern avoids exceptions and provides explicit error information.
 
 ```typescript
 export type Result<T, E = string> = { success: true; data: T; error: null } | { success: false; data: null; error: E }
@@ -22,7 +22,7 @@ The `Result` type is a discriminated union that represents either:
 
 ### Helper Functions
 
-CoFHE.js provides two helper functions to create Result objects:
+`cofhejs` provides two helper functions to create Result objects:
 
 ```typescript
 // Creates a Result representing a failure
@@ -42,7 +42,7 @@ export const ResultOk = <T, E>(data: T): Result<T, E> => ({
 
 ## Where Result is Used
 
-Most asynchronous operations in CoFHE.js return a `Result` type, including:
+Most asynchronous operations in `cofhejs` return a `Result` type, including:
 
 - Initialization functions (`initialize`, `initializeCore`)
 - Permit operations (`createPermit`, `getPermit`, `getPermission`)
@@ -98,7 +98,7 @@ console.log('Permit created successfully:', permit)
 
 ## Common Error Scenarios
 
-CoFHE.js may return errors in various scenarios, including:
+`cofhejs` may return errors in various scenarios, including:
 
 1. **Initialization Errors**:
 
@@ -119,7 +119,7 @@ CoFHE.js may return errors in various scenarios, including:
 
 ## Complete Example
 
-Here's a complete example of initializing CoFHE.js and handling potential errors:
+Here's a complete example of initializing `cofhejs` and handling potential errors:
 
 ```typescript
 async function initializeCoFHE() {
@@ -142,7 +142,7 @@ async function initializeCoFHE() {
 			return null
 		}
 
-		console.log('CoFHE.js initialized successfully')
+		console.log('`cofhejs` initialized successfully')
 		return result.data // The permit, if generated
 	} catch (unexpectedError) {
 		// Catch any unexpected errors not handled by the Result pattern
@@ -173,7 +173,7 @@ async function createAndUsePermit(userAddress) {
 
 ## Testing Error Cases
 
-When writing tests, CoFHE.js provides utility functions to validate error results:
+When writing tests, `cofhejs` provides utility functions to validate error results:
 
 ```typescript
 import { expectResultError } from 'cofhejs/test'
@@ -187,4 +187,4 @@ test('should return error for invalid parameters', async () => {
 })
 ```
 
-By consistently checking the `success` property and appropriately handling errors, you can build robust applications that gracefully handle failure cases when working with CoFHE.js.
+By consistently checking the `success` property and appropriately handling errors, you can build robust applications that gracefully handle failure cases when working with `cofhejs`.
