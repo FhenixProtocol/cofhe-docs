@@ -73,7 +73,7 @@ https://github.com/FhenixProtocol/cofhe/tree/master/localcofhenix/configs
 Your configuration folder (`CONFIG_PATH`) should contain:
 1. `config.toml` - Used by Dispatcher and Coordinator
 2. `pm_config_00-0x.toml` - Used by Party Members (each PM uses its own config file)
-3. `zk_verifier/config.toml` - Used by the ZK Verifier
+3. `zk_verifier_config.toml` - Used by the ZK Verifier
 
 ## 🔑 Keys 🔑
 After the preprocessor container finishes successfully, your `KEYS_PATH` (or `./localcofhenix/keys` if not specified) will contain the cryptographic keys required by the FHEOS server, Party Members, ZK Verifier, and other components.
