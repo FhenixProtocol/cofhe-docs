@@ -51,7 +51,7 @@ To get started with CoFHE.js, you need to install it as a dependency in your Jav
 
 ## Setup
 
-To use **CoFHE.js** for interacting with FHE-enabled smart contracts, the `CoFHE.js` must be initialized. This client handles key operations such as encrypting input data, creating permits, and decrypting output data from the blockchain.
+To use **CoFHE.js** for interacting with FHE-enabled smart contracts, the `cofhejs` must be initialized. This client handles key operations such as encrypting input data, creating permits, and decrypting output data from the blockchain.
 First, the client must be initialized. Below is an example setup:
 
 <Tabs>
