@@ -5,6 +5,8 @@ sidebar_position: 6
 
 # ACL Usage Examples
 
+See [ACL Mechanism](../fhe-library/acl-mechanism.md) for explanation of why is the ACL mechanism needed.
+
 ### Solidity API
 1. `FHE.allowThis(CIPHERTEXT_HANDLE)` - allows the current contract access to the handle.
 2. `FHE.allow(CIPHERTEXT_HANDLE, ADDRESS)` - allows the specified address access to the handle.
@@ -46,7 +48,7 @@ contract A {
 ```
 
 ### Allowance for Decryptions
-To decrypt a ciphertext off-chain via the decryption network, the issuer must be allowed on the ciphertext handle.
+To decrypt a ciphertext off-chain via the decryption network, the issuer must be allowed on the ciphertext handle via `FHE.allow(userAddress)`.
 ```solidity
 contract A {
     private mapping(address -> uint256) balances;
@@ -68,7 +70,7 @@ contract A {
 ```
 
 ### Allow other contracts
-You can also allow other contracts to use your ciphertexts, either persistently or for the course of this transaction only with `FHE.allowTransient(handle, address)`.
+You can also allow other contracts to use your ciphertexts, either persistently or for the course of this transaction only via `FHE.allowTransient(handle, address)`.
 ```solidity
 contract A {
     function doAdd(InEuint32 input1) {
