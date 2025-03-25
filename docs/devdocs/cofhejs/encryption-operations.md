@@ -60,7 +60,7 @@ let result = await cofhejs.encrypt(logState, [EncryptionTypes.bool(true), Encryp
 
 ```
 
-The returned types from the encrypt function will be of the type `EncryptedUint8`, `EncryptedUint16` or `EncryptedUint32` (or 64/128/256 etc.) depending on the type you specified.
+The returned types from the encrypt function will be of the type `CoFheInUint8`, `CoFheInUint16` or `CoFheInUintUint32` (or 64/128/256 etc.) depending on the type you specified.
 
 The `EncryptedUint` types sound scary, but are actually pretty simple. It's just a
 
