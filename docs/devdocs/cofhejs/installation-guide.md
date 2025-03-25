@@ -1,5 +1,5 @@
 ---
-title: Installation Guide
+title: Getting Started
 sidebar_position: 1
 description: Setup instructions for CoFHE.js
 ---
@@ -12,9 +12,9 @@ import TabItem from "@theme/TabItem";
 CoFHE.js is a TypeScript package designed to enable seamless interaction between clients and the Fhenix's co-processor (CoFHE). It is an essential component for engineers working with FHE-enabled smart contracts, as it facilitates the encryption and decryption processes required for secure data handling in decentralized applications (dApps). CoFHE.js ensures that data remains private throughout its journey from input to output in the blockchain ecosystem.
 FHE-enabled contracts require three primary modifications to the client/frontend:
 
-* Encrypting Input Data: Before passing data to the smart contract, input must be encrypted to ensure its confidentiality. To read more about encrypted inputs, go [TBD here](./../Writing%20Smart%20Contracts/User-Inputs.md).
-* Creating Permits and Permissions: The client must generate permits and permissions that determine who can interact with or view the data. Read more about [TBD Permissions](./../Writing%20Smart%20Contracts/Permissions.md).
-* Unsealing Output Data: After the contract processes the data, the client must decrypt the output for it to be used or displayed. For more, refer to our page on [TBD Outputs](./../Writing%20Smart%20Contracts/Returning-Data.md).
+* Encrypting Input Data: Before passing data to the smart contract, input must be encrypted to ensure its confidentiality. To read more about encrypted inputs, go [here](/docs/devdocs/cofhejs/encryption-operations).
+* Creating Permits and Permissions: The client must generate permits and permissions that determine who can interact with or view the data. Read more about [permits](/docs/devdocs/cofhejs/permits-management).
+* Unsealing Output Data: After the contract processes the data, the client must decrypt the output for it to be used or displayed. For more, refer to our page on [sealing and unsealing](/docs/devdocs/cofhejs/sealing-unsealing).
 
 CoFHE.js allows encryption to begin and end privately in a dApp, while FHE-enabled contracts do work on and with these encrypted values.
 
@@ -54,27 +54,50 @@ To get started with CoFHE.js, you need to install it as a dependency in your Jav
 To use **CoFHE.js** for interacting with FHE-enabled smart contracts, the `FhenixClient` must be initialized. This client handles key operations such as encrypting input data, creating permits, and decrypting output data from the blockchain.
 First, the client must be initialized. Below is an example setup:
 
-```javascript
-const { cofhejs } = require("cofhejs/node");
-const { ethers } = require("ethers");
+<Tabs>
+  <TabItem value="node" label="Node.js">
+      ```javascript
+      const { cofhejs } = require("cofhejs/node");
+      const { ethers } = require("ethers");
 
-// initialize your web3 provider
-const provider = new ethers.JsonRpcProvider("http://127.0.0.1:42069");
-const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
+      // initialize your web3 provider
+      const provider = new ethers.JsonRpcProvider("http://127.0.0.1:42069");
+      const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
 
 
-// initialize CoFHE.js Client with ethers (it also supports viem)
-await cofhejs.initializeWithEthers({
-    ethersProvider: provider,
-    ethersSigner: wallet,
-    environment: "LOCAL",
-});
+      // initialize CoFHE.js Client with ethers (it also supports viem)
+      await cofhejs.initializeWithEthers({
+          ethersProvider: provider,
+          ethersSigner: wallet,
+          environment: "LOCAL",
+      });
+      ```
+  </TabItem>
+  <TabItem value="web" label="Browser">
+    ```javascript
+    const { cofhejs } = require("cofhejs/web");
+    const { ethers } = require("ethers");
 
-```
+    // initialize your web3 provider
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const signer = (await provider.getSigner()) as ethers.JsonRpcSigner;
+
+
+    // initialize CoFHE.js Client with ethers (it also supports viem)
+    await cofhejs.initializeWithEthers({
+        ethersProvider: provider,
+        ethersSigner: wallet,
+        environment: "LOCAL",
+    });
+    ```
+  </TabItem>
+</Tabs>
+
+
 
 ## Encrypting Input Data
 
-This step secures the data before sending it to the smart contract. Remember--all data sent to a smart contract on a blockchain is inherently public, which means that anyone can see it. However, Fhenix operates differently. To maintain user confidentiality and protect sensitive input data, Fhenix utilizes **CoFHE.js** to provide built-in encryption methods that must be applied before sending any data to an FHE-enabled contract (Learn more [here TBD](https://docs.fhenix.zone/docs/devdocs/CofheJS/Encryption).
+This step secures the data before sending it to the smart contract. Remember--all data sent to a smart contract on a blockchain is inherently public, which means that anyone can see it. However, Fhenix operates differently. To maintain user confidentiality and protect sensitive input data, Fhenix utilizes **CoFHE.js** to provide built-in encryption methods that must be applied before sending any data to an FHE-enabled contract (Learn more [here](/docs/devdocs/cofhejs/encryption-operations)).
 
 In the following example, we will encrypt a multiple values and pass them to a smart contract.
 The function logState is a callback function that will be called with the current state of the encryption process.
@@ -129,9 +152,6 @@ When the contract returns the encrypted data to the user, it remains sealed. Thi
 Here’s example code to show how the unsealing process works:
 
 ```javascript
-
-TBD: How to get saved permit?
-
 const permit = await cofhejs.getPermit({
     type: "self",
     issuer: wallet.address,

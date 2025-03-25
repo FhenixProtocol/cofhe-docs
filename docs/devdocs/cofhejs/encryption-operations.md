@@ -73,5 +73,26 @@ export interface EncryptedNumber {
 export interface EncryptedUint8 extends EncryptedNumber {}
 ```
 
-These types exist in order to enable type checking when interacting with Solidity contracts, and to make it easier to work with encrypted data.
+These types exist in order to enable type checking when interacting with Solidity contracts, and to make it easier to work with encrypted data.  
 However, feel free to use the `data` field directly if you prefer.
+
+
+### setState
+
+The setState function is used to monitor the state of the encryption process.
+Since the process is asynchronous, we can use this function to get the state of the encryption process for better UI experience.
+
+```typescript
+const logState = (state) => {
+    console.log(`Log Encrypt State :: ${state}`);
+};
+```
+The available states are:
+- Extract - Getting all the data ready for encryption (values to encrypt, chain information, etc.)  
+- Pack - Preparing the data for the encryption process
+- Prove - Signing the data
+- Verify - Verifies the user's input, ensuring that it is safe to use (read more about this [here](/docs/devdocs/architecture/internal-utilities/verifier))
+- Replace - Prepering the result and replacing the old values with encrypted ones
+- Done - Process is finished
+
+
