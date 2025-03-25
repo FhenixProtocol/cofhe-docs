@@ -35,13 +35,13 @@ Choose the setup that best fits your development needs - full stack for producti
 ### 1. Preprocessor
 Generate keys and preprocessed data for decryption threshold networkIf you already have the keys generated in the mounted folder, it'll skip.
 
-If you wanna force new keys creation, add `--force-creation` to the preprocessor run command in the docker compose file, like this :
+If you want to force new keys creation, add `--force-creation` to the preprocessor run command in the docker compose file, like this :
 `preprocessor --runtime-config test --force-creation &&`
 
-Keys generation & serialization might take 2-4 minutes to finish, and it'll pause your next docker containers from being started till it finishes, cuz they require the keys.. so wait for it :)
+Keys generation & serialization might take 2-4 minutes to finish, and it'll pause your next docker containers from being started until it finishes, because they require the keys.. so wait for it :)
 
-### 2. Cofhe (host & registry nodes, fheos server, middleware that deploys contracts to the nodes & star the aggregator)
-2 nodes will come up, and only after the keys are ready and preprocessor has finished successfully - `fheos_server` will come up, and then middleware (to deploy the contracts and start the aggregator)
+### 2. Cofhe (host & registry nodes, fheos server, middleware that deploys contracts to the nodes & start the aggregator)
+Two nodes will come up, and only after the keys are ready and preprocessor has finished successfully - `fheos_server` will come up, and then middleware (to deploy the contracts and start the aggregator)
 
 ### 3. Threshold decryption network (rabbitmq, dispatcher, coordinator, 4 pms)
 
@@ -57,7 +57,7 @@ Relies on generated keys, and gonna generate some keys as well, so has to have r
 
 > [!NOTE]  
 Our docker compose currently relies on `"network_mode: host"` for simplicity.
-If you don't wanna work like this, you'll have to define your own docker network and rely on the exposed ports.
+If you don't want to work like this, you'll have to define your own docker network and rely on the exposed ports.
 
 
 ## ⚙️ Configurations ⚙️
