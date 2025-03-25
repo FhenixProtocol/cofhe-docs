@@ -33,7 +33,7 @@ Any other operation will also fail if the issuing contract does not have allowan
 ```solidity
 FHE.add(notAllowedCt, allowedCt); // -> ACLNotAllowed
 ```
-Every newly created ciphertext handle is allwed to the creating contract for the duration of the transaction, and any other
+Every newly created ciphertext handle is allowed to the creating contract for the duration of the transaction, and any other
 allowance must be explicitly granted by this contract, with the following solidity api:
 
 1. `FHE.allowThis(CIPHERTEXT_HANDLE)` - allows the current contract access to the handle.
