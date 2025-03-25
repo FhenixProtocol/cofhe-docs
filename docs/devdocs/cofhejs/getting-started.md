@@ -161,7 +161,7 @@ const result = await contract.getSomeEncryptedValue();
 const unsealed = await cofhejs.unseal(result, FheTypes.Uint32, permit.data.issuer, permit.data.getHash());
 ```
 
-## End-to-End Example Explanation
+## End-to-End Example
 
 This example demonstrates a full interaction between a dApp and an FHE-enabled smart contract using the `CoFHE.js`. It walks through how to set up the client, encrypt data, send it to the contract, create a permit for accessing sealed data, and finally unseal the returned data for the user.
 
