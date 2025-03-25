@@ -7,91 +7,83 @@ description: Setting up your local development environment with and without Thre
 
 ## Overview
 
-This guide explains how to set up a local development environment for Fhenix, which uses CoFHE for privacy-preserving smart contracts. 
+This guide explains how to set up a local development environment for Fhenix, consists of several key components working together to provide a complete development experience.
 
-You have two options for local development:
+The full Fhenix local environment includes:
+- **Preprocessor**: Generates cryptographic keys and preprocessing data
+- **CoFHE Nodes**: Host chain and registry chain for blockchain functionality
+- **FHEOS Server**: Core service for FHE operations
+- **Threshold Decryption Network**: Distributed decryption network
+- **ZK Verifier**: Zero-knowledge verification service
 
-1. **Full Stack Setup (with Threshold Network)**
-   - Includes all components including decryption threshold network
-   - More secure, production-like environment
-   - Components:
-     - Preprocessor for key generation
-     - CoFHE nodes (host & registry)
-     - FHEOS server
-     - Threshold decryption network
-     - ZK Verifier
+## ▶️🏃‍➡️ How to run  ▶️🏃‍➡️
 
-1. **Lean Setup (without Threshold Network)**
-   - Minimal version without threshold decryption
-   - All features are supported, but handled differently behind the scenes
-   - Faster and simpler for local development
-   - Uses local decryption instead of distributed threshold network
-   - Ideal for initial development and testing
+1. Clone the CoFHE repository (it contains all the needed config files and etc)
 
-Choose the setup that best fits your development needs - full stack for production-like testing, or lean setup for faster local development.
+
+```bash
+> git clone git@github.com:FhenixProtocol/cofhe.git
+> cd cofhe
+> docker compose up -d
+```
+
+2. Alternatively, you can use custom configuration paths:
+
+```bash
+> CONFIG_PATH=/path_to_local_configs_folder \
+KEYS_PATH=/path_to_local_keys_folder \
+docker compose up -d
+```
 
 ## 🐳 Docker compose steps 🐳
 
 ### 1. Preprocessor
-Generate keys and preprocessed data for decryption threshold networkIf you already have the keys generated in the mounted folder, it'll skip.
+Generates keys and preprocessed data for the decryption threshold network.
+- Automatically skips if keys already exist in the mounted folder
+- To force new key creation, add `--force-creation` to the preprocessor command in docker-compose.yml:
+  `preprocessor --runtime-config test --force-creation &&`
+- Initial key generation takes approximately 2-4 minutes, and subsequent containers will wait for this step to complete
 
-If you want to force new keys creation, add `--force-creation` to the preprocessor run command in the docker compose file, like this :
-`preprocessor --runtime-config test --force-creation &&`
+### 2. CoFHE Nodes and Services
+- Two blockchain nodes initialize while keys are being generated
+- After successful key generation, the `fheos_server` starts
+- The Middleware container follows, deploying contracts and starting the Aggregator
 
-Keys generation & serialization might take 2-4 minutes to finish, and it'll pause your next docker containers from being started until it finishes, because they require the keys.. so wait for it :)
+### 3. Threshold Decryption Network
+- RabbitMQ messaging service deploys first
+- Once RabbitMQ is ready, Dispatcher and Coordinator services initialize
+- After key generation completes, Party Member services (PMs) start and load keys from the shared volume
 
-### 2. Cofhe (host & registry nodes, fheos server, middleware that deploys contracts to the nodes & start the aggregator)
-Two nodes will come up, and only after the keys are ready and preprocessor has finished successfully - `fheos_server` will come up, and then middleware (to deploy the contracts and start the aggregator)
-
-### 3. Threshold decryption network (rabbitmq, dispatcher, coordinator, 4 pms)
-
-Rabbit will be deployed first, and once it's ready - dispatcher and coordinator will come up.
-
-Once keys are ready and preprocesor have finished it's generations, all pms will come up as well and load the keys.
-
-### 4. Zk Verifier
-
-Relies on generated keys, and gonna generate some keys as well, so has to have right access to the keys folder.
+### 4. ZK Verifier
+- Relies on the generated cryptographic keys
+- Exposes the signer's public key
+- Requires appropriate access permissions to the keys folder
 
 ## 🛜 Networking 🛜
 
 > [!NOTE]  
-Our docker compose currently relies on `"network_mode: host"` for simplicity.
-If you don't want to work like this, you'll have to define your own docker network and rely on the exposed ports.
-
-
+> The docker compose configuration uses `"network_mode: host"` for simplicity.
+> If this doesn't work for your environment, you can define a custom docker network and use the exposed ports specified in the docker-compose files.
 ## ⚙️ Configurations ⚙️
 
-This local setup requires multiple config files, and all can be found here - https://github.com/FhenixProtocol/cofhe/tree/master/localcofhenix_config
 
-Your configurations folder (`CONFIG_DIR`) should contain:
-1. `config.toml` - used by dispatcher and coordinator
-2. `pm_config_00-03.toml` - used by party members, each PM users it's own config file
-3. `zk_verifier/config.toml` - used by zkv
+This local setup requires multiple configuration files, which are included in the CoFHE repository at:
+https://github.com/FhenixProtocol/cofhe/tree/master/localcofhenix/configs
 
-## ▶️🏃‍➡️ How to run - with decryption threshold network  ▶️🏃‍➡️🔐
-
-If you clone the cofhe repo and run from it, you don't really have to setup any configs.. it's all there by default and loaded automatically for you.
-
-```bash
-docker compose up -d
-```
-
-Or, if you wanna setup your own config keys and override the defaults, you can run like this : 
-
-```bash
-KEYS_PATH=/Users/roeezolantz/Development/fhenix/cofhe/localcofhenix_keys 
-KEYS_PATH=/Users/roeezolantz/Development/fhenix/cofhe/localcofhenix_config 
-docker compose up -d
-```
-
-## ▶️🏃‍➡️ How to run lean version, without decryption threshold network  ▶️🏃‍➡️🔓
-
-Assuming that you've cloned the `cofhe` repo, you should have 2 docker-compose files, the first (`docker-compose.yml`) is for the full stack deployment, and there's another one called `no-tn.yml` which is the minimal version of the cofhe stack, without threshold decryption network, which will rely on faster & local less-safe decryptions.
-
-```bash
-docker compose -f no-tn.yml up -d
-```
+Your configuration folder (`CONFIG_PATH`) should contain:
+1. `config.toml` - Used by Dispatcher and Coordinator
+2. `pm_config_00-0x.toml` - Used by Party Members (each PM uses its own config file)
+3. `zk_verifier/config.toml` - Used by the ZK Verifier
 
 ## 🔑 Keys 🔑
-After preprocessor  docker finished succesfully , your `KEYS_PATH` (or `./localcofhenix_keys` if you haven't specified anything) should contain keys for further usage by fheos/pms/zkv and more..
+After the preprocessor container finishes successfully, your `KEYS_PATH` (or `./localcofhenix/keys` if not specified) will contain the cryptographic keys required by the FHEOS server, Party Members, ZK Verifier, and other components.
+
+## 🔧 Troubleshooting 🔧
+- If services fail to start, check that the preprocessor completed successfully
+- Some services may require a restart if they attempt to access keys before generation is complete
+- If you need to restart the Middleware container, be aware that contract redeployments may occur and break stuff. In this case:
+  1. Stop the Middleware container
+  2. Restart the blockchain nodes
+  3. Restart the Middleware container
+- Review the container logs for specific error messages using `docker logs [container_name]`
+- Ensure you have sufficient system resources (CPU, memory) for running the full stack
