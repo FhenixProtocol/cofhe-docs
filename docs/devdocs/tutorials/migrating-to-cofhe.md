@@ -112,7 +112,7 @@ contract WrappingERC20 is ERC20, Permissioned {
         FHE.allow(_encBalances[msg.sender], msg.sender);
     }
 
-    function unwrap(inEuint32 memory amount) public {
+    function unwrap(InEuint32 memory amount) public {
         euint32 _amount = FHE.asEuint32(amount);
         // diff-remove
         // verify that our encrypted balance is greater or equal than the requested amount 
@@ -136,7 +136,7 @@ contract WrappingERC20 is ERC20, Permissioned {
         _mint(msg.sender, FHE.decrypt(_amount));
     }
 
-    function transferEncrypted(address to, inEuint32 calldata encryptedAmount) public {
+    function transferEncrypted(address to, InEuint32 calldata encryptedAmount) public {
         euint32 amount = FHE.asEuint32(encryptedAmount);
         // diff-remove
         // Make sure the sender has enough tokens.
