@@ -30,7 +30,7 @@ The full Fhenix local environment includes:
 2. Alternatively, you can use custom configuration paths:
 
 ```bash
-> CONFIG_PATH=/path_to_local_configs_folder \
+> CONFIG_DIR=/path_to_local_configs_folder \
 KEYS_PATH=/path_to_local_keys_folder \
 docker compose up -d
 ```
@@ -70,7 +70,7 @@ Generates keys and preprocessed data for the decryption threshold network.
 This local setup requires multiple configuration files, which are included in the CoFHE repository at:
 https://github.com/FhenixProtocol/cofhe/tree/master/localcofhenix/configs
 
-Your configuration folder (`CONFIG_PATH`) should contain:
+Your configuration folder (`CONFIG_DIR`) should contain:
 1. `config.toml` - Used by Dispatcher and Coordinator
 2. `pm_config_00-0x.toml` - Used by Party Members (each PM uses its own config file)
 3. `zk_verifier_config.toml` - Used by the ZK Verifier
