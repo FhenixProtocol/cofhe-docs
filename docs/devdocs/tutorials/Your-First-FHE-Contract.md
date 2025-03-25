@@ -45,6 +45,11 @@ contract SimpleCounter {
         FHE.allowThis(counter);
     }
 
+    function reset_counter(InEuint64 value) external onlyOwner {
+        counter = FHE.asEuint64(value);
+        FHE.allowThis(counter);
+    }
+
     function decrypt_counter() external onlyOwner {
         lastDecryptedCounter = counter;
         FHE.decrypt(lastDecryptedCounter);
@@ -99,6 +104,9 @@ And we also call `FHE.allowThis()` to allow the contract to access the new count
     counter = FHE.add(counter, delta);
     FHE.allowThis(counter);
 ```
+In the `reset_counter` function, we receive an `InEuint64` value, which is a type that represents an encrypted value that can be used to reset the counter.  
+This value is an encrypted value that we created using CoFHE.js (read more about it [here](/docs/devdocs/cofhejs/encryption-operations)).
+
 
 
 Now, let's take a look at the `decrypt_counter` and `get_counter_value` functions.  
