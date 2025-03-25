@@ -70,7 +70,7 @@ contract A {
 ```
 
 ### Allow other contracts
-You can also allow other contracts to use your ciphertexts, either persistently or for the course of this transaction only via `FHE.allowTransient(handle, address)`.
+You can also allow other contracts to use your ciphertexts, either persistently or only for the course of this transaction via `FHE.allowTransient(handle, address)`.
 ```solidity
 contract A {
     function doAdd(InEuint32 input1) {

@@ -26,7 +26,8 @@ function attackBid(uint256 seenHandleValue) {
 }
 ```
 
-Therefore, all operations check that the issuer of the operation has permission to use the ciphertext handle. <br>
+Therefore, all operations check that the issuer of the operation has permission to use the ciphertext handle.
+
 So in practice, the code above will raise a `ACLNotAllowed` error when trying to decrypt the ciphertext.
 Any other operation will also fail if the issuing contract does not have allowance on all the inputs, such as:
 ```solidity
