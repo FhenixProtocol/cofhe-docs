@@ -7,44 +7,93 @@ sidebar_position: 4
 
 Permits allow users to authenticate themselves when requesting on-chain data via the off-chain `sealoutput` and `decrypt` actions exposed and handled by `cofhejs`.
 
-## Usage
+## Quick Start
 
-For the most part, management of Permits is handled by `cofhejs`, however there are two integration points to consider:
-
-### 1. Signatures
-
-Permits require a user to sign a message in their connected wallet. This message is similar to an Ethereum log-in message, and will need to be presented and signed by the user.
-
-It is important to inform the user that they will need to sign a Permit to prevent an unknown signature request. Here is an example modal:
-
-```
-Header: Sign a Permit.
-
-Body: In order to access your encrypted data, you are required to authenticate yourself by signing a Permit. This permit can only be used by you, and will need to be refreshed when it expires in 24 hours.
-
-CTA: SIGN PERMIT
-```
-
-The `SIGN PERMIT` button should call the following function:
+Permit integration can be managed completely by `cofhejs` in a development environment. When `cofhejs` is initialized with a valid provider and signer, the signer will automatically be prompted to sign a new Permit, which will grant access to their encrypted data:
 
 ```typescript
-function onSignPermit() {
-  await cofhejs.createPermit({
-    type: 'self',
-    issuer: <connected user address>,
-  })
-}
+return cofhejs.initialize({
+	provider: bobProvider,
+	signer: bobSigner,
+	environment: 'LOCAL',
+})
 ```
 
-`createPermit` will then generate the Permit and prompt the user to sign it.
+When you move to a more production environment, you will need to turn off automatic permit generation by setting `generatePermit: false`:
+
+```typescript
+return cofhejs.initialize({
+	provider: bobProvider,
+	signer: bobSigner,
+	environment: 'LOCAL',
+	generatePermit: false,
+})
+```
+
+After which, you will need to manually call `cofhe.createPermit` to generate a user's permit. It is recommended that you first let the user know the purpose of a Permit, and what it is they will be signing. Here is an example modal that prompts your user:
+
+```
+*******************************************************
+*                   Sign a Permit                     *
+*                                                     *
+*  Permits grant access to your data encrypted using  *
+*  Fhenix CoFHE by authenticating you with your       *
+*  signature. Your Permit will be valid for 24 hours, *
+*  and only be useable by you.                        *
+*                                                     *
+*                ******************                   *
+*                **  SIGN PERMIT **                   *
+*                ******************                   *
+*******************************************************
+```
+
+The "SIGN PERMIT" button should call:
+
+```typescript
+await cofhejs.createPermit({
+	type: 'self',
+	issuer: bobAddress,
+})
+```
+
+Which will open Bob's wallet to prompt for their signature.
 
 :::tip
-See `PermitOptions` for the full list of options that can be passed to `cofhejs.createPermit`
+See `PermitOptions` for the full list of options that can be passed to `cofhejs.createPermit`.
 :::
 
-### 2. Sharing
+Bob's permit will be stored and injected into any `cofhe.unseal` calls.
 
-## Permit Features
+### Sharing
+
+Creating Permits designed to be shared is a slightly more involved process, and is subject to change. In the future, we will provide pre-built React components that can be dropped into your dApp to manage sharing permits, but for now you will have to roll your own solution.
+
+Sharing permits prevents a 3 step process.
+
+1. `issuer` (the user whose data will be accessible), creates a permit with the type `sharing`. This permit is designed to be shared, and after the user adds their signature, the permit can be shared as cleartext.
+
+```typescript
+const sharingPermitResult = await cofhejs.createPermit({
+	type: 'sharing',
+	issuer: bobAddress,
+	recipient: adaAddress,
+})
+console.log('SharingPermit', sharingPermitResult.data)
+```
+
+2. `issuer` must send their Permit as cleartext with `recipient`, in this case Ada.
+
+3. Ada then finally uses Bob's permit:
+
+```typescript
+const recipientPermitResult = await cofhejs.createPermit({
+	...sharingPermit,
+	type: 'recipient',
+})
+console.log('RecipientPermit', recipientPermitResult.data)
+```
+
+## Permit Deep Dive
 
 The following features explain the inner workings of Permits, however much of the information below is handled silently behind the scenes by `cofhejs`.
 
