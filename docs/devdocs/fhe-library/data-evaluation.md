@@ -15,7 +15,7 @@ But how the on-chain smart contracts communicate with the off-chain engine? Thro
 res = FHE.sub(first, second);
 ```
 
-This code snippet above computes subtraction between two numbers. Behind the scenes, the function `FHE.sub()` is **emitting an event**, basically broadcasting "Hey FHE engine! you need to compute `first - second`!". CoFHE then picks up this event, and forwards it to the compute engine for execution.
+This code snippet above computes subtraction between two numbers. Behind the scenes, the function `FHE.sub()` is **emitting an event**, basically broadcasting "Hey FheOS! you need to compute `first - second`!". CoFHE then picks up this event, and forwards it to FheOS (the compute engine) for execution.
 
 :::note[Some more examples]
 
