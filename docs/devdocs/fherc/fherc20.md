@@ -210,7 +210,7 @@ The contract inherits and emits standard ERC20 events:
 
 ## Advanced Features
 
-### Zero-Knowledge Transfers
+### Encrypted Transfers
 
 The contract implements a confidential transfer system where:
 
