@@ -220,7 +220,7 @@ The application required to request a permit for each contract address.
 In addition, to unseal the value, the contract function needs to use the permit in order to seal the value.
 
 In CoFHE.js the permit system is tied to the user address (issuer).  
-The user can use default permit or create a new one using the `createPermit` function (read about it [here](/docs/devdocs/cofhejs/permits-management)).  
+The user can use default permit or create a new one using the `createPermit` function (read about it [here](../cofhejs/permits-management)).  
 To unseal the value, the contract need to return the encrypted value handle and the sealing process done off-chain.
 
 ```javascript
