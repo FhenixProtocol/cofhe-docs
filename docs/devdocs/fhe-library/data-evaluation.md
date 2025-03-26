@@ -65,7 +65,7 @@ type euint32 is uint256;
 
 So is it actually a plaintext `uint256` integer 🤔? Well, not exactly.
 
-The actual ciphertext value of FHE-encrypted integers is too big to be stored directly in the blockchain, or emitted in an event. That's why in your smart contracts, the ciphertext are being represented by a 256-bit handle regardless of their encrypted type. You can think of this as an ID, or a pointer. This handle is the identifier of said ciphertext. In practice, CoFHE actually stores full ciphertexts in an oof-chain Data Availability (DA) layer.
+The actual ciphertext value of FHE-encrypted integers is too big to be stored directly in the blockchain, or emitted in an event. That's why in your smart contracts, the ciphertext are being represented by a 256-bit handle regardless of their encrypted type. You can think of this as an ID, or a pointer. This handle is the identifier of said ciphertext. In practice, CoFHE actually stores full ciphertexts in an off-chain Data Availability (DA) layer.
 
 So, when evaluating the following statement:
 
