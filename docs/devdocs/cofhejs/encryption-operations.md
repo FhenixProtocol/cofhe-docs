@@ -4,10 +4,10 @@ sidebar_position: 2
 
 # Encryption
 
-CoFHE.js provides an easy-to-use function to encrypt your inputs before sending them to the Fhenix Co-Processor.
+cofhejs provides an easy-to-use function to encrypt your inputs before sending them to the Fhenix Co-Processor.
 
 :::tip
-Encryption in Fhenix is done using the global chain key. This key is loaded when you create a CoFHE.js client automatically
+Encryption in Fhenix is done using the global chain key. This key is loaded when you create a cofhejs client automatically
 :::
 
 When we perform encryption, we specify the type of `euint` (Encrypted Integer) we want to create. This should match the expected type in the Solidity contract we are working with.
@@ -35,7 +35,7 @@ Then, you can use the created client to encrypt
 ```Typescript
 import { cofhejs, Encryptable } from "cofhejs/node";
 
-// Initialize CoFHE.js
+// Initialize cofhejs
 
 const logState = (state) => {
     console.log(`Log Encrypt State :: ${state}`);
