@@ -9,7 +9,9 @@ sidebar_position: 2
 
 The blockchain that we write Smart Contracts on (for example, Arbitrum One) does not natively support FHE computation. This is why CoFHE is mostly an **off-chain system**, performing all the FHE heavy lifting asynchronously. All the logic that is happening on-chain is **giving instructions** for the off-chain component, CoFHE's **FHE Engine**, on what to compute. This concept is commonly referred to as [Symbolic Execution](https://en.wikipedia.org/wiki/Symbolic_execution).
 
-But how the on-chain smart contracts communicate with the off-chain engine? Through **Events**. Every FHE operation exposed in `FHE.sol` that requires an FHE computation emits an event. For example:
+#### But how the on-chain smart contracts communicate with the off-chain engine?
+
+Through **Events**. Every FHE operation exposed in `FHE.sol` that requires an FHE computation emits an event. For example:
 
 ```sol
 res = FHE.sub(first, second);
