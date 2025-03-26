@@ -77,7 +77,7 @@ FHE.sol is actually emitting the following event: "Check which number is bigger:
 
 :::tip
 
-What to do with this `ebool isBigger`? Check out the page on [control flow](select-vs-ifelse.md).
+What to do with this `ebool isBigger`? Check out the page on [conditions](select-vs-ifelse.md).
 
 :::
 
