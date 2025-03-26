@@ -3,7 +3,6 @@ title: Migrating to CoFHE
 sidebar_position: 3
 ---
 
-
 # Migrating Your Contract to CoFHE - It's Easy!
 
 Want to upgrade your Fhenix L2 contract to use CoFHE? Let's walk through it with a simple example - a privacy-enabled ERC20 token.
