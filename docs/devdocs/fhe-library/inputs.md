@@ -10,7 +10,7 @@ Writing confidential smart contracts, a trivial part would be to receive encrypt
 ```sol
 function transfer(
     address to,
-    inEuint32 memory inAmount // <------ encrypted input here
+    InEuint32 memory inAmount // <------ encrypted input here
 ) public virtual returns (euint32 transferred) {
     euint32 amount = FHE.asEuint32(inAmount);
 }
@@ -18,13 +18,13 @@ function transfer(
 
 :::note[Important Note]
 
-Notice in the example above the distinction between **`inEuint32`** and **`euint32`**.
+Notice in the example above the distinction between **`InEuint32`** and **`euint32`**.
 
 :::
 
 ### Input Types Conversion
 
-The **input types** `inEuintxx` (and `inEbool`, `inEaddress`) are special encrypted types that represent **user input**. Input types contain additional information required to authenticate and validate ciphertexts. For more on that, read on the [ZK-Verifier](../architecture/internal-utilities/verifier.md).
+The **input types** `InEuintxx` (and `InEbool`, `InEaddress`) are special encrypted types that represent **user input**. Input types contain additional information required to authenticate and validate ciphertexts. For more on that, read on the [ZK-Verifier](../architecture/internal-utilities/verifier.md).
 
 Before we can use an encrypted input, we need to convert it to a regular **encrypted type**:
 
@@ -33,7 +33,7 @@ euint32 amount = FHE.asEuint32(inAmount);
 ```
 
 :::tip
-You should avoid storing encrypted input types (e.g. `inEuint8`, etc) directly in your contract's state - it will be more expensive as these types contain more data, and it could lead to unexpected results. You should always prefer to convert it to a regular encrypted type using `FHE.asE...()`.
+You should avoid storing encrypted input types (e.g. `InEuint8`, etc) directly in your contract's state - it will be more expensive as these types contain more data, and it could lead to unexpected results. You should always prefer to convert it to a regular encrypted type using `FHE.asE...()`.
 :::
 
 Now that `amount` is of type `euint32`, we can store or manipulate it:
@@ -51,7 +51,7 @@ Read more on the available FHE types and opreations [here](./fhe-encrypted-opera
 ```sol
 function transfer(
     address to,
-    inEuint32 memory inAmount
+    InEuint32 memory inAmount
 ) public virtual returns (euint32 transferred) {
     euint32 amount = FHE.asEuint32(inAmount);
 
@@ -68,7 +68,7 @@ function transfer(
 #### Voting in a Poll
 
 ```solidity
-  function castEncryptedVote(address poll, inEbool calldata encryptedVote) public {
+  function castEncryptedVote(address poll, InEbool calldata encryptedVote) public {
     _submitVote(poll, FHE.asEbool(encryptedVote));
   }
 ```
@@ -76,7 +76,7 @@ function transfer(
 #### Setting Encrypted User Preferences
 
 ```solidity
-   function updateUserSetting(address user, inEuint8 calldata encryptedSetting) public {
+   function updateUserSetting(address user, InEuint8 calldata encryptedSetting) public {
        _applyUserSetting(user, FHE.asEuint8(encryptedSetting));
    }
 ```
