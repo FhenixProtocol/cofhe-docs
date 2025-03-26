@@ -7,7 +7,7 @@ sidebar_position: 2
 
 ## Sending computation requests
 
-The blockchain that we write Smart Cotnracts on (for example, Arbitrum One) does not natively support FHE computation. This is why CoFHE is mostly an **off-chain system**, performing all the FHE heavy lifting asynchronously. All the logic that is happening on-chain is **giving instructions** for the off-chain component, CoFHE's **FHE Engine**, on what to compute. This concept is commonly referred to as [Symbolic Execution](https://en.wikipedia.org/wiki/Symbolic_execution).
+The blockchain that we write Smart Contracts on (for example, Arbitrum One) does not natively support FHE computation. This is why CoFHE is mostly an **off-chain system**, performing all the FHE heavy lifting asynchronously. All the logic that is happening on-chain is **giving instructions** for the off-chain component, CoFHE's **FHE Engine**, on what to compute. This concept is commonly referred to as [Symbolic Execution](https://en.wikipedia.org/wiki/Symbolic_execution).
 
 But how the on-chain smart contracts communicate with the off-chain engine? Through **Events**. Every FHE operation exposed in `FHE.sol` that requires an FHE computation emits an event. For example:
 
@@ -40,7 +40,7 @@ But wait, how does CoFHE knows to connect between the variables, e.g. `balance` 
 In the context of a Smart Contract, most FHE operation results in a new ciphertext. Let's look at an example:
 
 ```sol
-fucntion addNumbers() public view returns (euint32) {
+function addNumbers() public view returns (euint32) {
     euint32 a = FHE.asEuint32(10); // Creating two trivially-encrypted ciphertexts
     euint32 b = FHE.asEuint32(20);
     euint32 result = FHE.add(a, b); // Add them together
@@ -83,7 +83,7 @@ For example:
 
 ```sol
 euint64 num = FHE.asEuint64(31);
-euint64 meaning = FHE.add(num, FHE.asEuint(11));
+euint64 meaning = FHE.add(num, FHE.asEuint64(11));
 ```
 
 The handle of `num` is a numerical representation of "trivially-encrypted `31`", while the handle of `meaning` is a similar representation of "result of addition between `num` and trivially-encrypted `11`". The actual encrypted value is, as mentioned before, evaluated asynchronously.
