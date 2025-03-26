@@ -75,6 +75,12 @@ ebool isBigger = FHE.gt(newBid, currentBid);
 
 FHE.sol is actually emitting the following event: "Check which number is bigger: `0xab12...` or `0xcd34..`". The result's handle (or, identifier) will be stored the variable `isBigger`, of type `ebool`.
 
+:::tip
+
+What to do with this `ebool isBigger`? Check out the page on [control flow](select-vs-ifelse.md).
+
+:::
+
 :::tip[Deep Dive]
 
 Didn't we just said that the computation is executed asynchronously? So - how can we know the ciphertext's handle in real time?
