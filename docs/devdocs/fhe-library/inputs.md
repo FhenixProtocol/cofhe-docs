@@ -63,6 +63,12 @@ function transfer(
 }
 ```
 
+:::note
+
+For the example above to logically work, you will also need to manage access to the newly created ciphertexts in the `_updateBalance()` function. Read further on the [ACL component](acl-mechanism.md).
+
+:::
+
 ### Additional Examples
 
 #### Voting in a Poll
