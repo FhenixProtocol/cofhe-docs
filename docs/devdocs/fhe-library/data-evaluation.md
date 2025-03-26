@@ -29,13 +29,13 @@ This command above emits an event saying "Create a trivially encrypted ciphertex
 balance = FHE.add(amount, balance);
 ```
 
-This command above emits an event saying "Compute the encrypted result of adding the encrypted numbers `balance` and `amount`".
+This command above emits an event saying "Compute the encrypted result of adding the encrypted variables `balance` and `amount`".
 
 :::
 
-But wait, how does CoFHE knows to connect between the variables, e.g. `balance` and `amount`, and the actual underlying encrypted data to calculate the result?
+But wait, how does CoFHE knows to connect between the variables, e.g. `balance` and `amount`, and the actual underlying encrypted data to calculate the result? To understand this, we need to understand how encrypted data is represented in the smart contracts 👇.
 
-## Representation
+## Data Representation
 
 In the context of a Smart Contract, most FHE operation results in a new ciphertext. Let's look at an example:
 
