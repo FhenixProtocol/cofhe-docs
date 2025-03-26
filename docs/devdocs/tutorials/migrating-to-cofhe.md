@@ -3,7 +3,6 @@ title: Migrating to CoFHE
 sidebar_position: 3
 ---
 
-# Migrating to CoFHE
 
 # Migrating Your Contract to CoFHE - It's Easy!
 
