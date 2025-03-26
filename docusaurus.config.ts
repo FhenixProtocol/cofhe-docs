@@ -214,6 +214,16 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
       additionalLanguages: ['solidity'],
+      magicComments: [
+        {
+          className: 'code-block-diff-add-line',
+          line: 'diff-add'
+        },
+        {
+          className: 'code-block-diff-remove-line',
+          line: 'diff-remove'
+        }
+      ]
     },
   } satisfies Preset.ThemeConfig,
 };
