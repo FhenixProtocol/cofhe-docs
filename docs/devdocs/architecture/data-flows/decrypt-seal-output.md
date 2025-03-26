@@ -59,7 +59,7 @@ function getNumber() public view returns (euint64) {
 
 3. [Unseal](./sealing-unsealing.md) using `cofhejs.unseal(CtHash)`. Calls `/sealoutput` on the threshold network, unseals the result.
 
-### 📌 Step 3 (Handled by cofhejs.unseal): https://{ThresholdNetworkUrl}/sealoutput
+### 📌 Step 3 (Handled by cofhejs.unseal): https://\{ThresholdNetworkUrl\}/sealoutput
 
 1. **`cofhejs.unseal` calls /sealoutput**. The user's Permit is added to the request. `Permit.issuer` should be the `msg.sender` in Step 1 for the permit to be valid.
 
@@ -82,23 +82,28 @@ function getNumber() public view returns (euint64) {
 2. **cofhejs converts the output type** as follows:
 
 ```typescript
-export const convertViaUtype = <U extends FheTypes>(utype: U, value: bigint): UnsealedItem<U> => {
-	if (utype === FheTypes.Bool) {
-		return !!value as UnsealedItem<U>
-	} else if (utype === FheTypes.Uint160) {
-		return uint160ToAddress(value) as UnsealedItem<U>
-	} else if (utype == null || FheUintUTypes.includes(utype as number)) {
-		return value as UnsealedItem<U>
-	} else {
-		throw new Error(`convertViaUtype :: invalid utype :: ${utype}`)
-	}
-}
+export const convertViaUtype = <U extends FheTypes>(
+  utype: U,
+  value: bigint
+): UnsealedItem<U> => {
+  if (utype === FheTypes.Bool) {
+    return !!value as UnsealedItem<U>;
+  } else if (utype === FheTypes.Uint160) {
+    return uint160ToAddress(value) as UnsealedItem<U>;
+  } else if (utype == null || FheUintUTypes.includes(utype as number)) {
+    return value as UnsealedItem<U>;
+  } else {
+    throw new Error(`convertViaUtype :: invalid utype :: ${utype}`);
+  }
+};
 ```
 
 3. **The result is returned as a `Result` type**. The `Result<T>` type looks like this:
 
 ```typescript
-export type Result<T, E = string> = { success: true; data: T; error: null } | { success: false; data: null; error: E }
+export type Result<T, E = string> =
+  | { success: true; data: T; error: null }
+  | { success: false; data: null; error: E };
 ```
 
 The `Result` type is a discriminated union that represents either:
@@ -108,7 +113,16 @@ The `Result` type is a discriminated union that represents either:
   The return type of `cofhejs.unseal` is determined by the utype passed in as the second argument:
 
 ```typescript
-const boolResult: Result<bool> = await cofhejs.unseal(boolCtHash, FheTypes.Bool)
-const uintResult: Result<bigint> = await cofhejs.unseal(uintCtHash, FheTypes.Uint32)
-const addressResult: Result<string> = await cofhejs.unseal(ctHash, FheTypes.Address)
+const boolResult: Result<bool> = await cofhejs.unseal(
+  boolCtHash,
+  FheTypes.Bool
+);
+const uintResult: Result<bigint> = await cofhejs.unseal(
+  uintCtHash,
+  FheTypes.Uint32
+);
+const addressResult: Result<string> = await cofhejs.unseal(
+  ctHash,
+  FheTypes.Address
+);
 ```
