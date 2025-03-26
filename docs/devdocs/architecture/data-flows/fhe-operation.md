@@ -22,21 +22,26 @@ This document outlines the complete flow of an FHE (Fully Homomorphic Encryption
 | **Threshold Network** | (When applicable) Handles secure decryption operations |
 
 ---
+## Flow Diagram
+
+The following diagram illustrates the complete flow of an FHE operation request in the CoFHE ecosystem:
+[![Diagram](../../../../static/img/assets/Transactions.svg)](../../../../static/img/assets/Transactions.svg)
+*Figure 1: End-to-end flow of an FHE operation request through the CoFHE system components*
 
 ## Step-by-Step Flow
 
 ### 📌 Step 1: Integration with CoFHE.js
 
 1. The decentralized application (dApp) integrates with CoFHE by utilizing **Cofhe.js** for encryption.
-[See in GitHub](https://github.com/FhenixProtocol/cofhe.js)
+[See in GitHub](https://github.com/FhenixProtocol/cofhe.js) ![Bullet](../../../../static/img/assets/1.png)
 
 2. [Encrypt request](./encryption-request.md) using CoFHE.js, returns `InEuint` structure.
 
 > 📝 **Note:** This step happens on the client side before blockchain interaction.
 
-### 📌 Step 2: Requesting an FHE Operation
+### 📌 Step 2: Requesting an FHE Operation 
 
-When the dApp needs to perform an encrypted operation within the smart contract:
+When the dApp needs to perform an encrypted operation within the smart contract: ![Bullet](../../../../static/img/assets/2.png)
 1. **Import the FHE library in Solidity**:
    ```solidity
    import "@fhenixprotocol/cofhe-contracts/FHE.sol";
@@ -61,18 +66,18 @@ When the dApp needs to perform an encrypted operation within the smart contract:
 The Task Manager serves as the gateway for all FHE operation requests:
 
 1. **Validate request structure** to ensure all inputs are properly formatted
-2. **Verify access permissions** by checking if the caller has proper access to the encrypted inputs (using ACL.sol)
+2. **Verify access permissions** by checking if the caller has proper access to the encrypted inputs (using ACL.sol) ![Bullet](../../../../static/img/assets/3.png)
 3. **Generate a unique handle** that will be used to reference the future ciphertext result
 4. **Return the handle** to the calling dApp contract
-5. **Emit an event** containing the operation details for the Aggregator to process
+5. **Emit an event** containing the operation details for the Aggregator to process ![Bullet](../../../../static/img/assets/4.png)
 
 ### 📌 Step 4: Aggregator Processing
 
 The Aggregator manages the queue of FHE operation requests:
 
-1. **Listen for events** from the Task Manager
+1. **Listen for events** from the Task Manager ![Bullet](../../../../static/img/assets/5.png)
 2. **Add the request** to a processing queue
-3. **Forward request details** to the fheOS server
+3. **Forward request details** to the fheOS server ![Bullet](../../../../static/img/assets/6.png)
 4. **Track the request status** throughout its lifecycle
 
 ### 📌 Step 5: FheOS server - FHE Operation Execution
@@ -90,7 +95,7 @@ The FheOS server handles requests:
 
 For standard FHE operations (not decryption):
 
-1. **Update ciphertext registry** with the new encrypted result
+1. **Update ciphertext registry** with the new encrypted result ![Bullet](../../../../static/img/assets/7.png)
 
 At this point **the operation cycle is completed**, preserving the confidentiality of all encrypted values
 
