@@ -1,7 +1,7 @@
 ---
 title: Getting Started
 sidebar_position: 1
-description: Setup instructions for CoFHE.js
+description: Setup instructions for cofhejs
 ---
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
@@ -9,24 +9,24 @@ import TabItem from "@theme/TabItem";
 
 ## Overview
 
-CoFHE.js is a TypeScript package designed to enable seamless interaction between clients and the Fhenix's co-processor (CoFHE). It is an essential component for engineers working with FHE-enabled smart contracts, as it facilitates the encryption and decryption processes required for secure data handling in decentralized applications (dApps). CoFHE.js ensures that data remains private throughout its journey from input to output in the blockchain ecosystem.
+cofhejs is a TypeScript package designed to enable seamless interaction between clients and the Fhenix's co-processor (CoFHE). It is an essential component for engineers working with FHE-enabled smart contracts, as it facilitates the encryption and decryption processes required for secure data handling in decentralized applications (dApps). cofhejs ensures that data remains private throughout its journey from input to output in the blockchain ecosystem.
 FHE-enabled contracts require three primary modifications to the client/frontend:
 
 * Encrypting Input Data: Before passing data to the smart contract, input must be encrypted to ensure its confidentiality. To read more about encrypted inputs, go [here](/docs/devdocs/cofhejs/encryption-operations).
 * Creating Permits and Permissions: The client must generate permits and permissions that determine who can interact with or view the data. Read more about [permits](/docs/devdocs/cofhejs/permits-management).
 * Unsealing Output Data: After the contract processes the data, the client must decrypt the output for it to be used or displayed. For more, refer to our page on [sealing and unsealing](/docs/devdocs/cofhejs/sealing-unsealing).
 
-CoFHE.js allows encryption to begin and end privately in a dApp, while FHE-enabled contracts do work on and with these encrypted values.
+cofhejs allows encryption to begin and end privately in a dApp, while FHE-enabled contracts do work on and with these encrypted values.
 
 ## Mental Model
 
-To understand how **CoFHE.js** fits into the Fhenix framework, we will create a simple mental model to show how data moves through Fhenix-powered dApps.
+To understand how **cofhejs** fits into the Fhenix framework, we will create a simple mental model to show how data moves through Fhenix-powered dApps.
 
 Consider a smart contract called "**Counter**". Each user has an individual counter, and users increment and read their own counters with complete privacy. In this example, a **public key** is like a lock, and a **private key** is the corresponding key to unlock it.
 
 ### Adding to the User’s Counter
 
-When users want to add a value to their counter, say "5," they first place this value inside a sort-of "box". Using CoFHE.js, this box is secured by locking it with Fhenix Co-Processor's **public key** (encryption). The locked box is then sent to the smart contract. Thanks to Fully Homomorphic Encryption (FHE), Fhenix can perform mathematical operations directly on these sealed boxes—without accessing the raw data inside. So, the user's encrypted value, "5," can be added to the user’s encrypted counter while remaining private.
+When users want to add a value to their counter, say "5," they first place this value inside a sort-of "box". Using cofhejs, this box is secured by locking it with Fhenix Co-Processor's **public key** (encryption). The locked box is then sent to the smart contract. Thanks to Fully Homomorphic Encryption (FHE), Fhenix can perform mathematical operations directly on these sealed boxes—without accessing the raw data inside. So, the user's encrypted value, "5," can be added to the user’s encrypted counter while remaining private.
 
 ### Retrieving the User’s Counter
 
@@ -35,7 +35,7 @@ To retrieve the counter value, the user needs to read the data inside the box wi
 
 ## Installation
 
-To get started with CoFHE.js, you need to install it as a dependency in your JavaScript project. You can do this using npm (Node Package Manager) or Yarn. Open your terminal and navigate to your project's directory, then run the following:
+To get started with cofhejs, you need to install it as a dependency in your JavaScript project. You can do this using npm (Node Package Manager) or Yarn. Open your terminal and navigate to your project's directory, then run the following:
 
 <Tabs>
   <TabItem value="yarn" label="yarn">
@@ -51,7 +51,7 @@ To get started with CoFHE.js, you need to install it as a dependency in your Jav
 
 ## Setup
 
-To use **CoFHE.js** for interacting with FHE-enabled smart contracts, the `cofhejs` must be initialized. This client handles key operations such as encrypting input data, creating permits, and decrypting output data from the blockchain.
+To use **cofhejs** for interacting with FHE-enabled smart contracts, the `cofhejs` must be initialized. This client handles key operations such as encrypting input data, creating permits, and decrypting output data from the blockchain.
 First, the client must be initialized. Below is an example setup:
 
 <Tabs>
@@ -65,7 +65,7 @@ First, the client must be initialized. Below is an example setup:
       const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
 
 
-      // initialize CoFHE.js Client with ethers (it also supports viem)
+      // initialize cofhejs Client with ethers (it also supports viem)
       await cofhejs.initializeWithEthers({
           ethersProvider: provider,
           ethersSigner: wallet,
@@ -83,7 +83,7 @@ First, the client must be initialized. Below is an example setup:
     const signer = (await provider.getSigner()) as ethers.JsonRpcSigner;
 
 
-    // initialize CoFHE.js Client with ethers (it also supports viem)
+    // initialize cofhejs Client with ethers (it also supports viem)
     await cofhejs.initializeWithEthers({
         ethersProvider: provider,
         ethersSigner: wallet,
@@ -97,7 +97,7 @@ First, the client must be initialized. Below is an example setup:
 
 ## Encrypting Input Data
 
-This step secures the data before sending it to the smart contract. Remember--all data sent to a smart contract on a blockchain is inherently public, which means that anyone can see it. However, Fhenix operates differently. To maintain user confidentiality and protect sensitive input data, Fhenix utilizes **CoFHE.js** to provide built-in encryption methods that must be applied before sending any data to an FHE-enabled contract (Learn more [here](/docs/devdocs/cofhejs/encryption-operations)).
+This step secures the data before sending it to the smart contract. Remember--all data sent to a smart contract on a blockchain is inherently public, which means that anyone can see it. However, Fhenix operates differently. To maintain user confidentiality and protect sensitive input data, Fhenix utilizes **cofhejs** to provide built-in encryption methods that must be applied before sending any data to an FHE-enabled contract (Learn more [here](/docs/devdocs/cofhejs/encryption-operations)).
 
 In the following example, we will encrypt a multiple values and pass them to a smart contract.
 The function logState is a callback function that will be called with the current state of the encryption process.
@@ -147,7 +147,7 @@ const permit = await cofhejs.createPermit({
 
 After encryption, the data can be securely processed by the contract and sealed with the user’s **public key** (from their permit), and it is returned to the user when the user requests it. To access and interpret this data, the user must **unseal** it using their private key, which is securely stored on their device. The unsealing process is essential to ensure that only the intended user can view the final result.
 
-When the contract returns the encrypted data to the user, it remains sealed. This means the data is still encrypted with the user’s **public key** and cannot be read until the corresponding **private key** is used to unlock it. **CoFHE.js** provides a simple method to handle this.
+When the contract returns the encrypted data to the user, it remains sealed. This means the data is still encrypted with the user’s **public key** and cannot be read until the corresponding **private key** is used to unlock it. **cofhejs** provides a simple method to handle this.
 
 Here’s example code to show how the unsealing process works:
 
@@ -163,7 +163,7 @@ const unsealed = await cofhejs.unseal(result, FheTypes.Uint32, permit.data.issue
 
 ## End-to-End Example
 
-This example demonstrates a full interaction between a dApp and an FHE-enabled smart contract using the `CoFHE.js`. It walks through how to set up the client, encrypt data, send it to the contract, create a permit for accessing sealed data, and finally unseal the returned data for the user.
+This example demonstrates a full interaction between a dApp and an FHE-enabled smart contract using the `cofhejs`. It walks through how to set up the client, encrypt data, send it to the contract, create a permit for accessing sealed data, and finally unseal the returned data for the user.
 
 <Tabs>
   <TabItem value="node" label="Node.js">
@@ -177,7 +177,7 @@ This example demonstrates a full interaction between a dApp and an FHE-enabled s
         const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
 
 
-        // initialize CoFHE.js Client with ethers (it also supports viem)
+        // initialize cofhejs Client with ethers (it also supports viem)
         await cofhejs.initializeWithEthers({
             ethersProvider: provider,
             ethersSigner: wallet,
