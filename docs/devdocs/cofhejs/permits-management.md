@@ -14,9 +14,14 @@ Permits are a crucial security mechanism in Fhenix that allow users to authentic
 In a development environment, permit management can be handled automatically by `cofhejs`. When initialized with a valid provider and signer, the SDK will prompt users to sign a new Permit, granting them access to their encrypted data:
 
 ```typescript
-await cofhejs.initialize({
-	provider: provider,
-	signer: signer,
+// initialize your web3 provider
+const provider = new ethers.JsonRpcProvider('http://127.0.0.1:42069')
+const wallet = new ethers.Wallet(PRIVATE_KEY, provider)
+
+// initialize cofhejs Client with ethers (it also supports viem)
+await cofhejs.initializeWithEthers({
+	ethersProvider: provider,
+	ethersSigner: wallet,
 	environment: 'LOCAL',
 })
 ```
@@ -26,7 +31,12 @@ await cofhejs.initialize({
 For production environments, you'll want more control over the permit generation process. Disable automatic permit generation by setting `generatePermit: false`:
 
 ```typescript
-await cofhejs.initialize({
+// initialize your web3 provider
+const provider = new ethers.JsonRpcProvider('http://127.0.0.1:42069')
+const wallet = new ethers.Wallet(PRIVATE_KEY, provider)
+
+// initialize cofhejs Client with ethers (it also supports viem)
+await cofhejs.initializeWithEthers({
 	provider: provider,
 	signer: signer,
 	environment: 'MAINNET',
