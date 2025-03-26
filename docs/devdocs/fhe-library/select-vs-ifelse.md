@@ -27,10 +27,6 @@ ebool isHigher = a.gt(b);
 max = FHE.select(isHigher, a, b);
 ```
 
-:::note[Important Note]
-Notice in the example above the distinction between **`inEuint32`** and **`euint32`**.
-:::
-
 ## Why Not If...Else?
 
 There are two main reasons why traditional `if...else` statements don't work with FHE:
