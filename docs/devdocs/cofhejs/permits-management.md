@@ -116,7 +116,7 @@ const createSharingPermit = async (ownerAddress: string, recipientAddress: strin
 }
 ```
 
-2. The permit data can be safely transmitted to the recipient as cleartext since it contains no confidential information.
+2. The permit data can be safely transmitted to the recipient as plaintext since it contains no confidential information.
 
 3. Recipient activates the permit:
 
