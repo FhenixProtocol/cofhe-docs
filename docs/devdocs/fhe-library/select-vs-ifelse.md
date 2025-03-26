@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-title: 🌴 Conditions
+title: Conditions
 description: Understanding why if..else isn't possible with FHE and exploring the alternatives
 ---
 
@@ -16,7 +16,7 @@ euint32 b = FHE.asEuint32(20);
 euint32 max;
 
 // Instead of this (won't work) :
-if (a.gt(b)) { // gt returns encrypted boolean (ebool)
+if (a.gt(b)) { // gt returns encrypted boolean (ebool), traditional if..else will result unexpected result
    max = a;
 } else {
    max = b;
@@ -27,7 +27,7 @@ ebool isHigher = a.gt(b);
 max = FHE.select(isHigher, a, b);
 ```
 
-When writing Solidity contracts with our FHE capabilities, you'll need to consider all possible branches of a conditional at the same time. It's somewhat akin to writing constant-time cryptographic code, where you want to avoid timing attacks that could leak information about secret data.
+Another reason of not using the traditional `if..else` when writing Solidity smart contracts with our FHE capabilities, is that you need to consider all possible branches of a conditional at the same execution time. It's somewhat akin to writing constant-time cryptographic code, where you want to avoid timing attacks that could leak information about secret data. (Information might be leaked by understanding if your code got inside the `if` or the `else` due to different execution times of your code branches)
 
 To handle these conditionals, we use a concept called a "selector".
 A selector is a function that takes in a control and two branches, and returns the result of the branch that corresponds to the condition. A selector is like a traffic signal that decides which traffic to let through based on the color of the light (control signal).
@@ -39,9 +39,8 @@ In the example above, `FHE.select` uses the encrypted `ebool` result of `gt`, so
 ## Key Points to Remember
 
 - All operations take place on encrypted data, so the actual values and comparison results stay concealed
-- The `select` function is the only way to handle conditional execution in FHE
-- This pattern maintains privacy without sacrificing functionality
-- It's similar to constant-time programming patterns
+- Using traditional `if..else` on encrypted data might result in **unexpected behaviour** and leak information
+- The `select` function is the only way to handle conditional execution in FHE without leaking information
 
 ## Common Use Cases
 
@@ -65,7 +64,7 @@ euint32 result = FHE.select(isAboveThreshold, value, threshold);
 
 ## Best Practices
 
-1. Always use `select` instead of trying to implement branching logic. Using traditional `if..else` might result in **unexpected behaviour**
+1. Always use `select` instead of trying to implement branching logic.
 2. Keep your conditional logic simple and linear
 3. Remember that all operations must be performed on encrypted data
 4. Consider the performance implications of complex conditional chains
