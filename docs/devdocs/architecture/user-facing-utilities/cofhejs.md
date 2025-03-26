@@ -8,11 +8,11 @@ import TabItem from "@theme/TabItem";
 
 # CoFHE.js
 
-| Aspect               | Description |
-| -------------------- | ----------- |
-| **Type**             |             |
-| **Function**         |             |
-| **Responsibilities** |             |
+| Aspect               | Description                                                                                                                    |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| **Type**             | Typescript Library                                                                                                             |
+| **Function**         | Provides functionality to initialize TFHE, generate and manage permits, encrypt encrypted input data, and read encrypted data. |
+| **Responsibilities** | Handle primary interactions with FHE enabled contracts and the CoFHE Co-Processor.                                             |
 
 CoFHE.js is the JavaScript library that provides client-side functionality for interacting with CoFHE smart contracts. It handles encryption, decryption, and communication with the blockchain.
 
@@ -75,7 +75,7 @@ const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, wallet);
 const tx = await contract.add(encryptedValues.data[1]);
 ```
 
-Cofhejs exposes a function `encrypt` that takes any data type, any `Encryptable` values within the input are extracted into an array, packed, and verified using a ZK Proof of Encryption. For more information on this process take a look at the [encryption data flow](../data-flows/encryption-request.md).
+Cofhejs exposes a function `encrypt` that takes any data type, any `Encryptable` values within the input are extracted into an array, packed, and verified using a ZK Proof of Encryption. For more information on this process and how it works under the hood take a look at the [encryption data flow](../data-flows/encryption-request.md).
 
 - Key management
 
@@ -89,6 +89,13 @@ Permits allow users to access their encrypted data by authenticating the user wi
 
 > Note: _Read more about permits [here](../../cofhejs/permits-management.md)_
 
+- Reading encrypted data
+
+On-chain FHE operations are symbolic, meaning that an `euint64` is a handle to an encrypted number that lives on the Fhenix Mainnet chain. It is possible to read the encrypted data through an off-chain call by using `cofhejs.unseal()` like so:
+
+```typescript
+const resultHandle = await contract.getSomeEncryptedUint32()
+const unsealed = await cofhejs.unseal(resultHandle, FheTypes.Uint32)
 ```
 
-```
+You can read more about unsealing and the underlying process in the [unsealing data-flow page](../data-flows/decrypt-seal-output.md), and you can read more about `cofhejs.unseal` usage [here](../../cofhejs/sealing-unsealing.md).
