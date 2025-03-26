@@ -76,4 +76,4 @@ The complete CoFHE-Contracts repository is available at:
 
 ## Additional Resources
 
-- 📚 [FHE Documentation](./FHE.md) - Detailed API reference
+- 📚 [FHE Documentation](../solidity-api/FHE.md) - Detailed API reference

@@ -502,6 +502,13 @@ html[data-theme='light'] .page-cover-image  {
  /* filter: invert(100%);*/
 }
 
+img[alt=Bullet] { width: 18px; }
+img[alt=Architecture] { 
+  max-width: 100%; 
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
 r { color: FireBrick }
 o { color: Orange }
 g { color: LightGreen }

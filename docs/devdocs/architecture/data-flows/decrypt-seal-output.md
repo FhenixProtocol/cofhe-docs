@@ -5,8 +5,6 @@ sidebar_position: 4
 
 # Decrypt/SealOutput from FhenixJS
 
-The final stage of data processing:
-
-1. Results are decrypted for authorized parties
-2. Output is sealed for secure transmission
-3. Decrypted data is delivered to the client 
+The following diagram illustrates the complete flow of an Decrypt/SealOutput request in the CoFHE ecosystem:
+[![Diagram](../../../../static/img/assets/offChain_sealoutput_decrypt.svg)](../../../../static/img/assets/offChain_sealoutput_decrypt.svg)
+*Figure 1: End-to-end flow of an Decrypt/SealOutput request through the CoFHE system components*

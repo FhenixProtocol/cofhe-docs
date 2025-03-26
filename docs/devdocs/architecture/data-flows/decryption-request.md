@@ -1,12 +1,20 @@
 ---
-title: Decryption Request
+title: Decryption Request Flow
 sidebar_position: 3
 ---
 
-# Decryption Request
+# Decryption Request Flow
 
 The process of requesting decryption through Smart Contracts starts the same as every other [FHE Operation Request](fhe-operation.md) 📌steps 1-4, \
 Here we'll continue from FheOS server handling such request as follows:
+### Flow Diagram
+
+The following diagram illustrates the complete flow of an FHE Decryption request in the CoFHE ecosystem:
+[![Diagram](../../../../static/img/assets/Decryption%20Transactions.svg)](../../../../static/img/assets/Decryption%20Transactions.svg)
+*Figure 1: End-to-end flow of an FHE Decryption request through the CoFHE system components*
+
+### 📌 [Step 1-4](fhe-operation.md) 
+>![Bullet](../../../../static/img/assets/1.png) ![Bullet](../../../../static/img/assets/2.png) ![Bullet](../../../../static/img/assets/3.png) ![Bullet](../../../../static/img/assets/4.png) ![Bullet](../../../../static/img/assets/5.png) ![Bullet](../../../../static/img/assets/6.png)
 
 ### 📌 Step 5: FheOS server - Decryption Execution
 The FheOS server handles decryption requests:
@@ -24,10 +32,10 @@ The FheOS server handles decryption requests:
    - Validate ciphertext hash integrity
    - Perform secure decryption
 
-### 📌 Step 7: FheOS Notifies the Aggregtor with the decrypt result
-   - Call appropriate callback function on the aggregator
+### 📌 Step 7: FheOS Notifies the Aggregtor with the decrypt result 
+   - Call appropriate callback function on the aggregator ![Bullet](../../../../static/img/assets/7.png)
    - The Aggregator calls the TaskManager with relevant result.
 
-### 📌 Step 8: TaskManager emit event with decryption result
-   - Provide decrypted result by emitting an event `DecryptionResult`
+### 📌 Step 8: TaskManager emit event with decryption result 
+   - Provide decrypted result by emitting an event `DecryptionResult` ![Bullet](../../../../static/img/assets/8.png)
    - The event consists of `ciphertext handle`, `result`, `requestor` (of that decrypt operation)
