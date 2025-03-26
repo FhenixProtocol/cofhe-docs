@@ -1,19 +1,18 @@
 ---
 title: Decryption Operations
 sidebar_position: 7
+description: Understanding how to decrypt encrypted data in FHE smart contracts
 ---
 
-Decryption is the process of converting encrypted data back into its original form.
+Decryption is the process of converting encrypted data back into its original form. In the context of Fully Homomorphic Encryption (FHE), decryption allows for the retrieval of results after performing computations on encrypted data.
 
-In the context of Fully Homomorphic Encryption (FHE), decryption allows for the retrieval of results after performing computations on encrypted data.
-
-The `FHE.decrypt` function is a core component of the FHE library, designed for Solidity smart contract.
+The `FHE.decrypt` function is a core component of the FHE library, designed for Solidity smart contracts.
 
 :::tip[Deep Dive]
-We recommend you to read more about our unique MPC decryption threshold network [here](../architecture/internal-utilities/threshold-network.md)
+We recommend reading more about our unique MPC decryption threshold network [here](../architecture/internal-utilities/threshold-network.md)
 :::
 
-## Example
+## Asynchronous Decryption Example
 
 ```sol
 import {FHE, euint64} from "@fhenixprotocol/cofhe-contracts/FHE.sol";
@@ -27,7 +26,7 @@ contract SimpleCounter {
     // ------------------------------
     function decrypt_counter() external {
         FHE.decrypt(counter);
-        lastDecryptedCounter = counter
+        lastDecryptedCounter = counter;
     }
 
     // ------------------------------
@@ -53,22 +52,25 @@ contract SimpleCounter {
 
         return value;
     }
+}
 ```
 
-## Accessing async decryption results
+## Understanding Asynchronous Decryption
 
-Decrypt operations, as all other operations in CoFhe, are being executed asynchronously, meaning that you ask for decrypyion, and it might take a while to be ready.
+Decrypt operations like all other FHE operations in CoFHE are executed asynchronously, meaning:
+1. You request decryption
+2. The operation takes some time to complete
+3. You query the results when ready
 
 :::tip[Deep Dive]
-If you wanna know more about why this is being done asynchronously, [read more here](./data-evaluation.md).
+To understand why decryption is asynchronous, [read more here](./data-evaluation.md).
 :::
 
-Instead of blocking your contract while waiting for the result, you have to query the result, and you have 2 ways of doing that : 
+Instead of blocking your contract while waiting for the result, you have two ways to query the result:
 
-### 1. Safe way
+### 1. Safe Way (Recommended)
 
-The safest way to query decryption results is using the function `FHE.getDecryptResultSafe(eParam)`.
-This function results 2 values, first - the decrypted value, and second - plaintext boolean success indication. 
+Use `FHE.getDecryptResultSafe(eParam)` to get both the decrypted value and a plaintext boolean success indicator:
 
 ```sol
 euint64 eParam = FHE.asEuint64(10);
@@ -83,35 +85,32 @@ if (!decrypted) {
 return value;
 ```
 
-### 2. Unchecked way
+### 2. Unsafe Way
 
 The second way of querying decryption results is using the function `FHE.getDecryptResult(eParam)` .
-It doesn't check for readiness for you, and you get no readiness indication to work with. If decryption is ready, you get the decrypted value, otherwise - execution is being reverted. 
+It doesn't check readiness for you, and you get no indication to work with. If decryption is ready, you get the decrypted value, otherwise - execution is being reverted. 
 
 :::warning
-Using this method might end up with Execution Reverted exception if the results aren't ready yet.
+The unsafe method will revert the transaction if the decryption results aren't ready yet.
 :::
 
 
 ```sol
 euint64 eParam = FHE.asEuint64(10);
-(uint64 value, bool decrypted) = FHE.getDecryptResult(eParam);
-
-// You will get Execution Reverted here if the decryption results aren't ready.
-
+uint64 value = FHE.getDecryptResult(eParam); // Will revert if not ready
 return value;
 ```
 
 ## Decryptions Permissions
 
-As all other FHE operations - you must be allowed to use a ciphertext before you can decrypt it. 
+## Access Control
 
-Read more about [Access Control](./acl-mechanism.md) to get familiar with the context and utilize for decryptions.
+As with all FHE operations, you must have permission to decrypt a ciphertext. Read more about [Access Control](./acl-mechanism.md) to understand the permissions system.
 
-## Function Signatures
+## Available Functions
 
+### Decryption Requests
 ```solidity
-// Decryptions
 function decrypt(ebool input1)
 function decrypt(euint8 input1)
 function decrypt(euint16 input1)
@@ -120,18 +119,10 @@ function decrypt(euint64 input1)
 function decrypt(euint128 input1)
 function decrypt(euint256 input1)
 function decrypt(eaddress input1)
+```
 
-// Unsafe result query
-function getDecryptResult(ebool input1) internal view returns (bool result)
-function getDecryptResult(euint8 input1) internal view returns (uint8 result)
-function getDecryptResult(euint16 input1) internal view returns (uint16 result)
-function getDecryptResult(euint32 input1) internal view returns (uint32 result)
-function getDecryptResult(euint64 input1) internal view returns (uint64 result)
-function getDecryptResult(euint128 input1) internal view returns (uint128 result)
-function getDecryptResult(euint256 input1) internal view returns (uint256 result)
-function getDecryptResult(eaddress input1) internal view returns (address result)
-
-// Safe result query
+### Safe Result Queries
+```solidity
 function getDecryptResultSafe(ebool input1) internal view returns (bool result, bool decrypted)
 function getDecryptResultSafe(euint8 input1) internal view returns (uint8 result, bool decrypted)
 function getDecryptResultSafe(euint16 input1) internal view returns (uint16 result, bool decrypted)
@@ -140,4 +131,16 @@ function getDecryptResultSafe(euint64 input1) internal view returns (uint64 resu
 function getDecryptResultSafe(euint128 input1) internal view returns (uint128 result, bool decrypted)
 function getDecryptResultSafe(euint256 input1) internal view returns (uint256 result, bool decrypted)
 function getDecryptResultSafe(eaddress input1) internal view returns (address result, bool decrypted)
+```
+
+### Unsafe Result Queries
+```solidity
+function getDecryptResult(ebool input1) internal view returns (bool result)
+function getDecryptResult(euint8 input1) internal view returns (uint8 result)
+function getDecryptResult(euint16 input1) internal view returns (uint16 result)
+function getDecryptResult(euint32 input1) internal view returns (uint32 result)
+function getDecryptResult(euint64 input1) internal view returns (uint64 result)
+function getDecryptResult(euint128 input1) internal view returns (uint128 result)
+function getDecryptResult(euint256 input1) internal view returns (uint256 result)
+function getDecryptResult(eaddress input1) internal view returns (address result)
 ```
