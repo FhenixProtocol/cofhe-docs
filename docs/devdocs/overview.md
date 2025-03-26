@@ -114,4 +114,4 @@ Ready to start building with CoFHE? Here's how to get started:
 3. Follow our step-by-step tutorials
 4. Join our developer community
 
-[Get Started Now →](/docs/devdocs/tutorials/getting-started) 
+[Get Started Now →](./cofhejs/getting-started.md) 

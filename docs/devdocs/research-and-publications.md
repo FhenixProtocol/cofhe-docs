@@ -4,5 +4,5 @@ Our research explores novel cryptographic techniques to push the boundaries of F
 
 ## Current Project: Threshold Decryption for FHE
 
-We designed a new threshold FHE decryption protocol that achieves both **unprecedented throughput** and **shortest latency** compared to existing solutions. Specifically, it improves **throughput by ~20,000×** and **cuts latency by up to 37×** relative to the state of the art. This is achieved by securely removing ciphertext noise with an efficient MPC-based approach, eliminating the need for noise flooding while maintaining strong simulation-based security. For more details, see our [full paper](./High_Throughput_Universally_Composable_Threshold_FHE_Decryption__SBC_.pdf).
+We designed a new threshold FHE decryption protocol that achieves both **unprecedented throughput** and **shortest latency** compared to existing solutions. Specifically, it improves **throughput by ~20,000×** and **cuts latency by up to 37×** relative to the state of the art. This is achieved by securely removing ciphertext noise with an efficient MPC-based approach, eliminating the need for noise flooding while maintaining strong simulation-based security. For more details, see our [full paper](../../static/Papers/High_Throughput_UC_secure_Threshold_FHE_Decryption_wauthors.pdf).
 
