@@ -44,10 +44,9 @@ export const ResultOk = <T, E>(data: T): Result<T, E> => ({
 
 Most asynchronous operations in `cofhejs` return a `Result` type, including:
 
-- Initialization functions (`initialize`, `initializeCore`)
+- Initialization functions (`initializeWithEthers`, `initializeWithViem`, `initialize`)
 - Permit operations (`createPermit`, `getPermit`, `getPermission`)
 - Encryption and decryption operations
-- Environment configuration (`applyEnvironmentDefaults`)
 
 ## Handling Errors
 
@@ -124,7 +123,12 @@ Here's a complete example of initializing `cofhejs` and handling potential error
 ```typescript
 async function initializeCoFHE() {
 	try {
-		const result = await cofhejs.initialize({
+		// initialize your web3 provider
+		const provider = new ethers.BrowserProvider(window.ethereum)
+		const signer = (await provider.getSigner()) as ethers.JsonRpcSigner
+
+		// initialize cofhejs Client with ethers (it also supports viem)
+		await cofhejs.initializeWithEthers({
 			provider: window.ethereum,
 			signer: wallet,
 			environment: 'TESTNET',
