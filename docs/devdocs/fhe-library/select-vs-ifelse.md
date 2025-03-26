@@ -6,7 +6,7 @@ description: Understanding why if..else isn't possible with FHE and exploring th
 
 Writing code with Fully Homomorphic Encryption (FHE) introduces a fundamental shift in how we handle conditionals or branches in our code. As you already know, with FHE, we're operating on encrypted data. This means we can't use typical `if...else` branching structures, because we don't have visibility into the actual values we're comparing.
 
-Instead, use the `select` function which works like a ternary operator (`?:`) but for encrypted values.
+Instead, use the `select` function which works like a ternary operator (`condition ? "yes" : "no"`) but for encrypted values.
 
 ## Quick Example
 
@@ -39,9 +39,9 @@ In the example above, `FHE.select` uses the encrypted `ebool` result of `gt`, so
 ## Key Points to Remember
 
 - All operations take place on encrypted data, so the actual values and comparison results stay concealed
-- The `select` function is the primary way to handle conditional execution in FHE
+- The `select` function is the only way to handle conditional execution in FHE
 - This pattern maintains privacy without sacrificing functionality
-- It's similar to constant-time programming patterns used in cryptography
+- It's similar to constant-time programming patterns
 
 ## Common Use Cases
 
@@ -65,7 +65,7 @@ euint32 result = FHE.select(isAboveThreshold, value, threshold);
 
 ## Best Practices
 
-1. Always use `select` instead of trying to implement branching logic
+1. Always use `select` instead of trying to implement branching logic. Using traditional `if..else` might result in **unexpected behaviour**
 2. Keep your conditional logic simple and linear
 3. Remember that all operations must be performed on encrypted data
 4. Consider the performance implications of complex conditional chains
