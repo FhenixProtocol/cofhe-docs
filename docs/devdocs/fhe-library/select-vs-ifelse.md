@@ -16,7 +16,7 @@ euint32 b = FHE.asEuint32(20);
 euint32 max;
 
 // Instead of this (won't work) :
-if (a.gt(b)) { // lt returns encrypted boolean (ebool)
+if (a.gt(b)) { // gt returns encrypted boolean (ebool)
    max = a;
 } else {
    max = b;
