@@ -15,24 +15,28 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@cookbookdev/docsbot": "^4.21.5",
-    "@docusaurus/core": "^3.7.0",
-    "@docusaurus/plugin-sitemap": "^3.7.0",
-    "@docusaurus/preset-classic": "^3.7.0",
-    "@docusaurus/theme-common": "^3.7.0",
-    "@mdx-js/react": "^3.0.0",
-    "clsx": "^2.0.0",
-    "pnpm": "^9.1.4",
-    "prism-react-renderer": "^2.3.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "@cookbookdev/docsbot": "^4.24.22",
+    "@docusaurus/core": "3.7.0",
+    "@docusaurus/plugin-sitemap": "3.7.0",
+    "@docusaurus/preset-classic": "3.7.0",
+    "@docusaurus/theme-common": "3.7.0",
+    "@mdx-js/react": "^3.1.0",
+    "clsx": "^2.1.1",
+    "pnpm": "^9.15.9",
+    "prism-react-renderer": "^2.4.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-ga4": "^2.1.0",
-    "react-gtm-module": "^2.0.11"
+    "react-gtm-module": "^2.0.11",
+    "styled-components": "^6.1.16",
+    "tailwindcss": "^3.4.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.1.0",
-    "@docusaurus/tsconfig": "3.1.0",
-    "@docusaurus/types": "3.1.0",
+    "@docusaurus/module-type-aliases": "3.7.0",
+    "@docusaurus/tsconfig": "3.7.0",
+    "@docusaurus/types": "3.7.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.33",
     "typescript": "~5.2.2"
   },
   "browserslist": {

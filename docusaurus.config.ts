@@ -2,21 +2,30 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
+const isDeployPreview = process.env.GITHUB_PAGES === 'true';
+const isPR = process.env.GITHUB_EVENT_NAME === 'pull_request';
+const prNumber = process.env.GITHUB_EVENT_NAME === 'pull_request' ? process.env.GITHUB_EVENT_NUMBER : '';
+
+// Set a fixed baseUrl for GitHub Pages
+const baseUrl = '/cofhe-docs/';
+
 const config: Config = {
   title: 'Fhenix',
   tagline: 'Unlock Onchain Confidentiality on Ethereum',
   favicon: 'img/Favicon_Dark.svg',
 
   // Set the production url of your site here
-  url: 'https://docs.fhenix.zone',
+  url: 'https://fhenixprotocol.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: baseUrl,
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'fhenixprotocol', // Usually your GitHub org/user name.
-  projectName: 'fhenix-docs', // Usually your repo name.
+  projectName: 'cofhe-docs', // Usually your repo name.
+  trailingSlash: false,
+  deploymentBranch: 'gh-pages',
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
@@ -24,11 +33,25 @@ const config: Config = {
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
-  trailingSlash: false,
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
   },
+
+  // Add styled-components configuration
+  stylesheets: [
+    {
+      rel: 'stylesheet',
+      href: '/styles/global.css',
+    },
+  ],
+  
+  scripts: [
+    {
+      src: '/scripts/styled-components-fix.js',
+      async: true,
+    },
+  ],
 
   presets: [
     [
@@ -37,7 +60,8 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
           editUrl:
-            'https://github.com/fhenixprotocol/fhenix-docs/tree/main/',
+            'https://github.com/fhenixprotocol/cofhe-docs/tree/master/',
+          routeBasePath: 'docs',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -73,24 +97,19 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'docsSidebar',
           position: 'left',
           label: 'Home',
-          href: '/',
+          to: '/',
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'docsSidebar',
           position: 'left',
           label: 'Getting Started',
-          href: '/getting-started',
+          to: '/getting-started',
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'docsSidebar',
           position: 'left',
           label: 'Developer Docs',
+          to: '/docs/devdocs/overview',
         },
         {
           href: 'https://github.com/fhenixprotocol/',
@@ -115,16 +134,16 @@ const config: Config = {
           title: 'Quick Links',
           items: [
             {
-              label: 'Dev Docs',
-              to: '/docs/devdocs/intro',
+              label: 'Home',
+              to: '/',
             },
             {
-              label: 'Introduction',
-              to: '/docs/devdocs/intro',
+              label: 'Getting Started',
+              to: '/getting-started',
             },
             {
-              label: 'Get Started',
-              to: '/docs/devdocs/Setting%20Up%20Your%20Environment/intro',
+              label: 'Developer Docs',
+              to: '/docs/devdocs/overview',
             },
             // {
             //   label: 'Tutorial',
@@ -195,6 +214,16 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
       additionalLanguages: ['solidity'],
+      magicComments: [
+        {
+          className: 'code-block-diff-add-line',
+          line: 'diff-add'
+        },
+        {
+          className: 'code-block-diff-remove-line',
+          line: 'diff-remove'
+        }
+      ]
     },
   } satisfies Preset.ThemeConfig,
 };

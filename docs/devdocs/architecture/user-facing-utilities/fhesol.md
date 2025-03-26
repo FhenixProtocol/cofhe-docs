@@ -5,10 +5,17 @@ sidebar_position: 2
 
 # FHE.sol
 
-FHE.sol is the Solidity library that enables confidential smart contract development. It provides the core FHE operations and utilities needed for encrypted computations.
+| Aspect | Description |
+|--------|-------------|
+| **Type** | Solidity library |
+| **Function** | Provides a user-facing implementation of all Fully Homomorphic Encryption (FHE) operations, supporting every compatible input type. |
+| **Responsibilities** | Implements all FHE operations, making them accessible within Solidity smart contracts.|
 
-## Key Features
-- Encrypted arithmetic operations
-- Access control mechanisms
-- Secure data handling
-- Confidential state management 
+## Usage
+
+```solidity
+import {FHE} from "@fhenixprotocol/cofhe-contracts/FHE.sol";
+```
+
+For a complete reference of all available functions and their usage, check out the [FHE.sol API documentation](../../solidity-api/FHE.md).
+
