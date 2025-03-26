@@ -5,4 +5,8 @@ sidebar_position: 8
 
 # Gas and Benchmarks
 
-Understanding gas costs and performance benchmarks for FHE.sol operations.
+## 🚧 Gas and Benchmarks - Coming Soon! 🚧
+
+This documentation section is currently under development. We're working to provide comprehensive information about gas costs and performance benchmarks for operations in our FHE library.
+
+Check back soon for updates!

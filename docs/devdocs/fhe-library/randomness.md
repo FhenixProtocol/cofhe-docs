@@ -5,4 +5,10 @@ sidebar_position: 6
 
 # Randomness
 
-Managing randomness and entropy in FHE.sol smart contracts.
+## 🚧 Coming Soon! 🚧
+
+This documentation section is currently under development. We're working to provide comprehensive information about randomness in our FHE library.
+
+Check back soon for updates!
+
+
