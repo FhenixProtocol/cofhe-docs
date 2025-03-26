@@ -198,7 +198,7 @@ This means that the encrypted values are not revealed until the user requests a 
 
 ### 2. Encrypting values
 
-With CoFHE.js the encryption is done asynchronously, for this reason we can provide a callback function to log the encryption state (read about it [here](/docs/devdocs/cofhejs/encryption-operations))
+With CoFHE.js the encryption is done asynchronously, for this reason we can provide a callback function to log the encryption state (read about it [here](/docs/devdocs/cofhejs/encryption-operations.md))
 
 ```javascript
 // diff-remove
