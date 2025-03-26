@@ -192,6 +192,42 @@ contract VotingExample {
   }
 ```
 
+This will work, but it may make sense to prepare the trivially encrypted values in the constructor rather than in each transaction. Lets see how that would look:
+
+```diff
+contract VotingExample {
+    ...
+
++   euint64 private EUINT64_ZERO;
++   euint64 private EUINT64_ONE;
+
+    constructor() {
+        owner = msg.sender;
++       EUINT64_ZERO = FHE.asEuint64(0);
++       EUINT64_ONE = FHE.asEuint64(1);
+    }
+
+    function createProposal(
+        string memory _name,
+        string[] memory _options,
+        uint256 _deadline
+    ) external onlyOwner returns (uint256) {
+
+        ...
+
+        for (uint i = 0; i < _options.length; i++) {
+            proposal.options.push(
+-               Option({name: _options[i], votes: FHE.asEuint64(0)})
++               Option({name: _options[i], votes: EUINT64_ZERO})
+            );
+        }
+
+       ...
+    }
+
+
+```
+
 ### 4. We now need to handle the user's vote casting. The first thing that we need to do is hide which option the user is voting for. We can do this by replacing the `vote` function parameter `uint256 _optionIndex` with `InEuint8 memory _optionIndex`. `InEuint8` is an encrypted input type. We then need to convert the `InEuint8` to an `euint8` for use in computation.
 
 > NOTE:<br/>Encrypting inputs requires the use of [**cofhejs**](../cofhejs/getting-started.md).<br/> Read more about [**encrypted inputs**](../cofhejs/encryption-operations.md).
@@ -221,8 +257,8 @@ function vote(uint256 _proposalId, InEuint8 memory _optionIndex) external {
 +           proposal.options[i].votes,
 +           FHE.select(
 +               _optionIndex.eq(FHE.asEuint8(i)),
-+               FHE.asEuint64(1),
-+               FHE.asEuint64(0)
++               EUINT64_ONE,
++               EUINT64_ZERO
 +           )
 +       );
 +   }
@@ -408,3 +444,185 @@ In this tutorial, we walked through migrating a simple voting contract to use Co
 3. Updating the getter function to handle decryption of results safely
 
 The resulting contract provides the same functionality as the original, but with the added privacy benefit that individual votes are not visible on-chain until the final tally is decrypted. This demonstrates how CoFHE can be used to add privacy to existing contracts with minimal changes to the core logic.
+
+### Full FHE enabled Voting Example
+
+```solidity
+// SPDX-License-Identifier: MIT
+// OpenZeppelin Contracts (last updated v5.1.0) (token/ERC20/ERC20.sol)
+
+pragma solidity ^0.8.25;
+
+import {FHE, euint64, InEuint8} from "@fhenixprotocol/cofhe-contracts/FHE.sol";
+
+contract VotingExample {
+    struct Option {
+        string name;
+        euint64 votes;
+    }
+
+    struct Proposal {
+        string name;
+        uint256 deadline;
+        Option[] options;
+        mapping(address => bool) hasVoted;
+        bool exists;
+        uint8 winner;
+    }
+
+    address public owner;
+    uint256 public proposalCount;
+    mapping(uint256 => Proposal) public proposals;
+
+    euint64 private EUINT64_ZERO;
+    euint64 private EUINT64_ONE;
+
+    event ProposalCreated(
+        uint256 indexed proposalId,
+        string name,
+        uint256 deadline
+    );
+    event VoteCast(
+        uint256 indexed proposalId,
+        address indexed voter,
+        uint256 optionIndex
+    );
+
+    error NotOwner();
+    error InvalidOptionCount();
+    error ProposalNotFound();
+    error DeadlineExpired();
+    error AlreadyVoted();
+    error InvalidOptionIndex();
+    error DeadlineNotReached();
+
+    constructor() {
+        owner = msg.sender;
+        EUINT64_ZERO = FHE.asEuint64(0);
+        EUINT64_ONE = FHE.asEuint64(1);
+    }
+
+    modifier onlyOwner() {
+        if (msg.sender != owner) revert NotOwner();
+        _;
+    }
+
+    function createProposal(
+        string memory _name,
+        string[] memory _options,
+        uint256 _deadline
+    ) external onlyOwner returns (uint256) {
+        if (_options.length < 2 || _options.length > 4)
+            revert InvalidOptionCount();
+
+        uint256 proposalId = proposalCount++;
+        Proposal storage proposal = proposals[proposalId];
+
+        proposal.name = _name;
+        proposal.deadline = _deadline;
+        proposal.exists = true;
+
+        for (uint i = 0; i < _options.length; i++) {
+            proposal.options.push(
+                Option({name: _options[i], votes: FHE.asEuint64(0)})
+            );
+        }
+
+        emit ProposalCreated(proposalId, _name, _deadline);
+        return proposalId;
+    }
+
+    function vote(uint256 _proposalId, InEuint8 memory _optionIndex) external {
+        euint8 optionIndex = FHE.asEuint8(_optionIndex);
+        Proposal storage proposal = proposals[_proposalId];
+
+        if (!proposal.exists) revert ProposalNotFound();
+        if (block.timestamp >= proposal.deadline) revert DeadlineExpired();
+        if (proposal.hasVoted[msg.sender]) revert AlreadyVoted();
+
+        for (uint8 i = 0; i < proposal.options.length; i++) {
+            proposal.options[i].votes = FHE.add(
+                proposal.options[i].votes,
+                FHE.select(
+                    optionIndex.eq(FHE.asEuint8(i)),
+                    EUINT64_ONE,
+                    EUINT64_ZERO
+                )
+            );
+            FHE.allowThis(proposal.options[i].votes);
+        }
+        proposal.hasVoted[msg.sender] = true;
+
+        FHE.allowSender(optionIndex);
+        emit VoteCast(_proposalId, msg.sender, optionIndex);
+    }
+
+    function finalizeVote(uint256 _proposalId) external {
+        if (msg.sender != owner) revert NotOwner();
+
+        Proposal storage proposal = proposals[_proposalId];
+        if (!proposal.exists) revert ProposalNotFound();
+        if (block.timestamp < proposal.deadline) revert DeadlineNotReached();
+
+        for (uint8 i = 0; i < proposal.options.length; i++) {
+            FHE.decrypt(proposal.options[i].votes);
+        }
+    }
+
+    function getProposal(
+        uint256 _proposalId
+    )
+        external
+        view
+        returns (
+            string memory name,
+            uint256 deadline,
+            bool exists,
+            string[] memory options,
+            uint256[] memory votes,
+            bool finalized,
+            uint8 winner
+        )
+    {
+        Proposal storage proposal = proposals[_proposalId];
+
+        name = proposal.name;
+        deadline = proposal.deadline;
+        exists = proposal.exists;
+
+        options = new string[](proposal.options.length);
+        for (uint8 i = 0; i < proposal.options.length; i++) {
+            options[i] = proposal.options[i].name;
+        }
+
+        votes = new uint64[](proposal.options.length);
+        finalized = true;
+        for (uint8 i = 0; i < proposal.options.length; i++) {
+            (uint256 result, bool decrypted) = FHE.getDecryptResultSafe(
+                proposal.options[i].votes
+            );
+            votes[i] = decrypted ? result : 0;
+            if (!decrypted) finalized = false;
+        }
+
+        if (finalized) {
+            uint256 maxVotes = 0;
+            winner = 0;
+            for (uint8 i = 0; i < proposal.options.length; i++) {
+                if (proposal.options[i].votes > maxVotes) {
+                    maxVotes = proposal.options[i].votes;
+                    winner = i;
+                }
+            }
+        }
+    }
+
+    function hasVoted(
+        uint256 _proposalId,
+        address _voter
+    ) external view returns (bool) {
+        return proposals[_proposalId].hasVoted[_voter];
+    }
+}
+
+```
