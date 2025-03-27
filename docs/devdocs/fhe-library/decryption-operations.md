@@ -63,7 +63,7 @@ Decrypt operations like all other FHE operations in CoFHE are executed asynchron
 3. You query the results when ready
 
 :::tip[Deep Dive]
-To understand why decryption is asynchronous, [read more here](./data-evaluation.md).
+To understand why FHE operations (including decryption) are asynchronous, [read more here](./data-evaluation.md).
 :::
 
 Instead of blocking your contract while waiting for the result, you have two ways to query the result:
