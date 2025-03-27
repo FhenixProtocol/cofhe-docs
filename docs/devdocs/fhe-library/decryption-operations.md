@@ -6,7 +6,6 @@ description: Understanding how to decrypt encrypted data in FHE smart contracts
 
 Decryption is the process of converting encrypted data back into its original form. In the context of Fully Homomorphic Encryption (FHE), decryption allows for the retrieval of results after performing computations on encrypted data.
 
-The `FHE.decrypt` function is a core component of the FHE library, designed for Solidity smart contracts.
 
 :::tip[Deep Dive]
 We recommend reading more about our unique MPC decryption threshold network [here](../architecture/internal-utilities/threshold-network.md)
