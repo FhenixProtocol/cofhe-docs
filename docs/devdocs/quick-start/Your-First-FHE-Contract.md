@@ -1,6 +1,6 @@
 ---
 title: Your First FHE Contract
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Your First FHE Contract

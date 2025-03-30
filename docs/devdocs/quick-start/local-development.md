@@ -1,6 +1,6 @@
 ---
 title: Local Development Setup
-sidebar_position: 4
+sidebar_position: 2
 description: Setting up your local development environment with and without Threshold Network
 ---
 # Local Development Setup

@@ -1,6 +1,6 @@
 ---
-title: Getting Started
-sidebar_position: 1
+title: Getting Started with Cofhejs
+sidebar_position: 4
 description: Setup instructions for cofhejs
 ---
 import Tabs from "@theme/Tabs";
