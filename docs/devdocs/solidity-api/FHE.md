@@ -1217,109 +1217,22 @@ decrypt(eaddress value) → address
 ```
 Decrypts an encrypted Ethereum address. The caller must have permission to access the encrypted value.
 
-### Random Generation
+### Decrypt Result Retrieval
 
-#### random (ebool)
+#### getDecryptResult
 ```solidity
-random() → ebool
+getDecryptResult(uint256 input) → uint256
 ```
-Generates a random encrypted boolean value.
+Retrieves the decrypted result of a previously decrypted value. This function should be called after requesting decryption with `decrypt()`.
+The function will revert if the decryption result is not available yet.
 
-#### random (euint8)
+#### getDecryptResultSafe
 ```solidity
-random() → euint8
+getDecryptResultSafe(uint256 input) → uint256 result, bool decrypted
 ```
-Generates a random encrypted 8-bit unsigned integer.
+Safely retrieves the decrypted result of a previously decrypted value. Unlike `getDecryptResult`, this function returns a boolean flag indicating whether the decryption is complete, avoiding the need to handle reverts.
 
-#### random (euint16)
-```solidity
-random() → euint16
-```
-Generates a random encrypted 16-bit unsigned integer.
-
-#### random (euint32)
-```solidity
-random() → euint32
-```
-Generates a random encrypted 32-bit unsigned integer.
-
-#### random (euint64)
-```solidity
-random() → euint64
-```
-Generates a random encrypted 64-bit unsigned integer.
-
-#### random (euint128)
-```solidity
-random() → euint128
-```
-Generates a random encrypted 128-bit unsigned integer.
-
-#### random (euint256)
-```solidity
-random() → euint256
-```
-Generates a random encrypted 256-bit unsigned integer.
-
-#### random (eaddress)
-```solidity
-random() → eaddress
-```
-Generates a random encrypted Ethereum address.
-
-#### random (ebool with seed)
-```solidity
-random(uint32 seed) → ebool
-```
-Generates a deterministic random encrypted boolean value using the provided seed.
-
-#### random (euint8 with seed)
-```solidity
-random(uint32 seed) → euint8
-```
-Generates a deterministic random encrypted 8-bit unsigned integer using the provided seed.
-
-#### random (euint16 with seed)
-```solidity
-random(uint32 seed) → euint16
-```
-Generates a deterministic random encrypted 16-bit unsigned integer using the provided seed.
-
-#### random (euint32 with seed)
-```solidity
-random(uint32 seed) → euint32
-```
-Generates a deterministic random encrypted 32-bit unsigned integer using the provided seed.
-
-#### random (euint64 with seed)
-```solidity
-random(uint32 seed) → euint64
-```
-Generates a deterministic random encrypted 64-bit unsigned integer using the provided seed.
-
-#### random (euint128 with seed)
-```solidity
-random(uint32 seed) → euint128
-```
-Generates a deterministic random encrypted 128-bit unsigned integer using the provided seed.
-
-#### random (euint256 with seed)
-```solidity
-random(uint32 seed) → euint256
-```
-Generates a deterministic random encrypted 256-bit unsigned integer using the provided seed.
-
-#### random (eaddress with seed)
-```solidity
-random(uint32 seed) → eaddress
-```
-Generates a deterministic random encrypted Ethereum address using the provided seed.
-
-#### random (low-level)
-```solidity
-random(uint8 uintType, uint64 seed, int32 securityZone) → uint256
-```
-Low-level random number generation function that creates a random encrypted value of the specified type, using the provided seed and security zone.
+Returns: `result`: The decrypted value, `decrypted`: A boolean indicating whether the decryption has completed successfully
 
 ### Access Control
 
