@@ -45,7 +45,7 @@ contract SimpleCounter {
         FHE.allowThis(counter);
     }
 
-    function reset_counter(InEuint64 value) external onlyOwner {
+    function reset_counter(InEuint64 calldata value) external onlyOwner {
         counter = FHE.asEuint64(value);
         FHE.allowThis(counter);
     }
@@ -62,6 +62,11 @@ contract SimpleCounter {
 
         return value;
     }
+
+    function get_encrypted_counter_value() external view returns(euint64) {
+       return counter;
+    }
+    
 }
 ```
 
@@ -131,31 +136,20 @@ If the result is not ready, we revert the transaction with an error message.
 In this contract, only the owner can request for a decryption, so everyone can read the counter's value at any given time.  
 The owner needs to send a transaction to the `decrypt_counter`.  
 But what if we want to allow the owner to read the value without sending a transaction every time?  
-For that we need to add call for `FHE.allow(counter, owner)` every time that we change the counter's value.  
-We will also need to change the `get_counter_value` function to return the encrypted counter's value.  
+For that we need to add call for `FHE.allow(counter, owner)` or `FHE.allowSender(counter)`  every time that we change the counter's value.  
+This will allow the owner to read the encrypted counter's value using the `get_encrypted_counter_value` function and decrypt it using Cofhejs.
 
 ```solidity
     function increment_counter() external onlyOwner {
         counter = FHE.add(counter, delta);
         FHE.allowThis(counter);
-        FHE.allow(counter, owner);
+        FHE.allowSender(counter);
     }
 
-    function get_counter_value() external view returns(euint64) {
-        return counter;
+    function get_encrypted_counter_value() external view returns(euint64) {
+       return counter;
     }
 
 ```
-and use CoFHE.js to decrypt the counter's value.
-
-```javascript
-    
-    const result = await contract.get_counter_value();
-    const permit = await cofhejs.getPermit({
-        type: "self",
-        issuer: wallet.address,
-    });
-    const decrypted = await cofhejs.decrypt(result, FheTypes.Uint32, permit.data.issuer, permit.data.getHash());
-```
-
-In that case, only the owner can read the counter's value.  
+See how to use cofhejs to decrypt the counter's value in the next section.  
+<span style={{color: "orange", fontStyle: "italic"}}>Exercise:</span> Try to modify the contract to allow the owner to read the counter's value without sending a transaction every time, you will need it in order to make the cofhejs example work.
