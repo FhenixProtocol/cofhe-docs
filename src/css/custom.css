@@ -70,6 +70,51 @@
   --ifm-light-border-color: rgba(255,255,255,0.2);
 }
 
+/* Sidebar separator styling */
+.separator-sidebar-item {
+  height: 1px;
+  pointer-events: none;
+  cursor: default;
+}
+
+.separator-sidebar-item > div {
+  padding: 0 !important;
+}
+
+.separator-sidebar-item a {
+  color: var(--ifm-color-secondary-darkest) !important;
+  font-size: 6px;
+  letter-spacing: -0.5px;
+  padding: 0 !important;
+  height: 1px;
+  pointer-events: none;
+  border-bottom: 1px solid var(--ifm-color-secondary-darkest);
+  margin: 16px 0;
+}
+
+.separator-sidebar-item svg {
+  display: none;
+}
+
+/* Sidebar section headers */
+.sidebar-section-header {
+  margin-top: 20px;
+}
+
+.sidebar-section-title {
+  font-size: 0.85rem;
+  letter-spacing: 0.05rem;
+  color: var(--ifm-color-primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 8px var(--ifm-menu-link-padding-horizontal);
+  display: block;
+}
+
+[data-theme='dark'] .sidebar-section-title {
+  color: var(--ifm-color-primary-lightest);
+}
+
 @font-face {
   font-family: 'Teko';
   src: url('../../static/fonts/Teko-VariableFont_wght.woff2') format('woff2');
