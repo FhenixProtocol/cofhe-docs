@@ -117,9 +117,44 @@ const encryptedValues = await cofhejs.encrypt(logState, [
 const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, wallet);
 // Use the encrypted value of 10n
 const tx = await contract.add(encryptedValues.data[1]);
+```
 
+The return value of encrypt will look like this:
 
-
+```javascript
+[
+    {
+      "a": {
+        "ctHash": "92636554511857607772139288161981437465043939725198943672216405239183126770909",
+        "securityZone": 0,
+        "utype": 0,
+        "signature": "0xe040cd35add28cf6ecb7f69ed438d0336c93bc89969e3ef48c6695f761d873ef063fb09f14bf63756a3c5e025ea844068d3e4dc6484f4217b1ced06f96491ff61c"
+      },
+      "b": {
+        "ctHash": "15202056784520109157082582003083232820505141574251474146694023601812035142599",
+        "securityZone": 0,
+        "utype": 5,
+        "signature": "0x54441075bc03dc98f70934741d166589d8525917f7d800c9a8b5ed108a1837c034e22659f11436769b0a95d075456a8d7d3f0a7e04c15a7cc04fc588f1a99f5b1b"
+      },
+      "c": "hello"
+    },
+    [
+      "hello",
+      "20",
+      {
+        "ctHash": "26787795621375665874272976868854952388518195120549843442998819116218678940297",
+        "securityZone": 0,
+        "utype": 7,
+        "signature": "0x0c834cdbaf79541d70da7b59b4159a0826e5480ed443e6a2f98c0e8aa751dad9181f696ca2a977097be23d71c014a60dd3467608a71a73bd5436ccf00830b7571c"
+      }
+    ],
+    {
+      "ctHash": "67711896118023138060842665752834850025450825328971592073572755047963992273547",
+      "securityZone": 0,
+      "utype": 2,
+      "signature": "0x1f9af51d7f007b2841c303239f42deb4d9672d8eda42cbe312e3f0fefd7258c235484b0d6a6900ecc1ba7e2e8bf73c8c5ce7113a87eb94bf053d933ef35d90381b"
+    }
+  ]
 ```
 
 By encrypting user data before sending it to a contract, Fhenix ensures that data remains private throughout its lifecycle in the blockchain environment.
