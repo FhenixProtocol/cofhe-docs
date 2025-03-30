@@ -119,7 +119,8 @@ const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, wallet);
 const tx = await contract.add(encryptedValues.data[1]);
 ```
 
-The return value of encrypt will look like this:
+The return value of encrypt will look like this. 
+**Notice** that only the Encryptable variables were updated, the rest remain intact:
 
 ```javascript
 [
