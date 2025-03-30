@@ -1,6 +1,6 @@
 ---
-title: Getting Started
-sidebar_position: 1
+title: Getting Started with Cofhejs
+sidebar_position: 4
 description: Setup instructions for cofhejs
 ---
 import Tabs from "@theme/Tabs";
@@ -24,11 +24,11 @@ To understand how **cofhejs** fits into the Fhenix framework, we will create a s
 
 Consider a smart contract called "**Counter**". Each user has an individual counter, and users increment and read their own counters with complete privacy. In this example, a **public key** is like a lock, and a **private key** is the corresponding key to unlock it.
 
-### Adding to the User’s Counter
+### Adding to the User's Counter
 
 When users want to add a value to their counter, say "5," they first place this value inside a sort-of "box". Using cofhejs, this box is secured by locking it with Fhenix Co-Processor's **public key** (encryption). The locked box is then sent to the smart contract. Thanks to Fully Homomorphic Encryption (FHE), Fhenix can perform mathematical operations directly on these sealed boxes—without accessing the raw data inside. So, the user's encrypted value, "5," can be added to the user’s encrypted counter while remaining private.
 
-### Retrieving the User’s Counter
+### Retrieving the User's Counter
 
 To retrieve the counter value, the user needs to read the data inside the box without breaking the encryption. Here’s the clever part: the user sends a second “lock” (their own public key) along with the request to read its data. This second lock is applied to the box (now the box has two locks). Fhenix can now remove its own lock (the Co-Processor's public key), leaving the box secured by only the user’s public key. The box remains locked and the data remains private, but now only the user can open it using its private key.
 
@@ -126,10 +126,10 @@ By encrypting user data before sending it to a contract, Fhenix ensures that dat
 
 ## Creating Permits
 
-After encryption, values can be passed into FHE-enabled smart contracts, and the contract can operate on this data securely, within its own logic. However, to ensure that only the respective user can view the processed (encrypted) data, **permissions** and **sealing** mechanisms are used. These ensure that data remains private and viewable exclusively by the user who owns it. Learn more at [TBD link](https://docs.fhenix.zone/docs/devdocs/Writing%20Smart%20Contracts/Permissions) and [TBD link](https://docs.fhenix.zone/docs/devdocs/Writing%20Smart%20Contracts/Returning-Data).
+After encryption, values can be passed into FHE-enabled smart contracts, and the contract can operate on this data securely, within its own logic. However, to ensure that only the respective user can view the processed (encrypted) data, **permissions** and **sealing** mechanisms are used. These ensure that data remains private and viewable exclusively by the user who owns it. Learn more at [Permits Management](/docs/devdocs/cofhejs/permits-management) and [Sealing and Unsealing](/docs/devdocs/cofhejs/sealing-unsealing).
 
 Permissions serve two main purposes:
-- **Verify User Identity**: They ensure that the data access request comes from the correct user by verifying that the message is signed with the user’s private key.
+- **Verify User Identity**: They ensure that the data access request comes from the correct user by verifying that the message is signed with the user's private key.
 - **Sealing User Data**: They provide a **public key** to "seal" the encrypted data, meaning it is encrypted in such a way that only the user holding the corresponding **private key** (stored securely on the user's client) can decrypt it later.
 
 **Note**: Fhenix uses **EIP712**, a widely used Ethereum standard for signing structured data. This means: first, a user must sign a permit in their wallet to authenticate themselves and authorize the creation of the permit; second, permits are stored locally in local storage and can be reused for future interactions with the same contract. Currently, each contract that the user interacts with requires its own unique permit (subject to change).
@@ -145,11 +145,11 @@ const permit = await cofhejs.createPermit({
 
 ## Unsealing Data
 
-After encryption, the data can be securely processed by the contract and sealed with the user’s **public key** (from their permit), and it is returned to the user when the user requests it. To access and interpret this data, the user must **unseal** it using their private key, which is securely stored on their device. The unsealing process is essential to ensure that only the intended user can view the final result.
+After encryption, the data can be securely processed by the contract and sealed with the user's **public key** (from their permit), and it is returned to the user when the user requests it. To access and interpret this data, the user must **unseal** it using their private key, which is securely stored on their device. The unsealing process is essential to ensure that only the intended user can view the final result.
 
-When the contract returns the encrypted data to the user, it remains sealed. This means the data is still encrypted with the user’s **public key** and cannot be read until the corresponding **private key** is used to unlock it. **cofhejs** provides a simple method to handle this.
+When the contract returns the encrypted data to the user, it remains sealed. This means the data is still encrypted with the user's **public key** and cannot be read until the corresponding **private key** is used to unlock it. **cofhejs** provides a simple method to handle this.
 
-Here’s example code to show how the unsealing process works:
+Here's example code to show how the unsealing process works:
 
 ```javascript
 const permit = await cofhejs.getPermit({

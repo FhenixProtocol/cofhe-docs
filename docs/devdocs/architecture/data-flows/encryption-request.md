@@ -28,7 +28,7 @@ The following diagram illustrates the complete flow of an Encryption request in 
 ## Step-by-Step Flow
 
 
-1. **Install, include and initialize CoFHE.js in your project (full details [here](/docs/devdocs/cofhejs/getting-started))**
+1. **Install, include and initialize CoFHE.js in your project (full details [here](/docs/devdocs/quick-start/getting-started.md))**
     ```bash
     npm install cofhejs
     ```

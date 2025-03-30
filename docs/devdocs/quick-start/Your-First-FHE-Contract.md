@@ -1,6 +1,6 @@
 ---
 title: Your First FHE Contract
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Your First FHE Contract
@@ -66,7 +66,7 @@ contract SimpleCounter {
 ```
 
 To start using FHE, we need to import the FHE library.
-In this example, we're importing the types `euint64` and `InEuint64` from the [FHE library](/docs/devdocs/solidity-api/FHEl).
+In this example, we're importing the types `euint64` and `InEuint64` from the [FHE library](/docs/devdocs/solidity-api/FHE).
 
 
 ```solidity

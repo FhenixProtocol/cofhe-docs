@@ -1,6 +1,6 @@
 ---
 title: Overview
-sidebar_position: 1
+sidebar_position: 0
 description: A comprehensive overview of CoFHE, its features, and use cases
 ---
 
@@ -9,7 +9,7 @@ description: A comprehensive overview of CoFHE, its features, and use cases
 
 ## **Introduction**
 
-Blockchains are great for transparency, security and trust, but that transparency comes at a cost—**everything is public**. Every transaction, smart contract interaction, and account balance is out in the open, which isn’t ideal for things like finance, healthcare, or any use case that deal with sensitive data.
+Blockchains are great for transparency, security and trust, but that transparency comes at a cost—**everything is public**. Every transaction, smart contract interaction, and account balance is out in the open, which isn't ideal for things like finance, healthcare, or any use case that deal with sensitive data.
 
 **Fully Homomorphic Encryption (FHE) fixes this.** Instead of exposing raw data on-chain, FHE allows computations to happen **directly on encrypted data**. The blockchain never sees the actual inputs or outputs—only encrypted values—yet the results are still valid when decrypted by an authorized recipient.
 
@@ -68,7 +68,7 @@ These challenges can all be mitigated by using FHE in your smart contracts.
 
 ## **Introducing CoFHE**
 
-CoFhe, an FHE enabled coprocessor, is a privacy tool for Ethereum and other EVM-compatible chains that allows computation directly on encrypted data. It means your smart contracts can handle sensitive information (like bids, votes, or user data) without ever exposing it to the network. CoFhe works off-chain, so it’s fast and scalable, and its stateless design makes integration as easy as adding a single solidity library. Whether you're building in DeFi, DAOs, or Gaming, CoFhe adds encrypted data handling to your contracts while keeping them lightweight and performant.
+CoFhe, an FHE enabled coprocessor, is a privacy tool for Ethereum and other EVM-compatible chains that allows computation directly on encrypted data. It means your smart contracts can handle sensitive information (like bids, votes, or user data) without ever exposing it to the network. CoFhe works off-chain, so it's fast and scalable, and its stateless design makes integration as easy as adding a single solidity library. Whether you're building in DeFi, DAOs, or Gaming, CoFhe adds encrypted data handling to your contracts while keeping them lightweight and performant.
 
 
 ### **Main Features**
@@ -94,7 +94,7 @@ CoFhe, an FHE enabled coprocessor, is a privacy tool for Ethereum and other EVM-
 
 ## **Unlocked Use Cases**
 
-CoFhe enables developers to build confidential smart contracts that weren’t possible before.
+CoFhe enables developers to build confidential smart contracts that weren't possible before.
 
  **Private Auctions** – Bidders can place and settle auctions without revealing bid amounts or identities.
 
@@ -114,4 +114,4 @@ Ready to start building with CoFHE? Here's how to get started:
 3. Follow our step-by-step tutorials
 4. Join our developer community
 
-[Get Started Now →](./cofhejs/getting-started.md) 
+[Get Started Now →](/docs/devdocs/quick-start/index.md) 
