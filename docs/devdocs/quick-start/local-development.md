@@ -7,7 +7,7 @@ description: Setting up your local development environment with and without Thre
 
 ## Overview
 
-This guide explains how to set up a local development environment for Fhenix, consists of several key components working together to provide a complete development experience.
+This guide explains how to set up a local development environment for Fhenix, which consists of several key components working together to provide a complete development experience.
 
 The full Fhenix local environment includes:
 - **Preprocessor**: Generates cryptographic keys and preprocessing data
