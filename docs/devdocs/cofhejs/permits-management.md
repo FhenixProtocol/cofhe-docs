@@ -11,7 +11,7 @@ Permits are a crucial security mechanism in Fhenix that allow users to authentic
 
 ### Basic Integration
 
-In a development environment, permit management can be handled automatically by `cofhejs`. When initialized with a valid provider and signer, the SDK will prompt users to sign a new Permit, granting them access to their encrypted data:
+In a development environment, permit management can be handled automatically by `cofhejs`. When initialized with a valid provider and signer, the SDK will prompt users to sign a new permit, granting them access to their encrypted data:
 
 ```typescript
 // initialize your web3 provider
