@@ -5,7 +5,8 @@ sidebar_position: 1
 
 # Receiving Encrypted Inputs
 
-Writing confidential smart contracts, a trivial part would be to receive encrypted inputs from users:
+Receiving encrypted inputs from users is a straight-forward part of writing confidential smart contracts:
+
 
 ```sol
 function transfer(
@@ -33,7 +34,7 @@ euint32 amount = FHE.asEuint32(inAmount);
 ```
 
 :::tip
-You should avoid storing encrypted input types (e.g. `InEuint8`, etc) directly in your contract's state - it will be more expensive as these types contain more data, and it could lead to unexpected results. You should always prefer to convert it to a regular encrypted type using `FHE.asE...()`.
+Avoid storing encrypted input types in contract state. These types carry extra metadata, which increases gas costs and may cause unexpected behavior. Always convert them using `FHE.asE...()` before storage. .
 :::
 
 Now that `amount` is of type `euint32`, we can store or manipulate it:
@@ -43,7 +44,7 @@ toBalance = FHE.sub(toBalance, amount);
 ```
 
 :::tip
-Read more on the available FHE types and opreations [here](./fhe-encrypted-operations.md).
+Read more on the available FHE types and operations [here](./fhe-encrypted-operations.md).
 :::
 
 ### Full Example
