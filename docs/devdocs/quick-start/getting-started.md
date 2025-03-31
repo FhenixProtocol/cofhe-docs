@@ -149,7 +149,7 @@ const permit = await cofhejs.createPermit({
 
 After encryption, the data can be securely processed by the contract and sealed with the user's **public key** (from their permit), and it is returned to the user when the user requests it. To access and interpret this data, the user must **unseal** it using their private key, which is securely stored on their device. The unsealing process is essential to ensure that only the intended user can view the final result.
 
-When the contract returns the encrypted data to the user, it remains sealed. This means the data is still encrypted with the user's **public key** and cannot be read until the corresponding **private key** is used to unlock it. **cofhejs** provides a simple method to handle this.
+When the contract returns the encrypted data to the user, it remains sealed. This means the data is still encrypted with the user's **public key** and cannot be read until the corresponding **private key** is used to unlock it. **Cofhejs** provides a simple method to handle this.
 
 Here's example code to show how the unsealing process works:
 

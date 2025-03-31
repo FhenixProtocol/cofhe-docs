@@ -16,7 +16,7 @@ This document lays out the complete flow of an off-chain sealoutput request. It 
 | Component             | Description                                                                          |
 | --------------------- | ------------------------------------------------------------------------------------ |
 | **CtHash**            | The encrypted hash representing an encrypted number. Fetched on-chain.               |
-| **cofhejs**           | Javascript library handling `permits` and the `unseal` / `decrypt` operations.       |
+| **Cofhejs**           | Javascript library handling `permits` and the `unseal` / `decrypt` operations.       |
 | **Threshold Network** | Decentralized decryption network that handles the requests                           |
 | **ACL**               | On-chain **A**ccess **C**ontrol **L**ist responsible for tracking **CtHash** access. |
 

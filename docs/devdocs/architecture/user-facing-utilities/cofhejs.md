@@ -32,7 +32,7 @@ To get started with Cofhejs, you need to install it as a dependency in your Java
   </TabItem>
 </Tabs>
 
-> Note: _For more information on getting started, take a look at the [**cofhejs getting started**](/docs/devdocs/quick-start/getting-started) guide._
+> Note: _For more information on getting started, take a look at the [**Cofhejs getting started**](/docs/devdocs/quick-start/getting-started) guide._
 
 ## Key Features
 
@@ -85,7 +85,7 @@ Cofhejs automatically fetches two keys from CoFHE, the FHE public key and a CRS.
 
 - Permits
 
-Permits allow users to access their encrypted data by authenticating the user with an EIP712 signature. Permits can be managed within cofhejs, or they can be managed within a client dApp directly by using the exposed `Permit` class.
+Permits allow users to access their encrypted data by authenticating the user with an EIP712 signature. Permits can be managed within Cofhejs, or they can be managed within a client dApp directly by using the exposed `Permit` class.
 
 > Note: _Read more about permits [here](/docs/devdocs/cofhejs/permits-management)_
 

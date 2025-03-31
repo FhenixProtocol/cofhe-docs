@@ -7,7 +7,7 @@ sidebar_position: 2
 Cofhejs provides an easy-to-use function to encrypt your inputs before sending them to the Fhenix Co-Processor.
 
 :::tip
-Encryption in Fhenix is done using the global chain key. This key is loaded when you create a cofhejs client automatically
+Encryption in Fhenix is done using the global chain key. This key is loaded when you create a Cofhejs client automatically
 :::
 
 When we perform encryption, we specify the type of `euint` (Encrypted Integer) we want to create. This should match the expected type in the Solidity contract we are working with.
