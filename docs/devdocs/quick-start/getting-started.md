@@ -132,7 +132,9 @@ Permissions serve two main purposes:
 - **Verify User Identity**: They ensure that the data access request comes from the correct user by verifying that the message is signed with the user's private key.
 - **Sealing User Data**: They provide a **public key** to "seal" the encrypted data, meaning it is encrypted in such a way that only the user holding the corresponding **private key** (stored securely on the user's client) can decrypt it later.
 
-**Note**: Fhenix uses **EIP712**, a widely used Ethereum standard for signing structured data. This means: first, a user must sign a permit in their wallet to authenticate themselves and authorize the creation of the permit; second, permits are stored locally in local storage and can be reused for future interactions with the same contract. Currently, each contract that the user interacts with requires its own unique permit (subject to change).
+:::note[Note]
+Fhenix uses **EIP712**, a widely used Ethereum standard for signing structured data. This means: first, a user must sign a permit in their wallet to authenticate themselves and authorize the creation of the permit; second, permits are stored locally in local storage and can be reused for future interactions with the same contract. Currently, each contract that the user interacts with requires its own unique permit (subject to change).
+:::
 
  Here's the code for this process:
 
