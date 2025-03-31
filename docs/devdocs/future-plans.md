@@ -17,7 +17,7 @@ Outlined here is a non-exhaustive list of trust-points, centralized components a
 | Threshold Network (TN) | Use of a Trusted dealer for keys and random data generation  | N/A                                    | N/A      | ❌     |
 | Threshold Network (TN) | Parties blindly trust the Coordinator                        | N/A                                    | N/A      | ❌     |
 | Threshold Network (TN) | TN bilndly trusts CoFHE (tx-flow decryptions)                | N/A                                    | N/A      | ❌     |
-| Threshold Network (TN) | Parties blindly trust a Trusted Dealer                       | 1. Run TD in a TEE</br>2. Eliminate TD | N/A      | ❌     |
+| Threshold Network (TN) | Parties blindly trust a Trusted Dealer                       | 1. Run TD in a TEE</br>2. Eliminate TD (PRSS) | N/A      | ❌     |
 | Threshold Network (TN) | Parties are not using unique random data within the protocol | Pull random data from the TD           | N/A      | ❌     |
 | Threshold Network (TN) | Sealoutput reencryption performed in a centralized manner    | N/A                                    | N/A      | ❌     |
 | Threshold Network (TN) | Use of Additive Secret Sharing for keys, randomness          | Implement Shamir Secret Sharing        | N/A      | ❌     |
