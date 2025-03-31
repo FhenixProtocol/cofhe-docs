@@ -39,13 +39,19 @@ To get started with cofhejs, you need to install it as a dependency in your Java
 
 <Tabs>
   <TabItem value="yarn" label="yarn">
-    ``` yarn add cofhejs ```
+```bash
+yarn add cofhejs
+```
   </TabItem>
   <TabItem value="npm" label="npm">
-    ``` npm install cofhejs ```
+```bash
+npm install cofhejs
+```
   </TabItem>
   <TabItem value="pnpm" label="pnpm">
-    ``` pnpm add cofhejs ```
+```bash
+pnpm add cofhejs
+```
   </TabItem>
 </Tabs>
 
