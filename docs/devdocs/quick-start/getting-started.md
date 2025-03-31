@@ -177,40 +177,84 @@ This example demonstrates a full interaction between a dApp and an FHE-enabled s
         const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
 
 
-        // initialize cofhejs Client with ethers (it also supports viem)
+        // initialize cofhejs Client with ethers (see cofhejs docs for viem)
         await cofhejs.initializeWithEthers({
             ethersProvider: provider,
             ethersSigner: wallet,
             environment: "LOCAL",
         });
-
+        
+        const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, wallet);
+        
         const logState = (state) => {
             console.log(`Log Encrypt State :: ${state}`);
         };
 
-        const encryptedValues = await cofhejs.encrypt(logState, [Encryptable.uint64(10n)]);
-        
-        const writeToContract = async () => {
-            const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, wallet);
-            const tx = await contract.someFunction(encryptedValues.data[0]);
-            console.log("Transaction hash:", tx.hash);
-            const receipt = await tx.wait();
-            console.log("Transaction receipt:", receipt);    
+    const readCounterDecryptedValue = async () => {
+        try {   
+            const result = await contract.get_counter_value();
+            console.log("readCounterDecryptedValue result:", result);
+        } catch (error) {
+            console.error("Error reading from contract:", error);
         }
-        await writeToContract();
+    }
 
-        const readFromContract = async () => {
-            const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider);
-            const result = await contract.getSomeEncryptedValue();
-            console.log("Result:", result);
-            const permit = await cofhejs.createPermit({
-                type: "self",
-                issuer: wallet.address,
-            });        
-            const unsealed = await cofhejs.unseal(result, FheTypes.Uint64, permit.data.issuer, permit.data.getHash());
-            console.log(unsealed);
-        }
-        await readFromContract();
+    const readCounterEncryptedValue = async () => {
+        const result = await contract.get_encrypted_counter_value();
+        console.log("Result:", result);
+
+        // Let's create a permit to unseal the encrypted value
+        const permit = await cofhejs.createPermit({
+            type: "self",
+            issuer: wallet.address,
+        });    
+
+        // When creating a permit cofhejs will use it automatically, but you can pass it manually as well
+        const unsealed = await cofhejs.unseal(result, FheTypes.Uint64, permit.data.issuer, permit.data.getHash());
+        console.log(unsealed);
+    }        
+
+    const incrementCounter = async () => {
+        const tx = await contract.increment_counter();
+        console.log("incrementCounter tx hash:", tx.hash);
+        await tx.wait();
+    }
+
+    const resetCounter = async (value) => {
+        const tx = await contract.reset_counter(value);
+        console.log("resetCounter tx hash:", tx.hash);
+        await tx.wait();
+    }
+
+    const decryptCounter = async () => {
+        const tx = await contract.decrypt_counter();
+        console.log("decryptCounter tx hash:", tx.hash);
+        await tx.wait();
+    }
+
+    // Value not ready (when running this script for the first time)
+    await readCounterDecryptedValue();
+
+    await incrementCounter();
+
+    // Return the value 1 (after unsealing)
+    await readCounterEncryptedValue();
+
+    await incrementCounter();
+
+    // Sending transaction to decrypt the counter
+    await decryptCounter();
+
+    // Result should be 2
+    await readCounterDecryptedValue();
+
+    const encryptedValues = await cofhejs.encrypt(logState, [Encryptable.uint64(10n)]);            
+    await resetCounter(encryptedValues.data[0]);
+    
+    // Result should be 10
+    await readCounterEncryptedValue();
+
+
     ```
   </TabItem>
 </Tabs>
