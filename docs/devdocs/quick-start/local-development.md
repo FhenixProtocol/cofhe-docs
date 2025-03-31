@@ -20,7 +20,6 @@ The full Fhenix local environment includes:
 
 1. Clone the CoFHE repository (it contains all the needed config files and etc)
 
-
 ```bash
 > git clone git@github.com:FhenixProtocol/cofhe.git
 > cd cofhe
@@ -41,25 +40,25 @@ The docker-compose configuration that you just ran creates the components which 
 
 ### 1. Preprocessor
 Generates keys and preprocessed data for the decryption threshold network.
-- Automatically skips if keys already exist in the mounted folder
+- Automatically skips if keys already exist in the mounted folder.
 - To force new key creation, add `--force-creation` to the preprocessor command in docker-compose.yml:
-  `preprocessor --runtime-config test --force-creation &&`
-- Initial key generation takes approximately 2-4 minutes, and subsequent containers will wait for this step to complete
+  `preprocessor --runtime-config test --force-creation &&`.
+- Initial key generation takes approximately 2-4 minutes, and subsequent containers will wait for this step to complete.
 
 ### 2. CoFHE Nodes and Services
-- Two blockchain nodes initialize while keys are being generated
-- After successful key generation, the `fheos_server` starts
-- The Middleware container follows, deploying contracts and starting the Aggregator
+- Two blockchain nodes initialize while keys are being generated.
+- After successful key generation, the `fheos_server` starts.
+- The Middleware container follows, deploying contracts and starting the Aggregator.
 
 ### 3. Threshold Decryption Network
-- RabbitMQ messaging service deploys first
-- Once RabbitMQ is ready, Dispatcher and Coordinator services initialize
-- After key generation completes, Party Member services (PMs) start and load keys from the shared volume
+- RabbitMQ messaging service deploys first.
+- Once RabbitMQ is ready, Dispatcher and Coordinator services initialize.
+- After key generation completes, Party Member services (PMs) start and load keys from the shared volume.
 
 ### 4. ZK Verifier
-- Relies on the generated cryptographic keys
-- Exposes the signer's public key
-- Requires appropriate access permissions to the keys folder
+- Relies on the generated cryptographic keys.
+- Exposes the signer's public key.
+- Requires appropriate access permissions to the keys folder.
 
 ## 🌐 Networking 🌐 
 
@@ -82,11 +81,11 @@ Your configuration folder (`CONFIG_DIR`) should contain:
 After the preprocessor container finishes successfully, your `KEYS_PATH` (or `./localcofhenix/keys` if not specified) will contain the cryptographic keys required by the FHEOS server, Party Members, ZK Verifier, and other components.
 
 ## 🔧 Troubleshooting 🔧
-- If services fail to start, check that the preprocessor completed successfully
-- Some services may require a restart if they attempt to access keys before generation is complete
+- If services fail to start, check that the preprocessor completed successfully.
+- Some services may require a restart if they attempt to access keys before generation is complete.
 - If you need to restart the Middleware container, be aware that contract redeployments may occur and break stuff. In this case:
   1. Stop the Middleware container
   2. Restart the blockchain nodes
   3. Restart the Middleware container
-- Review the container logs for specific error messages using `docker logs [container_name]`
-- Ensure you have sufficient system resources (CPU, memory) for running the full stack
+- Review the container logs for specific error messages using `docker logs [container_name]`.
+- Ensure you have sufficient system resources (CPU, memory) for running the full stack.
