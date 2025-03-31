@@ -61,9 +61,10 @@ Generates keys and preprocessed data for the decryption threshold network.
 
 ## 🛜 Networking 🛜
 
-> [!NOTE]  
-> The docker compose configuration uses `"network_mode: host"` for simplicity.
-> If this doesn't work for your environment, you can define a custom docker network and use the exposed ports specified in the docker-compose files.
+:::note[Note]
+The docker compose configuration uses `"network_mode: host"` for simplicity.
+If this doesn't work for your environment, you can define a custom docker network and use the exposed ports specified in the docker-compose files.
+:::
 ## ⚙️ Configurations ⚙️
 
 
