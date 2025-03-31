@@ -57,8 +57,9 @@ pnpm add cofhejs
 
 ## Setup
 
-To use **cofhejs** for interacting with FHE-enabled smart contracts, the `cofhejs` must be initialized. This client handles key operations such as encrypting input data, creating permits, and decrypting output data from the blockchain.
-First, the client must be initialized. Below is an example setup:
+To use Cofhejs for interacting with FHE-enabled smart contracts, it must first be initialized.
+The `cofhejs` client handles key operations such as encrypting input data, creating permits, and decrypting output data from the blockchain.
+Below is an example setup:
 
 <Tabs>
   <TabItem value="node" label="Node.js">
@@ -96,8 +97,6 @@ First, the client must be initialized. Below is an example setup:
     ```
   </TabItem>
 </Tabs>
-
-
 
 ## Encrypting Input Data
 
