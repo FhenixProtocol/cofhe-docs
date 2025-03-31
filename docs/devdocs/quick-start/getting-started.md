@@ -100,7 +100,7 @@ Below is an example setup:
 
 ## Encrypting Input Data
 
-This step secures the data before sending it to the smart contract. Remember--all data sent to a smart contract on a blockchain is inherently public, which means that anyone can see it. However, Fhenix operates differently. To maintain user confidentiality and protect sensitive input data, Fhenix utilizes **cofhejs** to provide built-in encryption methods that must be applied before sending any data to an FHE-enabled contract (Learn more [here](/docs/devdocs/cofhejs/encryption-operations)).
+This step secures the data before sending it to the smart contract. Remember - all data sent to a smart contract on a blockchain is inherently public, which means that anyone can see it. However, Fhenix operates differently. To maintain user confidentiality and protect sensitive input data, Fhenix utilizes **cofhejs** to provide built-in encryption methods that must be applied before sending any data to an FHE-enabled contract (Learn more [here](/docs/devdocs/cofhejs/encryption-operations)).
 
 In the following example, we will encrypt multiple values and pass them to a smart contract.
 The function `logState` is a callback function that will be called with the current state of the encryption process.
