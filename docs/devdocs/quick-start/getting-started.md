@@ -70,7 +70,6 @@ First, the client must be initialized. Below is an example setup:
       const provider = new ethers.JsonRpcProvider("http://127.0.0.1:42069");
       const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
 
-
       // initialize cofhejs Client with ethers (it also supports viem)
       await cofhejs.initializeWithEthers({
           ethersProvider: provider,
@@ -87,7 +86,6 @@ First, the client must be initialized. Below is an example setup:
     // initialize your web3 provider
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = (await provider.getSigner()) as ethers.JsonRpcSigner;
-
 
     // initialize cofhejs Client with ethers (it also supports viem)
     await cofhejs.initializeWithEthers({
@@ -123,9 +121,6 @@ const encryptedValues = await cofhejs.encrypt(logState, [
 const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, wallet);
 // Use the encrypted value of 10n
 const tx = await contract.add(encryptedValues.data[1]);
-
-
-
 ```
 
 By encrypting user data before sending it to a contract, Fhenix ensures that data remains private throughout its lifecycle in the blockchain environment.
@@ -181,7 +176,6 @@ This example demonstrates a full interaction between a dApp and an FHE-enabled s
         // initialize your web3 provider
         const provider = new ethers.JsonRpcProvider("http://127.0.0.1:42069");
         const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
-
 
         // initialize cofhejs Client with ethers (see cofhejs docs for viem)
         await cofhejs.initializeWithEthers({
@@ -259,8 +253,6 @@ This example demonstrates a full interaction between a dApp and an FHE-enabled s
     
     // Result should be 10
     await readCounterEncryptedValue();
-
-
     ```
   </TabItem>
 </Tabs>
