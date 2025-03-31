@@ -18,7 +18,7 @@ CoFHE.js is the JavaScript library that provides client-side functionality for i
 
 ## Installation
 
-To get started with cofhejs, you need to install it as a dependency in your JavaScript project. You can do this using npm (Node Package Manager) or Yarn. Open your terminal and navigate to your project's directory, then run the following:
+To get started with Cofhejs, you need to install it as a dependency in your JavaScript project. You can do this using npm (Node Package Manager) or Yarn. Open your terminal and navigate to your project's directory, then run the following:
 
 <Tabs>
   <TabItem value="yarn" label="yarn">

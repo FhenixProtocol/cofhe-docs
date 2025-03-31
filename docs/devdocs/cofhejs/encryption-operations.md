@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Encryption
 
-cofhejs provides an easy-to-use function to encrypt your inputs before sending them to the Fhenix Co-Processor.
+Cofhejs provides an easy-to-use function to encrypt your inputs before sending them to the Fhenix Co-Processor.
 
 :::tip
 Encryption in Fhenix is done using the global chain key. This key is loaded when you create a cofhejs client automatically

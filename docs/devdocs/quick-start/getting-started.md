@@ -16,7 +16,7 @@ FHE-enabled contracts require three primary modifications to the client/frontend
 * Creating Permits and Permissions: The client must generate permits and permissions that determine who can interact with or view the data. Read more about [permits](/docs/devdocs/cofhejs/permits-management).
 * Unsealing Output Data: After the contract processes the data, the client must decrypt the output for it to be used or displayed. For more, refer to our page on [sealing and unsealing](/docs/devdocs/cofhejs/sealing-unsealing).
 
-cofhejs allows encryption to begin and end privately in a dApp, while FHE-enabled contracts do work on and with these encrypted values.
+Cofhejs allows encryption to begin and end privately in a dApp, while FHE-enabled contracts do work on and with these encrypted values.
 
 ## Mental Model
 
