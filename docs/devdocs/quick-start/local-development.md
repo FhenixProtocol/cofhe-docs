@@ -35,7 +35,9 @@ KEYS_PATH=/path_to_local_keys_folder \
 docker compose up -d
 ```
 
-## 🐳 Docker compose steps 🐳
+## 🐳 Docker-compose components 🐳
+
+The docker-compose configuration that you just ran contains the following components:
 
 ### 1. Preprocessor
 Generates keys and preprocessed data for the decryption threshold network.
