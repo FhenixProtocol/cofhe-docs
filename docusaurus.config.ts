@@ -214,6 +214,7 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
       additionalLanguages: ['solidity'],
+      tabSize: 4,
       magicComments: [
         {
           className: 'code-block-diff-add-line',
