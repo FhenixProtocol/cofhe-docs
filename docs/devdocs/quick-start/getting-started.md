@@ -9,7 +9,7 @@ import TabItem from "@theme/TabItem";
 
 ## Overview
 
-cofhejs is a TypeScript package designed to enable seamless interaction between clients and the Fhenix's co-processor (CoFHE). It is an essential component for engineers working with FHE-enabled smart contracts, as it facilitates the encryption and decryption processes required for secure data handling in decentralized applications (dApps). cofhejs ensures that data remains private throughout its journey from input to output in the blockchain ecosystem.
+Cofhejs is a TypeScript package designed to enable seamless interaction between clients and the Fhenix's co-processor (CoFHE). It is an essential component for engineers working with FHE-enabled smart contracts, as it facilitates the encryption and decryption processes required for secure data handling in decentralized applications (dApps). cofhejs ensures that data remains private throughout its journey from input to output in the blockchain ecosystem.
 FHE-enabled contracts require three primary modifications to the client/frontend:
 
 * Encrypting Input Data: Before passing data to the smart contract, input must be encrypted to ensure its confidentiality. To read more about encrypted inputs, go [here](/docs/devdocs/cofhejs/encryption-operations).
