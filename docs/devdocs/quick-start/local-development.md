@@ -59,7 +59,7 @@ Generates keys and preprocessed data for the decryption threshold network.
 - Exposes the signer's public key
 - Requires appropriate access permissions to the keys folder
 
-## 🛜 Networking 🛜
+## 🌐 Networking 🌐 
 
 :::note[Note]
 The docker compose configuration uses `"network_mode: host"` for simplicity.
