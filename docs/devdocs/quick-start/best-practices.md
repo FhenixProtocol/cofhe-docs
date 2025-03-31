@@ -24,12 +24,11 @@ This guide outlines key best practices for developing with CoFHE, based on recom
 - **Use constant-time algorithms**: Design your code to follow the same execution path regardless of encrypted values.
 - **Prefer FHE.select over conditional logic**: Use built-in selection operations rather than decrypting for if/else decisions.
     Since conditional branching doesn't work with encrypted values, use `FHE.select()` instead:
-
     ```solidity
     // Instead of: if (condition) { result = a; } else { result = b; }
     result = FHE.select(condition, a, b);
     ```
-    [see more](../fhe-library/select-vs-ifelse.md)
+    Read more about conditions [here](../fhe-library/select-vs-ifelse.md).
 
 ## Performance Optimization
 
