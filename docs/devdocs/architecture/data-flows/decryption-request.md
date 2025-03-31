@@ -5,7 +5,7 @@ sidebar_position: 3
 
 # Decryption Request Flow
 
-The process of requesting decryption through Smart Contracts starts the same as every other [FHE Operation Request](fhe-operation.md) 📌steps 1-4, \
+The process of requesting decryption through Smart Contracts starts the same as every other [FHE Operation Request](fhe-operation.md) 📌steps 1-4 \
 Here we'll continue from FheOS server handling such request as follows:
 ### Flow Diagram
 
@@ -32,10 +32,10 @@ The FheOS server handles decryption requests:
    - Validate ciphertext hash integrity
    - Perform secure decryption
 
-### 📌 Step 7: FheOS Notifies the Aggregtor with the decrypt result 
-   - Call appropriate callback function on the aggregator ![Bullet](../../../../static/img/assets/7.png)
-   - The Aggregator calls the TaskManager with relevant result.
+### 📌 Step 7: FheOS Notifies the Aggregator with the decrypt result 
+   - Call appropriate callback function on the Aggregator 
+   - The Aggregator calls the TaskManager with relevant result
 
 ### 📌 Step 8: TaskManager emit event with decryption result 
-   - Provide decrypted result by emitting an event `DecryptionResult` ![Bullet](../../../../static/img/assets/8.png)
+   - Provide decrypted result by emitting an event `DecryptionResult` 
    - The event consists of `ciphertext handle`, `result`, `requestor` (of that decrypt operation)
