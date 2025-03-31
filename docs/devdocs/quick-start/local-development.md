@@ -67,14 +67,12 @@ The docker compose configuration uses `"network_mode: host"` for simplicity.
 If this doesn't work for your environment, you can define a custom docker network and use the exposed ports specified in the docker-compose files.
 :::
 
+## ⚙️ Advanced Configurations ⚙️
 <details>
-
-<summary>⚙️ Advanced Configurations ⚙️</summary>
+<summary> Optional: The default setup should work, but you can further configure it if needed. </summary>
 
 This local setup requires multiple configuration files, which are included in the CoFHE repository at:
 https://github.com/FhenixProtocol/cofhe/tree/master/localcofhenix/configs
-
-The default files should work, but you can configure them if needed.
 
 Your configuration folder (`CONFIG_DIR`) should contain:
 1. `config.toml` - Used by Dispatcher and Coordinator
@@ -82,6 +80,7 @@ Your configuration folder (`CONFIG_DIR`) should contain:
 3. `zk_verifier_config.toml` - Used by the ZK Verifier
 
 </details>
+
 
 ## 🔑 Keys 🔑
 After the preprocessor container finishes successfully, your `KEYS_PATH` (or `./localcofhenix/keys` if not specified) will contain the cryptographic keys required by the FHEOS server, Party Members, ZK Verifier, and other components.
