@@ -15,7 +15,7 @@ In Fhenix's FHE system, data returned from smart contracts is "sealed" (internal
 
 The most straightforward way to unseal data is using `cofhejs.unseal()`:
 
-> Note: Unsealing requires `cofhejs` to be [initialized](/docs/devdocs/quick-start/getting-started.md) and for a [permit](./permits-management.md) to be created.
+> Note: Unsealing requires `cofhejs` to be [initialized](/docs/devdocs/quick-start/getting-started#setup) and for a [permit](./permits-management.md) to be created.
 
 ```typescript
 // Get sealed data from a contract
