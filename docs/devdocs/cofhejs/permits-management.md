@@ -90,9 +90,9 @@ This will trigger the user's wallet to prompt for their signature. Once signed, 
 
 Sharing permits enables users to grant others access to their encrypted data in a secure way. The sharing process involves three steps:
 
-1. Original data owner creates a sharing permit
-2. Owner sends the permit to the recipient
-3. Recipient activates the permit with their signature
+1. Original data owner creates a sharing permit.
+2. Owner sends the permit to the recipient.
+3. Recipient activates the permit with their signature.
 
 ### Implementation
 
@@ -141,9 +141,9 @@ const activateReceivedPermit = async (sharingPermit: Permit) => {
 
 Permits include built-in validation mechanisms:
 
-- **Expiration**: Permits automatically expire after 24 hours (configurable)
-- **Signature Verification**: Ensures permits are only used by authorized parties
-- **Chain Validation**: Permits are bound to specific networks
+- **Expiration**: Permits automatically expire after 24 hours (configurable).
+- **Signature Verification**: Ensures permits are only used by authorized parties.
+- **Chain Validation**: Permits are bound to specific networks.
 
 ### Custom Validators
 
