@@ -11,7 +11,7 @@ import TabItem from "@theme/TabItem";
 | Aspect               | Description                                                                                                                    |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | **Type**             | Typescript Library                                                                                                             |
-| **Function**         | Provides functionality to initialize TFHE, generate and manage permits, encrypt encrypted input data, and read encrypted data. |
+| **Function**         | Provides functionality to initialize TFHE, generate and manage permits, encrypt input data, and read encrypted data. |
 | **Responsibilities** | Handle primary interactions with FHE enabled contracts and the CoFHE Co-Processor.                                             |
 
 CoFHE.js is the JavaScript library that provides client-side functionality for interacting with CoFHE smart contracts. It handles encryption, decryption, and communication with the blockchain.
