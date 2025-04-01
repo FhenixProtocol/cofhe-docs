@@ -74,15 +74,15 @@ For the example above to logically work, you will also need to manage access to 
 #### Voting in a Poll
 
 ```solidity
-  function castEncryptedVote(address poll, InEbool calldata encryptedVote) public {
+function castEncryptedVote(address poll, InEbool calldata encryptedVote) public {
     _submitVote(poll, FHE.asEbool(encryptedVote));
-  }
+}
 ```
 
 #### Setting Encrypted User Preferences
 
 ```solidity
-   function updateUserSetting(address user, InEuint8 calldata encryptedSetting) public {
-       _applyUserSetting(user, FHE.asEuint8(encryptedSetting));
-   }
+function updateUserSetting(address user, InEuint8 calldata encryptedSetting) public {
+    _applyUserSetting(user, FHE.asEuint8(encryptedSetting));
+}
 ```
