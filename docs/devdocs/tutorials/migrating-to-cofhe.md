@@ -176,7 +176,7 @@ contract WrappingERC20 is ERC20, Permissioned {
 }
 ```
 
-In the above example since allowing the users on every step of the way, the users can use decrypt/sealoutput directly from cofhejs or using fhe.decrypt as above while listening on the event `DecryptResult`.
+In the above example since allowing the users on every step of the way, the users can use decrypt/sealoutput directly from Cofhejs or using fhe.decrypt as above while listening on the event `DecryptResult`.
 
 ## Frontend Fhenix.js to Cofhejs
 

@@ -113,7 +113,6 @@ In the `reset_counter` function, we receive an `InEuint64` value, which is a typ
 This value is an encrypted value that we created using CoFHE.js (read more about it [here](/docs/devdocs/cofhejs/encryption-operations)).
 
 
-
 Now, let's take a look at the `decrypt_counter` and `get_counter_value` functions.  
 The `decrypt_counter` function creates a new decrypt request for the counter.  
 Since we want to allow users to call `get_counter_value` function at any given time, we need store the handle in the `lastDecryptedCounter` variable.  
@@ -133,10 +132,12 @@ If the result is not ready, we revert the transaction with an error message.
     }
 ```
 
-In this contract, only the owner can request for a decryption, so everyone can read the counter's value at any given time.  
+In this contract, only the owner can request for a decryption. Once requested, everyone can read the counter's value at any given time.  
 The owner needs to send a transaction to the `decrypt_counter`.  
-But what if we want to allow the owner to read the value without sending a transaction every time?  
-For that we need to add call for `FHE.allow(counter, owner)` or `FHE.allowSender(counter)`  every time that we change the counter's value.  
+
+What if we want to allow the owner to privately read the value without sending a transaction that calls `FHE.decrypt`, exposing the counter to everyone?
+
+For that, we need to add call for `FHE.allow(counter, owner)` or `FHE.allowSender(counter)`  every time that we change the counter's value.
 This will allow the owner to read the encrypted counter's value using the `get_encrypted_counter_value` function and decrypt it using Cofhejs.
 
 ```solidity
@@ -151,5 +152,6 @@ This will allow the owner to read the encrypted counter's value using the `get_e
     }
 
 ```
-See how to use cofhejs to decrypt the counter's value in the next section.  
-<span style={{color: "orange", fontStyle: "italic"}}>Exercise:</span> Try to modify the contract to allow the owner to read the counter's value without sending a transaction every time, you will need it in order to make the cofhejs example work.
+In the [next section](/docs/devdocs/quick-start/getting-started) we will see how to use Cofhejs to privately decrypt this encrypted contract variable.
+
+<span style={{color: "orange", fontStyle: "italic"}}>Exercise:</span> Try to modify the contract to allow the owner to read the counter's value without sending a transaction every time, you will need it in order to make the Cofhejs example work.

@@ -4,6 +4,10 @@
  * work well for content-centric websites.
  */
 
+pre code {
+  tab-size: 4;
+}
+
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #246ff1;

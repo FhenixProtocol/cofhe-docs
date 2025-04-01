@@ -17,8 +17,8 @@ export type Result<T, E = string> = { success: true; data: T; error: null } | { 
 
 The `Result` type is a discriminated union that represents either:
 
-- A successful operation with data (`success: true`)
-- A failed operation with an error message (`success: false`)
+- A successful operation with data (`success: true`).
+- A failed operation with an error message (`success: false`).
 
 ### Helper Functions
 
@@ -97,16 +97,14 @@ console.log('Permit created successfully:', permit)
 
 ## Common Error Scenarios
 
-`cofhejs` may return errors in various scenarios, including:
+`Cofhejs` may return errors in various scenarios, including:
 
 1. **Initialization Errors**:
-
    - Missing provider or signer
    - Network connectivity issues
    - Unsupported environment
 
 2. **Permit Errors**:
-
    - Invalid permit parameters
    - Missing signer
    - Unauthorized operations
