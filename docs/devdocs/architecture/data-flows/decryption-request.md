@@ -27,15 +27,15 @@ The FheOS server handles decryption requests:
    - Original operation handle
 
 ### 📌 Step 6: Threshold network security protocol
-   - Verify the host chain requested the desired decryption
-   - Retrieve the actual ciphertext hash from private storage
-   - Validate ciphertext hash integrity
-   - Perform secure decryption
+   - Verify the host chain requested the desired decryption.
+   - Retrieve the actual ciphertext hash from private storage.
+   - Validate ciphertext hash integrity.
+   - Perform secure decryption.
 
 ### 📌 Step 7: FheOS Notifies the Aggregator with the decrypt result 
-   - Call appropriate callback function on the Aggregator 
-   - The Aggregator calls the TaskManager with relevant result
+   - Call appropriate callback function on the Aggregator .
+   - The Aggregator calls the TaskManager with relevant result.
 
 ### 📌 Step 8: TaskManager emit event with decryption result 
-   - Provide decrypted result by emitting an event `DecryptionResult` 
-   - The event consists of `ciphertext handle`, `result`, `requestor` (of that decrypt operation)
+   - Provide decrypted result by emitting an event `DecryptionResult` .
+   - The event consists of `ciphertext handle`, `result`, `requestor` (of that decrypt operation).

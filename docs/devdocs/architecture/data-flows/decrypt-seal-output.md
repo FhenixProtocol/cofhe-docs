@@ -67,17 +67,17 @@ function getNumber() public view returns (euint64) {
 
 3. **ACL verifies** that the Permit is valid.
 
-4. **ACL verifies** that `Permit.issuer` has been granted access to `CtHash`. (Access is granted by `FHE.allowSender` in the Example contract function `setNumber()`)
+4. **ACL verifies** that `Permit.issuer` has been granted access to `CtHash`. (Access is granted by `FHE.allowSender` in the Example contract function `setNumber()`).
 
-5. **Threshold Network** seals the data with `Permit.sealingKey`
+5. **Threshold Network** seals the data with `Permit.sealingKey`.
 
-6. **Threshold Network** returns the sealed result to `cofhejs`
+6. **Threshold Network** returns the sealed result to `cofhejs`.
 
 ### 📌 Step 4: Handling Results
 
 `cofhejs` receives the result from the Threshold Network and:
 
-1. **Unseals the result** using the private_key of the sealing key pair. The result is always unsealed as a bigint regardless of the type of CtHash (euint32 / ebool / eaddress)
+1. **Unseals the result** using the private_key of the sealing key pair. The result is always unsealed as a bigint regardless of the type of CtHash (euint32 / ebool / eaddress).
 
 2. **cofhejs converts the output type** as follows:
 
@@ -108,7 +108,7 @@ export type Result<T, E = string> =
 
 The `Result` type is a discriminated union that represents either:
 
-- A successful operation with data (`success: true`)
+- A successful operation with data (`success: true`).
 - A failed operation with an error message (`success: false`).
   The return type of `cofhejs.unseal` is determined by the utype passed in as the second argument:
 

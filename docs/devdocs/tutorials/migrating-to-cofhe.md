@@ -11,9 +11,9 @@ Want to upgrade your Fhenix L2 contract to use CoFHE? Let's walk through it with
 
 The main difference is that CoFHE uses asynchronous operations under the hood. But don't worry - the core logic stays almost exactly the same! Let's look at a Wrapping ERC20 contract that:
 
-- Lets users wrap public tokens into encrypted ones
-- Enables private transfers between users
-- Allows checking encrypted balances securely
+- Lets users wrap public tokens into encrypted ones.
+- Enables private transfers between users.
+- Allows checking encrypted balances securely.
 
 ## Key Migration Considerations
 
@@ -23,7 +23,7 @@ When migrating your contracts from Fhenix L2 to CoFHE, keep these important poin
 
 In CoFHE, you need to explicitly allow the contract to use encrypted numbers that it will operate on during its lifetime. This is done using the `FHE.allowThis()` function:
 
-```Solidify
+```solidity
  FHE.allowThis(_encBalances[msg.sender]);
 ```
 
@@ -45,7 +45,7 @@ This approach is compatible with asynchronous operations and preserves privacy.
 ### 3. Remove `FHE.sealoutput()`
 
 Sealoutput will be available through Cofhejs only, make sure to allow the issuer of the permit, in order to be able to request sealoutput later. \
-For more info see [permit management](/docs/devdocs/cofhejs/permits-management) and [sealing-unsealing](/docs/devdocs/cofhejs/sealing-unsealing)
+For more info see [permit management](/docs/devdocs/cofhejs/permits-management) and [sealing-unsealing](/docs/devdocs/cofhejs/sealing-unsealing).
 
 ```Solidity
     // Transfers an encrypted amount.
@@ -75,13 +75,11 @@ For more info see [permit management](/docs/devdocs/cofhejs/permits-management) 
     }
 ```
 
-Here's how it works:
-
 ## Original Fhenix L2 Contract - updated
 
-First, let's look at the original Fhenix L2 contract:
+Let's see the changes we make to the original Fhenix L2 contract to make it compatible with CoFHE:
 
-```javascript
+```solidity
 pragma solidity ^0.8.20;
 
 import "@fhenixprotocol/contracts/access/Permissioned.sol";
@@ -202,7 +200,7 @@ await cofhejs.initializeWithEthers({
 
 ### 2. Encrypting values
 
-With Cofhejs the encryption is done asynchronously, for this reason we can provide a callback function to log the encryption state (read about it [here](../cofhejs/encryption-operations.md))
+With Cofhejs the encryption is done asynchronously, for this reason we can provide a callback function to log the encryption state (read about it [here](../cofhejs/encryption-operations.md)).
 
 ```javascript
 // diff-remove

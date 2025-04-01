@@ -15,19 +15,19 @@ The FHERC20 contract is an implementation of a Fully Homomorphic Encryption (FHE
 
 The FHERC20 contract stores balances as encrypted values (`euint128`) using the Fhenix CoFHE coprocessor. These encrypted balances preserve user privacy while allowing for secure operations. The actual token balance of an address is kept confidential and can only be accessed under specific conditions:
 
-1. By the owner of the balance
-2. Through sealed decryption (using a public/private key pair)
-3. As part of FHE operations where the value remains encrypted throughout
+1. By the owner of the balance.
+2. Through sealed decryption (using a public/private key pair).
+3. As part of FHE operations where the value remains encrypted throughout.
 
 ### Indicated Balances
 
 To maintain compatibility with existing ERC20 infrastructure (wallets, block explorers), FHERC20 implements a concept called "indicated balances". These are public values that:
 
-- Range from 0.0000 to 0.9999 (represented internally as 0-9999)
-- Start at 0 for non-interacted accounts
-- Initialize at 0.5001 upon first interaction
-- Increment/decrement by 0.0001 with each transaction
-- Provide visual feedback of balance changes without revealing true amounts
+- Range from 0.0000 to 0.9999 (represented internally as 0-9999).
+- Start at 0 for non-interacted accounts.
+- Initialize at 0.5001 upon first interaction.
+- Increment/decrement by 0.0001 with each transaction.
+- Provide visual feedback of balance changes without revealing true amounts.
 
 The indicated balance system allows users to see activity in their wallets without exposing the encrypted values.
 
@@ -35,9 +35,9 @@ The indicated balance system allows users to see activity in their wallets witho
 
 FHERC20 removes the traditional ERC20 allowance system and instead uses EIP712 signatures for permissioned transfers:
 
-- Each `encTransferFrom` operation requires a valid EIP712 signature
-- Permissions are single-use and do not grant ongoing access to funds
-- This prevents leakage of balance information while maintaining secure delegation
+- Each `encTransferFrom` operation requires a valid EIP712 signature.
+- Permissions are single-use and do not grant ongoing access to funds.
+- This prevents leakage of balance information while maintaining secure delegation.
 
 ## Contract Structure
 
@@ -56,12 +56,12 @@ uint8 private _decimals;
 uint256 private _indicatorTick;
 ```
 
-- `_indicatedBalances`: Stores the non-encrypted indicator value for each account
-- `_encBalances`: Stores the encrypted balances for each account
-- `_indicatedTotalSupply`: The non-encrypted indicator of total supply
-- `_encTotalSupply`: The encrypted total token supply
-- `_name`, `_symbol`, `_decimals`: Standard ERC20 token metadata
-- `_indicatorTick`: Value used to calculate the indicator step (typically 10^(decimals-4))
+- `_indicatedBalances`: Stores the non-encrypted indicator value for each account.
+- `_encBalances`: Stores the encrypted balances for each account.
+- `_indicatedTotalSupply`: The non-encrypted indicator of total supply.
+- `_encTotalSupply`: The encrypted total token supply.
+- `_name`, `_symbol`, `_decimals`: Standard ERC20 token metadata.
+- `_indicatorTick`: Value used to calculate the indicator step (typically `10^(decimals-4)`).
 
 ### EIP712 Constants
 
@@ -110,12 +110,12 @@ function encBalanceOf(address account) public view virtual returns (euint128)
 
 Provides both encrypted and indicated balance/supply information:
 
-- `totalSupply()`: Returns the indicated total supply (non-encrypted)
-- `encTotalSupply()`: Returns the encrypted total supply
-- `balanceOfIsIndicator()`: Always returns true to indicate this uses the indicator system
-- `indicatorTick()`: Returns the value of one indicator increment
-- `balanceOf()`: Returns the indicated balance for an account (non-encrypted)
-- `encBalanceOf()`: Returns the encrypted balance for an account
+- `totalSupply()`: Returns the indicated total supply (non-encrypted).
+- `encTotalSupply()`: Returns the encrypted total supply.
+- `balanceOfIsIndicator()`: Always returns true to indicate this uses the indicator system.
+- `indicatorTick()`: Returns the value of one indicator increment.
+- `balanceOf()`: Returns the indicated balance for an account (non-encrypted).
+- `encBalanceOf()`: Returns the encrypted balance for an account.
 
 ### Transfer Functions
 
@@ -133,8 +133,8 @@ function encTransferFrom(
 
 The standard ERC20 `transfer` and `transferFrom` functions intentionally revert to prevent accidental use of FHERC20 tokens as standard ERC20s. They are replaced by:
 
-- `encTransfer`: Transfers encrypted tokens using an encrypted input value
-- `encTransferFrom`: Transfers tokens on behalf of another account, requiring an EIP712 signature
+- `encTransfer`: Transfers encrypted tokens using an encrypted input value.
+- `encTransferFrom`: Transfers tokens on behalf of another account, requiring an EIP712 signature.
 
 ### Allowance Functions
 
@@ -153,9 +153,9 @@ function DOMAIN_SEPARATOR() external view virtual returns (bytes32)
 function resetIndicatedBalance() external
 ```
 
-- `nonces`: Tracks the EIP712 nonce for each address (for replay protection)
-- `DOMAIN_SEPARATOR`: Returns the EIP712 domain separator
-- `resetIndicatedBalance`: Allows a user to reset their own indicated balance to zero
+- `nonces`: Tracks the EIP712 nonce for each address (for replay protection).
+- `DOMAIN_SEPARATOR`: Returns the EIP712 domain separator.
+- `resetIndicatedBalance`: Allows a user to reset their own indicated balance to zero.
 
 ## Internal Functions
 
@@ -170,10 +170,10 @@ function _burn(address account, uint128 value) internal returns (euint128 transf
 
 These functions manage token movements:
 
-- `_transfer`: Internal implementation of transfer logic
-- `_update`: Core function that handles all balance updates (transfers, mints, burns)
-- `_mint`: Creates new tokens and assigns them to an account
-- `_burn`: Destroys tokens from an account
+- `_transfer`: Internal implementation of transfer logic.
+- `_update`: Core function that handles all balance updates (transfers, mints, burns).
+- `_mint`: Creates new tokens and assigns them to an account.
+- `_burn`: Destroys tokens from an account.
 
 ### Indicator Management
 
@@ -184,8 +184,8 @@ function _decrementIndicator(uint16 value) internal pure returns (uint16)
 
 Utility functions for managing the indicator values:
 
-- `_incrementIndicator`: Increases an indicator by 1 (representing +0.0001)
-- `_decrementIndicator`: Decreases an indicator by 1 (representing -0.0001)
+- `_incrementIndicator`: Increases an indicator by 1 (representing +0.0001).
+- `_decrementIndicator`: Decreases an indicator by 1 (representing -0.0001).
 
 ## Events
 
@@ -196,17 +196,17 @@ The contract inherits and emits standard ERC20 events:
 
 ## Security Considerations
 
-1. **Access Control**: The contract implements FHE access controls to ensure only authorized parties can decrypt balances
-2. **Overflow Protection**: Uses FHE operations that prevent overflow in encrypted values
-3. **Encryption Leakage**: Carefully designed to prevent leaking information about encrypted balances
-4. **Signature Validation**: Implements proper signature validation for EIP712 permits
+1. **Access Control**: The contract implements FHE access controls to ensure only authorized parties can decrypt balances.
+2. **Overflow Protection**: Uses FHE operations that prevent overflow in encrypted values.
+3. **Encryption Leakage**: Carefully designed to prevent leaking information about encrypted balances.
+4. **Signature Validation**: Implements proper signature validation for EIP712 permits.
 
 ## Usage Notes
 
-1. All standard ERC20 functions that would compromise privacy (`transfer`, `approve`, `transferFrom`, `allowance`) intentionally revert
-2. Applications must use the `enc`-prefixed functions for actual token operations
-3. The indicator system is a transitional mechanism until infrastructure better supports encrypted tokens
-4. Users can opt out of the indicator system by calling `resetIndicatedBalance()`
+1. All standard ERC20 functions that would compromise privacy (`transfer`, `approve`, `transferFrom`, `allowance`) intentionally revert.
+2. Applications must use the `enc`-prefixed functions for actual token operations.
+3. The indicator system is a transitional mechanism until infrastructure better supports encrypted tokens.
+4. Users can opt out of the indicator system by calling `resetIndicatedBalance()`.
 
 ## Advanced Features
 
@@ -214,10 +214,10 @@ The contract inherits and emits standard ERC20 events:
 
 The contract implements a confidential transfer system where:
 
-- Transfers use encrypted values (`inEuint128`)
-- The actual amount transferred is only known to the parties involved
-- The contract performs encrypted comparisons to ensure sufficient balances
-- If a user attempts to transfer more than their balance, the transfer will succeed but with zero tokens moved
+- Transfers use encrypted values (`inEuint128`).
+- The actual amount transferred is only known to the parties involved.
+- The contract performs encrypted comparisons to ensure sufficient balances.
+- If a user attempts to transfer more than their balance, the transfer will succeed but with zero tokens moved.
 
 ### Access Control for Encrypted Values
 
@@ -241,9 +241,9 @@ FHE.allowGlobal(_encTotalSupply);
 
 This ensures:
 
-- Users can access their own balances
-- The contract can perform operations on balances
-- Total supply is globally accessible
+- Users can access their own balances.
+- The contract can perform operations on balances.
+- Total supply is globally accessible.
 
 ## Handling Transfer Results
 
@@ -253,9 +253,9 @@ A critical aspect of FHERC20 is the need to properly handle the result of transf
 
 When a user attempts to transfer more tokens than they have, the FHERC20 contract does not revert the transaction. Instead, it:
 
-1. Performs an encrypted comparison between the requested transfer amount and the user's balance
-2. If there are insufficient funds, it replaces the transfer amount with zero
-3. Returns the actual transferred amount (which could be either the requested amount or zero)
+1. Performs an encrypted comparison between the requested transfer amount and the user's balance.
+2. If there are insufficient funds, it replaces the transfer amount with zero.
+3. Returns the actual transferred amount (which could be either the requested amount or zero).
 
 This behavior is implemented in the `_update` function:
 
@@ -276,20 +276,17 @@ if (from != address(0)) {
 If your contract needs to perform operations based on the actual transferred amount, you must use a two-step process:
 
 1. **First Transaction**: Perform the transfer and decrypt the result
-
    ```solidity
    euint128 transferred = _burn(msg.sender, value);
    FHE.decrypt(transferred);
    ```
 
 2. **Create a Claim**: Store the information about the pending operation
-
    ```solidity
    _createClaim(to, value, transferred);
    ```
 
 3. **Second Transaction**: Process the operation once the decryption result is available
-
    ```solidity
    function claimDecrypted(uint256 ctHash) public {
        Claim memory claim = _handleClaim(ctHash);
@@ -350,10 +347,10 @@ function _handleClaim(uint256 ctHash) internal returns (Claim memory claim) {
 
 ### Important Considerations
 
-1. **Asynchronous Processing**: Decryption results are not available in the same transaction
-2. **Gas Efficiency**: The two-step process requires multiple transactions, which affects gas costs
-3. **User Experience**: Applications should account for the waiting period between steps
-4. **Security**: Claims must be properly tracked and validated to prevent unauthorized access
-5. **Error Handling**: Implement proper error handling for cases where the transferred amount is zero
+1. **Asynchronous Processing**: Decryption results are not available in the same transaction.
+2. **Gas Efficiency**: The two-step process requires multiple transactions, which affects gas costs.
+3. **User Experience**: Applications should account for the waiting period between steps.
+4. **Security**: Claims must be properly tracked and validated to prevent unauthorized access.
+5. **Error Handling**: Implement proper error handling for cases where the transferred amount is zero.
 
 This pattern ensures that confidential transfers can be safely integrated with other smart contract operations, preserving both privacy and transactional integrity.
