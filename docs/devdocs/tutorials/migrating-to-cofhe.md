@@ -45,7 +45,7 @@ This approach is compatible with asynchronous operations and preserves privacy.
 ### 3. Remove `FHE.sealoutput()`
 
 Sealoutput will be available through Cofhejs only, make sure to allow the issuer of the permit, in order to be able to request sealoutput later. \
-For more info see [permit management](/docs/devdocs/cofhejs/permits-management) and [sealing-unsealing](/docs/devdocs/cofhejs/sealing-unsealing)
+For more info see [permit management](/docs/devdocs/cofhejs/permits-management) and [sealing-unsealing](/docs/devdocs/cofhejs/sealing-unsealing).
 
 ```Solidity
     // Transfers an encrypted amount.
@@ -74,8 +74,6 @@ For more info see [permit management](/docs/devdocs/cofhejs/permits-management) 
    // diff-remove
     }
 ```
-
-Here's how it works:
 
 ## Original Fhenix L2 Contract - updated
 
