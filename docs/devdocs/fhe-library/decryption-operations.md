@@ -15,7 +15,7 @@ We recommend reading more about our unique MPC decryption threshold network [her
 Decrypt operations like all other FHE operations in CoFHE are executed asynchronously, meaning:
 1. You request decryption
 2. The operation takes some time to complete
-3. You query the results when ready
+3. The results are being stored on chain, and then you can query them.
 
 :::tip[Deep Dive]
 To understand why decryption is asynchronous, [read more here](./data-evaluation.md).
