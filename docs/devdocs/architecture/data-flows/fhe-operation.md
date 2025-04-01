@@ -37,7 +37,10 @@ The following diagram illustrates the complete flow of an FHE operation request 
 
 2. [Encrypt request](./encryption-request.md) using CoFHE.js, returns `InEuint` structure.
 
-> 📝 **Note:** This step happens on the client side before blockchain interaction.
+:::note[Note]
+This step happens on the client side before blockchain interaction.
+:::
+
 
 ### 📌 Step 2: Requesting an FHE Operation 
 
