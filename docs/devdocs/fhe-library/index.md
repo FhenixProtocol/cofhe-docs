@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Overview of FHE Library
 
-The CoFHE (Contract-Oriented Fully Homomorphic Encryption) library is a Solidity framework that enables secure, private computation on encrypted data within smart contracts. This library allows developers to perform operations on encrypted values without revealing the underlying plaintext data, preserving privacy while maintaining the transparency and trustlessness of blockchain technology.
+The CoFHE library is a Solidity framework that enables secure, private computation on encrypted data within smart contracts. This library allows developers to perform operations on encrypted values without revealing the underlying plaintext data, preserving privacy while maintaining the transparency and trustlessness of blockchain technology.
 
 ---
 
@@ -32,10 +32,10 @@ The library supports multiple encrypted data types, each representing an encrypt
 `ICofhe.sol` defines various input structures that enable secure data submission:
 
 - **`EncryptedInput`**: The core structure containing:
-  - 🔐 Ciphertext hash
-  - 🛡️ Security zone parameter
-  - 📋 Type indicator
-  - ✅ Cryptographic signature
+  - 🔐 Ciphertext hash — A unique hash representing the encrypted data, used to reference it across the system.
+  - 🛡️ Security zone parameter — Defines the trust context or boundary in which the encrypted data is valid and accessible.
+  - 📋 Type indicator — Specifies the data type of the encrypted value (e.g. euint8, euint16) to ensure correct handling.
+  - ✅ Cryptographic signature — A signature proving that the data and its metadata were generated and verified by an authorized entity.
 
 - **Type-specific input structures:**
   - `InEuint8`, `InEuint16`, `InEuint32`
@@ -49,10 +49,15 @@ The library supports multiple encrypted data types, each representing an encrypt
 The `FHE` library provides a comprehensive set of operations for encrypted data manipulation:
 
 #### 1. Arithmetic Operations
+Enables basic math (FHE.add) directly on encrypted integers.
 #### 2. Bitwise Operations
+Supports bitwise logic (AND, OR, XOR, shifts) on encrypted data.
 #### 3. Comparison Operations
+Performs encrypted comparisons (eq, gt, lt, etc.) that return an ebool—an encrypted boolean value that contains the result of the comparison.
 #### 4. Control Flow
+Includes conditionals like `select` to allowing encrypted branching without revealing decision paths.
 #### 4. Data and Access Management
+Provides functions for sealing outputs, decrypting values securely, and managing user access via permits, ensuring only authorized parties can access decrypted data.
 
 ---
 
