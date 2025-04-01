@@ -77,7 +77,9 @@ For more info see [permit management](/docs/devdocs/cofhejs/permits-management) 
 
 ## Original Fhenix L2 Contract - updated
 
-First, let's look at the original Fhenix L2 contract:
+Let's see the changes we make to the original Fhenix L2 contract to make it compatible with CoFHE:
+
+```solidity
 
 ```javascript
 pragma solidity ^0.8.20;
