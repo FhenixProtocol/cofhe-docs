@@ -11,9 +11,9 @@ Want to upgrade your Fhenix L2 contract to use CoFHE? Let's walk through it with
 
 The main difference is that CoFHE uses asynchronous operations under the hood. But don't worry - the core logic stays almost exactly the same! Let's look at a Wrapping ERC20 contract that:
 
-- Lets users wrap public tokens into encrypted ones
-- Enables private transfers between users
-- Allows checking encrypted balances securely
+- Lets users wrap public tokens into encrypted ones.
+- Enables private transfers between users.
+- Allows checking encrypted balances securely.
 
 ## Key Migration Considerations
 
