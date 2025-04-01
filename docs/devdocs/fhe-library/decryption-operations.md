@@ -15,7 +15,7 @@ We recommend reading more about our unique MPC decryption threshold network [her
 Decrypt operations like all other FHE operations in CoFHE are executed asynchronously, meaning:
 1. You request decryption
 2. The operation takes some time to complete
-3. The results are being stored on chain, and then you can query them.
+3. The results are being stored on chain, and then you can use them.
 
 :::tip[Deep Dive]
 To understand why FHE operations (including decryption) are asynchronous, [read more here](./data-evaluation.md).
@@ -47,42 +47,27 @@ When decrypting data on-chain, you first request decryption using `FHE.decrypt()
 Use `FHE.getDecryptResultSafe(eParam)` to get both the decrypted value and a plaintext boolean success indicator:
 
 ```sol
-import {FHE, euint64} from "@fhenixprotocol/cofhe-contracts/FHE.sol";
+// ------------------------------------------------------
+// Step 1. Request on-chain decryption (in transaction)
+// ------------------------------------------------------
+function closeBidding() external onlyAuctioneer {
+  FHE.decrypt(highestBid);
+  auctionClosed = true;
+}
 
-contract AuctionExample {
-    // Encrypted highest bid
-    euint64 private highestBid;
-    address private highestBidder;
-    
-    // --------------------------------------------------
-    // 1. Request on-chain decryption (in transaction)
-    // --------------------------------------------------
-    function revealBid() external {
-        // Request decryption of the highest bid
-        // This will make the result available on-chain for contract logic
-        FHE.decrypt(highestBid);
-    }
+// ------------------------------------------------------
+// Step 2. Process the decrypted result
+// ------------------------------------------------------
+function safelyRevealWinner() external onlyAuctioneer {
+  (uint64 bidValue, bool bidReady) = FHE.getDecryptResultSafe(highestBid);
+  require(bidReady, "Bid not yet decrypted");
 
-    // --------------------------------------------------
-    // 2. Process the decrypted result safely
-    // --------------------------------------------------
-    function claimSafely() external {
-        // Verify caller is highest bidder
-        require(msg.sender == highestBidder, "Only highest bidder can claim");
-
-        // Get the decrypted bid with safety check
-        (uint64 bidValue, bool decrypted) = FHE.getDecryptResultSafe(highestBid);
-
-        if (!decrypted) {
-            // Handle the case where decryption isn't ready yet
-            revert("Bid not yet decrypted, please retry later");
-        }
-
-        // Now we can safely use the decrypted value in contract logic
-        transferToAuctioneer(bidValue);
-    }
+  winningBid = bidValue;
+  emit RevealedWinningBid(bidderValue, bidValue);
 }
 ```
+
+See the full working example [here](#full-example-contract)
 
 The safe method returns both the decrypted value and a boolean indicating whether decryption is complete. This gives you control over how to handle cases where the result isn't ready yet, allowing for more graceful error handling and user experience.
 
@@ -96,37 +81,26 @@ The unsafe method will revert the transaction if the decryption results aren't r
 :::
 
 ```sol
-import {FHE, euint64} from "@fhenixprotocol/cofhe-contracts/FHE.sol";
+// ------------------------------------------------------
+// Step 1. Request on-chain decryption (in transaction)
+// ------------------------------------------------------
+function closeBidding() external onlyAuctioneer {
+  FHE.decrypt(highestBid);
+  auctionClosed = true;
+}
 
-contract AuctionExample {
-    // Encrypted highest bid
-    euint64 private highestBid;
-    address private highestBidder;
-    
-    // --------------------------------------------------
-    // 1. Request on-chain decryption (in transaction)
-    // --------------------------------------------------
-    function revealBid() external {
-        // Request decryption of the highest bid
-        FHE.decrypt(highestBid);
-    }
+// ------------------------------------------------------
+// Step 2. Process the decrypted result
+// ------------------------------------------------------
+function unsafeRevealWinner() external onlyAuctioneer {
+  uint64 bidValue = FHE.getDecryptResult(highestBid);
 
-    // --------------------------------------------------
-    // 2. Process the decrypted result with the risky approach
-    // --------------------------------------------------
-    function claimRisky() external {
-        // Verify caller is highest bidder
-        require(msg.sender == highestBidder, "Only highest bidder can claim");
-        
-        // Get the decrypted bid - risky approach
-        // This will automatically revert if decryption isn't ready
-        uint64 bidValue = FHE.getDecryptResult(highestBid);
-        
-        // If we get here, we know the value is decrypted
-        transferToAuctioneer(bidValue);
-    }
+  winningBid = bidValue;
+  emit RevealedWinningBid(bidderValue, bidValue);
 }
 ```
+
+See the full working example [here](#full-example-contract)
 
 The unsafe method is simpler but more rigid - it automatically reverts the entire transaction if decryption results aren't ready. This may be suitable for cases where you want to fail fast and don't need custom error handling.
 
@@ -135,6 +109,101 @@ The unsafe method is simpler but more rigid - it automatically reverts the entir
 ## Access Control
 
 As with all FHE operations, you must have permission to decrypt a ciphertext. Read more about [Access Control](./acl-mechanism.md) to understand the permissions system.
+
+## Full Example Contract
+
+```sol
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.8.19 <0.9.0;
+
+import "@fhenixprotocol/cofhe-contracts/FHE.sol";
+
+contract AuctionExample {
+  address private auctioneer;
+  euint64 private highestBid;
+  eaddress private highestBidder;
+  uint64 public winningBid;
+  address public winningBidder;
+  bool public auctionClosed;
+
+  event RevealedWinningBid(address winner, uint64 amount);
+
+  modifier onlyAuctioneer() {
+    require(
+      msg.sender == auctioneer,
+      "Only the auctioneer can call this function"
+    );
+    _;
+  }
+
+  constructor() {
+    auctioneer = msg.sender; // Set deployer as auctioneer
+    auctionClosed = false;
+    highestBid = FHE.asEuint64(0);
+    highestBidder = FHE.asEaddress(address(0));
+
+    // Preserve ownership for further access
+    FHE.allowThis(highestBid);
+    FHE.allowThis(highestBidder);
+  }
+
+  function bid(uint256 amount) external {
+    require(!auctionClosed, "Auction is closed");
+
+    euint64 emount = FHE.asEuint64(amount);
+    ebool isHigher = FHE.gt(emount, highestBid);
+    highestBid = FHE.max(emount, highestBid);
+    highestBidder = FHE.select(
+      isHigher,
+      FHE.asEaddress(msg.sender), // Encrypt the sender's address
+      highestBidder
+    );
+
+    // Preserve ownership for further access
+    FHE.allowThis(highestBid);
+    FHE.allowThis(highestBidder);
+  }
+
+  // ------------------------------------------------------
+  // Step 1. Request on-chain decryption (in transaction)
+  // ------------------------------------------------------
+  function closeBidding() external onlyAuctioneer {
+    require(!auctionClosed, "Auction is already closed");
+    FHE.decrypt(highestBid);
+    FHE.decrypt(highestBidder);
+    auctionClosed = true;
+  }
+
+  // ------------------------------------------------------
+  // Step 2. Process the decrypted result
+  // ------------------------------------------------------
+  function safelyRevealWinner() external onlyAuctioneer {
+    require(auctionClosed, "Auction isn't closed");
+
+    (uint64 bidValue, bool bidReady) = FHE.getDecryptResultSafe(highestBid);
+    require(bidReady, "Bid not yet decrypted");
+
+    (address bidderValue, bool bidderReady) = FHE.getDecryptResultSafe(highestBidder);
+    require(bidderReady, "Bid not yet decrypted");
+
+    winningBid = bidValue;
+    winningBidder = bidderValue;
+    emit RevealedWinningBid(bidderValue, bidValue);
+  }
+
+  function unsafeRevealWinner() external onlyAuctioneer {
+    require(auctionClosed, "Auction isn't closed");
+
+    uint64 bidValue = FHE.getDecryptResult(highestBid);
+    address bidderValue = FHE.getDecryptResult(highestBidder);
+
+    winningBid = bidValue;
+    winningBidder = bidderValue;
+    emit RevealedWinningBid(bidderValue, bidValue);
+  }
+}
+
+```
 
 ## Available Functions
 
