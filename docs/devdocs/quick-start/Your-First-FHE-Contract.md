@@ -154,4 +154,4 @@ This will allow the owner to read the encrypted counter's value using the `get_e
 ```
 In the [next section](/docs/devdocs/quick-start/getting-started) we will see how to use Cofhejs to privately decrypt this encrypted contract variable.
 
-<span style={{color: "orange", fontStyle: "italic"}}>Exercise:</span> Try to modify the contract to allow the owner to read the counter's value without sending a transaction every time, you will need it in order to make the cofhejs example work.
+<span style={{color: "orange", fontStyle: "italic"}}>Exercise:</span> Try to modify the contract to allow the owner to read the counter's value without sending a transaction every time, you will need it in order to make the Cofhejs example work.
