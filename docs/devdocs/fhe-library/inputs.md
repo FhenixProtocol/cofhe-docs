@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # Receiving Encrypted Inputs
 
-Receiving encrypted inputs from users is a straight-forward part of writing confidential smart contracts:
+One key aspects of writing confidential smart contract is receiving encrypted inputs from users:
 
 
 ```sol
