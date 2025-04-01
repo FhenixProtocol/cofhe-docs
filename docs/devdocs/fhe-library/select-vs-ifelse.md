@@ -15,14 +15,14 @@ euint32 a = FHE.asEuint32(10);
 euint32 b = FHE.asEuint32(20);
 euint32 max;
 
-// Instead of this (won't work) :
-if (a.gt(b)) { // gt returns encrypted boolean (ebool), traditional if..else will result unexpected result
+// Instead of this (won't work):
+if (a.gt(b)) { // gt returns encrypted boolean (ebool), traditional if..else will not work
    max = a;
 } else {
    max = b;
 }
 
-// Do this : 
+// Do this: 
 ebool isHigher = a.gt(b);
 max = FHE.select(isHigher, a, b);
 ```
