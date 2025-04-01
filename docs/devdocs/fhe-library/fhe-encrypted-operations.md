@@ -66,16 +66,16 @@ FHE.sol also provides library bindings, allowing for a more natural syntax. To u
 euint8 result = lhs.add(rhs);
 ```
 
-In this example, lhs.add(rhs) performs the addition, using the library function implicitly.
+In this example, `lhs.add(rhs)` performs the addition, using the library function implicitly.
 
 :::tip
-The `ebool` type is not a real boolean type. It is implemented as a `euint8`
+The `ebool` type is not a real boolean type. It is implemented as an `euint8`.
 :::
 
 ## Supported Operations
 
 :::tip
-A documentation of every function in FHE.sol (including inputs and outputs) can be found in [FHE.sol](../solidity-api/FHE.md)
+A documentation of every function in FHE.sol (including inputs and outputs) can be found in [FHE.sol](../solidity-api/FHE.md).
 :::
 
 All operations supported by FHE.sol are listed in the table below.
@@ -111,5 +111,5 @@ Note that all functions are supported in both direct function calls and library 
 | Decrypt               | `decrypt`         |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    | <g>✔</g> |  <g>✔</g>   |
 
 :::tip
-Division and Remainder by `0` will output with an encrypted representation of the maximal value of the uint that is used (Ex. encrypted 255 for euint8)
+Division and Remainder by `0` will output with an encrypted representation of the maximal value of the integer type that is used (e.g. encrypted 255 for euint8).
 :::
