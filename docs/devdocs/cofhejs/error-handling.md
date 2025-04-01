@@ -97,7 +97,7 @@ console.log('Permit created successfully:', permit)
 
 ## Common Error Scenarios
 
-`cofhejs` may return errors in various scenarios, including:
+`Cofhejs` may return errors in various scenarios, including:
 
 1. **Initialization Errors**:
    - Missing provider or signer
