@@ -80,7 +80,6 @@ For more info see [permit management](/docs/devdocs/cofhejs/permits-management) 
 Let's see the changes we make to the original Fhenix L2 contract to make it compatible with CoFHE:
 
 ```solidity
-```javascript
 pragma solidity ^0.8.20;
 
 import "@fhenixprotocol/contracts/access/Permissioned.sol";
