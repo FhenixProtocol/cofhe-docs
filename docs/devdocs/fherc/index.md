@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # FHERC Standards Overview
 
-FHERC (Fully Homomorphic Encryption Request for Comments) standards define the specifications and implementations for confidential tokens and smart contracts using Fully Homomorphic Encryption (FHE) on the blockchain. These standards ensure interoperability, security, and consistency across different implementations of confidential assets.
+FHERC standards define the specifications and implementations for confidential tokens and smart contracts using Fully Homomorphic Encryption (FHE) on the blockchain. These standards ensure interoperability, security, and consistency across different implementations of confidential assets.
 
 ## What are FHERC Standards?
 
@@ -17,7 +17,7 @@ FHERC standards are similar to ERC standards in the Ethereum ecosystem but speci
 
 ## Key Features
 
-- **Privacy by Default**: All token operations are encrypted by default
+- **Confidential by Default**: All token operations are encrypted by default
 - **Homomorphic Operations**: Support for mathematical operations on encrypted data
 - **Standardized Interfaces**: Consistent methods across all implementations
 - **Backward Compatibility**: Integration with existing blockchain infrastructure
