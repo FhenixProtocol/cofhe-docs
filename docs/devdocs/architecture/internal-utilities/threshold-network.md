@@ -9,7 +9,7 @@ sidebar_position: 8
 | -------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | **Type**             | Offchain, distributed network.                                                                                                    |
 | **Function**         | Process and execute decryption requests.                                                                                          |
-| **Responsibilities** | • Gets ciphertext decryption requests<br/>• Authenticates and validates them<br/>• Runs an MPC protocol to decrypt the ciphertext |
+| **Responsibilities** | • Gets ciphertext decryption requests.<br/>• Authenticates and validates them.<br/>• Runs an MPC protocol to decrypt the ciphertext. |
 
 In any system utilizing encryption, a crucial step is the eventual decryption of data. For example, if we were to build a privacy-preserving ERC20 contract, users would ultimately need to access their encrypted balances. In the case of CoFHE, this decryption process is managed by the Threshold Network.
 

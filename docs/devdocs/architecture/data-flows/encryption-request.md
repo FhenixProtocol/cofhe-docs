@@ -46,7 +46,7 @@ The following diagram illustrates the complete flow of an Encryption request in 
 
    The function returns a value handle that can be used to reference the encrypted data later, along with a signature.
 5. **Using the encrypted data**  
-    The user can send the value handle to the contract as an encrypted input. This handle represents the ciphertext stored in the DA layer and allows the contract to reference the encrypted value
+    The user can send the value handle to the contract as an encrypted input. This handle represents the ciphertext stored in the DA layer and allows the contract to reference the encrypted value.
 
 *Note: Read more about the implementation details [here](/docs/devdocs/cofhejs/encryption-operations)*
 
