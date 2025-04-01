@@ -202,7 +202,7 @@ await cofhejs.initializeWithEthers({
 
 ### 2. Encrypting values
 
-With Cofhejs the encryption is done asynchronously, for this reason we can provide a callback function to log the encryption state (read about it [here](../cofhejs/encryption-operations.md))
+With Cofhejs the encryption is done asynchronously, for this reason we can provide a callback function to log the encryption state (read about it [here](../cofhejs/encryption-operations.md)).
 
 ```javascript
 // diff-remove
