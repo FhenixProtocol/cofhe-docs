@@ -34,7 +34,7 @@ euint32 amount = FHE.asEuint32(inAmount);
 ```
 
 :::tip
-Avoid storing encrypted input types in contract state. These types carry extra metadata, which increases gas costs and may cause unexpected behavior. Always convert them using `FHE.asE...()` before storage. .
+Avoid storing encrypted input types in contract state. These types carry extra metadata, which increases gas costs and may cause unexpected behavior. Always convert them using `FHE.asE...()`.
 :::
 
 Now that `amount` is of type `euint32`, we can store or manipulate it:
