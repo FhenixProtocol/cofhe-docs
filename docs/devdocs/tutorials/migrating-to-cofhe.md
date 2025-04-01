@@ -23,7 +23,7 @@ When migrating your contracts from Fhenix L2 to CoFHE, keep these important poin
 
 In CoFHE, you need to explicitly allow the contract to use encrypted numbers that it will operate on during its lifetime. This is done using the `FHE.allowThis()` function:
 
-```Solidify
+```solidity
  FHE.allowThis(_encBalances[msg.sender]);
 ```
 
