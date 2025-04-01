@@ -4,7 +4,7 @@ title: Conditions
 description: Understanding why if..else isn't possible with FHE and exploring the alternatives
 ---
 
-Writing code with Fully Homomorphic Encryption (FHE) introduces a fundamental shift in how we handle conditionals or branches in our code. As you already know, with FHE, we're operating on encrypted data. This means we can't use typical `if...else` branching structures, because we don't have visibility into the actual values we're comparing.
+Writing code with Fully Homomorphic Encryption (FHE) introduces a fundamental shift in how we handle conditionals or branches in our code. As you already know, with FHE, we're operating on encrypted data. This means we can't use typical `if..else` branching structures, because we don't have visibility into the actual values we're comparing.
 
 Instead, use the `select` function which works like a ternary operator (`condition ? "yes" : "no"`) but for encrypted values.
 
@@ -27,7 +27,7 @@ ebool isHigher = a.gt(b);
 max = FHE.select(isHigher, a, b);
 ```
 
-Another reason of not using the traditional `if..else` when writing Solidity smart contracts with our FHE capabilities, is that you need to consider all possible branches of a conditional at the same execution time. It's somewhat akin to writing constant-time cryptographic code, where you want to avoid timing attacks that could leak information about secret data. (Information might be leaked by understanding if your code got inside the `if` or the `else` due to different execution times of your code branches)
+Another reason of not using the traditional `if..else` when writing Solidity smart contracts FHE, is that you need to consider all possible branches of a conditional at the same execution time. It's somewhat akin to writing constant-time cryptographic code, where you want to avoid timing attacks that could leak information about secret data. (Information might be leaked by understanding if your code got inside the `if` or the `else` due to different execution times of your code branches).
 
 To handle these conditionals, we use a concept called a "selector".
 A selector is a function that takes in a control and two branches, and returns the result of the branch that corresponds to the condition. A selector is like a traffic signal that decides which traffic to let through based on the color of the light (control signal).
@@ -38,33 +38,42 @@ In the example above, `FHE.select` uses the encrypted `ebool` result of `gt`, so
 
 ## Key Points to Remember
 
-- All operations take place on encrypted data, so the actual values and comparison results stay concealed
-- Using traditional `if..else` on encrypted data might result in **unexpected behaviour** and leak information
-- The `select` function is the only way to handle conditional execution in FHE without leaking information
+- All operations take place on encrypted data, so the actual values and comparison results stay concealed.
+- Using traditional `if..else` on encrypted data might result in **unexpected behaviour** and leak information.
+- The `select` function is the only way to handle conditional execution in FHE without leaking information.
 
 ## Common Use Cases
 
 Here are some common scenarios where you'll use `select`:
 
-1. **Maximum/Minimum Operations**
-```sol
-euint32 max = FHE.select(a.gt(b), a, b);
-```
-
-2. **Conditional Updates**
+1. **Conditional Updates**
 ```sol
 euint32 newValue = FHE.select(shouldUpdate, newValue, currentValue);
 ```
 
-3. **Threshold Checks**
+2. **Threshold Checks**
 ```sol
 ebool isAboveThreshold = value.gt(threshold);
 euint32 result = FHE.select(isAboveThreshold, value, threshold);
 ```
 
+:::tip
+#### **Maximum/Minimum Operations**
+
+You might want to select to get the minimum of two values:
+```sol
+euint32 max = FHE.select(a.gt(b), a, b);
+```
+But there's a better way to do that using the `min`/`max` functions.
+```sol
+euint32 max = FHE.max(a, b);
+```
+:::
+
+
 ## Best Practices
 
 1. Always use `select` instead of trying to implement branching logic.
-2. Keep your conditional logic simple and linear
-3. Remember that all operations must be performed on encrypted data
-4. Consider the performance implications of complex conditional chains
+2. Keep your conditional logic simple and linear.
+3. Remember that all operations must be performed on encrypted data.
+4. Consider the performance implications of complex conditional chains.
