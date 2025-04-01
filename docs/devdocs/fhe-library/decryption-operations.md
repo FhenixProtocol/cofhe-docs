@@ -6,54 +6,9 @@ description: Understanding how to decrypt encrypted data in FHE smart contracts
 
 Decryption is the process of converting encrypted data back into its original form. In the context of Fully Homomorphic Encryption (FHE), decryption allows for the retrieval of results after performing computations on encrypted data.
 
-The `FHE.decrypt` function is a core component of the FHE library, designed for Solidity smart contracts.
-
 :::tip[Deep Dive]
 We recommend reading more about our unique MPC decryption threshold network [here](../architecture/internal-utilities/threshold-network.md)
 :::
-
-## Asynchronous Decryption Example
-
-```sol
-import {FHE, euint64} from "@fhenixprotocol/cofhe-contracts/FHE.sol";
-
-contract SimpleCounter {
-    euint64 counter;
-    euint64 lastDecryptedCounter;
-    
-    // ------------------------------
-    // 1. Trigger decrypt operation
-    // ------------------------------
-    function decrypt_counter() external {
-        FHE.decrypt(counter);
-        lastDecryptedCounter = counter;
-    }
-
-    // ------------------------------
-    // 2. Query the decrypted results
-    // ------------------------------ 
-    // Option 1 - the safest way
-    function get_safe_counter_value() external view returns(uint64) {
-        (uint64 value, bool decrypted) = FHE.getDecryptResultSafe(lastDecryptedCounter);
-
-        if (!decrypted) {
-            // Now you can control what happens if results aren't ready yet
-            revert("Value is not ready");
-        }
-
-        return value;
-    }
-
-    // Option 2 - the risky way
-    function get_risky_counter_value() external view returns(uint64) {
-        uint64 value = FHE.getDecryptResult(lastDecryptedCounter);
-        
-        // You will get Execution Reverted here if the decryption results aren't ready.
-
-        return value;
-    }
-}
-```
 
 ## Understanding Asynchronous Decryption
 
@@ -66,26 +21,72 @@ Decrypt operations like all other FHE operations in CoFHE are executed asynchron
 To understand why decryption is asynchronous, [read more here](./data-evaluation.md).
 :::
 
-Instead of blocking your contract while waiting for the result, you have two ways to query the result:
+## Decryption in query VS in transaction
 
-### 1. Safe Way (Recommended)
+Fhenix provides two primary ways to perform decryption, each suited for different use cases:
+
+#### **1. Decryption via Solidity Contract Transaction**
+Decryption is requested in a smart contract transaction, storing the result on-chain for all to access. This ensures auditability but incurs higher gas costs and makes the result public.
+
+#### **2. Decryption via RPC Query**
+Decryption is requested off-chain via an RPC query, returning the result only to the requester. This method keeps data private and reduces gas costs but prevents smart contract usage of the decrypted value.
+
+Read more about this and get examples [here](../cofhejs/)
+
+| **Method**            | **Visibility**     | **Gas Cost** | **Smart Contract Usable** | **Best For** |
+|----------------------|------------------|------------|-----------------------|-------------|
+| **Transaction (on-chain)** | Public (on-chain) | High       | ✅ Yes                 | Public results, contract logic |
+| **Query (off-chain)**     | Private (off-chain) | Low        | ❌ No                  | Confidential data, external apps |
+
+## Asynchronous On-Chain Decryption
+
+When decrypting data on-chain, you first request decryption using `FHE.decrypt()`, then later retrieve the results. There are two ways to retrieve decryption results: the safe way (recommended) and the unsafe way. Let's look at both approaches.
+
+### Example 1: Safe Decryption (Recommended)
 
 Use `FHE.getDecryptResultSafe(eParam)` to get both the decrypted value and a plaintext boolean success indicator:
 
 ```sol
-euint64 eParam = FHE.asEuint64(10);
-(uint64 value, bool decrypted) = FHE.getDecryptResultSafe(eParam);
+import {FHE, euint64} from "@fhenixprotocol/cofhe-contracts/FHE.sol";
 
-if (!decrypted) {
-    // Now you can control what happens if results aren't ready yet
-    revert("Value is not ready");
+contract AuctionExample {
+    // Encrypted highest bid
+    euint64 private highestBid;
+    address private highestBidder;
+    
+    // --------------------------------------------------
+    // 1. Request on-chain decryption (in transaction)
+    // --------------------------------------------------
+    function revealBid() external {
+        // Request decryption of the highest bid
+        // This will make the result available on-chain for contract logic
+        FHE.decrypt(highestBid);
+    }
+
+    // --------------------------------------------------
+    // 2. Process the decrypted result safely
+    // --------------------------------------------------
+    function claimSafely() external {
+        // Verify caller is highest bidder
+        require(msg.sender == highestBidder, "Only highest bidder can claim");
+
+        // Get the decrypted bid with safety check
+        (uint64 bidValue, bool decrypted) = FHE.getDecryptResultSafe(highestBid);
+
+        if (!decrypted) {
+            // Handle the case where decryption isn't ready yet
+            revert("Bid not yet decrypted, please retry later");
+        }
+
+        // Now we can safely use the decrypted value in contract logic
+        transferToAuctioneer(bidValue);
+    }
 }
-
-// Use the decrypted value here
-return value;
 ```
 
-### 2. Unsafe Way
+The safe method returns both the decrypted value and a boolean indicating whether decryption is complete. This gives you control over how to handle cases where the result isn't ready yet, allowing for more graceful error handling and user experience.
+
+### Example 2: Unsafe Decryption
 
 The second way of querying decryption results is using the function `FHE.getDecryptResult(eParam)` .
 It doesn't check readiness for you, and you get no indication to work with. If decryption is ready, you get the decrypted value, otherwise - execution is being reverted. 
@@ -94,12 +95,40 @@ It doesn't check readiness for you, and you get no indication to work with. If d
 The unsafe method will revert the transaction if the decryption results aren't ready yet.
 :::
 
-
 ```sol
-euint64 eParam = FHE.asEuint64(10);
-uint64 value = FHE.getDecryptResult(eParam); // Will revert if not ready
-return value;
+import {FHE, euint64} from "@fhenixprotocol/cofhe-contracts/FHE.sol";
+
+contract AuctionExample {
+    // Encrypted highest bid
+    euint64 private highestBid;
+    address private highestBidder;
+    
+    // --------------------------------------------------
+    // 1. Request on-chain decryption (in transaction)
+    // --------------------------------------------------
+    function revealBid() external {
+        // Request decryption of the highest bid
+        FHE.decrypt(highestBid);
+    }
+
+    // --------------------------------------------------
+    // 2. Process the decrypted result with the risky approach
+    // --------------------------------------------------
+    function claimRisky() external {
+        // Verify caller is highest bidder
+        require(msg.sender == highestBidder, "Only highest bidder can claim");
+        
+        // Get the decrypted bid - risky approach
+        // This will automatically revert if decryption isn't ready
+        uint64 bidValue = FHE.getDecryptResult(highestBid);
+        
+        // If we get here, we know the value is decrypted
+        transferToAuctioneer(bidValue);
+    }
+}
 ```
+
+The unsafe method is simpler but more rigid - it automatically reverts the entire transaction if decryption results aren't ready. This may be suitable for cases where you want to fail fast and don't need custom error handling.
 
 ## Decryptions Permissions
 
@@ -108,6 +137,8 @@ return value;
 As with all FHE operations, you must have permission to decrypt a ciphertext. Read more about [Access Control](./acl-mechanism.md) to understand the permissions system.
 
 ## Available Functions
+
+See more info about all the available decrypt & result retreival functions available through [FHE.sol](../solidity-api/FHE.md#encryption-and-decryption)
 
 ### Decryption Requests
 ```solidity

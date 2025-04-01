@@ -16,14 +16,21 @@ euint32 b = FHE.asEuint32(20);
 euint32 max;
 
 // Instead of this (won't work):
+// diff-remove
 if (a.gt(b)) { // gt returns encrypted boolean (ebool), traditional if..else will result unexpected result
+// diff-remove
    max = a;
+// diff-remove
 } else {
+// diff-remove
    max = b;
+// diff-remove
 }
 
 // Do this:
+// diff-add
 ebool isHigher = a.gt(b);
+// diff-add
 max = FHE.select(isHigher, a, b);
 ```
 
