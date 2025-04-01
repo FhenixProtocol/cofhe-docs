@@ -110,5 +110,6 @@ Note that all functions are supported in both direct function calls and library 
 | Select                | `select`          |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    | <g>✔</g> |  <g>✔</g>   |
 | Decrypt               | `decrypt`         |    n/a    | <g>✔</g> | <g>✔</g> | <g>✔</g> | <g>✔</g>  |  <g>✔</g>   |   <g>✔</g>    | <g>✔</g> |  <g>✔</g>   |
 
-**tip:**
+:::tip
 Division and Remainder by `0` will output with an encrypted representation of the maximal value of the uint that is used (Ex. encrypted 255 for euint8)
+:::
