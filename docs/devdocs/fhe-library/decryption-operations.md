@@ -36,7 +36,7 @@ Read more about this and get examples [here](../cofhejs/)
 | **Method**            | **Visibility**     | **Gas Cost** | **Smart Contract Usable** | **Best For** |
 |----------------------|------------------|------------|-----------------------|-------------|
 | **Transaction (on-chain)** | Public (on-chain) | High       | ✅ Yes                 | Public results, contract logic |
-| **Query (off-chain)**     | Private (off-chain) | Low        | ❌ No                  | Confidential data, external apps |
+| **Query (off-chain)**     | Private (off-chain) | None        | ❌ No                  | Confidential data, external apps |
 
 ## Asynchronous On-Chain Decryption
 
