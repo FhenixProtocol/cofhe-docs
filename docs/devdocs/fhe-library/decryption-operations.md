@@ -18,7 +18,7 @@ Decrypt operations like all other FHE operations in CoFHE are executed asynchron
 3. The results are being stored on chain, and then you can query them.
 
 :::tip[Deep Dive]
-To understand why decryption is asynchronous, [read more here](./data-evaluation.md).
+To understand why FHE operations (including decryption) are asynchronous, [read more here](./data-evaluation.md).
 :::
 
 ## Decryption in query VS in transaction
