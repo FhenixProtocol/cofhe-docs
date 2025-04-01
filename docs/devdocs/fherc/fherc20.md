@@ -15,19 +15,19 @@ The FHERC20 contract is an implementation of a Fully Homomorphic Encryption (FHE
 
 The FHERC20 contract stores balances as encrypted values (`euint128`) using the Fhenix CoFHE coprocessor. These encrypted balances preserve user privacy while allowing for secure operations. The actual token balance of an address is kept confidential and can only be accessed under specific conditions:
 
-1. By the owner of the balance
-2. Through sealed decryption (using a public/private key pair)
-3. As part of FHE operations where the value remains encrypted throughout
+1. By the owner of the balance.
+2. Through sealed decryption (using a public/private key pair).
+3. As part of FHE operations where the value remains encrypted throughout.
 
 ### Indicated Balances
 
 To maintain compatibility with existing ERC20 infrastructure (wallets, block explorers), FHERC20 implements a concept called "indicated balances". These are public values that:
 
-- Range from 0.0000 to 0.9999 (represented internally as 0-9999)
-- Start at 0 for non-interacted accounts
-- Initialize at 0.5001 upon first interaction
-- Increment/decrement by 0.0001 with each transaction
-- Provide visual feedback of balance changes without revealing true amounts
+- Range from 0.0000 to 0.9999 (represented internally as 0-9999).
+- Start at 0 for non-interacted accounts.
+- Initialize at 0.5001 upon first interaction.
+- Increment/decrement by 0.0001 with each transaction.
+- Provide visual feedback of balance changes without revealing true amounts.
 
 The indicated balance system allows users to see activity in their wallets without exposing the encrypted values.
 
@@ -35,9 +35,9 @@ The indicated balance system allows users to see activity in their wallets witho
 
 FHERC20 removes the traditional ERC20 allowance system and instead uses EIP712 signatures for permissioned transfers:
 
-- Each `encTransferFrom` operation requires a valid EIP712 signature
-- Permissions are single-use and do not grant ongoing access to funds
-- This prevents leakage of balance information while maintaining secure delegation
+- Each `encTransferFrom` operation requires a valid EIP712 signature.
+- Permissions are single-use and do not grant ongoing access to funds.
+- This prevents leakage of balance information while maintaining secure delegation.
 
 ## Contract Structure
 
@@ -56,12 +56,12 @@ uint8 private _decimals;
 uint256 private _indicatorTick;
 ```
 
-- `_indicatedBalances`: Stores the non-encrypted indicator value for each account
-- `_encBalances`: Stores the encrypted balances for each account
-- `_indicatedTotalSupply`: The non-encrypted indicator of total supply
-- `_encTotalSupply`: The encrypted total token supply
-- `_name`, `_symbol`, `_decimals`: Standard ERC20 token metadata
-- `_indicatorTick`: Value used to calculate the indicator step (typically 10^(decimals-4))
+- `_indicatedBalances`: Stores the non-encrypted indicator value for each account.
+- `_encBalances`: Stores the encrypted balances for each account.
+- `_indicatedTotalSupply`: The non-encrypted indicator of total supply.
+- `_encTotalSupply`: The encrypted total token supply.
+- `_name`, `_symbol`, `_decimals`: Standard ERC20 token metadata.
+- `_indicatorTick`: Value used to calculate the indicator step (typically 10^(decimals-4)).
 
 ### EIP712 Constants
 
