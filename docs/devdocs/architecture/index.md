@@ -11,7 +11,7 @@ CoFHE (Co-processor for Fully Homomorphic Encryption) is designed as a modular, 
 ### Key Components
 
 #### User-Facing Utilities
-- **CoFHEJS**: A TypeScript library that provides client-side functionality for encrypting inputs, managing permits, and decrypting outputs. Serves as the primary interface between applications and the CoFHE ecosystem.
+- **Cofhejs**: A TypeScript library that provides client-side functionality for encrypting inputs, managing permits, and decrypting outputs. Serves as the primary interface between applications and the CoFHE ecosystem.
 - **FHE.sol**: The Solidity library that enables smart contracts to perform operations on encrypted data. It exposes a comprehensive API for arithmetic, comparison, and logical operations on encrypted values.
 
 #### Internal Utilities
