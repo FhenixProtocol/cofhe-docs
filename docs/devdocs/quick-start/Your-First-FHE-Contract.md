@@ -25,7 +25,7 @@ contract SimpleCounter {
         _;
     }
 
-    constructor(uint64 initial_value) {
+    constructor(inEuint64 calldata initial_value) {
         owner = msg.sender;
         counter = FHE.asEuint64(initial_value);
         FHE.allowThis(counter);
@@ -35,12 +35,12 @@ contract SimpleCounter {
         FHE.allowThis(delta);
     }
 
-    function increment_counter() external onlyOwner {
+    function increment_counter() external {
         counter = FHE.add(counter, delta);
         FHE.allowThis(counter);
     }
 
-    function decrement_counter() external onlyOwner {
+    function decrement_counter() external {
         counter = FHE.sub(counter, delta);
         FHE.allowThis(counter);
     }
