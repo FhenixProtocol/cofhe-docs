@@ -79,7 +79,7 @@ function getNumber() public view returns (euint64) {
 
 1. **Unseals the result** using the private_key of the sealing key pair. The result is always unsealed as a bigint regardless of the type of CtHash (euint32 / ebool / eaddress)
 
-2. **cofhejs converts the output type** as follows:
+2. **Cofhejs converts the output type** as follows:
 
 ```typescript
 export const convertViaUtype = <U extends FheTypes>(

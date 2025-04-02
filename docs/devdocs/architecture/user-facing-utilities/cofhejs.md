@@ -54,7 +54,7 @@ await cofhejs.initializeWithEthers({
 })
 ```
 
-> Note: _For more information on getting started, take a look at the [**cofhejs getting started**](/docs/devdocs/quick-start/getting-started) guide._
+> Note: _For more information on getting started, take a look at the [**Cofhejs getting started**](/docs/devdocs/quick-start/getting-started) guide._
 
 - Client-side encryption/decryption
 
