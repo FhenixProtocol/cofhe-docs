@@ -35,7 +35,7 @@ This command above emits an event saying "Compute the encrypted result of adding
 
 :::
 
-But wait, how does CoFHE knows to connect between the variables, e.g. `balance` and `amount`, and the actual underlying encrypted data to calculate the result? To understand this, we need to understand how encrypted data is represented in the smart contracts 👇.
+But wait, how does CoFHE know how to connect two variables (e.g. `balance` and `amount`) and the underlying encrypted data to calculate the result? To understand this, we need to understand how encrypted data is represented in the smart contracts 👇.
 
 ## Data Representation
 
@@ -57,7 +57,7 @@ In the example above, we are:
 2. Perform an FHE-addition, calculating the encrypted sum of both, using `FHE.add()`.
 3. Returning the result.
 
-We can see that the result of every operation is a value of type `euint32`, which represents a new 32-bit ciphertext. But what does `euint32` represents exactly? Let's look at the type's decleration:
+We can see that the result of every operation is a value of type `euint32`, which represents a new 32-bit ciphertext. But what does `euint32` represents exactly? Let's look at the type's declaration:
 
 ```sol
 type euint32 is uint256;
@@ -65,7 +65,7 @@ type euint32 is uint256;
 
 So is it actually a plaintext `uint256` integer 🤔? Well, not exactly.
 
-The actual ciphertext value of FHE-encrypted integers is too big to be stored directly in the blockchain, or emitted in an event. That's why in your smart contracts, the ciphertext are being represented by a 256-bit handle regardless of their encrypted type. You can think of this as an ID, or a pointer. This handle is the identifier of said ciphertext. In practice, CoFHE actually stores full ciphertexts in an off-chain Data Availability (DA) layer.
+The actual ciphertext values of FHE-encrypted integers are too big to be stored directly in the blockchain, or emitted in an event. That's why in your smart contracts, the ciphertexts are being represented by a 256-bit handle regardless of their encrypted type. You can think of this handle as an ID, or a pointer to the ciphertext stored off-chain. This handle is the identifier of said ciphertext. In practice, CoFHE actually stores full ciphertexts in an off-chain Data Availability (DA) layer.
 
 So, when evaluating the following statement:
 
@@ -77,15 +77,15 @@ FHE.sol is actually emitting the following event: "Check which number is bigger:
 
 :::tip
 
-What to do with this `ebool isBigger`? Check out the page on [conditions](select-vs-ifelse.md).
+Wondering what to do with `ebool isBigger`? Check out the page on [conditions](select-vs-ifelse.md).
 
 :::
 
 :::tip[Deep Dive]
 
-Didn't we just said that the computation is executed asynchronously? So - how can we know the ciphertext's handle in real time?
+Didn't we just say that the computation is executed asynchronously? So - how can we know the ciphertext's handle in real time?
 
-In fact, the ciphertext's handle is determined regardless of it's value. It is bascially representing the operation that needs to be performed to create this value.
+In fact, the ciphertext's handle is determined regardless of it's value. It is basically representing the operation that needs to be performed to create this value.
 
 For example:
 
