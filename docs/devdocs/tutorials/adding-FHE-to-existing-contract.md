@@ -315,10 +315,7 @@ Lets break down how this works:
 
 ```solidity
 proposal.options[i].votes =
-  proposal.options[i].votes +
-  _optionIndex == i
-    ? 1
-    : 0;
+    proposal.options[i].votes + _optionIndex == i ? 1 : 0;
 ```
 
 ### 6. Special case: **`if/else`**
