@@ -30,7 +30,7 @@ When users want to add a value to their counter, say "5," they first place this 
 
 ### Retrieving the User's Counter
 
-To retrieve the counter value, the user needs to read the data inside the box without breaking the encryption. Here’s the clever part: the user sends a second “lock” (their own public key) along with the request to read its data. This second lock is applied to the box (now the box has two locks). Fhenix can now remove its own lock (the Co-Processor's public key), leaving the box secured by only the user’s public key. The box remains locked and the data remains private, but now only the user can open it using its private key.
+To retrieve the counter value, the user needs to read the data inside the box without breaking the encryption. Here’s the clever part: the user sends a second “lock” (their own public key) along with the request to read its data. This second lock is applied to the box while Fhenix removes its own lock (the Co-Processor's public key), leaving the box secured by only the user’s public key. The box remains locked and the data remains private, but now only the user can open it using its private key.
 
 
 ## Installation
@@ -256,8 +256,3 @@ await readCounterEncryptedValue();
 ```
   </TabItem>
 </Tabs>
-
-
-## Troubleshoot
-
-TBD
