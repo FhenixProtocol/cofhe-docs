@@ -236,7 +236,7 @@ contract VotingExample {
             proposal.options.push(
                 // diff-remove
                 Option({name: _options[i], votes: FHE.asEuint64(0)})
-                // diff add
+                // diff-add
                 Option({name: _options[i], votes: EUINT64_ZERO})
             );
         }
@@ -336,9 +336,9 @@ Branching based on encrypted variables is not allowed, so there is one more chan
 
 > NOTE: It is important to _never_ use an encrypted variable as part of a if/else branch, since the encrypted variable is always truthy. Instead, use `FHE.select` to replace the value with 0.
 
-### 7. We need to do a few more things in the `vote` function before we are ready to move on. The first is to update the `VoteCast` event:
+### 7. Update `VoteCast` event
 
-The event itself:
+Currently the `VoteCast` event emits a uint256 optionIndex. Now that the user's vote is an encrypted variable (`euint8`), we need to update the event to emit the user's encrypted input:
 
 ```solidity
 event VoteCast(
@@ -391,11 +391,15 @@ function vote(uint256 _proposalId, InEuint8 memory _optionIndex) external {
                 FHE.asEuint64(0)
             )
         );
+        // Grant this contract access to each vote count
+        // Without this, FHE.add(options[i].votes, ...) would revert
         // diff-add
         FHE.allowThis(proposal.options[i].votes);
     }
     proposal.hasVoted[msg.sender] = true;
 
+    // Grant msg.sender access to their votingIndex
+    // Without this, the msg.sender would not be able to see their vote in the explorer (coming soon)
     // diff-add
     FHE.allowSender(optionIndex);
     emit VoteCast(_proposalId, msg.sender, optionIndex);
@@ -409,16 +413,27 @@ function vote(uint256 _proposalId, InEuint8 memory _optionIndex) external {
 Because the votes are encrypted for the lifetime of the proposal, after the proposal has ended, we need to decrypt the results and reveal the winner. Lets start by adding a `finalizeVote` function:
 
 ```solidity
+// diff-add
 function finalizeVote(uint256 _proposalId) external {
+    // diff-add
     if (msg.sender != owner) revert NotOwner();
+    // diff-add
 
+    // diff-add
     Proposal storage proposal = proposals[_proposalId];
+    // diff-add
     if (!proposal.exists) revert ProposalNotFound();
+    // diff-add
     if (block.timestamp < proposal.deadline) revert DeadlineNotReached();
+    // diff-add
 
+    // diff-add
     for (uint8 i = 0; i < proposal.options.length; i++) {
+        // diff-add
         FHE.decrypt(proposal.options[i].votes);
+    // diff-add
     }
+// diff-add
 }
 ```
 
@@ -468,6 +483,7 @@ function getProposal(
     // diff-remove
     );
 
+    // Plaintext values can be assigned directly
     // diff-add
     name = proposal.name;
     // diff-add
@@ -486,6 +502,9 @@ function getProposal(
     }
     // diff-add
 
+    // Fetch the decrypted results with `FHE.getDecryptResultSafe`.
+    // If any of the results have not yet been decrypted, set `finalized` to false.
+    // Store the decrypted result counts in the `votes` list to be returned.
     // diff-add
     votes = new uint64[](proposal.options.length);
     // diff-add
@@ -506,6 +525,7 @@ function getProposal(
     }
     // diff-add
 
+    // If all votes have been decrypted, determine the winning option.
     // diff-add
     if (finalized) {
         // diff-add
