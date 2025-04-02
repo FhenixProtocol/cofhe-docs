@@ -101,7 +101,8 @@ which we add to or subtract from the counter. **Trivial encryption** produces a 
 variable, even though represented as a ciphertext handle, is not really confidential because everyone can see what is the
 plaintext value that went into it.
 
-So in this case, whenever an increment occurs, an observer can know that the counter which was `x` is now `x + 1`, but he doesn't know the final value.
+So in this case, whenever an increment occurs, an observer can know that the counter which was some unknown `x` is now `x + 1`,
+but he doesn't know the final value.
 Alternatively, we could have incremented by a real encrypted value by receiving the value as an InEuint in the calldata, in which case an
 observer would know that the new counter is `x + y` (but wouldn't know what `x` and `y` are).
 :::
