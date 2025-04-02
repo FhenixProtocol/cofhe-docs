@@ -78,16 +78,15 @@ In this example, we're importing the types `euint64` and `InEuint64` from the [F
 import {FHE, euint64, InEuint64} from "@fhenixprotocol/cofhe-contracts/FHE.sol";
 ```
 We want to keep the counter encrypted at all times, so we'll use the `euint64` type.
-In addition, the delta variable, which we add to or subtract from counter, must also be encrypted to avoid revealing the result.
 
+Next, we define some state variables for the contract:
 ```solidity
     euint64 counter;
     euint64 delta;
     euint64 lastDecryptedCounter;
 ```
 
-
-In the constructor, we initialize the `counter` and `delta` variables.  
+In the constructor, we initialize the `counter` and `delta` variables.
 We encrypt the `delta` here to avoid calculating the same encrypted value every time we increment or decrement the counter.
 
 ```solidity
@@ -95,14 +94,34 @@ We encrypt the `delta` here to avoid calculating the same encrypted value every 
     delta = FHE.asEuint64(1);
 ```
 
+:::note
+We wanted the example contract to be as simple as possible, so readers can plug-and-play it into their preferred environment.
+There are some privacy improvements that could be made to this contract.
+
+<details>
+<summary> Trivial Encryption. </summary>
+When we initialize the `delta` and `counter` variables, we use **trivial encryption**.
+**Trivial encryption** produces a ciphertext from a public value, but this
+variable, even though represented as a ciphertext handle, is not really confidential because everyone can see what is the
+plaintext value that went into it.
+
+So in this case, whenever an increment occurs, an observer can know that the counter which was `x` is now `x + 1`.
+To make it completely private, we need to initialize these variables with an InEuint from the calldata.
+In that case the observer would know that the new counter is `x + y` (but wouldn't know what `x` and `y` are).
+
+</details>
+:::
+
 For every encrypted variable, we need to call `FHE.allowThis()` to allow the contract to access it.
-You can read more about this in the [FHE library](/docs/devdocs/fhe-library/acl-mechanism) documentation.
+**Allowing access to encrypted variables** is an important concept in FHE-enabled contracts.
+Without it, the contract could not continue to use this encrypted variable in future transactions.
+You can read more about this in the [ACL Mechamnism](/docs/devdocs/fhe-library/acl-mechanism) page.
 ```solidity
     FHE.allowThis(counter);
     FHE.allowThis(delta);
 ```
 
-In the `increment_counter` and `decrement_counter` functions, we use the `FHE.add` and `FHE.sub` functions to increment and decrement the counter, respectively.  
+In the `increment_counter` and `decrement_counter` functions, we use the `FHE.add` and `FHE.sub` functions to increment and decrement the counter, respectively.
 And we also call `FHE.allowThis()` to allow the contract to access the new counter value.
 
 ```solidity
@@ -111,7 +130,6 @@ And we also call `FHE.allowThis()` to allow the contract to access the new count
 ```
 In the `reset_counter` function, we receive an `InEuint64` value, which is a type that represents an encrypted value that can be used to reset the counter.  
 This value is an encrypted value that we created using CoFHE.js (read more about it [here](/docs/devdocs/cofhejs/encryption-operations)).
-
 
 Now, let's take a look at the `decrypt_counter` and `get_counter_value` functions.  
 The `decrypt_counter` function creates a new decrypt request for the counter.  
@@ -150,7 +168,6 @@ This will allow the owner to read the encrypted counter's value using the `get_e
     function get_encrypted_counter_value() external view returns(euint64) {
        return counter;
     }
-
 ```
 In the [next section](/docs/devdocs/quick-start/getting-started) we will see how to use Cofhejs to privately decrypt this encrypted contract variable.
 
