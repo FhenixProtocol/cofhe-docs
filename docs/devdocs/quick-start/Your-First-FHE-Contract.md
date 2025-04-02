@@ -78,7 +78,19 @@ In this example, we're importing the types `euint64` and `InEuint64` from the [F
 import {FHE, euint64, InEuint64} from "@fhenixprotocol/cofhe-contracts/FHE.sol";
 ```
 We want to keep the counter encrypted at all times, so we'll use the `euint64` type.
-In addition, the delta variable, which we add to or subtract from counter, must also be encrypted to avoid revealing the result.
+
+
+:::note [Trivial Encryption]
+Currently, FHE operations only support encrypted operands, so we **trivially encrypt** the delta variable,
+which we add to or subtract from the counter. **Trivial encryption** produces a ciphertext from a public value, but this
+variable is not really private because everyone can see what is the plaintext value that went into it.
+
+So in this case, whenever increment occurred, an observer can know that the counter which was X is now X+1, but he doesn't know the final value.
+We could have incremented by a real encrypted value by receiving the value from the caller as an InEuint in the function parameters, in which case an observer.
+would know that the new counter is X + Y.
+:::
+
+So when
 
 ```solidity
     euint64 counter;
