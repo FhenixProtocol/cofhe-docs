@@ -79,33 +79,32 @@ import {FHE, euint64, InEuint64} from "@fhenixprotocol/cofhe-contracts/FHE.sol";
 ```
 We want to keep the counter encrypted at all times, so we'll use the `euint64` type.
 
-
-:::note [Trivial Encryption]
-Currently, FHE operations only support encrypted operands, so we **trivially encrypt** the delta variable,
-which we add to or subtract from the counter. **Trivial encryption** produces a ciphertext from a public value, but this
-variable is not really private because everyone can see what is the plaintext value that went into it.
-
-So in this case, whenever increment occurred, an observer can know that the counter which was X is now X+1, but he doesn't know the final value.
-We could have incremented by a real encrypted value by receiving the value from the caller as an InEuint in the function parameters, in which case an observer.
-would know that the new counter is X + Y.
-:::
-
-So when
-
+Next, we define some state variables for the contract:
 ```solidity
     euint64 counter;
     euint64 delta;
     euint64 lastDecryptedCounter;
 ```
 
-
 In the constructor, we initialize the `counter` and `delta` variables.  
-We encrypt the `delta` here to avoid calculating the same encrypted value every time we increment or decrement the counter.
+* `counter` is initialized with a value known only to the deployer of the contract, received encrypted from the calldata as an `InEuint64`.
+* We trivially-encrypt the plaintext number 1 into `delta` here to avoid calculating the same encrypted value every time we increment or decrement the counter.
 
 ```solidity
     counter = FHE.asEuint64(initial_value);
     delta = FHE.asEuint64(1);
 ```
+
+:::note[Trivial Encryption]
+Currently, FHE operations only support encrypted operands, so we **trivially encrypt** the `delta` variable,
+which we add to or subtract from the counter. **Trivial encryption** produces a ciphertext from a public value, but this
+variable is not really confidential because everyone can see what is the plaintext value that went into it.
+
+So in this case, whenever an increment occurs, an observer can know that the counter which was `x` is now `x + 1`, but he doesn't know the final value.
+We could have incremented by a real encrypted value by receiving the value from the caller as an InEuint in the function parameters, in which case an
+observer would know that the new counter is `x + y`.
+:::
+
 
 For every encrypted variable, we need to call `FHE.allowThis()` to allow the contract to access it.
 You can read more about this in the [FHE library](/docs/devdocs/fhe-library/acl-mechanism) documentation.
