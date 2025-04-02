@@ -50,7 +50,7 @@ function getNumber() public view returns (euint64) {
 
 > Note: All euints, along with ebool and eaddress, are wrappers around uint256. The data returned from `example.getNumber()` is in the type bigint, and can be treated as a `CtHash` directly
 
-### 📌 Step 2: Integration with CoFHE.js
+### 📌 Step 2: Integration with Cofhejs
 
 1. The decentralized application (dApp) integrates with CoFHE by utilizing **Cofhejs** for encryption.
    [See in GitHub](https://github.com/FhenixProtocol/cofhejs)
@@ -79,7 +79,7 @@ function getNumber() public view returns (euint64) {
 
 1. **Unseals the result** using the private_key of the sealing key pair. The result is always unsealed as a bigint regardless of the type of CtHash (euint32 / ebool / eaddress)
 
-2. **cofhejs converts the output type** as follows:
+2. **Cofhejs converts the output type** as follows:
 
 ```typescript
 export const convertViaUtype = <U extends FheTypes>(

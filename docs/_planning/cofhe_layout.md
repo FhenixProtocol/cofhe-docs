@@ -10,7 +10,7 @@
 > Includes comprehensive diagram with table content
 
 ### User-Facing Utilities
-- CoFHE.js
+- Cofhejs
 - FHE.sol
 
 ### Internal Utilities
@@ -36,7 +36,7 @@ graph LR
 - Decryption Request
 - Decrypt/SealOutput from FhenixJS
 
-## 🔧 CoFHE.JS
+## 🔧 Cofhejs
 > Including GitHub Repository Links
 
 
@@ -81,7 +81,7 @@ graph LR
 ## SolidityAPI
 
 ## 🛠️ SDK
-- CoFHE.js Integration
+- Cofhejs Integration
 - Browser-based Wallet SDK
 - Browser-based Wallet UI Layout
 

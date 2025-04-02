@@ -7,7 +7,7 @@ sidebar_position: 1
 
 ## Overview
 
-This document outlines the complete flow of the encryption request process using CoFHE.js, a TypeScript library designed to help users encrypt data for private computation with smart contracts. Understanding this process is essential for developers who want to enable their users to interact with privacy-preserving smart contracts using encrypted inputs.
+This document outlines the complete flow of the encryption request process using Cofhejs, a TypeScript library designed to help users encrypt data for private computation with smart contracts. Understanding this process is essential for developers who want to enable their users to interact with privacy-preserving smart contracts using encrypted inputs.
 
 
 ## Key Components
@@ -15,7 +15,7 @@ This document outlines the complete flow of the encryption request process using
 | Component | Description |
 |-----------|-------------|
 | **dApp** | The decentralized application that interacts with the user and the contracts |
-| **CoFHE.js** | TypeScript package designed for seamless interaction Fhenix's co-processor |
+| **Cofhejs** | TypeScript package designed for seamless interaction Fhenix's co-processor |
 | **Threshold Network** | (When applicable) Handles secure decryption operations |
 
 ---
@@ -28,7 +28,7 @@ The following diagram illustrates the complete flow of an Encryption request in 
 ## Step-by-Step Flow
 
 
-1. **Install, include and initialize CoFHE.js in your project (full details [here](/docs/devdocs/quick-start/getting-started.md))**
+1. **Install, include and initialize Cofhejs in your project (full details [here](/docs/devdocs/quick-start/getting-started.md))**
     ```bash
     npm install cofhejs
     ```

@@ -26,7 +26,7 @@ Requiring a ZKPoK for each encrypted input helps running an encryption system in
 
 ## Sending encrypted inputs
 
-As mentioned before, when providing ciphertexts as an input to a smart contract, users have to generate a ZKPoK and get a verification approval first. Although most of the work will be handled by cofhe.js and FHE.sol, we will describe this mechanism in high-level (also in the diagram below).
+As mentioned before, when providing ciphertexts as an input to a smart contract, users have to generate a ZKPoK and get a verification approval first. Although most of the work will be handled by Cofhejs and FHE.sol, we will describe this mechanism in high-level (also in the diagram below).
 
 ![ZK Proof of Knowledge Flow](../../../../static/img/zk-pok.svg)
 

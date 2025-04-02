@@ -30,12 +30,12 @@ The following diagram illustrates the complete flow of an FHE operation request 
 
 ## Step-by-Step Flow
 
-### 📌 Step 1: Integration with CoFHE.js
+### 📌 Step 1: Integration with Cofhejs
 
-1. The decentralized application (dApp) integrates with CoFHE by utilizing **Cofhe.js** for encryption.
+1. The decentralized application (dApp) integrates with CoFHE by utilizing **Cofhejs** for encryption.
 [See in GitHub](https://github.com/FhenixProtocol/cofhe.js) ![Bullet](../../../../static/img/assets/1.png)
 
-2. [Encrypt request](./encryption-request.md) using CoFHE.js, returns `InEuint` structure.
+2. [Encrypt request](./encryption-request.md) using Cofhejs, returns `InEuint` structure.
 
 > 📝 **Note:** This step happens on the client side before blockchain interaction.
 

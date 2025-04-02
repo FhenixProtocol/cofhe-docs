@@ -1,12 +1,12 @@
 ---
-title: CoFHE.js
+title: Cofhejs
 sidebar_position: 1
 ---
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-# CoFHE.js
+# Cofhejs
 
 | Aspect               | Description                                                                                                                    |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -14,7 +14,7 @@ import TabItem from "@theme/TabItem";
 | **Function**         | Provides functionality to initialize TFHE, generate and manage permits, encrypt input data, and read encrypted data. |
 | **Responsibilities** | Handle primary interactions with FHE enabled contracts and the CoFHE Co-Processor.                                             |
 
-CoFHE.js is the JavaScript library that provides client-side functionality for interacting with CoFHE smart contracts. It handles encryption, decryption, and communication with the blockchain.
+Cofhejs is the JavaScript library that provides client-side functionality for interacting with CoFHE smart contracts. It handles encryption, decryption, and communication with the blockchain.
 
 ## Installation
 
@@ -54,7 +54,7 @@ await cofhejs.initializeWithEthers({
 })
 ```
 
-> Note: _For more information on getting started, take a look at the [**cofhejs getting started**](/docs/devdocs/quick-start/getting-started) guide._
+> Note: _For more information on getting started, take a look at the [**Cofhejs getting started**](/docs/devdocs/quick-start/getting-started) guide._
 
 - Client-side encryption/decryption
 
