@@ -10,6 +10,6 @@ sidebar_position: 1
 We're currently working on our SDK documentation and will share more details in the future.
 
 Stay tuned for comprehensive information about:
-- 🔌 CoFHE.js Integration
+- 🔌 Cofhejs Integration
 - 💼 Browser-based Wallet SDK
 - 🖥️ Browser-based Wallet UI Layout

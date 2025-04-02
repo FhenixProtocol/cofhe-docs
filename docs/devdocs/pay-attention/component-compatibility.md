@@ -13,7 +13,7 @@ This document provides detailed compatibility information for all components in 
 | Component | Current Version | Minimum Compatible Version                                                                | Notes |
 |-----------|----------------|-------------------------------------------------------------------------------------------|-------|
 | **cofhe-contracts** | [`0.0.13`](https://github.com/FhenixProtocol/cofhe-contracts/tree/v0.0.13) ([abi](https://cofhe-docs.s3.us-east-1.amazonaws.com/v0.0.13/index.html)) | [`0.0.13`](https://github.com/FhenixProtocol/cofhe-contracts/tree/v0.0.13) ([abi](https://cofhe-docs.s3.us-east-1.amazonaws.com/v0.0.13/index.html))      | Core smart contracts for FHE operations |
-| **cofhe.js** | [`0.0.1-alpha.14`](https://github.com/FhenixProtocol/cofhejs/releases/tag/v0.0.1-alpha.14) | [`0.0.1-alpha.14`](https://github.com/FhenixProtocol/cofhejs/releases/tag/v0.0.1-alpha.14) | JavaScript library for client-side encryption |
+| **Cofhejs** | [`0.0.1-alpha.14`](https://github.com/FhenixProtocol/cofhejs/releases/tag/v0.0.1-alpha.14) | [`0.0.1-alpha.14`](https://github.com/FhenixProtocol/cofhejs/releases/tag/v0.0.1-alpha.14) | JavaScript library for client-side encryption |
 
 
 ## Network Compatibility

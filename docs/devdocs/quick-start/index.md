@@ -59,7 +59,7 @@ Finally, learn how to write secure and efficient FHE code.
 
 Once you've completed the Quick Start, continue your learning journey with:
 
-- [Complete CoFHE.js Documentation](/docs/category/cofhejs) - Deep dive into the JavaScript SDK
+- [Complete Cofhejs Documentation](/docs/category/cofhejs) - Deep dive into the JavaScript SDK
 - [FHE Library Reference](/docs/devdocs/fhe-library) - Learn about core FHE operations
 - [Solidity API Reference](/docs/devdocs/solidity-api/FHE.md) - Complete reference for the Solidity library
 - [Advanced Tutorials](/docs/category/tutorials) - Learn how to add FHE to existing contracts

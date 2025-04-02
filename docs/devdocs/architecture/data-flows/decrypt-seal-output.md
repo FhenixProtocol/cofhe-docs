@@ -50,7 +50,7 @@ function getNumber() public view returns (euint64) {
 
 > Note: All euints, along with ebool and eaddress, are wrappers around uint256. The data returned from `example.getNumber()` is in the type bigint, and can be treated as a `CtHash` directly
 
-### 📌 Step 2: Integration with CoFHE.js
+### 📌 Step 2: Integration with Cofhejs
 
 1. The decentralized application (dApp) integrates with CoFHE by utilizing **Cofhejs** for encryption.
    [See in GitHub](https://github.com/FhenixProtocol/cofhejs)
