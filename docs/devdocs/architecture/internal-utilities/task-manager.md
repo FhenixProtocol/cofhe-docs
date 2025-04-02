@@ -10,5 +10,5 @@ sidebar_position: 1
 |---------|-------------|
 | **Type** | Contract deployed on the destination blockchain |
 | **Function** | Acts as the on-chain entry point for CoFHE integration |
-| **Responsibilities** | • The Task Manager Contract is called by the dApp contract to execute an FHE operation<br/>• Creates a handle to represent the resulting ciphertext, which will be calculated asynchronously<br/>• Creates structured events from these requests<br/>• Emits the events |
+| Responsibilities | • Initiates FHE operations by serving as the on-chain entry point. The dApp contract calls the FHE.sol library which triggers the TaskManager contract to submit a new encrypted computation task. <br/>• Generates unique handles that act as references to the results of FHE operations. These results are computed asynchronously off-chain. <br/>• Emits structured events containing the unique handle of the ciphertext, operation type, and other required metadata. |
 | **Deployment** | A separate Task Manager Contract is deployed for each supported destination chain, enabling chain-specific integrations |

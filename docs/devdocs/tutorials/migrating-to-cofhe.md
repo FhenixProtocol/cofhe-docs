@@ -45,7 +45,7 @@ This approach is compatible with asynchronous operations and preserves privacy.
 ### 3. Remove `FHE.sealoutput()`
 
 Sealoutput will be available through Cofhejs only, make sure to allow the issuer of the permit, in order to be able to request sealoutput later. \
-For more info see [permit management](../cofhejs/permits-management.md) and [sealing-unsealing](../cofhejs/sealing-unsealing.md)
+For more info see [permit management](/docs/devdocs/cofhejs/permits-management) and [sealing-unsealing](/docs/devdocs/cofhejs/sealing-unsealing)
 
 ```Solidity
     // Transfers an encrypted amount.
@@ -176,7 +176,7 @@ contract WrappingERC20 is ERC20, Permissioned {
 }
 ```
 
-In the above example since allowing the users on every step of the way, the users can use decrypt/sealoutput directly from cofhejs or using fhe.decrypt as above while listening on the event `DecryptResult`.
+In the above example since allowing the users on every step of the way, the users can use decrypt/sealoutput directly from Cofhejs or using fhe.decrypt as above while listening on the event `DecryptResult`.
 
 ## Frontend Fhenix.js to Cofhejs
 

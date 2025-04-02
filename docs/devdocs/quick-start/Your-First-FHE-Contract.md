@@ -1,6 +1,6 @@
 ---
 title: Your First FHE Contract
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Your First FHE Contract
@@ -45,7 +45,7 @@ contract SimpleCounter {
         FHE.allowThis(counter);
     }
 
-    function reset_counter(InEuint64 value) external onlyOwner {
+    function reset_counter(InEuint64 calldata value) external onlyOwner {
         counter = FHE.asEuint64(value);
         FHE.allowThis(counter);
     }
@@ -62,11 +62,16 @@ contract SimpleCounter {
 
         return value;
     }
+
+    function get_encrypted_counter_value() external view returns(euint64) {
+       return counter;
+    }
+    
 }
 ```
 
 To start using FHE, we need to import the FHE library.
-In this example, we're importing the types `euint64` and `InEuint64` from the [FHE library](/docs/devdocs/solidity-api/FHEl).
+In this example, we're importing the types `euint64` and `InEuint64` from the [FHE library](/docs/devdocs/solidity-api/FHE).
 
 
 ```solidity
@@ -108,7 +113,6 @@ In the `reset_counter` function, we receive an `InEuint64` value, which is a typ
 This value is an encrypted value that we created using CoFHE.js (read more about it [here](/docs/devdocs/cofhejs/encryption-operations)).
 
 
-
 Now, let's take a look at the `decrypt_counter` and `get_counter_value` functions.  
 The `decrypt_counter` function creates a new decrypt request for the counter.  
 Since we want to allow users to call `get_counter_value` function at any given time, we need store the handle in the `lastDecryptedCounter` variable.  
@@ -128,34 +132,26 @@ If the result is not ready, we revert the transaction with an error message.
     }
 ```
 
-In this contract, only the owner can request for a decryption, so everyone can read the counter's value at any given time.  
+In this contract, only the owner can request for a decryption. Once requested, everyone can read the counter's value at any given time.  
 The owner needs to send a transaction to the `decrypt_counter`.  
-But what if we want to allow the owner to read the value without sending a transaction every time?  
-For that we need to add call for `FHE.allow(counter, owner)` every time that we change the counter's value.  
-We will also need to change the `get_counter_value` function to return the encrypted counter's value.  
+
+What if we want to allow the owner to privately read the value without sending a transaction that calls `FHE.decrypt`, exposing the counter to everyone?
+
+For that, we need to add call for `FHE.allow(counter, owner)` or `FHE.allowSender(counter)`  every time that we change the counter's value.
+This will allow the owner to read the encrypted counter's value using the `get_encrypted_counter_value` function and decrypt it using Cofhejs.
 
 ```solidity
     function increment_counter() external onlyOwner {
         counter = FHE.add(counter, delta);
         FHE.allowThis(counter);
-        FHE.allow(counter, owner);
+        FHE.allowSender(counter);
     }
 
-    function get_counter_value() external view returns(euint64) {
-        return counter;
+    function get_encrypted_counter_value() external view returns(euint64) {
+       return counter;
     }
 
 ```
-and use CoFHE.js to decrypt the counter's value.
+In the [next section](/docs/devdocs/quick-start/getting-started) we will see how to use Cofhejs to privately decrypt this encrypted contract variable.
 
-```javascript
-    
-    const result = await contract.get_counter_value();
-    const permit = await cofhejs.getPermit({
-        type: "self",
-        issuer: wallet.address,
-    });
-    const decrypted = await cofhejs.decrypt(result, FheTypes.Uint32, permit.data.issuer, permit.data.getHash());
-```
-
-In that case, only the owner can read the counter's value.  
+<span style={{color: "orange", fontStyle: "italic"}}>Exercise:</span> Try to modify the contract to allow the owner to read the counter's value without sending a transaction every time, you will need it in order to make the Cofhejs example work.

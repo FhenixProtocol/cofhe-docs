@@ -11,14 +11,14 @@ import TabItem from "@theme/TabItem";
 | Aspect               | Description                                                                                                                    |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | **Type**             | Typescript Library                                                                                                             |
-| **Function**         | Provides functionality to initialize TFHE, generate and manage permits, encrypt encrypted input data, and read encrypted data. |
+| **Function**         | Provides functionality to initialize TFHE, generate and manage permits, encrypt input data, and read encrypted data. |
 | **Responsibilities** | Handle primary interactions with FHE enabled contracts and the CoFHE Co-Processor.                                             |
 
 CoFHE.js is the JavaScript library that provides client-side functionality for interacting with CoFHE smart contracts. It handles encryption, decryption, and communication with the blockchain.
 
 ## Installation
 
-To get started with cofhejs, you need to install it as a dependency in your JavaScript project. You can do this using npm (Node Package Manager) or Yarn. Open your terminal and navigate to your project's directory, then run the following:
+To get started with Cofhejs, you need to install it as a dependency in your JavaScript project. You can do this using npm (Node Package Manager) or Yarn. Open your terminal and navigate to your project's directory, then run the following:
 
 <Tabs>
   <TabItem value="yarn" label="yarn">
@@ -32,7 +32,7 @@ To get started with cofhejs, you need to install it as a dependency in your Java
   </TabItem>
 </Tabs>
 
-> Note: _For more information on getting started, take a look at the [**cofhejs getting started**](../../cofhejs/getting-started.md) guide._
+> Note: _For more information on getting started, take a look at the [**Cofhejs getting started**](/docs/devdocs/quick-start/getting-started) guide._
 
 ## Key Features
 
@@ -54,7 +54,7 @@ await cofhejs.initializeWithEthers({
 })
 ```
 
-> Note: _For more information on initialization, take a look at the [**cofhejs getting started**](../../cofhejs/getting-started.md) guide._
+> Note: _For more information on getting started, take a look at the [**cofhejs getting started**](/docs/devdocs/quick-start/getting-started) guide._
 
 - Client-side encryption/decryption
 
@@ -81,13 +81,13 @@ Cofhejs exposes a function `encrypt` that takes any data type, any `Encryptable`
 
 Cofhejs automatically fetches two keys from CoFHE, the FHE public key and a CRS. These keys are used during the `encrypt` flow, which prepares encrypted inputs to be used as transaction parameters.
 
-> Note: _Read more about encryption [here](../../cofhejs/encryption-operations.md)_
+> Note: _Read more about encryption [here](/docs/devdocs/cofhejs/encryption-operations)_
 
 - Permits
 
-Permits allow users to access their encrypted data by authenticating the user with an EIP712 signature. Permits can be managed within cofhejs, or they can be managed within a client dApp directly by using the exposed `Permit` class.
+Permits allow users to access their encrypted data by authenticating the user with an EIP712 signature. Permits can be managed within Cofhejs, or they can be managed within a client dApp directly by using the exposed `Permit` class.
 
-> Note: _Read more about permits [here](../../cofhejs/permits-management.md)_
+> Note: _Read more about permits [here](/docs/devdocs/cofhejs/permits-management)_
 
 - Reading encrypted data
 
@@ -98,4 +98,4 @@ const resultHandle = await contract.getSomeEncryptedUint32()
 const unsealed = await cofhejs.unseal(resultHandle, FheTypes.Uint32)
 ```
 
-You can read more about unsealing and the underlying process in the [unsealing data-flow page](../data-flows/decrypt-seal-output.md), and you can read more about `cofhejs.unseal` usage [here](../../cofhejs/sealing-unsealing.md).
+You can read more about unsealing and the underlying process in the [unsealing data-flow page](../data-flows/decrypt-seal-output.md), and you can read more about `cofhejs.unseal` usage [here](/docs/devdocs/cofhejs/sealing-unsealing).

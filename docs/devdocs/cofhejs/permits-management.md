@@ -11,7 +11,7 @@ Permits are a crucial security mechanism in Fhenix that allow users to authentic
 
 ### Basic Integration
 
-In a development environment, permit management can be handled automatically by `cofhejs`. When initialized with a valid provider and signer, the SDK will prompt users to sign a new Permit, granting them access to their encrypted data:
+In a development environment, permit management can be handled automatically by `Cofhejs`. When initialized with a valid provider and signer, the SDK will prompt users to sign a new permit, granting them access to their encrypted data:
 
 ```typescript
 // initialize your web3 provider
@@ -90,9 +90,9 @@ This will trigger the user's wallet to prompt for their signature. Once signed, 
 
 Sharing permits enables users to grant others access to their encrypted data in a secure way. The sharing process involves three steps:
 
-1. Original data owner creates a sharing permit
-2. Owner sends the permit to the recipient
-3. Recipient activates the permit with their signature
+1. Original data owner creates a sharing permit.
+2. Owner sends the permit to the recipient.
+3. Recipient activates the permit with their signature.
 
 ### Implementation
 
@@ -141,9 +141,9 @@ const activateReceivedPermit = async (sharingPermit: Permit) => {
 
 Permits include built-in validation mechanisms:
 
-- **Expiration**: Permits automatically expire after 24 hours (configurable)
-- **Signature Verification**: Ensures permits are only used by authorized parties
-- **Chain Validation**: Permits are bound to specific networks
+- **Expiration**: Permits automatically expire after 24 hours (configurable).
+- **Signature Verification**: Ensures permits are only used by authorized parties.
+- **Chain Validation**: Permits are bound to specific networks.
 
 ### Custom Validators
 

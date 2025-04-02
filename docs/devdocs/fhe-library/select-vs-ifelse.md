@@ -3,21 +3,29 @@ sidebar_position: 4
 title: Conditions
 description: Understanding why if..else isn't possible with FHE and exploring the alternatives
 ---
+## Overview
 
-Writing code with Fully Homomorphic Encryption (FHE) introduces a fundamental shift in how we handle conditionals or branches in our code. As you already know, with FHE, we're operating on encrypted data. This means we can't use typical `if...else` branching structures, because we don't have visibility into the actual values we're comparing.
+Writing smart contracts with Fully Homomorphic Encryption (FHE) changes how we handle conditionals. Since all data is encrypted, we can’t use traditional `if...else` statements—there’s no way to view the values being compared.
 
-Instead, use the `select` function which works like a ternary operator (`condition ? "yes" : "no"`) but for encrypted values.
+Moreover, conditionals in FHE must evaluate both branches simultaneously. This is similar to constant-time cryptographic programming, where branching can leak information through timing attacks—for example, if one path takes longer to execute, an observer could infer which condition was true.
 
-## Quick Example
+## Basic Usage
+To handle encrypted conditionals, Fhenix uses a concept called a selector—a function that takes an encrypted condition and two possible values, returning one based on the encrypted result.
+
+In practice, this is done with the select function. It behaves like a ternary operator (condition ? a : b) but works entirely on encrypted data.
+
+For example, `FHE.select` takes the encrypted ebool returned by `gt`. If `isHigher` represents encrypted true, it returns a; otherwise, it returns b—all without revealing which path was taken.
+
+### Quick Start
 
 ```sol
 euint32 a = FHE.asEuint32(10);
 euint32 b = FHE.asEuint32(20);
 euint32 max;
 
-// Instead of this (won't work):
+// Instead of this (won't work) :
 // diff-remove
-if (a.gt(b)) { // gt returns encrypted boolean (ebool), traditional if..else will result unexpected result
+if (a.gt(b)) { // gt returns encrypted boolean (ebool), traditional if..else won't work as expected
 // diff-remove
    max = a;
 // diff-remove
@@ -33,22 +41,6 @@ ebool isHigher = a.gt(b);
 // diff-add
 max = FHE.select(isHigher, a, b);
 ```
-
-## Why Not If...Else?
-
-There are two main reasons why traditional `if...else` statements don't work with FHE:
-
-1. **Encrypted Data Visibility**: You can't directly inspect encrypted values to make branching decisions
-2. **Timing Attack Prevention**: You need to consider all possible branches simultaneously to prevent timing attacks that could leak information about secret data (It's somewhat akin to writing constant-time cryptographic code, in which you prevent leaking information by obfuscating if your code execution got inside the `if` or the `else`)
-
-## Understanding Selectors
-
-To handle these conditionals, we use a concept called a "selector".
-A selector is a function that takes in a control and two branches, and returns the result of the branch that corresponds to the condition. A selector is like a traffic signal that decides which traffic to let through based on the color of the light (control signal).
-
-In Fhenix, we utilize this by calling the `select` function. It's a function that takes in a condition and two inputs, and returns the input that corresponds to the state of the condition. You can think of this like a ternary boolean conditional (`condition ? "yes" : "no"`), but for encrypted data.
-
-In the example above, `FHE.select` uses the encrypted `ebool` result of `gt`, so if `isHigher` is true (encrypted true, not a plaintext one), it returns `a`, otherwise, it returns `b`.
 
 ## Key Points to Remember
 
