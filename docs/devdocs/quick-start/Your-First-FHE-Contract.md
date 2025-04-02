@@ -107,13 +107,15 @@ observer would know that the new counter is `x + y`.
 
 
 For every encrypted variable, we need to call `FHE.allowThis()` to allow the contract to access it.
-You can read more about this in the [FHE library](/docs/devdocs/fhe-library/acl-mechanism) documentation.
+**Allowing acccess to encrypted variables** is an important concept in FHE-enabled contracts.
+Without it, the contract could not continue to use this encrypted variable in future transactions.
+You can read more about this in the [ACL Mechamnism](/docs/devdocs/fhe-library/acl-mechanism) page.
 ```solidity
     FHE.allowThis(counter);
     FHE.allowThis(delta);
 ```
 
-In the `increment_counter` and `decrement_counter` functions, we use the `FHE.add` and `FHE.sub` functions to increment and decrement the counter, respectively.  
+In the `increment_counter` and `decrement_counter` functions, we use the `FHE.add` and `FHE.sub` functions to increment and decrement the counter, respectively.
 And we also call `FHE.allowThis()` to allow the contract to access the new counter value.
 
 ```solidity
@@ -161,7 +163,6 @@ This will allow the owner to read the encrypted counter's value using the `get_e
     function get_encrypted_counter_value() external view returns(euint64) {
        return counter;
     }
-
 ```
 In the [next section](/docs/devdocs/quick-start/getting-started) we will see how to use Cofhejs to privately decrypt this encrypted contract variable.
 
