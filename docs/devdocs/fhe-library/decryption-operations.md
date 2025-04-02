@@ -12,7 +12,8 @@ We recommend reading more about our unique MPC decryption threshold network [her
 
 ## Understanding Asynchronous Decryption
 
-Decrypt operations like all other FHE operations in CoFHE are executed asynchronously, meaning:
+Like all other FHE operations in CoFHE, decryption is executed asynchronously. 
+This means:
 1. You request decryption
 2. The operation takes some time to complete
 3. The results are being stored on chain, and then you can use them.
@@ -21,7 +22,7 @@ Decrypt operations like all other FHE operations in CoFHE are executed asynchron
 To understand why FHE operations (including decryption) are asynchronous, [read more here](./data-evaluation.md).
 :::
 
-## Decryption in query VS in transaction
+## Decryption in query vs. in transaction
 
 Fhenix provides two primary ways to perform decryption, each suited for different use cases:
 
@@ -74,7 +75,7 @@ The safe method returns both the decrypted value and a boolean indicating whethe
 ### Example 2: Unsafe Decryption
 
 The second way of querying decryption results is using the function `FHE.getDecryptResult(eParam)` .
-It doesn't check readiness for you, and you get no indication to work with. If decryption is ready, you get the decrypted value, otherwise - execution is being reverted. 
+It doesn't check readiness for you, and you get no indication to work with. If decryption is ready, you get the decrypted value, otherwise - the execution is reverted. 
 
 :::warning
 The unsafe method will revert the transaction if the decryption results aren't ready yet.
@@ -104,7 +105,7 @@ See the full working example [here](#full-example-contract)
 
 The unsafe method is simpler but more rigid - it automatically reverts the entire transaction if decryption results aren't ready. This may be suitable for cases where you want to fail fast and don't need custom error handling.
 
-## Decryptions Permissions
+## Decryption Permissions
 
 ## Access Control
 
