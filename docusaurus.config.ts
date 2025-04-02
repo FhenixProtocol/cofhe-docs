@@ -7,7 +7,7 @@ const isPR = process.env.GITHUB_EVENT_NAME === 'pull_request';
 const prNumber = process.env.GITHUB_EVENT_NAME === 'pull_request' ? process.env.GITHUB_EVENT_NUMBER : '';
 
 // Set a fixed baseUrl for GitHub Pages
-const baseUrl = '/cofhe-docs/';
+const baseUrl = '/';
 
 const config: Config = {
   title: 'Fhenix',
