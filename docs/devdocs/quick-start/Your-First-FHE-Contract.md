@@ -99,7 +99,8 @@ We wanted the example contract to be as simple as possible, so readers can plug-
 There are some privacy improvements that could be made to this contract.
 
 <details>
-<summary> Trivial Encryption. </summary>
+<summary> Trivial Encryption </summary>
+
 When we initialize the `delta` and `counter` variables, we use **trivial encryption**.
 **Trivial encryption** produces a ciphertext from a public value, but this
 variable, even though represented as a ciphertext handle, is not really confidential because everyone can see what is the
@@ -108,14 +109,13 @@ plaintext value that went into it.
 So in this case, whenever an increment occurs, an observer can know that the counter which was `x` is now `x + 1`.
 To make it completely private, we need to initialize these variables with an InEuint from the calldata.
 In that case the observer would know that the new counter is `x + y` (but wouldn't know what `x` and `y` are).
-
 </details>
 :::
 
 For every encrypted variable, we need to call `FHE.allowThis()` to allow the contract to access it.
 **Allowing access to encrypted variables** is an important concept in FHE-enabled contracts.
 Without it, the contract could not continue to use this encrypted variable in future transactions.
-You can read more about this in the [ACL Mechamnism](/docs/devdocs/fhe-library/acl-mechanism) page.
+You can read more about this in the [ACL Mechanism](/docs/devdocs/fhe-library/acl-mechanism) page.
 ```solidity
     FHE.allowThis(counter);
     FHE.allowThis(delta);
