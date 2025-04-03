@@ -681,8 +681,16 @@ pre code:has(.code-block-diff-remove-line) {
   filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);
 }
 
+[data-theme='dark'] .DocSearch-Button-Placeholder {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+}
+
 .DocSearch-Search-Icon {
   filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);
+}
+
+[data-theme='dark'] .DocSearch-Search-Icon {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
 }
 
 .ask-cookbook-button {
