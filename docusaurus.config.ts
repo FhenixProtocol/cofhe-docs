@@ -85,8 +85,6 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/Splash.webp',
     colorMode: {
-      defaultMode: 'dark',
-      respectPrefersColorScheme: true,
     },
     navbar: {
       title: 'Fhenix Docs',
