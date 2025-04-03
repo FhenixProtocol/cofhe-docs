@@ -78,7 +78,7 @@ const config: Config = {
   ],
   themeConfig: {
     metadata: [
-      {name: 'keywords', content: 'Fhenix, Blockchain, FHE, Fully Homomorphic Encryption, Layer 2, L2, Coprocessor, Blockchain Technology, Secure Computing, Scalable Blockchain, Decentralized'},
+      {name: 'keywords', content: 'Fhenix, Blockchain, FHE, Cofhe, Threshold Network, Fully Homomorphic Encryption, Layer 2, L2, Coprocessor, Blockchain Technology, Secure Computing, Scalable Blockchain, Decentralized'},
       {name: 'author', content: 'FHE Labs'},
       {name: 'twitter:card', content: 'summary_large_image'}
     ],
@@ -107,8 +107,8 @@ const config: Config = {
         },
         {
           position: 'left',
-          label: 'Getting Started',
-          to: '/docs/devdocs/quick-start',
+          label: 'Tutorials',
+          to: '/docs/indexes/tutorials',
         },
         {
           href: 'https://github.com/fhenixprotocol/',
@@ -137,17 +137,13 @@ const config: Config = {
               to: '/',
             },
             {
-              label: 'Getting Started',
-              to: '/getting-started',
-            },
-            {
               label: 'Developer Docs',
               to: '/docs/devdocs/overview',
             },
-            // {
-            //   label: 'Tutorial',
-            //   to: '/docs/tutorial/intro',
-            // },
+            {
+              label: 'Tutorials',
+              to: '/docs/indexes/tutorials',
+            },
           ],
         },
         {

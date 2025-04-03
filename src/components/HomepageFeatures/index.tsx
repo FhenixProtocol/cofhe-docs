@@ -17,51 +17,51 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Write Your First FHE Contract',
+    title: 'CoFHE Quick Start Guide',
     Svg: require('@site/static/img/fhe-contract-card-image.svg').default,
     description: (
       <>
-
+        A step-by-step guide to writing your first FHE contract
       </>
     ),
-      linkTo: "/docs/devdocs/tutorials/Your-First-FHE-Contract",
+      linkTo: "/docs/devdocs/quick-start",
       buttonTitle: "Build"
   },
   {
-    title: 'Dev Quickstart',
+    title: 'Best Practices',
     Svg: require('@site/static/img/getting-started.svg').default,
     description: (
         <>
-            Start building Solidity Apps using your favorite tools
+            Best practices for writing secure and efficient FHE contracts
         </>
     ),
-    linkTo: "/getting-started",
-    buttonTitle: "Start"
+    linkTo: "/docs/devdocs/quick-start/best-practices",
+    buttonTitle: "View"
   },
   {
-    title: 'Dev Cheatsheet',
+    title: 'Key Considerations',
       Svg: require('@site/static/img/dev.svg').default,
 
       description: (
       <>
-          This doc helps devs ramp up fast for hackathons
+          Key considerations for writing secure and efficient FHE contracts
       </>
     ),
-      linkTo: "https://www.fhenix.io/cheat-sheet",
+      linkTo: "/docs/devdocs/pay-attention",
       buttonTitle: "View"
-  },
-  {
-    title: 'Grant and bounty program',
-      Svg: require('@site/static/img/grant.svg').default,
+  }//,
+  // {
+  //   title: 'Grant and bounty program',
+  //     Svg: require('@site/static/img/grant.svg').default,
 
-    description: (
-      <>
-          Get funds to grow projects & communities in the Fhenix ecosystem
-      </>
-    ),
-      linkTo: "https://www.fhenix.io/grant-program/",
-      buttonTitle: "Get Started"
-  }
+  //   description: (
+  //     <>
+  //         Get funds to grow projects & communities in the Fhenix ecosystem
+  //     </>
+  //   ),
+  //     linkTo: "https://www.fhenix.io/grant-program/",
+  //     buttonTitle: "Get Started"
+  // }
 ];
 
 function Feature({title, Svg, description, linkTo, buttonTitle}: FeatureItem) {
@@ -69,16 +69,16 @@ function Feature({title, Svg, description, linkTo, buttonTitle}: FeatureItem) {
   const svgClassName = colorMode === 'dark' ? `${styles.featureSvg} white-image` : styles.featureSvg;
 
   return (
-      <div className={clsx("card", styles.custom__card)} style={{ height: '100%' }}>  
+      <div className={clsx("card", styles.custom__card)} style={{ height: '100%' , color: colorMode === 'dark' ? '#E6F7FF' : '#003366'}}>  
           <div className="card__body custom__body_flex">
               <div>
                 <Svg className={svgClassName} role="img"/>
               </div>
 
-              <Heading as="h2" className="" style={{ fontSize: 22 }} >{title}</Heading>
+              <Heading as="h2" className="" style={{ fontSize: 22 , color: '#0073E6'}} >{title}</Heading>
               <p>{description}</p>
-              <div className="row" style={{ flex: 1 }}></div>
-              <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+              <div className="row" style={{ flex: 1 , color: '#0073E6'}}></div>
+              <div style={{ width: '100%', display: 'flex', justifyContent: 'center' , color: '#0073E6'}}>
                 <Link
                     className='tutorial-button minimum'
                     to={linkTo}>
@@ -91,34 +91,32 @@ function Feature({title, Svg, description, linkTo, buttonTitle}: FeatureItem) {
 }
 
 export default function HomepageFeatures(): JSX.Element {
+    const { colorMode  } = useColorMode();
     return (
     <section className={styles.features}>
       <div className="container" style={{ marginBottom: "80px"}}>
-          <div className="row">
-              <Heading as="h1" className="text--center margin-bottom--lg margin-left--md orb-font" style={{ fontSize: 40, fontWeight: 'normal' }}>
+          <div className="row" style={{ display: 'flex', justifyContent: 'center' , color: '#0073E6'}}>
+              <Heading as="h1" className="text--center margin-bottom--lg orb-font" style={{ fontSize: 40, fontWeight: 'normal' }}>
                 Useful Links
               </Heading>
           </div>
           {/* style={{ gap: "20px"}} */}
-          <div className="row feature_container" >
+          <div className="row feature_container" style={{ gap: "20px", justifyContent: "center" , color: colorMode === 'dark' ? '#E6F7FF' : '#003366'}}>
             {FeatureList.map((props, idx) => (
                 <div key={idx} className="col col--3"> 
                     <Feature {...props} />
                 </div>
             ))}
           </div>
-          <div className="row" style={{ display: 'flex', justifyContent: 'center', marginTop: '40px'}}>
-            <img src="img/vertical-bullet.webp"/>
-          </div>
-          <div className="row" style={{ display: 'flex', justifyContent: 'center', marginTop: '40px'}}>
-              <Heading as="h1" className="text--center  orb-font" style={{ fontSize: 40, fontWeight: 'normal' }}>
+          <div className="row" style={{ display: 'flex', justifyContent: 'center', marginTop: '40px', color: '#0073E6'}}>
+              <Heading as="h1" className="text--center  orb-font" style={{ fontSize: 40, fontWeight: 'normal', color: '#0073E6'}}>
                 Connect With US
               </Heading>
           </div>
           <div className="row" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: '40px', gap: '20px'}}>
-            <div className={clsx("card", styles.custom__card_1)} style={{ height: '200px', width: '500px', padding: '20px' }}>
+            <div className={clsx("card", styles.custom__card_1)} style={{ height: '200px', width: '500px', padding: '20px' , color: '#0073E6'}}>
               <div className="orb-font" style={{ fontSize: 26, fontWeight: 'bold' }}>Fhenix Developer Updates</div>
-              <div>Stay up-to-date on the latest Fhenix developer news</div>
+              <div style={{ color: colorMode === 'dark' ? '#E6F7FF' : '#003366'}}>Stay up-to-date on the latest Fhenix developer news</div>
               <div className="row" style={{ flex: 1 }}></div>
               <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '10px' }}>
                 <Link
@@ -129,9 +127,9 @@ export default function HomepageFeatures(): JSX.Element {
               </div>
 
             </div>
-            <div className={clsx("card", styles.custom__card_1)} style={{ height: '200px', width: '500px', padding: '20px' }}>
+            <div className={clsx("card", styles.custom__card_1)} style={{ height: '200px', width: '500px', padding: '20px', color: '#0073E6'}}>
             <div className="orb-font" style={{ fontSize: 26, fontWeight: 'bold' }}>Even More Resources</div>
-              <div>Hear from Fhenix co-founders, engineering and research teams, ecosystem projects, and more. Join us!</div>
+              <div style={{ color: colorMode === 'dark' ? '#E6F7FF' : '#003366'}}>Hear from Fhenix co-founders, engineering and research teams, ecosystem projects, and more. Join us!</div>
               <div className="row" style={{ flex: 1 }}></div>
               <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '10px' }}>
                 

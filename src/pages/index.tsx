@@ -42,7 +42,7 @@ function HomepageHeader() {
                           <span style={{ color: colorMode === 'dark' ? '#E6F7FF' : '#003366' }}>Tools and resources to help you build, launch, and grow your app on Fhenix</span>
                           </p>
                       </div>
-                      <div className={clsx("row", styles.ButtonRow)} style={{ marginLeft: -30 }}>
+                      <div className={clsx("row", styles.ButtonRow)} style={{ marginLeft: -30 , gap: '31px'}}>
                           <div className='col col--3'>
                               <Link
                                   className='docs-button minimum'
@@ -53,7 +53,7 @@ function HomepageHeader() {
                           <div className='col col--4'>
                               <Link
                                   className='tutorial-button minimum'
-                                  to="/docs/devdocs/tutorials/Your-First-FHE-Contract">
+                                  to="/docs/indexes/tutorials">
                                   Tutorials
                               </Link>
                           </div>
@@ -71,7 +71,7 @@ function HomepageHeader() {
                       <div className={clsx("row", styles.ButtonRowMobile)}>
                           <Link
                               className='tutorial-button minimum padding'
-                              to="/docs/devdocs/tutorials/Your-First-FHE-Contract">
+                              to="/docs/indexes/tutorials">
                               Tutorials
                           </Link>
                       </div>
