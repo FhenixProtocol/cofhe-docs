@@ -21,10 +21,14 @@
 }
 
 
-.custom__card:hover {
+html[data-theme='light'] .custom__card:hover {
+  background: linear-gradient(180deg, rgba(245, 241, 241, 0.849)0%, rgba(143, 152, 197, 0.2) 100%);
+  box-shadow: 4px 4px 8px rgba(87, 100, 170, 0.3);
+}
+
+html[data-theme='dark'] .custom__card:hover {
   background: linear-gradient(180deg, rgba(87, 100, 170, 0.2) 0%, rgba(143, 152, 197, 0.2) 100%);
   box-shadow: 4px 4px 8px rgba(87, 100, 170, 0.3);
-  color: white;
 }
 
 
@@ -40,7 +44,7 @@
   border-radius: 20.2632px;
   /* justify-content: center; */
 
-  background: rgba(255, 255, 255, 0.05);
+  /* background: rgba(255, 255, 255, 0.05); */
   backdrop-filter: blur(39.0119514465332px);
 
   border: 1px solid #7040C832;
@@ -59,12 +63,22 @@
   border-radius: 20.2632px;
   /* justify-content: center; */
 
-  background: rgba(28, 28, 28, 0.05);
+  /* background: rgba(28, 28, 28, 0.05); */
   backdrop-filter: blur(39.0119514465332px);
 
   border: 1px solid #7040C832;
 }
 
+html[data-theme='light'] .custom__card_1:hover {
+  background: linear-gradient(180deg, rgba(245, 241, 241, 0.849)0%, rgba(143, 152, 197, 0.2) 100%);
+  box-shadow: 4px 4px 8px rgba(87, 100, 170, 0.3);
+}
+
+html[data-theme='dark'] .custom__card_1:hover {
+  background: linear-gradient(180deg, rgba(87, 100, 170, 0.2) 0%, rgba(143, 152, 197, 0.2) 100%);
+  box-shadow: 4px 4px 8px rgba(87, 100, 170, 0.3);
+  color: white;
+}
 
 
 @media  (max-width: 1440px) {

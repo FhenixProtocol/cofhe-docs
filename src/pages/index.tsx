@@ -39,10 +39,10 @@ function HomepageHeader() {
                       <div className="row">
                           {/* <p className="hero__subtitle">{siteConfig.tagline}</p> */}
                           <p className="home__description">
-                          Tools and resources to help you build, launch, and grow your app on Fhenix
+                          <span style={{ color: colorMode === 'dark' ? '#E6F7FF' : '#003366' }}>Tools and resources to help you build, launch, and grow your app on Fhenix</span>
                           </p>
                       </div>
-                      <div className={clsx("row", styles.ButtonRow)} style={{ marginLeft: -30 }}>
+                      <div className={clsx("row", styles.ButtonRow)} style={{ marginLeft: -30 , gap: '31px'}}>
                           <div className='col col--3'>
                               <Link
                                   className='docs-button minimum'
@@ -53,7 +53,7 @@ function HomepageHeader() {
                           <div className='col col--4'>
                               <Link
                                   className='tutorial-button minimum'
-                                  to="/docs/devdocs/tutorials/Your-First-FHE-Contract">
+                                  to="/docs/indexes/tutorials">
                                   Tutorials
                               </Link>
                           </div>
@@ -71,15 +71,15 @@ function HomepageHeader() {
                       <div className={clsx("row", styles.ButtonRowMobile)}>
                           <Link
                               className='tutorial-button minimum padding'
-                              to="/docs/devdocs/tutorials/Your-First-FHE-Contract">
+                              to="/docs/indexes/tutorials">
                               Tutorials
                           </Link>
                       </div>
                   </div>
 
-                  <div className="hide-small-width" style={{marginTop: "-100px"}}>
+                  <div className="hide-small-width" style={{marginTop: "0px"}}>
                   {/* <div className="" style={{marginTop: "-100px"}}> */}
-                  { (colorMode === 'dark') ? <img className="page-cover-image" alt="fhenix stuttershock image" src="img/page-cover-dark-2.webp" style={{maxWidth: '450px'}}/> : <img className="page-cover-image" alt="fhenix stuttershock image" src="img/page-cover-dark-2.webp" style={{maxWidth: '450px'}}/>}
+                  { (colorMode === 'dark') ? <img className="page-cover-image" alt="fhenix stuttershock image" src="img/BookDark.svg" style={{maxWidth: '450px'}}/> : <img className="page-cover-image" alt="fhenix stuttershock image" src="img/BookLight.svg" style={{maxWidth: '450px'}}/>}
                   </div>
               </div>
 
@@ -105,7 +105,7 @@ export default function Home(): JSX.Element {
             <div className="background-circle"></div>
             <HomepageHeader />
             <main>
-                <div style={{ height: '100px' }}></div>
+                <div style={{ height: '100px'}}></div>
                 <HomepageFeatures/>
                 {/* <GettingStartedFrame/> */}
             </main>

@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Pay Attention
+# Key Considerations
 
 > Critical limitations and important considerations when working with CoFHE
 

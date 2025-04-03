@@ -78,7 +78,7 @@ const config: Config = {
   ],
   themeConfig: {
     metadata: [
-      {name: 'keywords', content: 'Fhenix, Blockchain, FHE, Fully Homomorphic Encryption, Layer 2, L2, Coprocessor, Blockchain Technology, Secure Computing, Scalable Blockchain, Decentralized'},
+      {name: 'keywords', content: 'Fhenix, Blockchain, FHE, Cofhe, Threshold Network, Fully Homomorphic Encryption, Layer 2, L2, Coprocessor, Blockchain Technology, Secure Computing, Scalable Blockchain, Decentralized'},
       {name: 'author', content: 'FHE Labs'},
       {name: 'twitter:card', content: 'summary_large_image'}
     ],
@@ -86,30 +86,31 @@ const config: Config = {
     image: 'img/Splash.webp',
     colorMode: {
       defaultMode: 'dark',
+      respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'Fhenix',
+      title: 'Fhenix Docs',
       logo: {
         alt: 'Fhenix',
         src: 'img/logo-black.svg',
         srcDark: 'img/logo-white.svg',
-        href: 'https://fhenix.io',
+        className: 'navbar__logo',
       },
       items: [
-        {
-          position: 'left',
-          label: 'Home',
-          to: '/',
-        },
-        {
-          position: 'left',
-          label: 'Getting Started',
-          to: '/getting-started',
-        },
+        // {
+        //   position: 'left',
+        //   label: 'Home',
+        //   to: '/',
+        // },
         {
           position: 'left',
           label: 'Developer Docs',
           to: '/docs/devdocs/overview',
+        },
+        {
+          position: 'left',
+          label: 'Tutorials',
+          to: '/docs/indexes/tutorials',
         },
         {
           href: 'https://github.com/fhenixprotocol/',
@@ -136,19 +137,18 @@ const config: Config = {
             {
               label: 'Home',
               to: '/',
-            },
-            {
-              label: 'Getting Started',
-              to: '/getting-started',
+              className: 'footer-link-item',
             },
             {
               label: 'Developer Docs',
               to: '/docs/devdocs/overview',
+              className: 'footer-link-item',
             },
-            // {
-            //   label: 'Tutorial',
-            //   to: '/docs/tutorial/intro',
-            // },
+            {
+              label: 'Tutorials',
+              to: '/docs/indexes/tutorials',
+              className: 'footer-link-item',
+            },
           ],
         },
         {
@@ -157,14 +157,17 @@ const config: Config = {
             {
               label: 'Medium',
               href: 'https://medium.com/@Fhenix',
+              className: 'footer-link-item',
             },
             {
               label: 'Discord',
               href: 'https://discord.gg/FuVgxrvJMY',
+              className: 'footer-link-item',
             },
             {
               label: 'Twitter',
               href: 'https://twitter.com/FhenixIO',
+              className: 'footer-link-item',
             },
           ],
         },
@@ -174,6 +177,7 @@ const config: Config = {
             {
               label: 'GitHub',
               href: 'https://github.com/fhenixprotocol',
+              className: 'footer-link-item',
             },
           ],
         },
