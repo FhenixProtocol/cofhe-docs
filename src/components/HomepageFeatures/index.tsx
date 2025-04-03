@@ -69,7 +69,7 @@ function Feature({title, Svg, description, linkTo, buttonTitle}: FeatureItem) {
   const svgClassName = colorMode === 'dark' ? `${styles.featureSvg} white-image` : styles.featureSvg;
 
   return (
-      <div className={clsx("card", styles.custom__card)} style={{ height: '100%' }}>
+      <div className={clsx("card", styles.custom__card)} style={{ height: '100%' }}>  
           <div className="card__body custom__body_flex">
               <div>
                 <Svg className={svgClassName} role="img"/>

@@ -27,7 +27,7 @@ pre code {
   --ifm-color-background: #ffffff;
   --ifm-color-glow: #ffffff;
   --ifm-code-font-size: 95%;
-  --ifm-color-text: #000000;
+  --ifm-color-text: #003366;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --ifm-font-family-base: 'Roboto', sans-serif;
   --ifm-title-color-gradient-1: #17276b;
@@ -55,7 +55,7 @@ pre code {
   --ifm-color-secondary-lighter: #f1f2f5;
   --ifm-color-secondary-lightest: #f5f6f8;
 
-  --ifm-color-text: #ffffff;
+  --ifm-color-text: #E6F7FF;
   --ifm-color-glow: #ffffff;
   /* main background color */
   --ifm-background-color: #161b22 !important;
@@ -242,7 +242,7 @@ pre code {
   border: 1px rgba(79, 79, 79, 0.5) solid;
   background: radial-gradient(circle at 50% -220%, rgba(89, 255, 249, 0.5), transparent 70%),
               radial-gradient(circle at 50% 220%, rgba(147, 130, 255, 0.5) 10%, transparent 100%),
-              #170d26; /* Base color */
+              #0073E6; /* Base color */
   
   color: white; /* Text color */
   font-size: 16px; /* Adjust as necessary */
@@ -255,15 +255,18 @@ pre code {
 }
 
 .docs-button:hover {
+  color: white; /* Text color */
+
   background: radial-gradient(circle at 50% -220%, rgba(89, 255, 249, 0.7), transparent 70%),
-              radial-gradient(circle at 50% 220%, rgba(147, 130, 255, 0.7) 10%, transparent 100%),
-              #170d26; /* Base color */
+              radial-gradient(circle at 50% 220%, rgba(50, 26, 202, 0.7) 10%, transparent 100%),
+              #0073E6; /* Base color */
 
   box-shadow: 0 0 5px rgba(133, 121, 245, 0.3), /* Enhanced outer glow on hover */
               0 0 5px rgba(133, 121, 245, 0.2), /* More diffuse glow */
               inset 0 0 2px rgba(255, 255, 255, 0.3); /* Increased inner highlight */
   /* transition: all  0.2s ease;
   box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.5); */
+
 }
 
 .docs-button.minimum {
@@ -277,9 +280,8 @@ pre code {
 
 .tutorial-button {
   padding: 5px 10px;
-  border: none;
+  border: 1px #E6F7FF solid;
   border-radius: 10px; /* Adjust as necessary for the roundness */
-  border: 1px rgba(255, 255, 255, 0.75) solid;
   
   color: white; /* Text color */
   font-size: 16px; /* Adjust as necessary */
@@ -292,11 +294,15 @@ pre code {
 }
 
 [data-theme='light'] .tutorial-button {
-  filter: invert(100%);
+  color: #003366; /* Text color */
+  border: 1px #003366 solid;
+
 }
 
 [data-theme='dark'] .tutorial-button img {
-  filter: invert(100%);
+  color: #E6F7FF; /* Text color */
+  border: 1px #E6F7FF solid;
+
 }
 
 
@@ -414,7 +420,7 @@ pre code {
   /*background-color: linear-gradient(red 40%, yellow 30%, blue 65%);*/
 
 }
-
+  
 .white-image {
   filter: invert(100%) brightness(200%);
 }

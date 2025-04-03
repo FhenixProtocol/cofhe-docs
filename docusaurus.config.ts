@@ -88,28 +88,27 @@ const config: Config = {
       defaultMode: 'dark',
     },
     navbar: {
-      title: 'Fhenix',
+      title: 'Fhenix Docs',
       logo: {
         alt: 'Fhenix',
         src: 'img/logo-black.svg',
         srcDark: 'img/logo-white.svg',
-        href: 'https://fhenix.io',
       },
       items: [
-        {
-          position: 'left',
-          label: 'Home',
-          to: '/',
-        },
-        {
-          position: 'left',
-          label: 'Getting Started',
-          to: '/getting-started',
-        },
+        // {
+        //   position: 'left',
+        //   label: 'Home',
+        //   to: '/',
+        // },
         {
           position: 'left',
           label: 'Developer Docs',
           to: '/docs/devdocs/overview',
+        },
+        {
+          position: 'left',
+          label: 'Getting Started',
+          to: '/docs/devdocs/quick-start',
         },
         {
           href: 'https://github.com/fhenixprotocol/',
