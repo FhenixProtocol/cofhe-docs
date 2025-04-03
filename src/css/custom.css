@@ -669,10 +669,6 @@ pre code:has(.code-block-diff-remove-line) {
   filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);
 }
 
-.navbar__logo:hover {
-  filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);
-}
-
 .lightToggleIcon_EVe7 {
   filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);
 }
