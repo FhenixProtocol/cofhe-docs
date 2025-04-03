@@ -86,6 +86,7 @@ const config: Config = {
     image: 'img/Splash.webp',
     colorMode: {
       defaultMode: 'dark',
+      respectPrefersColorScheme: true,
     },
     navbar: {
       title: 'Fhenix Docs',
@@ -93,6 +94,7 @@ const config: Config = {
         alt: 'Fhenix',
         src: 'img/logo-black.svg',
         srcDark: 'img/logo-white.svg',
+        className: 'navbar__logo',
       },
       items: [
         // {
@@ -135,14 +137,17 @@ const config: Config = {
             {
               label: 'Home',
               to: '/',
+              className: 'footer-link-item',
             },
             {
               label: 'Developer Docs',
               to: '/docs/devdocs/overview',
+              className: 'footer-link-item',
             },
             {
               label: 'Tutorials',
               to: '/docs/indexes/tutorials',
+              className: 'footer-link-item',
             },
           ],
         },
@@ -152,14 +157,17 @@ const config: Config = {
             {
               label: 'Medium',
               href: 'https://medium.com/@Fhenix',
+              className: 'footer-link-item',
             },
             {
               label: 'Discord',
               href: 'https://discord.gg/FuVgxrvJMY',
+              className: 'footer-link-item',
             },
             {
               label: 'Twitter',
               href: 'https://twitter.com/FhenixIO',
+              className: 'footer-link-item',
             },
           ],
         },
@@ -169,6 +177,7 @@ const config: Config = {
             {
               label: 'GitHub',
               href: 'https://github.com/fhenixprotocol',
+              className: 'footer-link-item',
             },
           ],
         },

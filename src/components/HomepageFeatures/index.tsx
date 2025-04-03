@@ -66,13 +66,13 @@ const FeatureList: FeatureItem[] = [
 
 function Feature({title, Svg, description, linkTo, buttonTitle}: FeatureItem) {
   const { colorMode  } = useColorMode();
-  const svgClassName = colorMode === 'dark' ? `${styles.featureSvg} white-image` : styles.featureSvg;
+  const svgClassName = `${styles.featureSvg} white-image`;
 
   return (
       <div className={clsx("card", styles.custom__card)} style={{ height: '100%' , color: colorMode === 'dark' ? '#E6F7FF' : '#003366'}}>  
           <div className="card__body custom__body_flex">
               <div>
-                <Svg className={svgClassName} role="img"/>
+                <Svg className={svgClassName} role="img" style={{ color: colorMode === 'dark' ? '#E6F7FF' : '#003366' }}/>
               </div>
 
               <Heading as="h2" className="" style={{ fontSize: 22 , color: '#0073E6'}} >{title}</Heading>

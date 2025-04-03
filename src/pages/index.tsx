@@ -105,7 +105,7 @@ export default function Home(): JSX.Element {
             <div className="background-circle"></div>
             <HomepageHeader />
             <main>
-                <div style={{ height: '100px' }}></div>
+                <div style={{ height: '100px'}}></div>
                 <HomepageFeatures/>
                 {/* <GettingStartedFrame/> */}
             </main>
