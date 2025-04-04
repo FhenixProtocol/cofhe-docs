@@ -21,6 +21,9 @@
     "@docusaurus/preset-classic": "3.7.0",
     "@docusaurus/theme-common": "3.7.0",
     "@mdx-js/react": "^3.1.0",
+    "@tsparticles/engine": "^3.8.1",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.8.1",
     "clsx": "^2.1.1",
     "pnpm": "^9.15.9",
     "prism-react-renderer": "^2.4.1",
@@ -28,8 +31,10 @@
     "react-dom": "^18.2.0",
     "react-ga4": "^2.1.0",
     "react-gtm-module": "^2.0.11",
+    "react-tsparticles": "^2.12.2",
     "styled-components": "^6.1.16",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "tsparticles": "^3.8.1"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.7.0",
