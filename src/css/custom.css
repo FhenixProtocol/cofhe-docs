@@ -629,6 +629,14 @@ pre code:has(.code-block-diff-remove-line) {
   filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
 }
 
+.footer__copyright {
+  filter: brightness(0) saturate(100%) invert(14%) sepia(100%) saturate(3774%) hue-rotate(202deg) brightness(19%) contrast(101%);
+}
+
+[data-theme='dark'] .footer__copyright {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+}
+
 .footer__title {
   filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);
 }
@@ -689,17 +697,3 @@ pre code:has(.code-block-diff-remove-line) {
   filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
 }
 
-
-.ask-cookbook-button {
-  filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);
-}
-
-.ask-cookbook-button:hover {
-  filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);
-}
-
-.sc-l6simb-0.sc-qto0mo-1.iYSVKA.bImFPe {
-  filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);
-}
-
-/* <button class="sc-l6simb-0 sc-qto0mo-1 iYSVKA bImFPe" id="ask-cookbook-button" part="ask-cookbook-button" style="margin-left: 5px; margin-right: 5px; border: none;"></button> */
