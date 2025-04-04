@@ -57,7 +57,7 @@ function getNumber() public view returns (euint64) {
 
 2. [Create a permit](../../cofhejs/permits-management.md) using `cofhejs.createPermit(...)`. This permit will automatically be used in the following step.
 
-3. [Unseal](./sealing-unsealing.md) using `cofhejs.unseal(CtHash)`. Calls `/sealoutput` on the threshold network, unseals the result.
+3. [Unseal](../../cofhejs/sealing-unsealing.md) using `cofhejs.unseal(CtHash)`. Calls `/sealoutput` on the threshold network, unseals the result.
 
 ### 📌 Step 3 (Handled by cofhejs.unseal): https://\{ThresholdNetworkUrl\}/sealoutput
 
