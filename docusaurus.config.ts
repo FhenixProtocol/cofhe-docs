@@ -173,6 +173,11 @@ const config: Config = {
           title: 'More',
           items: [
             {
+              label: 'Fhenix',
+              href: 'https://fhenix.io',
+              className: 'footer-link-item',
+            },
+            {
               label: 'GitHub',
               href: 'https://github.com/fhenixprotocol',
               className: 'footer-link-item',
