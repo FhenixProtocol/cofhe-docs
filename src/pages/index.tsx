@@ -29,7 +29,7 @@ function HomepageHeader() {
   const { colorMode  } = useColorMode();
 
   return (
-      <header style={{ zIndex: 1, position: 'absolute' }} className={clsx('hero hero--primary', styles.heroBanner)}>
+      <header style={{ zIndex: 1, position: 'relative' }} className={clsx('hero hero--primary', styles.heroBanner)}>
           <div className="container">
               <div className="row" style={{ display: 'flex', justifyContent: 'space-between'}}>
                   {/*<div className={styles.container2}>*/}
@@ -178,7 +178,7 @@ export default function Home(): JSX.Element {
             },
         },
         detectRetina: true,
-        fullScreen: { enable: false },
+        fullScreen: { enable: true },
     }), []);
 
     return (
@@ -200,7 +200,7 @@ export default function Home(): JSX.Element {
                 />
             )}
             <HomepageHeader />
-            <main style={{ position: 'absolute', zIndex: 1 , top: 300}}>
+            <main style={{ position: 'relative', zIndex: 1}}>
                 <div style={{ height: '100px'}}></div>
                 <HomepageFeatures/>
             </main>
