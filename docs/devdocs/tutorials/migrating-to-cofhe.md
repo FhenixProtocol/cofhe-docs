@@ -195,7 +195,7 @@ await cofhejs.initializeWithEthers({
 	// diff-add
 	signer,
 	// diff-add
-	environment: 'LOCAL',
+	environment: 'TESTNET',
 	// diff-add
 })
 ```

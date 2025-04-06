@@ -3,18 +3,18 @@ title: Getting Started with Cofhejs
 sidebar_position: 4
 description: Setup instructions for cofhejs
 ---
+
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-
 
 ## Overview
 
 Cofhejs is a TypeScript package designed to enable seamless interaction between clients and the Fhenix's co-processor (CoFHE). It is an essential component for engineers working with FHE-enabled smart contracts, as it facilitates the encryption and decryption processes required for secure data handling in decentralized applications (dApps). Cofhejs ensures that data remains private throughout its journey from input to output in the blockchain ecosystem.
 FHE-enabled contracts require three primary modifications to the client/frontend:
 
-* Encrypting Input Data: Before passing data to the smart contract, input must be encrypted to ensure its confidentiality. To read more about encrypted inputs, go [here](/docs/devdocs/cofhejs/encryption-operations).
-* Creating Permits and Permissions: The client must generate permits and permissions that determine who can interact with or view the data. Read more about [permits](/docs/devdocs/cofhejs/permits-management).
-* Unsealing Output Data: After the contract processes the data, the client must decrypt the output for it to be used or displayed. For more, refer to our page on [sealing and unsealing](/docs/devdocs/cofhejs/sealing-unsealing).
+- Encrypting Input Data: Before passing data to the smart contract, input must be encrypted to ensure its confidentiality. To read more about encrypted inputs, go [here](/docs/devdocs/cofhejs/encryption-operations).
+- Creating Permits and Permissions: The client must generate permits and permissions that determine who can interact with or view the data. Read more about [permits](/docs/devdocs/cofhejs/permits-management).
+- Unsealing Output Data: After the contract processes the data, the client must decrypt the output for it to be used or displayed. For more, refer to our page on [sealing and unsealing](/docs/devdocs/cofhejs/sealing-unsealing).
 
 Cofhejs allows encryption to begin and end privately in a dApp, while FHE-enabled contracts do work on and with these encrypted values.
 
@@ -31,7 +31,6 @@ When users want to add a value to their counter, say "5," they first place this 
 ### Retrieving the User's Counter
 
 To retrieve the counter value, the user needs to read the data inside the box without breaking the encryption. Here’s the clever part: the user sends a second “lock” (their own public key) along with the request to read its data. This second lock is applied to the box while Fhenix removes its own lock (the Co-Processor's public key), leaving the box secured by only the user’s public key. The box remains locked and the data remains private, but now only the user can open it using its private key.
-
 
 ## Installation
 
@@ -75,9 +74,10 @@ Below is an example setup:
       await cofhejs.initializeWithEthers({
           ethersProvider: provider,
           ethersSigner: wallet,
-          environment: "LOCAL",
+          environment: "TESTNET",
       });
       ```
+
   </TabItem>
   <TabItem value="web" label="Browser">
     ```javascript
@@ -92,9 +92,10 @@ Below is an example setup:
     await cofhejs.initializeWithEthers({
         ethersProvider: provider,
         ethersSigner: wallet,
-        environment: "LOCAL",
+        environment: "TESTNET",
     });
     ```
+
   </TabItem>
 </Tabs>
 
@@ -129,6 +130,7 @@ By encrypting user data before sending it to a contract, Fhenix ensures that dat
 After encryption, values can be passed into FHE-enabled smart contracts, and the contract can operate on this data securely, within its own logic. However, to ensure that only the respective user can view the processed (encrypted) data, **permissions** and **sealing** mechanisms are used. These ensure that data remains private and viewable exclusively by the user who owns it. Learn more at [Permits Management](/docs/devdocs/cofhejs/permits-management) and [Sealing and Unsealing](/docs/devdocs/cofhejs/sealing-unsealing).
 
 Permissions serve two main purposes:
+
 - **Verify User Identity**: They ensure that the data access request comes from the correct user by verifying that the message is signed with the user's private key.
 - **Sealing User Data**: They provide a **public key** to "seal" the encrypted data, meaning it is encrypted in such a way that only the user holding the corresponding **private key** (stored securely on the user's client) can decrypt it later.
 
@@ -136,13 +138,13 @@ Permissions serve two main purposes:
 Fhenix uses **EIP712**, a widely used Ethereum standard for signing structured data. This means: first, a user must sign a permit in their wallet to authenticate themselves and authorize the creation of the permit; second, permits are stored locally in local storage and can be reused for future interactions with the same contract. Currently, each contract that the user interacts with requires its own unique permit (subject to change).
 :::
 
- Here's the code for this process:
+Here's the code for this process:
 
 ```javascript
 const permit = await cofhejs.createPermit({
-    type: "self",
-    issuer: wallet.address,
-});
+	type: 'self',
+	issuer: wallet.address,
+})
 ```
 
 ## Unsealing Data
@@ -155,12 +157,12 @@ Here's example code to show how the unsealing process works:
 
 ```javascript
 const permit = await cofhejs.getPermit({
-    type: "self",
-    issuer: wallet.address,
-});
+	type: 'self',
+	issuer: wallet.address,
+})
 
-const result = await contract.getSomeEncryptedValue();
-const unsealed = await cofhejs.unseal(result, FheTypes.Uint32, permit.data.issuer, permit.data.getHash());
+const result = await contract.getSomeEncryptedValue()
+const unsealed = await cofhejs.unseal(result, FheTypes.Uint32, permit.data.issuer, permit.data.getHash())
 ```
 
 ## End-to-End Example
@@ -179,57 +181,58 @@ const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
 
 // initialize cofhejs Client with ethers (see cofhejs docs for viem)
 await cofhejs.initializeWithEthers({
-    ethersProvider: provider,
-    ethersSigner: wallet,
-    environment: "LOCAL",
+ethersProvider: provider,
+ethersSigner: wallet,
+environment: "TESTNET",
 });
 
 const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, wallet);
 
 const logState = (state) => {
-    console.log(`Log Encrypt State :: ${state}`);
+console.log(`Log Encrypt State :: ${state}`);
 };
 
 const readCounterDecryptedValue = async () => {
-    try {   
-        const result = await contract.get_counter_value();
-        console.log("readCounterDecryptedValue result:", result);
-    } catch (error) {
-        console.error("Error reading from contract:", error);
-    }
+try {  
+ const result = await contract.get_counter_value();
+console.log("readCounterDecryptedValue result:", result);
+} catch (error) {
+console.error("Error reading from contract:", error);
+}
 }
 
 const readCounterEncryptedValue = async () => {
-    const result = await contract.get_encrypted_counter_value();
-    console.log("Result:", result);
+const result = await contract.get_encrypted_counter_value();
+console.log("Result:", result);
 
     // Let's create a permit to unseal the encrypted value
     const permit = await cofhejs.createPermit({
         type: "self",
         issuer: wallet.address,
-    });    
+    });
 
     // When creating a permit cofhejs will use it automatically, but you can pass it manually as well
     const unsealed = await cofhejs.unseal(result, FheTypes.Uint64, permit.data.issuer, permit.data.getHash());
     console.log(unsealed);
-}        
+
+}
 
 const incrementCounter = async () => {
-    const tx = await contract.increment_counter();
-    console.log("incrementCounter tx hash:", tx.hash);
-    await tx.wait();
+const tx = await contract.increment_counter();
+console.log("incrementCounter tx hash:", tx.hash);
+await tx.wait();
 }
 
 const resetCounter = async (value) => {
-    const tx = await contract.reset_counter(value);
-    console.log("resetCounter tx hash:", tx.hash);
-    await tx.wait();
+const tx = await contract.reset_counter(value);
+console.log("resetCounter tx hash:", tx.hash);
+await tx.wait();
 }
 
 const decryptCounter = async () => {
-    const tx = await contract.decrypt_counter();
-    console.log("decryptCounter tx hash:", tx.hash);
-    await tx.wait();
+const tx = await contract.decrypt_counter();
+console.log("decryptCounter tx hash:", tx.hash);
+await tx.wait();
 }
 
 // Value not ready (when running this script for the first time)
@@ -248,11 +251,13 @@ await decryptCounter();
 // Result should be 2
 await readCounterDecryptedValue();
 
-const encryptedValues = await cofhejs.encrypt(logState, [Encryptable.uint64(10n)]);            
+const encryptedValues = await cofhejs.encrypt(logState, [Encryptable.uint64(10n)]);  
 await resetCounter(encryptedValues.data[0]);
 
 // Result should be 10
 await readCounterEncryptedValue();
+
 ```
   </TabItem>
 </Tabs>
+```
