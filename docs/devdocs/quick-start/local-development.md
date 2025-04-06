@@ -1,96 +1,229 @@
 ---
 title: Local Development Setup
 sidebar_position: 2
-description: Setting up your local development environment with and without Threshold Network
+description: Setting up your local development environment for Fhenix development
 ---
+
 # Local Development Setup
 
 ## Overview
 
-This guide explains how to set up a local development environment for Fhenix, which consists of several key components working together to provide a complete development experience.
+This guide explains how to set up your local development environment for building FHE (Fully Homomorphic Encryption) smart contracts with Fhenix. This starter kit provides everything you need to develop, test, and deploy FHE contracts both locally and on Fhenix test networks.
 
-The full Fhenix local environment includes:
-- **Preprocessor**: Generates cryptographic keys and preprocessing data
-- **CoFHE Nodes**: Host chain and registry chain for blockchain functionality
-- **FHEOS Server**: Core service for FHE operations
-- **Threshold Decryption Network**: Distributed decryption network
-- **ZK Verifier**: Zero-knowledge verification service
+The Fhenix development environment consists of several key components:
 
-## ▶️🏃‍➡️ How to run  ▶️🏃‍➡️
+- **cofhe-hardhat-starter**: Base project with example contracts and configuration
+- **cofhe-hardhat-plugin**: Hardhat plugin for FHE-specific functionality
+- **cofhejs**: JavaScript library for interacting with FHE contracts
+- **cofhe-mock-contracts**: Mock implementations for local testing
 
-1. Clone the CoFHE repository (it contains all the needed config files and etc)
+## Prerequisites
+
+Before starting, ensure you have:
+
+- Node.js (v18 or later)
+- pnpm (recommended package manager)
+- Basic familiarity with Hardhat and Solidity
+
+## Installation
+
+1. Clone the repository:
 
 ```bash
-> git clone git@github.com:FhenixProtocol/cofhe.git
-> cd cofhe
-> docker compose up -d
+git clone https://github.com/fhenixprotocol/cofhe-hardhat-starter.git
+cd cofhe-hardhat-starter
 ```
 
-2. Alternatively, you can use custom configuration paths:
+2. Install dependencies:
 
 ```bash
-> CONFIG_DIR=/path_to_local_configs_folder \
-KEYS_PATH=/path_to_local_keys_folder \
-docker compose up -d
+pnpm install
 ```
 
-## 🐳 Docker-compose setup 🐳
+## Project Structure
 
-The docker-compose configuration that you just ran creates the components which perform the following actions:
+- `contracts/`: Smart contract source files
+  - `Counter.sol`: Example FHE counter contract
+- `test/`: Test files for your contracts
+- `tasks/`: Hardhat tasks for deployment and interaction
+- `hardhat.config.ts`: Network and plugin configuration
 
-### 1. Preprocessor
-Generates keys and preprocessed data for the decryption threshold network.
-- Automatically skips if keys already exist in the mounted folder.
-- To force new key creation, add `--force-creation` to the preprocessor command in docker-compose.yml:
-  `preprocessor --runtime-config test --force-creation &&`.
-- Initial key generation takes approximately 2-4 minutes, and subsequent containers will wait for this step to complete.
+## Key Components
 
-### 2. CoFHE Nodes and Services
-- Two blockchain nodes initialize while keys are being generated.
-- After successful key generation, the `fheos_server` starts.
-- The Middleware container follows, deploying contracts and starting the Aggregator.
+### 1. cofhe-hardhat-plugin
 
-### 3. Threshold Decryption Network
-- RabbitMQ messaging service deploys first.
-- Once RabbitMQ is ready, Dispatcher and Coordinator services initialize.
-- After key generation completes, Party Member services (PMs) start and load keys from the shared volume.
+This plugin provides essential tools for developing FHE contracts:
 
-### 4. ZK Verifier
-- Relies on the generated cryptographic keys.
-- Exposes the signer's public key.
-- Requires appropriate access permissions to the keys folder.
+- **Network Configuration**: Automatically configures supported networks
+- **Testing Utilities**: Helpers for testing FHE contracts
+- **Mock Integration**: Sets up mock contracts for local testing
 
-## 🌐 Networking 🌐 
+### 2. cofhejs
 
-:::note[Note]
-The docker compose configuration uses `"network_mode: host"` for simplicity.
-If this doesn't work for your environment, you can define a custom docker network and use the exposed ports specified in the docker-compose files.
-:::
+The JavaScript library for working with FHE contracts:
 
-## ⚙️ Advanced Configurations ⚙️
-<details>
-<summary> Optional: The default setup should work, but you can further configure it if needed. </summary>
+- **Encrypt/Decrypt**: Encrypt data to send to contracts and decrypt results
+- **Unsealing**: Unseal encrypted values from the blockchain
+- **Permit Management**: Handle secure contract interactions
 
-This local setup requires multiple configuration files, which are included in the CoFHE repository at:
-https://github.com/FhenixProtocol/cofhe/tree/master/localcofhenix/configs
+Example usage:
 
-Your configuration folder (`CONFIG_DIR`) should contain:
-1. `config.toml` - Used by Dispatcher and Coordinator
-2. `pm_config_00-0x.toml` - Used by Party Members (each PM uses its own config file)
-3. `zk_verifier_config.toml` - Used by the ZK Verifier
+```typescript
+// Initialize with your signer
+await cofhejs_initializeWithHardhatSigner(signer)
 
-</details>
+// Encrypt a value
+const [encryptedInput] = await cofhejs.encrypt((step) => console.log(`Encrypt step - ${step}`), [Encryptable.uint32(5n)])
 
+// Decrypt a value from a contract
+const decryptedResult = await cofhejs.decrypt(encryptedValue, FheTypes.Uint32)
 
-## 🔑 Keys 🔑
-After the preprocessor container finishes successfully, your `KEYS_PATH` (or `./localcofhenix/keys` if not specified) will contain the cryptographic keys required by the FHEOS server, Party Members, ZK Verifier, and other components.
+// Unseal an encrypted value
+const unsealedResult = await cofhejs.unseal(encryptedValue, FheTypes.Uint32)
+```
 
-## 🔧 Troubleshooting 🔧
-- If services fail to start, check that the preprocessor completed successfully.
-- Some services may require a restart if they attempt to access keys before generation is complete.
-- If you need to restart the Middleware container, be aware that contract redeployments may occur and break stuff. In this case:
-  1. Stop the Middleware container
-  2. Restart the blockchain nodes
-  3. Restart the Middleware container
-- Review the container logs for specific error messages using `docker logs [container_name]`.
-- Ensure you have sufficient system resources (CPU, memory) for running the full stack.
+### 3. cofhe-mock-contracts
+
+These contracts provide mock implementations for FHE functionality:
+
+- Allows testing without actual FHE operations
+- Simulates the behavior of the real FHE environment
+- Stores plaintext values on-chain for testing purposes
+
+## Development Environments
+
+Fhenix supports multiple development environments:
+
+1. **MOCK Environment**:
+
+   - Fastest development cycle
+   - No external dependencies
+   - Uses mock contracts to simulate FHE operations
+
+2. **Sepolia Testnet**:
+   - Public testnet for real FHE operations
+   - Requires ETH from the Sepolia faucet
+   - Available on Ethereum Sepolia and Arbitrum Sepolia
+
+## Local Development Workflow
+
+### 1. Writing FHE Smart Contracts
+
+FHE contracts use special encrypted types and operations from the FHE library:
+
+```solidity
+// Example from Counter.sol
+import "@fhenixprotocol/cofhe-contracts/FHE.sol";
+
+contract Counter {
+    euint32 public count;  // Encrypted uint32
+
+    function increment() public {
+        count = FHE.add(count, FHE.asEuint32(1));
+        FHE.allowThis(count);
+        FHE.allowSender(count);
+    }
+
+    // More functions...
+}
+```
+
+Key concepts:
+
+- `euint32`, `ebool` - Encrypted data types
+- `FHE.add`, `FHE.sub` - Operations on encrypted values
+- `FHE.allowThis`, `FHE.allowSender` - Permission management
+
+### 2. Testing with Mock Environment
+
+For rapid development, use the mock environment:
+
+```bash
+pnpm test
+```
+
+This runs your tests with mock FHE operations, allowing quick iteration without external dependencies.
+
+Example test:
+
+```typescript
+it('Should increment the counter', async function () {
+	const { counter, bob } = await loadFixture(deployCounterFixture)
+
+	// Check initial value
+	const count = await counter.count()
+	await mock_expectPlaintext(bob.provider, count, 0n)
+
+	// Increment counter
+	await counter.connect(bob).increment()
+
+	// Check new value
+	const count2 = await counter.count()
+	await mock_expectPlaintext(bob.provider, count2, 1n)
+})
+```
+
+### 3. Deploying to Testnet
+
+When ready for more realistic testing, deploy to a Sepolia testnet:
+
+1. Create a `.env` file with your private key and RPC URLs:
+
+```
+PRIVATE_KEY=your_private_key_here
+SEPOLIA_RPC_URL=your_sepolia_rpc_url
+ARBITRUM_SEPOLIA_RPC_URL=your_arbitrum_sepolia_rpc_url
+```
+
+2. Deploy your contract:
+
+```bash
+# For Ethereum Sepolia
+pnpm eth-sepolia:deploy-counter
+
+# For Arbitrum Sepolia
+pnpm arb-sepolia:deploy-counter
+```
+
+3. Interact with your deployed contract:
+
+```bash
+# For Ethereum Sepolia
+pnpm eth-sepolia:increment-counter
+
+# For Arbitrum Sepolia
+pnpm arb-sepolia:increment-counter
+```
+
+## Creating Custom Tasks
+
+You can create custom Hardhat tasks for your contracts in the `tasks/` directory:
+
+```typescript
+task('my-custom-task', 'Description of your task').setAction(async (_, hre: HardhatRuntimeEnvironment) => {
+	const { ethers } = hre
+
+	// Your task logic here...
+
+	// Initialize cofhejs with a signer
+	const [signer] = await ethers.getSigners()
+	await cofhejs_initializeWithHardhatSigner(signer)
+
+	// Interact with your contract
+	// ...
+})
+```
+
+## Best Practices
+
+1. **Start with Mock Environment**: Begin development using mock contracts for faster iteration.
+2. **Test Thoroughly**: Write comprehensive tests for both mock and testnet environments.
+3. **Permission Management**: Always set proper permissions with `FHE.allowThis` and `FHE.allowSender`.
+4. **Error Handling**: Handle decryption delays with proper retry mechanisms.
+5. **Gas Optimization**: Be aware that FHE operations cost more gas than standard operations.
+
+## Resources
+
+- [Fhenix Documentation](https://docs.fhenix.zone)
+- [cofhejs GitHub](https://github.com/FhenixProtocol/cofhejs)
+- [CoFHE Contracts GitHub](https://github.com/FhenixProtocol/cofhe-contracts)
