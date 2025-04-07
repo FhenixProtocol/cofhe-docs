@@ -1,76 +1,268 @@
 ---
-sidebar_position: 1
-title: Quick Start Guide
-description: Begin your journey with CoFHE to build privacy-preserving blockchain applications
+title: Local Development Setup
+sidebar_position: 2
+description: Setting up your local development environment for Fhenix development
 ---
 
-# CoFHE Quick Start Guide
+# Quick Start
 
-Welcome to the CoFHE Quick Start Guide! This guide will take you through a carefully designed learning path to build privacy-preserving applications using Fully Homomorphic Encryption (FHE) on Ethereum and other EVM-compatible chains.
 
-## Your Learning Path
+This guide explains how to set up your local development environment for building FHE (Fully Homomorphic Encryption) smart contracts with CoFHE. This starter kit provides everything you need to develop, test, and deploy FHE contracts both locally and on test networks.
 
-We've designed this Quick Start section as a progressive journey from fundamentals to application:
+The Fhenix development environment consists of several key components:
 
-### 1. Local Development Setup
+- **cofhe-hardhat-starter**: Template hardhat project intended to be cloned and used as a starting point.
+- **cofhe-hardhat-plugin**: Hardhat plugin that deploys the `cofhe-mock-contracts` and exposes utilities.
+- **Cofhejs**: JavaScript library for interacting with FHE contracts and the CoFHE coprocessor.
+- **cofhe-mock-contracts**: Mock contracts that mimic the behavior of the CoFHE coprocessor, used only for local testing.
+- **cofhe-contracts**: Solidity Libraries and Smart contracts for FHE operations.
 
-First, you'll set up a local development environment to build and test your FHE applications.
+## Prerequisites
 
-**What you'll learn:**
+Before starting, ensure you have:
 
-- How to set up a complete local Fhenix environment with the cofhe-hardhat-starter kit
-- Understanding key components: cofhe-hardhat-plugin, cofhejs, and cofhe-mock-contracts
-- Writing and testing FHE smart contracts using mock environments
-- Deploying to Sepolia testnets for more realistic testing
+- Node.js (v20 or later)
+- pnpm (recommended package manager)
+- Basic familiarity with Hardhat and Solidity
 
-The Fhenix development environment provides everything you need to develop, test, and deploy FHE contracts both locally and on Fhenix test networks.
+## Installation
 
-→ [Set Up Local Development](/docs/devdocs/quick-start/local-development)
+1. Clone the `cofhe-hardhat-starter` [repo](https://github.com/fhenixprotocol/cofhe-hardhat-starter):
 
-### 2. Your First FHE Contract
+```bash
+git clone https://github.com/fhenixprotocol/cofhe-hardhat-starter.git
+cd cofhe-hardhat-starter
+```
 
-Next, you'll build a simple encrypted counter contract to understand FHE on the smart contract side.
+2. Install dependencies:
 
-**What you'll learn:**
+```bash
+pnpm install
+```
 
-- How to define and work with encrypted data types
-- Performing operations on encrypted values
-- Access control and permissions
-- Asynchronous decryption process
+## Project Structure
 
-→ [Build Your First FHE Contract](/docs/devdocs/quick-start/Your-First-FHE-Contract)
+The starter kit provides a well-organized directory structure to help you get started quickly:
 
-### 3. Getting Started with Cofhejs
+- `contracts/`: Contains all your Solidity smart contract source files.
+  - `Counter.sol`: An example FHE-enabled counter contract that demonstrates basic FHE operations.
+- `test/`: Houses tests that utilize cofhejs and utilities to interact with FHE-enabled contracts.
+- `tasks/`: Tasks to deploy and interact with the Counter contract on Arbitrum Sepolia.
+- `hardhat.config.ts`: Imports the CoFHE hardhat plugin to deploy mock contracts.
 
-Next, you'll learn how to use the JavaScript SDK to interact with FHE-enabled contracts.
+## Local Development Workflow
 
-**What you'll learn:**
+### 1. Writing FHE Smart Contracts
 
-- The mental model behind encrypted data processing
-- How to set up cofhejs in your project
-- Core operations: encryption, permits, and unsealing
-- Local development environment configuration
+FHE contracts use special encrypted types and operations from the [FHE library](../fhe-library/index.md):
 
-→ [Begin with Cofhejs Setup](/docs/devdocs/quick-start/getting-started)
+Example from [Counter.sol](https://github.com/FhenixProtocol/cofhe-hardhat-starter/blob/main/contracts/Counter.sol):
+```solidity
+import "@fhenixprotocol/cofhe-contracts/FHE.sol";
 
-### 4. Best Practices
+contract Counter {
+    euint32 public count;  // Encrypted uint32
 
-Finally, learn how to write secure and efficient FHE code.
+    function increment() public {
+        count = FHE.add(count, FHE.asEuint32(1));
+        FHE.allowThis(count);
+        FHE.allowSender(count);
+    }
 
-**What you'll learn:**
+    // More functions...
+}
+```
 
-- Security considerations for FHE
-- Performance optimization techniques
+Key FHE Concepts & Documentation References
+- `euint32`, `ebool` - [Encrypted data types](../fhe-library/data-evaluation.md)
+- `FHE.add`, `FHE.sub` - [FHE Operations on encrypted values](../fhe-library/fhe-encrypted-operations.md)
+- `FHE.allowThis`, `FHE.allowSender` - [Access Control Management](../fhe-library/acl-mechanism.md)
 
-→ [Apply Best Practices](/docs/devdocs/quick-start/best-practices)
+### 2. Testing with Mock Environment
 
-## Next Steps After Quick Start
+For rapid development, use the mock environment:
 
-Once you've completed the Quick Start, continue your learning journey with:
+```bash
+pnpm test
+```
 
-- [Complete Cofhejs Documentation](/docs/category/cofhejs) - Deep dive into the JavaScript SDK
-- [FHE Library Reference](/docs/devdocs/fhe-library) - Learn about core FHE operations
-- [Solidity API Reference](/docs/devdocs/solidity-api/FHE.md) - Complete reference for the Solidity library
-- [Advanced Tutorials](/docs/category/tutorials) - Learn how to add FHE to existing contracts
+This runs your tests with mock FHE operations, allowing quick iteration without external dependencies.
 
-Ready to start building the future of privacy-preserving applications? Let's begin!
+Example test:
+
+```typescript
+it('Should increment the counter', async function () {
+	const { counter, bob } = await loadFixture(deployCounterFixture)
+
+	// Check initial value
+	const count = await counter.count()
+	await mock_expectPlaintext(bob.provider, count, 0n)
+
+	// Increment counter
+	await counter.connect(bob).increment()
+
+	// Check new value
+	const count2 = await counter.count()
+	await mock_expectPlaintext(bob.provider, count2, 1n)
+})
+```
+
+### 3. Deploying to Testnet
+
+When ready for more realistic testing, deploy to a Sepolia testnet:
+
+1. Create a `.env` file with your private key and RPC URLs:
+
+```
+PRIVATE_KEY=your_private_key_here
+SEPOLIA_RPC_URL=your_sepolia_rpc_url
+ARBITRUM_SEPOLIA_RPC_URL=your_arbitrum_sepolia_rpc_url
+```
+
+2. Deploy your contract:
+
+```bash
+# For Ethereum Sepolia
+pnpm eth-sepolia:deploy-counter
+
+# For Arbitrum Sepolia
+pnpm arb-sepolia:deploy-counter
+```
+
+3. Interact with your deployed contract:
+
+```bash
+# For Ethereum Sepolia
+pnpm eth-sepolia:increment-counter
+
+# For Arbitrum Sepolia
+pnpm arb-sepolia:increment-counter
+```
+
+## Creating Custom Tasks
+
+You can create custom Hardhat tasks for your contracts in the `tasks/` directory:
+
+Task example for [increment-counter](https://github.com/FhenixProtocol/cofhe-hardhat-starter/blob/main/tasks/counter-tasks.ts)
+```typescript
+task("increment-counter", "Increment the counter on the deployed contract")
+  .setAction(async (_, hre: HardhatRuntimeEnvironment) => {
+    const { ethers, network } = hre;
+
+	// Your task logic here...
+
+  // Get the signer
+    const [signer] = await ethers.getSigners();
+    console.log(`Using account: ${signer.address}`);
+    await cofhejs_initializeWithHardhatSigner(signer);
+
+	// Interact with your contract
+	// ...
+})
+```
+
+## Key Components
+
+### 1. cofhe-hardhat-plugin
+
+This plugin provides essential tools for developing FHE contracts:
+
+- **Network Configuration**: Automatically configures [supported networks](../pay-attention/component-compatibility.md)
+- **Testing Utilities**: Helpers for testing FHE contracts
+- **Mock Integration**: Sets up mock contracts for local testing
+
+### 2. Cofhejs
+
+The JavaScript library for working with FHE contracts:
+
+- **Encrypt/Decrypt**: Encrypt data to send to contracts and decrypt results.
+- **Querying**: Fetch encrypted values from FHE contracts.
+- **Authentication**: Uses Permits to authenticate connected users when requesting confidential data.
+
+Anotehr test Example of the whole flow of Cofhejs:
+
+```typescript
+it('Full cofhejs flow', async function () {
+    const [bob] = await hre.ethers.getSigners()
+
+    const CounterFactory = await hre.ethers.getContractFactory('Counter')
+    const counter = await CounterFactory.connect(bob).deploy()
+
+    // `expectResultSuccess` is a helper function that ensures that the
+    // `Result` type returned by all `cofhejs` functions has succeeded.
+    // If the inner function (e.g. `cofhejs_initializeWithHardhatSigner`)
+    // fails, the test will fail.
+    expectResultSuccess(await cofhejs_initializeWithHardhatSigner(bob))
+
+    // Encrypt a value
+    const [encryptedInput] = expectResultSuccess(
+        await cofhejs.encrypt((step) => 
+            console.log(`Encrypt step - ${step}`), [Encryptable.uint32(5n)]))
+
+    // Use the encrypted input to reset the counter
+    await counter.connect(bob).reset(encryptedInput)
+
+    // Fetch the hash of the encrypted counter value
+    const encryptedValue = await counter.count()
+
+    // Unseal an encrypted value
+    const unsealedResult = expectResultSuccess(
+        await cofhejs.unseal(encryptedValue, FheTypes.Uint32))
+
+    // Check the unsealed result
+    expect(unsealedResult).equal(5n)
+})
+```
+
+### 3. cofhe-mock-contracts
+
+These contracts provide mock implementations for FHE functionality:
+
+- Allows testing without actual FHE operations
+- Simulates the behavior of the real FHE environment
+- Stores plaintext values on-chain for testing purposes
+
+:::note
+Note that in the mock environment, gas costs are higher than in production due to the additional operations needed to simulate FHE behavior. This is especially noticeable when logging is enabled.
+:::
+
+## Development Environments
+
+CoFHE supports multiple development environments:
+
+1. **MOCK Environment**:
+
+   - Fastest development cycle
+   - No external dependencies
+   - Uses mock contracts to simulate FHE operations
+
+2. **Sepolia Testnet**:
+   - Public testnet for real FHE operations
+   - Requires ETH from the Sepolia faucet
+   - Available on Ethereum Sepolia and Arbitrum Sepolia
+
+:::note
+ Environment detection happens automatically in most cases. When testing on the hardhat network with mocks deployed (e.g., in unit tests), `cofhejs_initializeWithHardhatSigner` will detect the hardhat network and set `environment: "MOCK"` in the underlying `cofhejs.initialize(...)` call. When using tasks that connect to networks like `arb-sepolia`, the environment will automatically be set to `environment: "TESTNET"`. This environment setting is crucial as it determines how `cofhejs` handles encryption and unsealing operations.
+:::
+
+
+
+## Development Guidelines
+
+1. **Start with Mock Environment**: Begin development using mock contracts for faster iteration and debugging. This approach eliminates external dependencies and provides immediate feedback.
+
+2. **Test Thoroughly**: Write comprehensive tests covering both mock and testnet environments. Ensure your application behaves consistently across environments and handles edge cases properly.
+
+3. **Permission Management**: Always set proper permissions with `FHE.allowThis()` and `FHE.allowSender()` to control which contracts and addresses can access encrypted data. [Proper permission management](../tutorials/acl-usage-examples.md) is crucial for maintaining privacy and security in FHE applications.
+
+4. **Error Handling**: Implement robust error handling for FHE operations. Be prepared for potential decryption delays and use appropriate retry mechanisms. Check the [Key Considerations](../pay-attention/index.md) page for common errors and their solutions.
+5. **Gas Optimization**: Be aware that FHE operations cost more gas than standard operations. Mock environments will simulate higher gas consumption than actual production environments. For accurate gas estimation, always test on the testnet before deployment. Refer to the [Compatibility](../pay-attention/component-compatibility.md) page for the latest supported networks.
+
+### What's Next?
+[More tutorials can be found here](../../indexes/tutorials.md)
+
+
+### Resources
+- [Fhenix Documentation](https://docs.fhenix.zone)
+- [Cofhejs GitHub](https://github.com/FhenixProtocol/cofhejs)
+- [CoFHE Contracts GitHub](https://github.com/FhenixProtocol/cofhe-contracts)

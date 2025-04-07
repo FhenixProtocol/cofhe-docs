@@ -38,11 +38,6 @@ const sidebars: SidebarsConfig = {
       items: [
         {
           type: 'doc',
-          id: 'devdocs/quick-start/local-development',
-          label: 'Local Development Setup',
-        },
-        {
-          type: 'doc',
           id: 'devdocs/quick-start/best-practices',
           label: 'Best Practices',
         },
@@ -178,7 +173,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Pay Attention',
+      label: 'Key Considerations',
       link: {
         type: 'doc',
         id: 'devdocs/pay-attention/index',
