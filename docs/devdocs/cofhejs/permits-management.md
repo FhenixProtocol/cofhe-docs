@@ -22,7 +22,7 @@ const wallet = new ethers.Wallet(PRIVATE_KEY, provider)
 await cofhejs.initializeWithEthers({
 	ethersProvider: provider,
 	ethersSigner: wallet,
-	environment: 'LOCAL',
+	environment: 'TESTNET',
 })
 ```
 
