@@ -38,11 +38,15 @@ When two encrypted numbers are combined in an FHE operation, the result is still
 ### Example
 ```solidity
 function doSomeCalculations(InEuint16 calldata input) {
-    euint16 var1 = FHE.asEuint16(2);            // public
-    euint16 var2 = FHE.asEuint16(3);            // public
-    euint16 var3 = FHE.add(var1, var2);         // public
+    euint16 var1 = FHE.asEuint16(2);             // public
+    euint16 var2 = FHE.asEuint16(3);             // public
+    euint16 var3 = FHE.add(var1, var2);          // public
 
-    euint16 var4 = FHE.asEuint16(input);        // private
-    euint16 var5 = FHE.mul(var4, var3);         // private
+    euint16 var4 = FHE.asEuint16(input);         // private
+    euint16 var5 = FHE.mul(var4, var3);          // private
+    
+    euint16 var6 = FHE.asEbool(false);           // public
+    euint16 var7 = FHE.select(var6, var5, var4); // Observer knows that var7 = var4
+                                                 // but not what the value is
 }
 ```
