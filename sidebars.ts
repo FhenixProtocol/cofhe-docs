@@ -113,6 +113,11 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'doc',
+          id: 'devdocs/fhe-library/trivial-encryption',
+          label: 'Trivial Encryption',
+        },
+        {
+          type: 'doc',
           id: 'devdocs/fhe-library/randomness',
           label: 'Randomness',
         },
