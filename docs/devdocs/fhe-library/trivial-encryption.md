@@ -30,10 +30,10 @@ This is an important concept to keep in mind when developing confidential contra
 In this case, `multiplier` should be considered public, even though it is stored in encrypted format.
 
 :::important[Important]
-`euints` are only confidential when they are formed from encrypted inputs.
+`euints` are only confidential when they are formed from encrypted `inEuint` inputs, which are encrypted off-chain.
 :::
 
-When two encrypted numbers are combined in an FHE operation, the result is still not confidential, because an observer can keep track of the calculations.
+When two trivially-encrypted numbers are combined in an FHE operation, the result is still not confidential, because an observer can keep track of the calculations.
 
 ### Example
 ```solidity
