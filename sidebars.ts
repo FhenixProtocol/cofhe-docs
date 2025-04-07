@@ -246,11 +246,6 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      id: 'devdocs/future-plans',
-      label: 'Future Plans',
-    },
-    {
-      type: 'doc',
       id: 'devdocs/research-and-publications',
       label: 'Research in Fhenix',
     },
