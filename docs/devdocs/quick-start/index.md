@@ -143,7 +143,7 @@ pnpm arb-sepolia:increment-counter
 
 You can create custom Hardhat tasks for your contracts in the `tasks/` directory:
 
-Task example for [increment-counter](https://github.com/FhenixProtocol/cofhe-hardhat-starter/blob/main/tasks/counter-tasks.ts)
+Task example for [increment-counter](https://github.com/FhenixProtocol/cofhe-hardhat-starter/blob/main/tasks/increment-counter.ts)
 ```typescript
 task("increment-counter", "Increment the counter on the deployed contract")
   .setAction(async (_, hre: HardhatRuntimeEnvironment) => {
