@@ -12,10 +12,10 @@ This guide explains how to set up your local development environment for buildin
 The Fhenix development environment consists of several key components:
 
 - **cofhe-hardhat-starter**: Template hardhat project intended to be cloned and used as a starting point.
-- **cofhe-hardhat-plugin**: Hardhat plugin that deploys the `cofhe-mock-contracts` and exposes utilities.
-- **Cofhejs**: JavaScript library for interacting with FHE contracts and the CoFHE coprocessor.
-- **cofhe-mock-contracts**: Mock contracts that mimic the behavior of the CoFHE coprocessor, used only for local testing.
-- **cofhe-contracts**: Solidity Libraries and Smart contracts for FHE operations.
+- **[cofhe-hardhat-plugin](#1-cofhe-hardhat-plugin)**: Hardhat plugin that deploys the `cofhe-mock-contracts` and exposes utilities.
+- **[cofhejs](#2-cofhejs)**: JavaScript library for interacting with FHE contracts and the CoFHE coprocessor.
+- **[cofhe-mock-contracts](#3-cofhe-mock-contracts)**: Mock contracts that mimic the behavior of the CoFHE coprocessor, used only for local testing.
+- **[cofhe-contracts](#4-cofhe-contracts)**: Solidity Libraries and Smart contracts for FHE operations.
 
 ## Prerequisites
 
@@ -129,7 +129,7 @@ pnpm eth-sepolia:deploy-counter
 pnpm arb-sepolia:deploy-counter
 ```
 
-3. Interact with your deployed contract:
+3. Interact with your deployed contract (using tasks):
 
 ```bash
 # For Ethereum Sepolia
@@ -225,6 +225,12 @@ These contracts provide mock implementations for FHE functionality:
 :::note
 Note that in the mock environment, gas costs are higher than in production due to the additional operations needed to simulate FHE behavior. This is especially noticeable when logging is enabled.
 :::
+
+### 4. cofhe-contracts
+Package of Solidity libraries and smart contracts for FHE operations:
+- **FHE.sol Library**: The only import you need to start using FHE functionality in your contracts
+- **Complete [API Reference](../solidity-api/FHE.md)** for all available functions and types
+
 
 ## Development Environments
 
