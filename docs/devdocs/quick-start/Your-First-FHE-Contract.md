@@ -5,7 +5,7 @@ sidebar_position: 3
 
 # Your First FHE Contract
 
-Let's take a look at a simple contract that uses FHE to encrypt a counter, and break it down into its components.
+Now that we have the local environment set up, let's take a look at writing our own simple contract that uses FHE to encrypt a counter, and break it down into its components.
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -66,20 +66,21 @@ contract SimpleCounter {
     function get_encrypted_counter_value() external view returns(euint64) {
        return counter;
     }
-    
+
 }
 ```
 
 To start using FHE, we need to import the FHE library.
 In this example, we're importing the types `euint64` and `InEuint64` from the [FHE library](/docs/devdocs/solidity-api/FHE).
 
-
 ```solidity
 import {FHE, euint64, InEuint64} from "@fhenixprotocol/cofhe-contracts/FHE.sol";
 ```
+
 We want to keep the counter encrypted at all times, so we'll use the `euint64` type.
 
 Next, we define some state variables for the contract:
+
 ```solidity
     euint64 counter;
     euint64 delta;
@@ -109,6 +110,7 @@ plaintext value that went into it.
 So in this case, whenever an increment occurs, an observer can know that the counter which was `x` is now `x + 1`.
 To make it completely private, we need to initialize these variables with an InEuint from the calldata.
 In that case the observer would know that the new counter is `x + y` (but wouldn't know what `x` and `y` are).
+
 </details>
 :::
 
@@ -116,6 +118,7 @@ For every encrypted variable, we need to call `FHE.allowThis()` to allow the con
 **Allowing access to encrypted variables** is an important concept in FHE-enabled contracts.
 Without it, the contract could not continue to use this encrypted variable in future transactions.
 You can read more about this in the [ACL Mechanism](/docs/devdocs/fhe-library/acl-mechanism) page.
+
 ```solidity
     FHE.allowThis(counter);
     FHE.allowThis(delta);
@@ -128,6 +131,7 @@ And we also call `FHE.allowThis()` to allow the contract to access the new count
     counter = FHE.add(counter, delta);
     FHE.allowThis(counter);
 ```
+
 In the `reset_counter` function, we receive an `InEuint64` value, which is a type that represents an encrypted value that can be used to reset the counter.  
 This value is an encrypted value that we created using Cofhejs (read more about it [here](/docs/devdocs/cofhejs/encryption-operations)).
 
@@ -137,7 +141,7 @@ Since we want to allow users to call `get_counter_value` function at any given t
 The result will be valid until the next `decrypt_counter` call.
 
 In the `get_counter_value` function, we use the `FHE.getDecryptResultSafe` function to get the decrypted value of the counter.  
-Since the decryption is asynchronous, we need to check if the result is ready by checking the `decrypted` boolean.   
+Since the decryption is asynchronous, we need to check if the result is ready by checking the `decrypted` boolean.  
 If the result is not ready, we revert the transaction with an error message.
 
 ```solidity
@@ -151,11 +155,11 @@ If the result is not ready, we revert the transaction with an error message.
 ```
 
 In this contract, only the owner can request for a decryption. Once requested, everyone can read the counter's value at any given time.  
-The owner needs to send a transaction to the `decrypt_counter`.  
+The owner needs to send a transaction to the `decrypt_counter`.
 
 What if we want to allow the owner to privately read the value without sending a transaction that calls `FHE.decrypt`, exposing the counter to everyone?
 
-For that, we need to add call for `FHE.allow(counter, owner)` or `FHE.allowSender(counter)`  every time that we change the counter's value.
+For that, we need to add call for `FHE.allow(counter, owner)` or `FHE.allowSender(counter)` every time that we change the counter's value.
 This will allow the owner to read the encrypted counter's value using the `get_encrypted_counter_value` function and decrypt it using Cofhejs.
 
 ```solidity
@@ -169,6 +173,7 @@ This will allow the owner to read the encrypted counter's value using the `get_e
        return counter;
     }
 ```
+
 In the [next section](/docs/devdocs/quick-start/getting-started) we will see how to use Cofhejs to privately decrypt this encrypted contract variable.
 
 <span style={{color: "orange", fontStyle: "italic"}}>Exercise:</span> Try to modify the contract to allow the owner to read the counter's value without sending a transaction every time, you will need it in order to make the Cofhejs example work.

@@ -17,7 +17,7 @@ Getting started working with FHE enabled contracts requires setting up your loca
 
 ## Installation
 
-1. Clone the repository:
+1. Clone the `cofhe-hardhat-starter` [repo](https://github.com/fhenixprotocol/cofhe-hardhat-starter):
 
 ```bash
 git clone https://github.com/fhenixprotocol/cofhe-hardhat-starter.git
@@ -30,29 +30,33 @@ cd cofhe-hardhat-starter
 pnpm install
 ```
 
-## Sandbox
+## Walkthrough
 
-The `cofhe-hardhat-starter` includes an example contract at `contracts/Counter.sol`. This contract is an FHE enabled counter, that uses FHE to encrypt the user's counter, keeping its value confidential.
+`cofhe-hardhat-starter` includes an example contract at `contracts/Counter.sol`. This contract is an FHE enabled counter, that uses FHE to encrypt the user's counter, keeping its value confidential.
 
 We can test this contract against the `hardhat` network by running the tests:
 
-```
+```bash
 pnpm test
 ```
 
-where you will see logs from the tests that have been run. You will also see logs from the Mock CoFHE Contracts, which were automatically deployed to their fixed addresses on the hardhat chain.
+The tests will print logs from the Mock CoFHE Contracts, which were automatically deployed to their fixed addresses on the hardhat chain. (more on this later)
 
 The logs from the Mock Contracts look like this:
 
-```
-__cofhe__ trivialEncrypt  0 => 8800..8320[false]
-__cofhe__ trivialEncrypt  1 => 8136..6992[true]
-__cofhe__ gte             4473..3424[0] >= 1157..3648[1] => 9092..1872[false]
+```bash
+[MOCK] | FHE.asEuint32    | uint32(1)  =>  euint32(1157..3648)[1]
+[MOCK] | FHE.asEuint32    | uint32(0)  =>  euint32(4473..3424)[0]
+[MOCK] | FHE.gte          | euint32(4473..3424)[0] >= euint32(1157..3648)[1]  =>  ebool(9092..1872)[false]
 ```
 
-The `__cofhe__` prefix indicates that this is originating in the mock cofhe contracts, then follows the FHE operation that has been performed. Finally is the inputs and outputs of the FHE operation.
+The `[MOCK]` prefix indicates that this is originating in the mock cofhe contracts, then follows the FHE operation that has been performed. Finally is the inputs and outputs of the FHE operation.
 
-You will notice the special `4473..3424[0]` indicator when a value is shown in these logs. The first part `4473..3424` is the concatenated version of the `uint256` hash that represents the encrypted number. The second part `[0]` is the value that is encrypted. Usually this number is private, but in the mocks it can be shown.
+You will notice the special `euint32(4473..3424)[0]` indicator when a value is shown in these logs. This can be broken down into 3 parts:
+
+1. `euint32` - the type of the encrypted variable.
+2. `4473..3424` - concatenated version of the `uint256` hash that represents the encrypted number.
+3. `[0]` - is the value that is encrypted. (Usually this number is private, but in the mocks it can be shown)
 
 > Note: If the type of the encrypted variable is an `ebool` then it will show as true/false rather than the value. The same is true for `eaddress` variables.
 
@@ -76,4 +80,8 @@ It is also useful to look at the tests in `Counter.test.ts`, where you can start
 await cofhejs_initializeWithHardhatSigner(bob)
 ```
 
-<span style={{color: "orange", fontStyle: "italic"}}>Exercise:</span> Import `hardhat/console.sol` in the test contract `Counter.sol` and log the ciphertexts as they are created.
+## Next Steps
+
+The rest of the quick start guide will walk you through creating a contract
+
+<span style={{color: "orange", fontStyle: "italic"}}>Exercise:</span> Import `hardhat/console.sol` in the test contract `Counter.sol` and log the ciphertexts as they are created. Notice that any time a FHE operation is performed, the ctHash that is returned is updated, try and imagine how this can be used to preserve privacy.
