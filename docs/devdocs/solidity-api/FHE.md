@@ -613,73 +613,73 @@ Performs a bitwise NOT operation on an encrypted 256-bit unsigned integer.
 ```solidity
 shl(euint8 lhs, euint8 rhs) → euint8
 ```
-Performs a left shift operation on an encrypted 8-bit unsigned integer.
+Performs a shift left operation on an encrypted 8-bit unsigned integer.
 
 #### shl (euint16)
 ```solidity
 shl(euint16 lhs, euint16 rhs) → euint16
 ```
-Performs a left shift operation on an encrypted 16-bit unsigned integer.
+Performs a shift left operation on an encrypted 16-bit unsigned integer.
 
 #### shl (euint32)
 ```solidity
 shl(euint32 lhs, euint32 rhs) → euint32
 ```
-Performs a left shift operation on an encrypted 32-bit unsigned integer.
+Performs a shift left operation on an encrypted 32-bit unsigned integer.
 
 #### shl (euint64)
 ```solidity
 shl(euint64 lhs, euint64 rhs) → euint64
 ```
-Performs a left shift operation on an encrypted 64-bit unsigned integer.
+Performs a shift left operation on an encrypted 64-bit unsigned integer.
 
 #### shl (euint128)
 ```solidity
 shl(euint128 lhs, euint128 rhs) → euint128
 ```
-Performs a left shift operation on an encrypted 128-bit unsigned integer.
+Performs a shift left operation on an encrypted 128-bit unsigned integer.
 
 #### shl (euint256)
 ```solidity
 shl(euint256 lhs, euint256 rhs) → euint256
 ```
-Performs a left shift operation on an encrypted 256-bit unsigned integer.
+Performs a shift left operation on an encrypted 256-bit unsigned integer.
 
 #### shr (euint8)
 ```solidity
 shr(euint8 lhs, euint8 rhs) → euint8
 ```
-Performs a right shift operation on an encrypted 8-bit unsigned integer.
+Performs a shift right operation on an encrypted 8-bit unsigned integer.
 
 #### shr (euint16)
 ```solidity
 shr(euint16 lhs, euint16 rhs) → euint16
 ```
-Performs a right shift operation on an encrypted 16-bit unsigned integer.
+Performs a shift right operation on an encrypted 16-bit unsigned integer.
 
 #### shr (euint32)
 ```solidity
 shr(euint32 lhs, euint32 rhs) → euint32
 ```
-Performs a right shift operation on an encrypted 32-bit unsigned integer.
+Performs a shift right operation on an encrypted 32-bit unsigned integer.
 
 #### shr (euint64)
 ```solidity
 shr(euint64 lhs, euint64 rhs) → euint64
 ```
-Performs a right shift operation on an encrypted 64-bit unsigned integer.
+Performs a shift right operation on an encrypted 64-bit unsigned integer.
 
 #### shr (euint128)
 ```solidity
 shr(euint128 lhs, euint128 rhs) → euint128
 ```
-Performs a right shift operation on an encrypted 128-bit unsigned integer.
+Performs a shift right operation on an encrypted 128-bit unsigned integer.
 
 #### shr (euint256)
 ```solidity
 shr(euint256 lhs, euint256 rhs) → euint256
 ```
-Performs a right shift operation on an encrypted 256-bit unsigned integer.
+Performs a shift right operation on an encrypted 256-bit unsigned integer.
 
 #### rol (euint8)
 ```solidity
