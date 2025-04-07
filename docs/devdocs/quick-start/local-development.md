@@ -58,21 +58,23 @@ You will notice the special `euint32(4473..3424)[0]` indicator when a value is s
 2. `4473..3424` - concatenated version of the `uint256` hash that represents the encrypted number.
 3. `[0]` - is the value that is encrypted. (Usually this number is private, but in the mocks it can be shown)
 
-> Note: If the type of the encrypted variable is an `ebool` then it will show as true/false rather than the value. The same is true for `eaddress` variables.
+> **Note:** In the mock environment, we display the plaintext values of encrypted variables for debugging purposes. In a production CoFHE environment, these values remain completely private and inaccessible, preserving the confidentiality that FHE provides.
 
-If you look back to the `Counter.sol` contract, you can see how these logs align with the constructor:
+If you examine the `Counter.sol` contract, you'll notice how these logs directly correspond to the FHE operations in the constructor. Each log entry shows the exact operation being performed, the input values, and the resulting encrypted output:
 
 ```solidity
-contract Counter {
-
-  constructor() {
-    ONE = FHE.asEuint32(1);
-    count = FHE.asEuint32(0);
-    FHE.gte(count, ONE);
-
+ONE = FHE.asEuint32(1);
+count = FHE.asEuint32(0);
+FHE.gte(count, ONE);
 ```
 
-It is also useful to look at the tests in `Counter.test.ts`, where you can start to see what interacting with an FHE enabled contract looks like on the client side. `cofhejs` is used to create encrypted inputs, which can then be passed into the `InEuint memory` input variables. `cofhejs` is also responsible for reading encrypted data using `cofhejs.unseal`. These tests contain examples of both flows.
+It is also useful to examine the tests in `Counter.test.ts`, which demonstrate how client applications interact with FHE-enabled contracts. The tests showcase two essential workflows:
+
+First, `cofhejs` encrypts data on the client side before sending it to the blockchain. These encrypted values can then be passed to smart contract functions that accept `InEuint memory` parameters.
+
+Second, when you need to access encrypted data from your contract, `cofhejs.unseal()` enables the client to securely retrieve the plaintext values. [see more about unseal](../cofhejs/sealing-unsealing.md)
+
+The tests found at `test/Counter.test.ts` in the `cofhe-hardhat-starter` repo provide a clear picture of the complete data flow: encrypting inputs, performing operations on-chain, and decrypting results.
 
 `cofhejs` needs to be initialized, and in a hardhat environment it is easiest to use the helper function:
 
