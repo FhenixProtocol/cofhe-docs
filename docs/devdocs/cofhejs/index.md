@@ -1,6 +1,6 @@
 ---
 title: Getting Started with Cofhejs
-sidebar_position: 4
+sidebar_position: 1
 description: Setup instructions for cofhejs
 ---
 
@@ -26,11 +26,11 @@ Consider a smart contract called "**Counter**". Each user has an individual coun
 
 ### Adding to the User's Counter
 
-When users want to add a value to their counter, say "5," they first place this value inside a sort-of "box". Using cofhejs, this box is secured by locking it with Fhenix Co-Processor's **public key** (encryption). The locked box is then sent to the smart contract. Thanks to Fully Homomorphic Encryption (FHE), Fhenix can perform mathematical operations directly on these sealed boxes—without accessing the raw data inside. So, the user's encrypted value, "5," can be added to the user’s encrypted counter while remaining private.
+When users want to add a value to their counter, say "5," they first place this value inside a sort-of "box". Using cofhejs, this box is secured by locking it with Fhenix Co-Processor's **public key** (encryption). The locked box is then sent to the smart contract. Thanks to Fully Homomorphic Encryption (FHE), Fhenix can perform mathematical operations directly on these sealed boxes—without accessing the raw data inside. So, the user's encrypted value, "5," can be added to the user's encrypted counter while remaining private.
 
 ### Retrieving the User's Counter
 
-To retrieve the counter value, the user needs to read the data inside the box without breaking the encryption. Here’s the clever part: the user sends a second “lock” (their own public key) along with the request to read its data. This second lock is applied to the box while Fhenix removes its own lock (the Co-Processor's public key), leaving the box secured by only the user’s public key. The box remains locked and the data remains private, but now only the user can open it using its private key.
+To retrieve the counter value, the user needs to read the data inside the box without breaking the encryption. Here's the clever part: the user sends a second "lock" (their own public key) along with the request to read its data. This second lock is applied to the box while Fhenix removes its own lock (the Co-Processor's public key), leaving the box secured by only the user's public key. The box remains locked and the data remains private, but now only the user can open it using its private key.
 
 ## Installation
 
@@ -256,8 +256,6 @@ await resetCounter(encryptedValues.data[0]);
 
 // Result should be 10
 await readCounterEncryptedValue();
-
 ```
   </TabItem>
-</Tabs>
-```
+</Tabs> 
