@@ -190,6 +190,11 @@ const sidebars: SidebarsConfig = {
         },
       ],
     },
+    {
+      type: 'doc',
+      id: 'devdocs/support-and-feedback',
+      label: 'Support & Feedback',
+    },
     
     // Deep Dive section heading
     {
