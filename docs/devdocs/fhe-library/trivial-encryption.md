@@ -6,31 +6,22 @@ description: What is the difference between trivially encrypted numbers and encr
 
 # Trivial Encryption
 
-Sometimes we want to use encrypted numbers with plaintext numbers we have in the contract, for example:
-```solidity
-euint16 double = FHE.mul(single, 2);
-```
+In FHE-enabled smart contracts, we often need to perform operations between encrypted values and regular plaintext values. **Trivial encryption** is the operation of converting a plaintext value into an encrypted format that can interact with other encrypted data.
 
-However, the above example will not work because `FHE` operations currently support only encrypted types.
-To do this, we must first convert the plaintext number to an encrypted type, in this case `euint16`,
-using one of the `FHE.asEuint` functions, which accept built-in, plaintext types too.
+This conversion is done using the `FHE.asEuint` family of functions, which take standard Solidity types and transform them into their encrypted counterparts.
 
 ```solidity
-euint16 multiplier = FHE.asEuint16(2);
-euint16 double = FHE.mul(single, multiplier);
+uint16 number = 2;
+euint16 encrypted_number = FHE.asEuint16(number);
 ```
 
 ## Privacy considerations
-The conversion from plaintext types to encrypted types is called **Trivial Encryption**.
+**Trivially encrypted values are not confidential** - they are merely a tool to enable interaction between encrypted and non-encrypted types. The original plaintext value remains visible to anyone observing the blockchain, just in a different format.
 
-Note that anyone observing the contract execution knows the underlying value of trivially encrypted variables.
-Therefore, **trivially encrypted values are not confidential**. 
-This is an important concept to keep in mind when developing confidential contracts.
-
-In this case, `multiplier` should be considered public, even though it is stored in encrypted format.
+This is a crucial concept to understand when developing confidential contracts. Any value that is trivially encrypted (e.g. `encrypted_number`) should be treated as public information, even though it uses the same data type as truly encrypted values.
 
 :::important[Important]
-`euints` are only confidential when they are formed from encrypted `inEuint` inputs, which are encrypted off-chain.
+`euints` are only confidential when they are formed from encrypted `inEuint` inputs, which are encrypted off-chain. [see more](./data-evaluation.md)
 :::
 
 When two trivially-encrypted numbers are combined in an FHE operation, the result is still not confidential, because an observer can keep track of the calculations.
@@ -38,15 +29,19 @@ When two trivially-encrypted numbers are combined in an FHE operation, the resul
 ### Example
 ```solidity
 function doSomeCalculations(InEuint16 calldata input) {
-    euint16 var1 = FHE.asEuint16(2);             // public
-    euint16 var2 = FHE.asEuint16(3);             // public
-    euint16 var3 = FHE.add(var1, var2);          // public
+    // public
+    euint16 number2 = FHE.asEuint16(2);
+    euint16 number3 = FHE.asEuint16(3);
+    euint16 number5 = FHE.add(number2, number3);
 
-    euint16 var4 = FHE.asEuint16(input);         // private
-    euint16 var5 = FHE.mul(var4, var3);          // private
+    // confidential
+    euint16 encInput = FHE.asEuint16(input);
+    euint16 encMul = FHE.mul(encInput, number5);
     
-    euint16 var6 = FHE.asEbool(false);           // public
-    euint16 var7 = FHE.select(var6, var5, var4); // Observer knows that var7 = var4
-                                                 // but not what the value is
+    // public   
+    euint16 eFalse = FHE.asEbool(false);           
+
+    // Observer knows that result is encInput, but not what the value is
+    euint16 result = FHE.select(eFalse, encMul, encInput);
 }
 ```

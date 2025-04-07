@@ -88,6 +88,11 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'doc',
+          id: 'devdocs/fhe-library/trivial-encryption',
+          label: 'Trivial Encryption',
+        },
+        {
+          type: 'doc',
           id: 'devdocs/fhe-library/data-evaluation',
           label: 'Data Evaluation',
         },
@@ -110,11 +115,6 @@ const sidebars: SidebarsConfig = {
           type: 'doc',
           id: 'devdocs/fhe-library/decryption-operations',
           label: 'Decryption Operations',
-        },
-        {
-          type: 'doc',
-          id: 'devdocs/fhe-library/trivial-encryption',
-          label: 'Trivial Encryption',
         },
         {
           type: 'doc',
