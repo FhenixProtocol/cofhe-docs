@@ -43,11 +43,6 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'doc',
-          id: 'devdocs/quick-start/Your-First-FHE-Contract',
-          label: 'Your First FHE Contract',
-        },
-        {
-          type: 'doc',
           id: 'devdocs/quick-start/best-practices',
           label: 'Best Practices',
         },
