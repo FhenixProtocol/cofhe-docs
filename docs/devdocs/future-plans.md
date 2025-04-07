@@ -13,15 +13,15 @@ Outlined here is a non-exhaustive list of trust-points, centralized components a
 
 | Component              | Compromise                                                   | Plan to solve                                                                    | Timeline | Status |
 | ---------------------- | ------------------------------------------------------------ | -------------------------------------------------------------------------------- | -------- | ------ |
-| Threshold Network (TN) | Parties are all run by Fhenix                                | N/A                                                                              | N/A      | ❌     |
-| Threshold Network (TN) | Use of a Trusted dealer for keys and random data generation  | N/A                                                                              | N/A      | ❌     |
+| Threshold Network (TN) | All parties are run by Fhenix                                | N/A                                                                              | N/A      | ❌     |
+| Threshold Network (TN) | Use of a Trusted Dealer for keys and random data generation  | N/A                                                                              | N/A      | ❌     |
 | Threshold Network (TN) | Parties trust the Coordinator                                | N/A                                                                              | N/A      | ❌     |
 | Threshold Network (TN) | TN trusts CoFHE (tx-flow decryptions)                        | N/A                                                                              | N/A      | ❌     |
-| Threshold Network (TN) | Parties trust a Trusted Dealer                               | 1. Run TD in a TEE</br>2. Public ceremony for share creation</br>3. Eliminate TD | N/A      | ❌     |
+| Threshold Network (TN) | Parties trust a Trusted Dealer                               | 1. Run TD in a TEE<br/>2. Public ceremony for share creation<br/>3. Eliminate TD | N/A      | ❌     |
 | Threshold Network (TN) | Parties are not using unique random data within the protocol | Pull random data from the TD                                                     | N/A      | ❌     |
-| Threshold Network (TN) | Sealoutput reencryption performed in a centralized manner    | N/A                                                                              | N/A      | ❌     |
+| Threshold Network (TN) | SealOutput reencryption performed in a centralized manner    | N/A                                                                              | N/A      | ❌     |
 | ZK-Verifier (ZKV)      | CoFHE trusts ZK-Verifier                                     | Run ZKV in a TEE                                                                 | N/A      | ❌     |
-| CoFHE                  | Trust on CoFHE to perform correct FHE computations           | External verification using AVS                                                  | N/A      | ❌     |
+| CoFHE                  | Trust in CoFHE to perform correct FHE computations           | External verification using AVS                                                  | N/A      | ❌     |
 | CoFHE                  | User inputs stored in a centralized manner                   | Use a decentralized DA                                                           | N/A      | ❌     |
 | All                    | Codebase is unaudited                                        | Perform a security audit                                                         | N/A      | ❌     |
 | All                    | Codebase is not fully open-source                            | Open-source codebase                                                             | N/A      | ❌     |
