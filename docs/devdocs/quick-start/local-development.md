@@ -21,13 +21,13 @@ The Fhenix development environment consists of several key components:
 
 Before starting, ensure you have:
 
-- Node.js (v18 or later)
+- Node.js (v20 or later)
 - pnpm (recommended package manager)
 - Basic familiarity with Hardhat and Solidity
 
 ## Installation
 
-1. Clone the repository:
+1. Clone the `cofhe-hardhat-starter` [repo](https://github.com/fhenixprotocol/cofhe-hardhat-starter):
 
 ```bash
 git clone https://github.com/fhenixprotocol/cofhe-hardhat-starter.git
@@ -42,11 +42,13 @@ pnpm install
 
 ## Project Structure
 
-- `contracts/`: Smart contract source files
-  - `Counter.sol`: Example FHE counter contract
-- `test/`: Test files for your contracts
-- `tasks/`: Hardhat tasks for deployment and interaction
-- `hardhat.config.ts`: Network and plugin configuration
+The starter kit provides a well-organized directory structure to help you get started quickly:
+
+- `contracts/`: Contains all your Solidity smart contract source files.
+  - `Counter.sol`: An example FHE-enabled counter contract that demonstrates basic FHE operations.
+- `test/`: Houses tests that utilize cofhejs and utilities to interact with FHE-enabled contracts.
+- `tasks/`: Tasks to deploy and interact with the Counter contract on Arbitrum Sepolia.
+- `hardhat.config.ts`: Imports the CoFHE hardhat plugin to deploy mock contracts.
 
 ## Key Components
 
