@@ -11,21 +11,20 @@ Integrating FHE into a blockchain-runtime is a hard and complex task. Our engine
 
 Outlined here is a non-exhaustive list of trust-points, centralized components and compromises made to ship CoFHE to users as fast as possible, along with how we plan to address them in the future. This list will be updated as things progress.
 
-| Component              | Compromise                                                   | Plan to solve                          | Timeline | Status |
-| ---------------------- | ------------------------------------------------------------ | -------------------------------------- | -------- | ------ |
-| Threshold Network (TN) | Parties are all run by Fhenix                                | N/A                                    | N/A      | ❌     |
-| Threshold Network (TN) | Use of a Trusted dealer for keys and random data generation  | N/A                                    | N/A      | ❌     |
-| Threshold Network (TN) | Parties blindly trust the Coordinator                        | N/A                                    | N/A      | ❌     |
-| Threshold Network (TN) | TN bilndly trusts CoFHE (tx-flow decryptions)                | N/A                                    | N/A      | ❌     |
-| Threshold Network (TN) | Parties blindly trust a Trusted Dealer                       | 1. Run TD in a TEE</br>2. Eliminate TD (PRSS) | N/A      | ❌     |
-| Threshold Network (TN) | Parties are not using unique random data within the protocol | Pull random data from the TD           | N/A      | ❌     |
-| Threshold Network (TN) | Sealoutput reencryption performed in a centralized manner    | N/A                                    | N/A      | ❌     |
-| Threshold Network (TN) | Use of Additive Secret Sharing for keys, randomness          | Implement Shamir Secret Sharing        | N/A      | ❌     |
-| ZK-Verifier (ZKV)      | CoFHE blindly trusts ZK-Verifier                             | Run ZKV in a TEE                       | N/A      | ❌     |
-| CoFHE                  | Trust on CoFHE to peform correct FHE computations            | External verification using AVS        | N/A      | ❌     |
-| CoFHE                  | User inputs stored in a centralized manner                   | Use a decentralized DA                 | N/A      | ❌     |
-| All                    | Codebase is unaudited                                        | Perform a security audit               | N/A      | ❌     |
-| All                    | Codebase is not fully open-source                            | Open-source entire codebase            | N/A      | ❌     |
+| Component              | Compromise                                                   | Plan to solve                                                                    | Timeline | Status |
+| ---------------------- | ------------------------------------------------------------ | -------------------------------------------------------------------------------- | -------- | ------ |
+| Threshold Network (TN) | Parties are all run by Fhenix                                | N/A                                                                              | N/A      | ❌     |
+| Threshold Network (TN) | Use of a Trusted dealer for keys and random data generation  | N/A                                                                              | N/A      | ❌     |
+| Threshold Network (TN) | Parties trust the Coordinator                                | N/A                                                                              | N/A      | ❌     |
+| Threshold Network (TN) | TN trusts CoFHE (tx-flow decryptions)                        | N/A                                                                              | N/A      | ❌     |
+| Threshold Network (TN) | Parties trust a Trusted Dealer                               | 1. Run TD in a TEE</br>2. Public ceremony for share creation</br>3. Eliminate TD | N/A      | ❌     |
+| Threshold Network (TN) | Parties are not using unique random data within the protocol | Pull random data from the TD                                                     | N/A      | ❌     |
+| Threshold Network (TN) | Sealoutput reencryption performed in a centralized manner    | N/A                                                                              | N/A      | ❌     |
+| ZK-Verifier (ZKV)      | CoFHE trusts ZK-Verifier                                     | Run ZKV in a TEE                                                                 | N/A      | ❌     |
+| CoFHE                  | Trust on CoFHE to perform correct FHE computations           | External verification using AVS                                                  | N/A      | ❌     |
+| CoFHE                  | User inputs stored in a centralized manner                   | Use a decentralized DA                                                           | N/A      | ❌     |
+| All                    | Codebase is unaudited                                        | Perform a security audit                                                         | N/A      | ❌     |
+| All                    | Codebase is not fully open-source                            | Open-source codebase                                                             | N/A      | ❌     |
 
 ## Upcoming Features
 
@@ -41,6 +40,6 @@ In the spirit of transparency, here we describe the general feature-roadmap plan
 | GPU support                    | UX                  | Run FHE operations on a GPU backend, improving performance and overall latency   | N/A      | ❌     |
 | FPGA support                   | UX                  | Run FHE operations on an FPGA backend, improving performance and overall latency | N/A      | ❌     |
 | T-out-of-N MPC protocol        | Robustness          | Improve robustness of the TN by not requiring all parties to be online           | N/A      | ❌     |
-| Alternative FHE schemes        | Performance         | N/A                                                                              | N/A      | ❌     |
 | Support additional host-chains | DevX/UX             | N/A                                                                              | N/A      | ❌     |
 | Key shares rotation            | Robustness/Security | Ability to rotate the party shares in the TN                                     | N/A      | ❌     |
+| Key Rotation                   | Robustness/Security | Ability to rotate the key for the entire protocol                                | N/A      | ❌     |
