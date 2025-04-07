@@ -47,9 +47,8 @@ Join our [Discord community](https://discord.gg/FuVgxrvJMY) where you'll find:
 We have an active community of developers and team members ready to help you succeed with CoFHE!
 
 #### Telegram
-Connect with us on [Telegram](https://t.me/fhenix) for:
-- Quick questions and answers
-- Community discussions
-- Latest updates and news
+Connect with us on [Telegram](https://t.me/+237VUa7c6v1jZmFh) for:
+- `#General`- General discussions
+- `#Dev Help` - Technical support and questions
 
 Thank you for being part of our community! Your feedback helps us build better tools and documentation for everyone.
