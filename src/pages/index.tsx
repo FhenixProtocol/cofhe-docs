@@ -97,9 +97,27 @@ function HomepageHeader() {
                       </div>
                   </div>
 
-                  <div className="hide-small-width" style={{marginTop: "0px"}}>
-                  {/* <div className="" style={{marginTop: "-100px"}}> */}
-                  { (colorMode === 'dark') ? <img className="page-cover-image" alt="fhenix stuttershock image" src="img/BookDark.svg" style={{maxWidth: '650px'}}/> : <img className="page-cover-image" alt="fhenix stuttershock image" src="img/BookLight.svg" style={{maxWidth: '650px'}}/>}
+                  <div className="hide-small-width" style={{marginTop: "40px", position: 'relative', overflow: 'visible'}}>
+                    {/* <div className="" style={{marginTop: "-100px"}}> */}
+                    { (colorMode === 'dark') ? <img className="page-cover-image" alt="fhenix stuttershock image" src="img/BookDark.svg" style={{maxWidth: '600px'}}/> : <img className="page-cover-image" alt="fhenix stuttershock image" src="img/BookLight.svg" style={{maxWidth: '600px'}}/>}
+                    <div style={{
+                        position: 'absolute',
+                        top: '-25%',
+                        left: '-95px',
+                        width: '600px',
+                        height: '600px',
+                        zIndex: -1,
+                        opacity: 0.4
+                    }}>
+                        <img 
+                            src="img/visuals/top_section_no-book.svg"
+                            style={{
+                                width: '100%', 
+                                height: '100%',
+                                objectFit: 'cover'
+                            }}
+                        />
+                    </div>
                   </div>
               </div>
 

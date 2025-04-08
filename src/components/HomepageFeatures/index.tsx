@@ -93,7 +93,47 @@ function Feature({title, Svg, description, linkTo, buttonTitle}: FeatureItem) {
 export default function HomepageFeatures(): JSX.Element {
     const { colorMode  } = useColorMode();
     return (
-    <section className={styles.features}>
+    <section className={styles.features} style={{ position: 'relative', overflow: 'visible'}}>
+
+      <div className="hide-small-width" style={{
+        position: 'absolute',
+        bottom: '30px',
+        left: '0px',
+        width: '281px',
+        height: '235px',
+        zIndex: -1,
+        opacity: 0.4,
+        overflow: 'visible',
+        
+      }}>
+        <img 
+            src="img/visuals/bottom-left.svg"
+            style={{
+                width: '100%', 
+                height: '100%',
+            }}
+        />
+      </div>
+
+      <div  className="hide-small-width" style={{
+        position: 'absolute',
+        bottom: '20px',
+        right: '0px',
+        width: '281px',
+        height: '235px',
+        zIndex: -1,
+        opacity: 0.4,
+        overflow: 'visible',
+        
+      }}>
+        <img 
+            src="img/visuals/bottom-right.svg"
+            style={{
+                width: '100%', 
+                height: '100%',
+            }}
+        />
+      </div>    
       <div className="container" style={{ marginBottom: "80px"}}>
           <div className="row" style={{ display: 'flex', justifyContent: 'flex-start' }}>
               <Heading as="h1" className="margin-bottom--lg orb-font" style={{ fontSize: 40, fontWeight: 'normal' }}>
@@ -108,12 +148,31 @@ export default function HomepageFeatures(): JSX.Element {
                 </div>
             ))}
           </div>
-          <div className="row" style={{ display: 'flex', justifyContent: 'center', marginTop: '80px'}}>
-              <Heading as="h1" className="text--center  orb-font" style={{ fontSize: 40, fontWeight: 'normal'}}>
+          <div className="row" style={{ overflow: 'visible', display: 'flex', justifyContent: 'center', marginTop: '130px', marginBottom: '80px'}}>
+              <Heading as="h1" className="text--center  orb-font" style={{ overflow: 'visible', position: 'relative', fontSize: 40, fontWeight: 'normal'}}>
                 Connect With US
+                <div style={{
+                        position: 'absolute',
+                        top: '-88px',
+                        left: '-68%',
+                        width: '800px',
+                        height: '205px',
+                        zIndex: -1,
+                        opacity: 0.4,
+                        overflow: 'visible',
+                        
+                    }}>
+                        <img 
+                            src="img/visuals/middle.svg"
+                            style={{
+                                width: '100%', 
+                                height: '100%',
+                            }}
+                        />
+                    </div>                
               </Heading>
           </div>
-          <div className="row" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: '40px', gap: '20px'}}>
+          <div className="row" style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: '40px', gap: '20px'}}>
             <div className={clsx("card", styles.custom__card_1)} style={{ height: '200px', width: '500px', padding: '20px' , color: '#0073E6'}}>
               <div className="orb-font" style={{ fontSize: 26, fontWeight: 'bold', color: '#0073E6' }}>Fhenix Developer Updates</div>
               <div style={{ color: colorMode === 'dark' ? '#E6F7FF' : '#003366'}}>Stay up-to-date on the latest Fhenix developer news</div>
