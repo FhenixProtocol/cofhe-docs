@@ -456,14 +456,13 @@ pre code {
   }
 }
 
-@media (max-width: 996px) {
+
+@media (max-width: 796px) {
 
   .heroBanner {
     padding: 2rem;
   }
-  .hide-small-width {
-    display: none;
-  }
+
   .button {
     width: 30%;
     min-width: 250px;
@@ -474,6 +473,11 @@ pre code {
   }
 }
 
+@media (max-width: 1000px) {
+  .hide-small-width {
+    display: none;
+  }
+}
 
 @media (min-width: 1400px) {
   .button--lol {
@@ -481,9 +485,6 @@ pre code {
   }
   .heroBanner {
 
-  }
-  .hide-small-width {
-    display: block;
   }
 }
 

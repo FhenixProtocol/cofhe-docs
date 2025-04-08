@@ -33,7 +33,7 @@ function HomepageHeader() {
   return (
       <header style={{ zIndex: 1, position: 'relative' }} className={clsx('hero hero--primary', styles.heroBanner)}>
           <div className="container">
-              <div className="row" style={{ display: 'flex', justifyContent: 'space-between'}}>
+              <div className="row" style={{ display: 'flex', flexWrap: 'nowrap', justifyContent: 'space-between'}}>
                   {/*<div className={styles.container2}>*/}
                   <div className="col col--6">
                       <div className="row">
