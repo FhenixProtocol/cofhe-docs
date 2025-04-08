@@ -5,6 +5,8 @@ import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
 import React, { useEffect, useCallback } from 'react';
+import { RiCodeBlock  } from "react-icons/ri";
+import { HiFire } from "react-icons/hi";
 
 import styles from './index.module.css';
 import { GettingStartedFrame } from "../components/AdditionalFeatures";
@@ -50,16 +52,29 @@ function HomepageHeader() {
                       <div className={clsx("row", styles.ButtonRow)} style={{ marginLeft: -30 , gap: '31px'}}>
                           <div className='col col--3'>
                               <Link
-                                  className='docs-button minimum'
-                                  to="/docs/devdocs/overview">
-                                  Docs
+                                  className='tutorial-button minimum'
+                                  to="/docs/devdocs/overview"
+                                  style={{ 
+                                    padding: '10px',
+                                    display: 'flex', 
+                                    alignItems: 'center', 
+                                    justifyContent: 'center'
+                                }}>
+                                  
+                                  <RiCodeBlock size={20} style={{ marginRight: '10px' }} /> Docs
                               </Link>
                           </div>
                           <div className='col col--4'>
                               <Link
                                   className='tutorial-button minimum'
-                                  to="/docs/indexes/tutorials">
-                                  Tutorials
+                                  to="/docs/indexes/tutorials"
+                                  style={{ 
+                                    padding: '10px',
+                                    display: 'flex', 
+                                    alignItems: 'center', 
+                                    justifyContent: 'center' 
+                                }}>
+                                  <HiFire size={20} style={{ marginRight: '10px' }} /> Tutorials
                               </Link>
                           </div>
 
@@ -84,7 +99,7 @@ function HomepageHeader() {
 
                   <div className="hide-small-width" style={{marginTop: "0px"}}>
                   {/* <div className="" style={{marginTop: "-100px"}}> */}
-                  { (colorMode === 'dark') ? <img className="page-cover-image" alt="fhenix stuttershock image" src="img/BookDark.svg" style={{maxWidth: '450px'}}/> : <img className="page-cover-image" alt="fhenix stuttershock image" src="img/BookLight.svg" style={{maxWidth: '450px'}}/>}
+                  { (colorMode === 'dark') ? <img className="page-cover-image" alt="fhenix stuttershock image" src="img/BookDark.svg" style={{maxWidth: '650px'}}/> : <img className="page-cover-image" alt="fhenix stuttershock image" src="img/BookLight.svg" style={{maxWidth: '650px'}}/>}
                   </div>
               </div>
 
@@ -114,93 +129,12 @@ export default function Home(): JSX.Element {
         // console.log(container);
     };
 
-    const particlesOptions = React.useMemo(() => ({
-        background: {
-            color: {
-                value: 'transparent',
-            },
-        },
-        fpsLimit: 60,
-        interactivity: {
-            events: {
-                onClick: {
-                    enable: false,
-                    mode: 'push',
-                },
-                onHover: {
-                    enable: true,
-                    mode: 'connect',
-                    parallax: { enable: false, force: 60, smooth: 10 }
-                },
-                resize: { enable: true },
-            },
-            modes: {
-                push: { quantity: 4 },
-                repulse: { distance: 200, duration: 0.4 },
-                connect: { distance: 80, links: { opacity: 0.5 }, radius: 60 }
-            },
-        },
-        particles: {
-            color: {
-                value: '#0073E6',
-            },
-            links: {
-                color: '#0073E6',
-                distance: 150,
-                enable: true,
-                opacity: 0.3,
-                width: 1,
-            },
-            collisions: { enable: true },
-            move: {
-                direction: 'none',
-                enable: true,
-                outModes: { default: 'bounce' },
-                random: false,
-                speed: 0.5,
-                straight: false,
-            },
-            number: {
-                density: {
-                    enable: true,
-                    area: 1000,
-                },
-                value: 80,
-            },
-            opacity: {
-                value: 0.3,
-            },
-            shape: {
-                type: 'circle',
-            },
-            size: {
-                value: { min: 1, max: 3 },
-            },
-        },
-        detectRetina: true,
-        fullScreen: { enable: true },
-    }), []);
-
     return (
         <Layout title={`${siteConfig.title}`}
                 description="Documentation for Fhenix, the pioneering FHE-enabled L2. Explore how Fhenix is transforming privacy in Blockchain.">
-            {init && (
-                <Particles
-                    id="tsparticles"
-                    particlesLoaded={particlesLoaded}
-                    options={particlesOptions}
-                    style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        zIndex: 1
-                    }}
-                />
-            )}
+            {init}
             <HomepageHeader />
-            <main style={{ position: 'relative', zIndex: 1}}>
+            <main style={{ position: 'relative', zIndex: 1 }}>
                 <div style={{ height: '100px'}}></div>
                 <HomepageFeatures/>
             </main>
