@@ -24,7 +24,7 @@ Once you've mastered the basics, dive deeper with these specialized tutorials:
 
 | Tutorial                                                                                      | Description                                                                                     |
 | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| [Your First FHE Contract](/docs/devdocs/quick-start/Your-First-FHE-Contract) | Build a simple encrypted counter contract to understand fundamental FHE concepts |
+| [Your First FHE Contract](/docs/devdocs/tutorials/Your-First-FHE-Contract) | Build a simple encrypted counter contract to understand fundamental FHE concepts |
 | [Adding FHE to an Existing Contract](/docs/devdocs/tutorials/adding-FHE-to-existing-contract) | Learn how to transform traditional smart contracts into privacy-preserving ones                 |
 | [Migrating to CoFHE](/docs/devdocs/tutorials/migrating-to-cofhe)                              | Transition your existing applications to use the CoFHE infrastructure from a Fhenix L2 contract |
 | [Testing and Logging](/docs/devdocs/tutorials/testing-logging)                                | Master techniques for testing and debugging FHE-enabled applications                            |
