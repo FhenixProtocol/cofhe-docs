@@ -95,27 +95,27 @@ export default function HomepageFeatures(): JSX.Element {
     return (
     <section className={styles.features}>
       <div className="container" style={{ marginBottom: "80px"}}>
-          <div className="row" style={{ display: 'flex', justifyContent: 'center' , color: '#0073E6'}}>
-              <Heading as="h1" className="text--center margin-bottom--lg orb-font" style={{ fontSize: 40, fontWeight: 'normal' }}>
+          <div className="row" style={{ display: 'flex', justifyContent: 'flex-start' }}>
+              <Heading as="h1" className="margin-bottom--lg orb-font" style={{ fontSize: 40, fontWeight: 'normal' }}>
                 Useful Links
               </Heading>
           </div>
           {/* style={{ gap: "20px"}} */}
-          <div className="row feature_container" style={{ gap: "20px", justifyContent: "center" , color: colorMode === 'dark' ? '#E6F7FF' : '#003366'}}>
+          <div className="row feature_container" style={{ gap: "20px", justifyContent: "space-between" , color: colorMode === 'dark' ? '#E6F7FF' : '#003366'}}>
             {FeatureList.map((props, idx) => (
-                <div key={idx} className="col col--3"> 
+                <div key={idx} style={{ padding: '0px' }} className="col col--3"> 
                     <Feature {...props} />
                 </div>
             ))}
           </div>
-          <div className="row" style={{ display: 'flex', justifyContent: 'center', marginTop: '40px', color: '#0073E6'}}>
-              <Heading as="h1" className="text--center  orb-font" style={{ fontSize: 40, fontWeight: 'normal', color: '#0073E6'}}>
+          <div className="row" style={{ display: 'flex', justifyContent: 'center', marginTop: '80px'}}>
+              <Heading as="h1" className="text--center  orb-font" style={{ fontSize: 40, fontWeight: 'normal'}}>
                 Connect With US
               </Heading>
           </div>
           <div className="row" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: '40px', gap: '20px'}}>
             <div className={clsx("card", styles.custom__card_1)} style={{ height: '200px', width: '500px', padding: '20px' , color: '#0073E6'}}>
-              <div className="orb-font" style={{ fontSize: 26, fontWeight: 'bold' }}>Fhenix Developer Updates</div>
+              <div className="orb-font" style={{ fontSize: 26, fontWeight: 'bold', color: '#0073E6' }}>Fhenix Developer Updates</div>
               <div style={{ color: colorMode === 'dark' ? '#E6F7FF' : '#003366'}}>Stay up-to-date on the latest Fhenix developer news</div>
               <div className="row" style={{ flex: 1 }}></div>
               <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '10px' }}>
@@ -128,7 +128,7 @@ export default function HomepageFeatures(): JSX.Element {
 
             </div>
             <div className={clsx("card", styles.custom__card_1)} style={{ height: '200px', width: '500px', padding: '20px', color: '#0073E6'}}>
-            <div className="orb-font" style={{ fontSize: 26, fontWeight: 'bold' }}>Even More Resources</div>
+            <div className="orb-font" style={{ fontSize: 26, fontWeight: 'bold', color: '#0073E6' }}>Even More Resources</div>
               <div style={{ color: colorMode === 'dark' ? '#E6F7FF' : '#003366'}}>Hear from Fhenix co-founders, engineering and research teams, ecosystem projects, and more. Join us!</div>
               <div className="row" style={{ flex: 1 }}></div>
               <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '10px' }}>
