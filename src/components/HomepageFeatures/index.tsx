@@ -148,7 +148,7 @@ export default function HomepageFeatures(): JSX.Element {
                 </div>
             ))}
           </div>
-          <div className="row" style={{ overflow: 'visible', display: 'flex', justifyContent: 'center', marginTop: '80px', marginBottom: '80px'}}>
+          <div className="row" style={{ overflow: 'visible', display: 'flex', justifyContent: 'center', marginTop: '130px', marginBottom: '80px'}}>
               <Heading as="h1" className="text--center  orb-font" style={{ overflow: 'visible', position: 'relative', fontSize: 40, fontWeight: 'normal'}}>
                 Connect With US
                 <div style={{
