@@ -32,7 +32,7 @@ To get started with Cofhejs, you need to install it as a dependency in your Java
   </TabItem>
 </Tabs>
 
-> Note: _For more information on getting started, take a look at the [**Cofhejs getting started**](/docs/devdocs/quick-start/getting-started) guide._
+> Note: _For more information on getting started, take a look at the [**Cofhejs getting started**](/docs/devdocs/cofhejs/index.md) guide._
 
 ## Key Features
 
@@ -54,7 +54,7 @@ await cofhejs.initializeWithEthers({
 })
 ```
 
-> Note: _For more information on getting started, take a look at the [**Cofhejs getting started**](/docs/devdocs/quick-start/getting-started) guide._
+> Note: _For more information on getting started, take a look at the [**Cofhejs getting started**](/docs/devdocs/cofhejs/index.md) guide._
 
 - Client-side encryption/decryption
 
