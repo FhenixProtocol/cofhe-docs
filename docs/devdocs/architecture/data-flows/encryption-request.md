@@ -28,7 +28,7 @@ The following diagram illustrates the complete flow of an Encryption request in 
 ## Step-by-Step Flow
 
 
-1. **Install, include and initialize Cofhejs in your project (full details [here](/docs/devdocs/quick-start/getting-started.md))**
+1. **Install, include and initialize Cofhejs in your project (full details [here](/docs/devdocs/cofhejs/index.md))**
     ```bash
     npm install cofhejs
     ```
@@ -45,7 +45,7 @@ The following diagram illustrates the complete flow of an Encryption request in 
     This verification process ensures that the ciphertext was generated correctly—that it represents a valid encryption of a known plaintext—and that the data has not been tampered with. Upon successful verification, the encrypted data is stored in the Data Availability (DA) layer.  
 
    The function returns a value handle that can be used to reference the encrypted data later, along with a signature.
-5. **Using the encrypted data**  
+4. **Using the encrypted data**  
     The user can send the value handle to the contract as an encrypted input. This handle represents the ciphertext stored in the DA layer and allows the contract to reference the encrypted value
 
 *Note: Read more about the implementation details [here](/docs/devdocs/cofhejs/encryption-operations)*

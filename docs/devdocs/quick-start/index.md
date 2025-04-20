@@ -179,7 +179,7 @@ The JavaScript library for working with FHE contracts:
 - **Querying**: Fetch encrypted values from FHE contracts.
 - **Authentication**: Uses Permits to authenticate connected users when requesting confidential data.
 
-Anotehr test Example of the whole flow of Cofhejs:
+Another test example of the whole flow of Cofhejs:
 
 ```typescript
 it('Full cofhejs flow', async function () {
