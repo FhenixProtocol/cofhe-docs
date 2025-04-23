@@ -59,9 +59,9 @@ function getNumber() public view returns (euint64) {
 
 3. [Unseal](../../cofhejs/sealing-unsealing.md) using `cofhejs.unseal(CtHash)`![Bullet](../../../../static/img/assets/1.png). Calls `/sealoutput` on the threshold network, unseals the result. ![Bullet](../../../../static/img/assets/3.png)
 
-### 📌 Step 3 (Handled by cofhejs.unseal): https://\{ThresholdNetworkUrl\}/sealoutput 
+### 📌 Step 3 (Handled by cofhejs.unseal):
 
-1. **`cofhejs.unseal` calls /sealoutput**. The user's Permit is added to the request. `Permit.issuer` should be the `msg.sender` in Step 1 for the permit to be valid.
+1. **`cofhejs.unseal` calls /sealoutput**. The user's Permit is added to the request. `Permit.issuer` should be the `msg.sender` in Step 1 for the permit to be valid. https://\{ThresholdNetworkUrl\}/sealoutput  
 
 2. **Threshold Network makes an on-chain call to the `ACL`** to verify that the Permit is valid.
 
