@@ -38,19 +38,25 @@ To get started with cofhejs, you need to install it as a dependency in your Java
 
 <Tabs>
   <TabItem value="yarn" label="yarn">
+
 ```bash
 yarn add cofhejs
 ```
+
   </TabItem>
   <TabItem value="npm" label="npm">
+
 ```bash
 npm install cofhejs
 ```
+
   </TabItem>
   <TabItem value="pnpm" label="pnpm">
+
 ```bash
 pnpm add cofhejs
 ```
+
   </TabItem>
 </Tabs>
 
@@ -62,39 +68,41 @@ Below is an example setup:
 
 <Tabs>
   <TabItem value="node" label="Node.js">
-      ```javascript
-      const { cofhejs } = require("cofhejs/node");
-      const { ethers } = require("ethers");
 
-      // initialize your web3 provider
-      const provider = new ethers.JsonRpcProvider("http://127.0.0.1:42069");
-      const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
+```javascript
+const { cofhejs } = require("cofhejs/node");
+const { ethers } = require("ethers");
 
-      // initialize cofhejs Client with ethers (it also supports viem)
-      await cofhejs.initializeWithEthers({
-          ethersProvider: provider,
-          ethersSigner: wallet,
-          environment: "TESTNET",
-      });
-      ```
+// initialize your web3 provider
+const provider = new ethers.JsonRpcProvider("http://127.0.0.1:42069");
+const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
+
+// initialize cofhejs Client with ethers (it also supports viem)
+await cofhejs.initializeWithEthers({
+ ethersProvider: provider,
+ ethersSigner: wallet,
+ environment: "TESTNET"
+});
+```
 
   </TabItem>
   <TabItem value="web" label="Browser">
-    ```javascript
-    const { cofhejs } = require("cofhejs/web");
-    const { ethers } = require("ethers");
 
-    // initialize your web3 provider
-    const provider = new ethers.BrowserProvider(window.ethereum);
-    const signer = (await provider.getSigner()) as ethers.JsonRpcSigner;
+```javascript
+const { cofhejs } = require("cofhejs/web");
+const { ethers } = require("ethers");
 
-    // initialize cofhejs Client with ethers (it also supports viem)
-    await cofhejs.initializeWithEthers({
-        ethersProvider: provider,
-        ethersSigner: wallet,
-        environment: "TESTNET",
-    });
-    ```
+// initialize your web3 provider
+const provider = new ethers.BrowserProvider(window.ethereum);
+const signer = (await provider.getSigner()) as ethers.JsonRpcSigner;
+
+// initialize cofhejs Client with ethers (it also supports viem)
+await cofhejs.initializeWithEthers({
+ ethersProvider: provider,
+ ethersSigner: wallet,
+ environment: "TESTNET"
+});
+```
 
   </TabItem>
 </Tabs>
@@ -171,6 +179,7 @@ This example demonstrates a full interaction between a dApp and an FHE-enabled s
 
 <Tabs>
   <TabItem value="node" label="Node.js">
+
 ```javascript
 const { cofhejs, FheTypes } = require("cofhejs/node");
 const { ethers } = require("ethers");
@@ -181,58 +190,57 @@ const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
 
 // initialize cofhejs Client with ethers (see cofhejs docs for viem)
 await cofhejs.initializeWithEthers({
-ethersProvider: provider,
-ethersSigner: wallet,
-environment: "TESTNET",
+ ethersProvider: provider,
+ ethersSigner: wallet,
+ environment: "TESTNET"
 });
 
 const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, wallet);
 
 const logState = (state) => {
-console.log(`Log Encrypt State :: ${state}`);
+    console.log(`Log Encrypt State :: ${state}`);
 };
 
 const readCounterDecryptedValue = async () => {
-try {  
- const result = await contract.get_counter_value();
-console.log("readCounterDecryptedValue result:", result);
-} catch (error) {
-console.error("Error reading from contract:", error);
-}
+    try {
+        const result = await contract.get_counter_value();
+        console.log("readCounterDecryptedValue result:", result);
+    } catch (error) {
+        console.error("Error reading from contract:", error);
+    }
 }
 
 const readCounterEncryptedValue = async () => {
-const result = await contract.get_encrypted_counter_value();
-console.log("Result:", result);
+    const result = await contract.get_encrypted_counter_value();
+    console.log("Result:", result);
 
     // Let's create a permit to unseal the encrypted value
     const permit = await cofhejs.createPermit({
-        type: "self",
-        issuer: wallet.address,
+     type: "self",
+     issuer: wallet.address
     });
 
     // When creating a permit cofhejs will use it automatically, but you can pass it manually as well
     const unsealed = await cofhejs.unseal(result, FheTypes.Uint64, permit.data.issuer, permit.data.getHash());
     console.log(unsealed);
-
 }
 
 const incrementCounter = async () => {
-const tx = await contract.increment_counter();
-console.log("incrementCounter tx hash:", tx.hash);
-await tx.wait();
+    const tx = await contract.increment_counter();
+    console.log("incrementCounter tx hash:", tx.hash);
+    await tx.wait();
 }
 
 const resetCounter = async (value) => {
-const tx = await contract.reset_counter(value);
-console.log("resetCounter tx hash:", tx.hash);
-await tx.wait();
+    const tx = await contract.reset_counter(value);
+    console.log("resetCounter tx hash:", tx.hash);
+    await tx.wait();
 }
 
 const decryptCounter = async () => {
-const tx = await contract.decrypt_counter();
-console.log("decryptCounter tx hash:", tx.hash);
-await tx.wait();
+    const tx = await contract.decrypt_counter();
+    console.log("decryptCounter tx hash:", tx.hash);
+    await tx.wait();
 }
 
 // Value not ready (when running this script for the first time)
