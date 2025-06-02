@@ -59,21 +59,34 @@ let result = await cofhejs.encrypt(logState, [EncryptionTypes.bool(true), Encryp
 
 ```
 
-The returned types from the encrypt function will be of the type `CoFheInUint8`, `CoFheInUint16` or `CoFheInUintUint32` (or 64/128/256 etc.) depending on the type you specified.
-
-The `EncryptedUint` types sound scary, but are actually pretty simple. It's just a
+The returned types from the encrypt function will be wrapped in a Result object that looks like this:
 
 ```typescript
-export interface EncryptedNumber {
-  data: Uint8Array;
-  securityZone: number; // defaults to 0
-}
-
-export interface EncryptedUint8 extends EncryptedNumber {}
+export type Result<T> =
+  | { success: true; data: T; error: null }
+  | { success: false; data: null; error: CofhejsError };
 ```
 
-These types exist in order to enable type checking when interacting with Solidity contracts, and to make it easier to work with encrypted data.  
-However, feel free to use the `data` field directly if you prefer.
+Where `T` will be an array of `CoFheInItem`s. The `CoFheInItem` types (like `CoFheInBool`, `CoFheInUint8`, etc.) have this structure:
+
+```typescript
+export type CoFheInItem = {
+  ctHash: bigint;
+  securityZone: number;
+  utype: FheTypes;
+  signature: string;
+};
+```
+
+These types exist in order to enable type checking when interacting with Solidity contracts, and to make it easier to work with encrypted data.
+You can access the encrypted data through the `data` property of the success result like this:
+
+```typescript
+const result = await cofhejs.encrypt(logState, [EncryptionTypes.uint8(10)]);
+if (result.success) {
+  const firstInput = result.data[0];
+}
+```
 
 ### setState
 
