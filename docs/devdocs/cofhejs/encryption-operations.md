@@ -41,20 +41,20 @@ const logState = (state) => {
     console.log(`Log Encrypt State :: ${state}`);
 };
 
-let result: [CofheInBool] = await cofhejs.encrypt(logState, [Encryptable.bool(true)]);
-let result: [CoFheInUint8] = await cofhejs.encrypt(logState, [Encryptable.uint8(10)]);
-let result: [CoFheInUint16] = await cofhejs.encrypt(logState, [Encryptable.uint16(10)]);
-let result: [CoFheInUint32] = await cofhejs.encrypt(logState, [Encryptable.uint32(10)]);
-let result: [CoFheInUint64] = await cofhejs.encrypt(logState, [Encryptable.uint64(10)]);
-let result: [CoFheInUint128] = await cofhejs.encrypt(logState, [Encryptable.uint128(10)]);
-let result: [CoFheInUint256] = await cofhejs.encrypt(logState, [Encryptable.uint256(10)]);
-let result: [CoFheInAddress] = await cofhejs.encrypt(logState, [Encryptable.address("0x1234567890123456789012345678901234567890")]);
+let results = await cofhejs.encrypt(logState, [Encryptable.bool(true)]);
+let results = await cofhejs.encrypt(logState, [Encryptable.uint8(10)]);
+let results = await cofhejs.encrypt(logState, [Encryptable.uint16(10)]);
+let results = await cofhejs.encrypt(logState, [Encryptable.uint32(10)]);
+let results = await cofhejs.encrypt(logState, [Encryptable.uint64(10)]);
+let results = await cofhejs.encrypt(logState, [Encryptable.uint128(10)]);
+let results = await cofhejs.encrypt(logState, [Encryptable.uint256(10)]);
+let results = await cofhejs.encrypt(logState, [Encryptable.address("0x1234567890123456789012345678901234567890")]);
 ```
 
 Or, we can use the nested form to encrypt multiple values at once:
 
 ```javascript
-let result = await cofhejs.encrypt(logState, [
+let results = await cofhejs.encrypt(logState, [
 	Encryptable.bool(true),
 	Encryptable.uint8(10),
 	Encryptable.uint16(10),
@@ -66,7 +66,15 @@ let result = await cofhejs.encrypt(logState, [
 ])
 ```
 
-The returned types from the encrypt function will be an array of the type `CoFheInBool`, `CoFheInUint8`, `CoFheInUint16`, `CoFheInUint32` (or 64/128/256) or `CoFheInAddress` depending on the type you specified.
+The returned types from the encrypt function will be wrapped in a Result object that looks like this:
+
+```typescript
+export type Result<T> =
+  | { success: true; data: T; error: null }
+  | { success: false; data: null; error: CofhejsError };
+```
+
+Where `T` will be an array of the type `CoFheInBool`, `CoFheInUint8`, `CoFheInUint16`, `CoFheInUint32` (or 64/128/256) or `CoFheInAddress` depending on the type you specified.
 
 These encrypted types have the following structure:
 
@@ -84,6 +92,14 @@ export type CoFheInUint8 extends CoFheInItem {
 ```
 
 These types exist in order to enable type checking when interacting with Solidity contracts, and to make it easier to work with encrypted data.
+You can access the encrypted data through the `data` property of the success result like this:
+
+```typescript
+const result = await cofhejs.encrypt(logState, [EncryptionTypes.uint8(10)]);
+if (result.success) {
+  const firstInput = result.data[0];
+}
+```
 
 ### setState
 
