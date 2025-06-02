@@ -41,20 +41,20 @@ const logState = (state) => {
     console.log(`Log Encrypt State :: ${state}`);
 };
 
-let result: [CofheInBool] = await cofhejs.encrypt(logState, [Encryptable.bool(true)]);
-let result: [CoFheInUint8] = await cofhejs.encrypt(logState, [Encryptable.uint8(10)]);
-let result: [CoFheInUint16] = await cofhejs.encrypt(logState, [Encryptable.uint16(10)]);
-let result: [CoFheInUint32] = await cofhejs.encrypt(logState, [Encryptable.uint32(10)]);
-let result: [CoFheInUint64] = await cofhejs.encrypt(logState, [Encryptable.uint64(10)]);
-let result: [CoFheInUint128] = await cofhejs.encrypt(logState, [Encryptable.uint128(10)]);
-let result: [CoFheInUint256] = await cofhejs.encrypt(logState, [Encryptable.uint256(10)]);
-let result: [CoFheInAddress] = await cofhejs.encrypt(logState, [Encryptable.address("0x1234567890123456789012345678901234567890")]);
+let results = await cofhejs.encrypt(logState, [Encryptable.bool(true)]);
+let results = await cofhejs.encrypt(logState, [Encryptable.uint8(10)]);
+let results = await cofhejs.encrypt(logState, [Encryptable.uint16(10)]);
+let results = await cofhejs.encrypt(logState, [Encryptable.uint32(10)]);
+let results = await cofhejs.encrypt(logState, [Encryptable.uint64(10)]);
+let results = await cofhejs.encrypt(logState, [Encryptable.uint128(10)]);
+let results = await cofhejs.encrypt(logState, [Encryptable.uint256(10)]);
+let results = await cofhejs.encrypt(logState, [Encryptable.address("0x1234567890123456789012345678901234567890")]);
 ```
 
 Or, we can use the nested form to encrypt multiple values at once:
 
 ```javascript
-let result = await cofhejs.encrypt(logState, [
+let results = await cofhejs.encrypt(logState, [
 	Encryptable.bool(true),
 	Encryptable.uint8(10),
 	Encryptable.uint16(10),
