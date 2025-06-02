@@ -1,0 +1,20 @@
+<svg width="808" height="205" viewBox="0 0 808 205" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="86" cy="165" r="4" transform="rotate(-90 86 165)" fill="#5F6368"/>
+<circle cx="86" cy="141" r="4" transform="rotate(-90 86 141)" fill="#5F6368"/>
+<circle cx="86" cy="117" r="4" transform="rotate(-90 86 117)" fill="#5F6368"/>
+<circle cx="110" cy="165" r="4" transform="rotate(-90 110 165)" fill="#5F6368"/>
+<circle cx="110" cy="141" r="4" transform="rotate(-90 110 141)" fill="#5F6368"/>
+<circle cx="753" cy="108" r="5" transform="rotate(90 753 108)" fill="#5F6368"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M791.5 189.035C792.138 189.035 792.747 188.771 793.182 188.304L793.5 187.964L732.536 127L665.5 127C664.948 127 664.5 127.448 664.5 128C664.5 128.552 664.948 129 665.5 129L731.464 129L791.5 189.035Z" fill="#5F6368"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M4.62016 47.9995C3.59623 47.9995 3.04744 49.204 3.71933 49.9767L4 50.2994L48.526 93.9995L144 93.9995L144 92.4471L49.8539 92.4471L4.62016 47.9995Z" fill="#5F6368"/>
+<mask id="path-9-inside-1_163_4253" fill="white">
+<ellipse cx="4" cy="48.9995" rx="4" ry="4"/>
+</mask>
+<ellipse cx="4" cy="48.9995" rx="4" ry="4" fill="#5F6368"/>
+<path d="M4 48.9995L4 48.9995L4 56.9995C8.41828 56.9995 12 53.4178 12 48.9995L4 48.9995ZM4 48.9995L4 48.9995L-4 48.9995C-4 53.4178 -0.418278 56.9995 4 56.9995L4 48.9995ZM4 48.9995L4 48.9995L4 40.9995C-0.418277 40.9995 -4 44.5812 -4 48.9995L4 48.9995ZM4 48.9995L4 48.9995L12 48.9995C12 44.5812 8.41828 40.9995 4 40.9995L4 48.9995Z" fill="#5F6368" mask="url(#path-9-inside-1_163_4253)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M731.39 127.594L749.698 109.286L751.112 110.7L732.804 129.008L731.39 127.594Z" fill="#5F6368"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M120 140L145 140L145 142L120 142L120 140Z" fill="#5F6368"/>
+<rect x="145" y="40" width="521" height="136" rx="23" stroke="#5F6368" stroke-width="2"/>
+<path d="M789 195C789 190.029 793.029 186 798 186C802.971 186 807 190.029 807 195C807 199.97 802.971 204 798 204C793.029 204 789 199.97 789 195Z" stroke="#5F6368" stroke-width="2"/>
+<path d="M100 141C100 135.477 104.477 131 110 131C115.523 131 120 135.477 120 141C120 146.523 115.523 151 110 151C104.477 151 100 146.523 100 141Z" stroke="#5F6368" stroke-width="2"/>
+</svg>

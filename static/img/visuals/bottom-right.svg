@@ -1,0 +1,22 @@
+<svg width="327" height="261" viewBox="0 0 327 261" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="79" cy="4" r="4" transform="rotate(90 79 4)" fill="#5F6368"/>
+<circle cx="79" cy="28" r="4" transform="rotate(90 79 28)" fill="#5F6368"/>
+<circle cx="79" cy="52" r="4" transform="rotate(90 79 52)" fill="#5F6368"/>
+<circle cx="55" cy="4" r="4" transform="rotate(90 55 4)" fill="#5F6368"/>
+<circle cx="55" cy="28" r="4" transform="rotate(90 55 28)" fill="#5F6368"/>
+<path d="M337.193 156L312.193 181" stroke="#5F6368" stroke-width="2"/>
+<path d="M286.193 207L261.193 234" stroke="#5F6368" stroke-width="2"/>
+<path d="M337.193 233L312.193 208" stroke="#5F6368" stroke-width="2"/>
+<path d="M285.193 181L261.193 157" stroke="#5F6368" stroke-width="2"/>
+<rect x="262.193" y="259" width="26.1928" height="26.1928" transform="rotate(180 262.193 259)" fill="#5F6368" stroke="#5F6368" stroke-width="2"/>
+<rect x="262.193" y="157.193" width="26.1928" height="26.1928" transform="rotate(180 262.193 157.193)" stroke="#5F6368" stroke-width="2"/>
+<rect x="313.072" y="208.313" width="28.1928" height="28.1928" transform="rotate(180 313.072 208.313)" stroke="#5F6368" stroke-width="2"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M127.5 245.036V245.036C128.138 245.036 128.747 244.771 129.182 244.305L129.5 243.965L68.5355 183L1.5 183C0.947717 183 0.500005 183.448 0.500005 184V184C0.500005 184.552 0.94772 185 1.50001 185L67.4645 185L127.5 245.036Z" fill="#5F6368"/>
+<path d="M125 251C125 246.029 129.029 242 134 242C138.971 242 143 246.029 143 251C143 255.971 138.971 260 134 260C129.029 260 125 255.971 125 251Z" stroke="#5F6368" stroke-width="2"/>
+<circle cx="133" cy="111" r="13" transform="rotate(180 133 111)" stroke="#5F6368" stroke-width="2"/>
+<circle cx="79" cy="52" r="13" transform="rotate(180 79 52)" stroke="#5F6368" stroke-width="2"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M218.743 110L375 110C375.552 110 376 110.448 376 111V111C376 111.552 375.552 112 375 112L217.257 112L157.257 52L91 52L91 50L157.743 50L218.743 110Z" fill="#5F6368"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M147 110L218 110L218 112L147 112L147 110Z" fill="#5F6368"/>
+<path d="M80.629 158.507C80.2385 158.117 80.2385 157.484 80.629 157.093V157.093C81.0195 156.703 81.6527 156.703 82.0432 157.093L141.713 216.763C142.104 217.154 142.104 217.787 141.713 218.177V218.177C141.323 218.568 140.69 218.568 140.299 218.177L80.629 158.507Z" fill="#5F6368"/>
+<circle cx="141.834" cy="218.299" r="4" transform="rotate(-45 141.834 218.299)" fill="#5F6368"/>
+</svg>

@@ -6,10 +6,10 @@ import AskCookbook from "@cookbookdev/docsbot/react";
 const COOKBOOK_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NjhkNGVmMTQ5ODQ2YjcxMDdjYzEyZDUiLCJpYXQiOjE3MjA1MzY4MTcsImV4cCI6MjAzNjExMjgxN30.RArVfTI-iEvHuTH8gRzfwHuFHeETUv8YIsvDp2Kv3sE";
 
 export default function SearchBarWrapper(props) {
-  return (
-    <>
-      <SearchBar {...props} />
-      <AskCookbook apiKey={COOKBOOK_API_KEY} />
-    </>
+  return (<></>
+    // <>
+    //   <SearchBar {...props} />
+    //   <AskCookbook apiKey={COOKBOOK_API_KEY} />
+    // </>
   );
 }

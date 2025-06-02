@@ -46,7 +46,7 @@ function getNumber() public view returns (euint64) {
 }
 ```
 
-1. Fetch the user's `euint64` from the chain by calling `const CtHash = await example.getNumber()` which returns an `euint64` as a js bigint.
+1. Fetch the user's `euint64` from the chain by calling `const CtHash = await example.getNumber()` which returns an `euint64` as a js bigint.![Bullet](../../../../static/img/assets/2.png)
 
 > Note: All euints, along with ebool and eaddress, are wrappers around uint256. The data returned from `example.getNumber()` is in the type bigint, and can be treated as a `CtHash` directly
 
@@ -57,15 +57,15 @@ function getNumber() public view returns (euint64) {
 
 2. [Create a permit](../../cofhejs/permits-management.md) using `cofhejs.createPermit(...)`. This permit will automatically be used in the following step.
 
-3. [Unseal](../../cofhejs/sealing-unsealing.md) using `cofhejs.unseal(CtHash)`. Calls `/sealoutput` on the threshold network, unseals the result.
+3. [Unseal](../../cofhejs/sealing-unsealing.md) using `cofhejs.unseal(CtHash)`![Bullet](../../../../static/img/assets/1.png). Calls `/sealoutput` on the threshold network, unseals the result. ![Bullet](../../../../static/img/assets/3.png)
 
-### 📌 Step 3 (Handled by cofhejs.unseal): https://\{ThresholdNetworkUrl\}/sealoutput
+### 📌 Step 3 (Handled by cofhejs.unseal):
 
-1. **`cofhejs.unseal` calls /sealoutput**. The user's Permit is added to the request. `Permit.issuer` should be the `msg.sender` in Step 1 for the permit to be valid.
+1. **`cofhejs.unseal` calls /sealoutput**. The user's Permit is added to the request. `Permit.issuer` should be the `msg.sender` in Step 1 for the permit to be valid. https://\{ThresholdNetworkUrl\}/sealoutput  
 
 2. **Threshold Network makes an on-chain call to the `ACL`** to verify that the Permit is valid.
 
-3. **ACL verifies** that the Permit is valid.
+3. **ACL verifies** that the Permit is valid.![Bullet](../../../../static/img/assets/4.png)
 
 4. **ACL verifies** that `Permit.issuer` has been granted access to `CtHash`. (Access is granted by `FHE.allowSender` in the Example contract function `setNumber()`)
 

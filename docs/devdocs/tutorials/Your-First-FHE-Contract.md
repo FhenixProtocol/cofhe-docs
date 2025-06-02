@@ -106,9 +106,8 @@ When we initialize the `delta` and `counter` variables, we use **trivial encrypt
 variable, even though represented as a ciphertext handle, is not really confidential because everyone can see what is the
 plaintext value that went into it.
 
-So in this case, whenever an increment occurs, an observer can know that the counter which was `x` is now `x + 1`.
 To make it completely private, we need to initialize these variables with an InEuint from the calldata.
-In that case the observer would know that the new counter is `x + y` (but wouldn't know what `x` and `y` are).
+More about trivial encryption [here](/docs/devdocs/fhe-library/trivial-encryption.md).
 </details>
 :::
 
@@ -169,6 +168,6 @@ This will allow the owner to read the encrypted counter's value using the `get_e
        return counter;
     }
 ```
-In the [next section](/docs/devdocs/quick-start/getting-started) we will see how to use Cofhejs to privately decrypt this encrypted contract variable.
+In the [next section](/docs/devdocs/cofhejs#end-to-end-example) we will see how to use Cofhejs to privately decrypt this encrypted contract variable.
 
 <span style={{color: "orange", fontStyle: "italic"}}>Exercise:</span> Try to modify the contract to allow the owner to read the counter's value without sending a transaction every time, you will need it in order to make the Cofhejs example work.

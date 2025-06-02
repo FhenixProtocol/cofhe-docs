@@ -53,6 +53,7 @@ graph LR
 > Including GitHub Repository Links (CoFHE-Contracts)
 
 ### **Inputs**
+### **Trivial Encryption**
 ### **Outputs**
    - Events
    - Returned Results

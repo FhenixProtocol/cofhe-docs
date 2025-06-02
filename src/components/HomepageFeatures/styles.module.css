@@ -21,25 +21,15 @@
 }
 
 
-html[data-theme='light'] .custom__card:hover {
-  background: linear-gradient(180deg, rgba(245, 241, 241, 0.849)0%, rgba(143, 152, 197, 0.2) 100%);
-  box-shadow: 4px 4px 8px rgba(87, 100, 170, 0.3);
-}
-
-html[data-theme='dark'] .custom__card:hover {
-  background: linear-gradient(180deg, rgba(87, 100, 170, 0.2) 0%, rgba(143, 152, 197, 0.2) 100%);
-  box-shadow: 4px 4px 8px rgba(87, 100, 170, 0.3);
-}
-
-
 .custom__card {
   /* Rectangle 39 */
   height: 308px;
-  box-sizing: border-box;
-  transition: box-shadow .3s;
+  background: #D9F0FF;
+  /* box-sizing: border-box; */
+  transition: box-shadow .3s, background .3s;
   width: 100%;
   /* background: var(--ifm-color-background); */
-  border: 1.5px solid var(--ifm-color-text);
+  /* border: 1.5px solid var(--ifm-color-text); */
   /* box-shadow: 0px 0px 25px 0px rgba(255, 255, 255, 0.10); */
   border-radius: 20.2632px;
   /* justify-content: center; */
@@ -47,18 +37,26 @@ html[data-theme='dark'] .custom__card:hover {
   /* background: rgba(255, 255, 255, 0.05); */
   backdrop-filter: blur(39.0119514465332px);
 
-  border: 1px solid #7040C832;
+  /* border: 1px solid #7040C832; */
+}
+
+html[data-theme='dark'] .custom__card {
+  background: #1A1A1A;
+  color: #E6F7FF;
 }
 
 .custom__card_1 {
   /* Rectangle 39 */
+  background: #D9F0FF;
+  
   height: 308px;
   box-sizing: border-box;
-  transition: box-shadow .3s;
+  /* transition: box-shadow .3s; */
+  transition: background .3s;
   width: 100%;
   min-width: 325px;
   /* background: var(--ifm-color-background); */
-  border: 1.5px solid var(--ifm-color-text);
+  /* border: 1.5px solid var(--ifm-color-text); */
   /* box-shadow: 0px 0px 25px 0px rgba(255, 255, 255, 0.10); */
   border-radius: 20.2632px;
   /* justify-content: center; */
@@ -66,19 +64,23 @@ html[data-theme='dark'] .custom__card:hover {
   /* background: rgba(28, 28, 28, 0.05); */
   backdrop-filter: blur(39.0119514465332px);
 
-  border: 1px solid #7040C832;
+  /* border: 1px solid #7040C832; */
 }
 
-html[data-theme='light'] .custom__card_1:hover {
-  background: linear-gradient(180deg, rgba(245, 241, 241, 0.849)0%, rgba(143, 152, 197, 0.2) 100%);
-  box-shadow: 4px 4px 8px rgba(87, 100, 170, 0.3);
+html[data-theme='dark'] .custom__card_1 {
+  background: #1A1A1A;
+  color: #E6F7FF;
 }
 
-html[data-theme='dark'] .custom__card_1:hover {
-  background: linear-gradient(180deg, rgba(87, 100, 170, 0.2) 0%, rgba(143, 152, 197, 0.2) 100%);
-  box-shadow: 4px 4px 8px rgba(87, 100, 170, 0.3);
-  color: white;
+html[data-theme='light'] {
+  background: #E6F7FF;
 }
+
+html[data-theme='dark'] {
+  background: #141414;
+}
+
+
 
 
 @media  (max-width: 1440px) {

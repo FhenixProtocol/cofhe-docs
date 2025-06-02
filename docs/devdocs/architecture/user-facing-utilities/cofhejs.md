@@ -8,11 +8,11 @@ import TabItem from "@theme/TabItem";
 
 # Cofhejs
 
-| Aspect               | Description                                                                                                                    |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| **Type**             | Typescript Library                                                                                                             |
+| Aspect               | Description                                                                                                          |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| **Type**             | Typescript Library                                                                                                   |
 | **Function**         | Provides functionality to initialize TFHE, generate and manage permits, encrypt input data, and read encrypted data. |
-| **Responsibilities** | Handle primary interactions with FHE enabled contracts and the CoFHE Co-Processor.                                             |
+| **Responsibilities** | Handle primary interactions with FHE enabled contracts and the CoFHE Co-Processor.                                   |
 
 Cofhejs is the JavaScript library that provides client-side functionality for interacting with CoFHE smart contracts. It handles encryption, decryption, and communication with the blockchain.
 
@@ -32,7 +32,7 @@ To get started with Cofhejs, you need to install it as a dependency in your Java
   </TabItem>
 </Tabs>
 
-> Note: _For more information on getting started, take a look at the [**Cofhejs getting started**](/docs/devdocs/quick-start/getting-started) guide._
+> Note: _For more information on getting started, take a look at the [**Cofhejs getting started**](/docs/devdocs/cofhejs/index.md) guide._
 
 ## Key Features
 
@@ -50,11 +50,11 @@ const wallet = new ethers.Wallet(PRIVATE_KEY, provider)
 await cofhejs.initializeWithEthers({
 	ethersProvider: provider,
 	ethersSigner: wallet,
-	environment: 'LOCAL',
+	environment: 'TESTNET',
 })
 ```
 
-> Note: _For more information on getting started, take a look at the [**Cofhejs getting started**](/docs/devdocs/quick-start/getting-started) guide._
+> Note: _For more information on getting started, take a look at the [**Cofhejs getting started**](/docs/devdocs/cofhejs/index.md) guide._
 
 - Client-side encryption/decryption
 

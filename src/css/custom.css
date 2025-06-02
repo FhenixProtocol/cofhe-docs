@@ -134,6 +134,25 @@ pre code {
   src: url('../../static/fonts/Orbitron-VariableFont.ttf');
 }
 
+@font-face {
+  font-family: 'Orbitron';
+  src: url('../../static/fonts/Orbitron-VariableFont.ttf');
+}
+
+@font-face {
+  font-family: 'RedditSans';
+  src: url('../../static/fonts/RedditSans-VariableFont_wght.ttf');
+}
+
+
+@font-face {
+  font-family: 'RedditMono';
+  src: url('../../static/fonts/RedditMono-VariableFont_wght.ttf');
+}
+
+
+
+
 .hero {
   color: var(--ifm-color-text);
   padding-bottom: 0px;
@@ -251,7 +270,7 @@ pre code {
   display: inline-block;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  font-family: Orbitron;
+  font-family: RedditSans;
 }
 
 .docs-button:hover {
@@ -281,7 +300,7 @@ pre code {
 .tutorial-button {
   padding: 5px 10px;
   border: 1px #0073E6 solid;
-  border-radius: 10px; /* Adjust as necessary for the roundness */
+  border-radius: 50px; /* Adjust as necessary for the roundness */
   
   color: #0073E6; /* Text color */
   font-size: 16px; /* Adjust as necessary */
@@ -290,7 +309,14 @@ pre code {
   display: inline-block;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  font-family: Orbitron;
+  font-family: RedditSans;
+}
+
+.tutorial-button:hover {
+  background-color: #0073E6;
+  color: white;
+  text-decoration: none;
+
 }
 
 .tutorial-button img {
@@ -309,7 +335,12 @@ pre code {
 }
 
 .orb-font {
-  font-family: Orbitron;
+  font-family: RedditMono;
+  color: #003366;
+}
+
+[data-theme='dark'] .orb-font {
+  color: #E6F7FF; /* Using the same color as your --ifm-color-text in dark mode */
 }
 
 /* 
@@ -425,14 +456,13 @@ pre code {
   }
 }
 
-@media (max-width: 996px) {
+
+@media (max-width: 796px) {
 
   .heroBanner {
     padding: 2rem;
   }
-  .hide-small-width {
-    display: none;
-  }
+
   .button {
     width: 30%;
     min-width: 250px;
@@ -443,6 +473,11 @@ pre code {
   }
 }
 
+@media (max-width: 1000px) {
+  .hide-small-width {
+    display: none;
+  }
+}
 
 @media (min-width: 1400px) {
   .button--lol {
@@ -450,9 +485,6 @@ pre code {
   }
   .heroBanner {
 
-  }
-  .hide-small-width {
-    display: block;
   }
 }
 

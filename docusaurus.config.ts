@@ -76,6 +76,14 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
+  plugins: [
+    [
+      '@docusaurus/plugin-google-tag-manager',
+      {
+        containerId: 'GTM-5X4J3CF7',
+      },
+    ],
+  ],
   themeConfig: {
     metadata: [
       {name: 'keywords', content: 'Fhenix, Blockchain, FHE, Cofhe, Threshold Network, Fully Homomorphic Encryption, Layer 2, L2, Coprocessor, Blockchain Technology, Secure Computing, Scalable Blockchain, Decentralized'},

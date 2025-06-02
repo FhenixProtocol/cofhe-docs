@@ -38,6 +38,7 @@ By default, newly created ciphertext handles are accessible to the contract that
 1. `FHE.allowThis(CIPHERTEXT_HANDLE)` - allows the current contract access to the handle.
 2. `FHE.allow(CIPHERTEXT_HANDLE, ADDRESS)` - allows the specified address access to the handle.
 3. `FHE.allowTransient(CIPHERTEXT_HANDLE, ADDRESS)` - allows the specified address access to the handle for the duration of the transaction.
+4. `FHE.allowGlobal(CIPHERTEXT_HANDLE)` - allows any address access to the handle.
 
 :::note[Note]
 To decrypt a ciphertext off-chain using the decryption network, the issuer of the decryption request must have permission on the ciphertext handle. If not, the request will be denied by the access control system..
