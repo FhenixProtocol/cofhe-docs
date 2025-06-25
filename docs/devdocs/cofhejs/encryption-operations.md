@@ -18,7 +18,7 @@ First, initialize the library:
 await cofhejs.initializeWithEthers({
     ethersProvider: provider,
     ethersSigner: wallet,
-    environment: "LOCAL",
+    environment: "TESTNET",
 });
 
 // or
@@ -26,7 +26,7 @@ await cofhejs.initializeWithEthers({
 await cofhejs.initializeWithViem({
     viemClient: provider,
     viemWalletClient: wallet,
-    environment: "LOCAL",
+    environment: "TESTNET",
 });
 ```
 
