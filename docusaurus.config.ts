@@ -98,8 +98,8 @@ const config: Config = {
       title: 'Fhenix Docs',
       logo: {
         alt: 'Fhenix',
-        src: 'img/logo-black.svg',
-        srcDark: 'img/logo-white.svg',
+        src: 'img/assets/dark-text-logo.svg',
+        srcDark: 'img/assets/white-text-logo.svg',
         className: 'navbar__logo',
       },
       items: [

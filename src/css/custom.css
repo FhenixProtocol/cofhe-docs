@@ -99,6 +99,11 @@ pre code {
   font-family: "Reddit Mono", monospace;
 }
 
+[data-theme='dark'] .language-solidity.theme-code-block .prism-code {
+  background: #001623 !important;
+  border-color: #122530 !important;
+}
+
 .separator-sidebar-item > div {
   padding: 0 !important;
 }
