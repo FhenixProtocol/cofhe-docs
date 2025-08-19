@@ -40,13 +40,13 @@ function HomepageHeader() {
 
                           <Heading as="h1" className="hero__title">
                               { /* siteConfig.title */} 
-                              <img className="fhenix-logo" alt="fhenix image" src="img/fhenix-logo-build.webp" />
+                              <img className="fhenix-logo" alt="fhenix image" src={colorMode === 'dark' ? "img/assets/white-text-logo.svg" : "img/assets/dark-text-logo.svg"}/>
                           </Heading>
                       </div>
                       <div className="row">
                           {/* <p className="hero__subtitle">{siteConfig.tagline}</p> */}
                           <p className="home__description">
-                          <span style={{ color: colorMode === 'dark' ? '#E6F7FF' : '#003366' }}>Tools and resources to help you build, launch, and grow your app on Fhenix</span>
+                          <span style={{ color: colorMode === 'dark' ? '#E6F7FF' : '#00162399' }}>Tools and resources to help you build, launch, and grow your app on Fhenix.</span>
                           </p>
                       </div>
                       <div className={clsx("row", styles.ButtonRow)} style={{ marginLeft: -30 , gap: '31px'}}>

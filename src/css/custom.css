@@ -8,77 +8,95 @@ pre code {
   tab-size: 4;
 }
 
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #067df3;
-  --ifm-color-primary-dark: #306cce;
-  --ifm-color-primary-darker: #2d66c3;
-  --ifm-color-primary-darkest: #2554a0;
-  --ifm-color-primary-light: #538ce9;
-  --ifm-color-primary-lighter: #72a1ed;
-  --ifm-color-primary-lightest: #067df3;
+  /* Primary brand accent — cyan */
+  --ifm-color-primary: #001623;
+  --ifm-color-primary-dark: #000f19;
+  --ifm-color-primary-darker: #000c14;
+  --ifm-color-primary-darkest: #00080e;
+  --ifm-color-primary-light: #122530; /* second dark */
+  --ifm-color-primary-lighter: #1d3844;
+  --ifm-color-primary-lightest: #2b4d5a;
 
-  --ifm-color-secondary-dark: #d4d5d8;
-  --ifm-color-secondary-darker: #c8c9cc;
-  --ifm-color-secondary-darkest: #a4a6a8;
-  --ifm-color-secondary-light: #107fee;
-  --ifm-color-secondary-lighter: #f1f2f5;
-  --ifm-color-secondary-lightest: #f5f6f8;
-  --ifm-color-background: #ffffff;
+  /* Secondary accent — blue */
+  --ifm-color-secondary-dark: #7585ff;
+  --ifm-color-secondary-darker: #6777e6;
+  --ifm-color-secondary-darkest: #5968cc;
+  --ifm-color-secondary-light: #8a97ff;
+  --ifm-color-secondary-lighter: #a2adff;
+  --ifm-color-secondary-lightest: #bcc4ff;
+  
+  /* Backgrounds & text */
+  --ifm-color-background: #ffffff; /* main light background */
   --ifm-color-glow: #ffffff;
   --ifm-code-font-size: 95%;
-  --ifm-color-text: #003366;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-  --ifm-font-family-base: 'Roboto', sans-serif;
-  --ifm-title-color-gradient-1: #17276b;
-  --ifm-title-color-gradient-2: #252850;
+  --ifm-color-text: #001623; /* main dark text */
+  --docusaurus-highlighted-code-line-bg: rgba(0, 22, 35, 0.08);
+  --ifm-font-family-base: 'Inter', sans-serif;
 
-  --ifm-light-border-color: rgba(0,0,0,0.2);
-  
+  /* Gradient titles (purple → blue) */
+  --ifm-title-color-gradient-1: #c886fe;
+  --ifm-title-color-gradient-2: #7585ff;
+
+  /* Borders */
+  --ifm-light-border-color: #ebedee;
 }
 
-/* //linear-gradient(180deg, #5764AA 0%, #8F98C5 100%); */
-/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #0073E6;
-  --ifm-color-primary-dark: #306cce;
-  --ifm-color-primary-darker: #2d66c3;
-  --ifm-color-primary-darkest: #2554a0;
-  --ifm-color-primary-light: #538ce9;
-  --ifm-color-primary-lighter: #72a1ed;
-  --ifm-color-primary-lightest: #9abcf2;
+  /* Primary — cyan */
+  --ifm-color-primary: #0ad9dc;
+  --ifm-color-primary-dark: #09c2c4;
+  --ifm-color-primary-darker: #08aeb0;
+  --ifm-color-primary-darkest: #079091;
+  --ifm-color-primary-light: #22e1e4;
+  --ifm-color-primary-lighter: #44e7ea;
+  --ifm-color-primary-lightest: #6fedf0;
 
-  --ifm-color-secondary-dark: #d4d5d8;
-  --ifm-color-secondary-darker: #c8c9cc;
-  --ifm-color-secondary-darkest: #a4a6a8;
-  --ifm-color-secondary-light: #eef0f2;
-  --ifm-color-secondary-lighter: #f1f2f5;
-  --ifm-color-secondary-lightest: #f5f6f8;
+  /* Secondary — blue */
+  --ifm-color-secondary-dark: #7585ff;
+  --ifm-color-secondary-darker: #6777e6;
+  --ifm-color-secondary-darkest: #5968cc;
+  --ifm-color-secondary-light: #8a97ff;
+  --ifm-color-secondary-lighter: #a2adff;
+  --ifm-color-secondary-lightest: #bcc4ff;
 
-  --ifm-color-text: #0671a3;
+  /* Text & backgrounds */
+  --ifm-color-text: #fafafa;
   --ifm-color-glow: #ffffff;
-  /* main background color */
-  --ifm-background-color: #161b22 !important;
-
+  --ifm-background-color: #001623 !important; /* main dark */
   --ifm-background-surface-color: var(--ifm-background-color) !important;
   --ifm-footer-background-color: var(--ifm-background-color) !important;
+  --ifm-font-family-base: 'Inter', sans-serif;
+  --ifm-color-background: #122530; /* second dark for hero/bg sections */
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.08);
 
-  --ifm-font-family-base: 'Roboto', sans-serif;
-  /* hero background color */
-  --ifm-color-background: #032553;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  /* Gradient titles (purple → blue) */
+  --ifm-title-color-gradient-1: #c886fe;
+  --ifm-title-color-gradient-2: #7585ff;
 
-  --ifm-title-color-gradient-1: #5764AA;
-  --ifm-title-color-gradient-2: #9197a9;
-
-  --ifm-light-border-color: rgba(255,255,255,0.2);
+  /* Borders */
+  --ifm-light-border-color: rgba(255, 255, 255, 0.12);
 }
+
 
 /* Sidebar separator styling */
 .separator-sidebar-item {
   height: 1px;
   pointer-events: none;
   cursor: default;
+}
+
+@font-face {
+  font-family: "Reddit Mono";
+  src: url("/fonts/RedditMono-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Apply only to Solidity code blocks */
+.language-solidity.theme-code-block .prism-code {
+  font-family: "Reddit Mono", monospace;
 }
 
 .separator-sidebar-item > div {
@@ -150,6 +168,11 @@ pre code {
   src: url('../../static/fonts/RedditMono-VariableFont_wght.ttf');
 }
 
+@font-face {
+  font-family: 'Inter';
+  src: url('../../static/fonts/Inter-VariableFont.ttf');
+}
+
 
 
 
@@ -168,7 +191,7 @@ pre code {
   leading-trim: both;
 
   text-edge: cap;
-  font-family: Teko;
+  font-family: 'Inter';
   font-size: 54px;
   font-style: normal;
   font-weight: 400;
@@ -252,40 +275,34 @@ pre code {
   }
 }
 
-
-
 .docs-button {
   padding: 5px 10px;
-  border: none;
-  border-radius: 10px; /* Adjust as necessary for the roundness */
-  border: 1px rgba(79, 79, 79, 0.5) solid;
-  background: radial-gradient(circle at 50% -220%, rgba(89, 255, 249, 0.5), transparent 70%),
-              radial-gradient(circle at 50% 220%, rgba(86, 68, 207, 0.5) 10%, transparent 100%),
-              #0073E6; /* Base color */
+  border: 1px solid rgba(79, 79, 79, 0.5);
+  border-radius: 10px;
+  background: radial-gradient(circle at 50% -220%, var(--ifm-color-primary-lightest), transparent 70%),
+              radial-gradient(circle at 50% 220%, var(--ifm-color-secondary-dark), transparent 100%),
+              var(--ifm-color-primary); /* Base brand primary */
   
-  color: white; /* Text color */
-  font-size: 16px; /* Adjust as necessary */
+  color: var(--ifm-color-glow); /* Text color adapts */
+  font-size: 16px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  font-family: RedditSans;
+  font-family: var(--ifm-font-family-base);
 }
 
 .docs-button:hover {
-  color: white; /* Text color */
+  color: var(--ifm-color-glow);
 
-  background: radial-gradient(circle at 50% -220%, rgba(89, 255, 249, 0.7), transparent 70%),
-              radial-gradient(circle at 50% 220%, rgba(50, 26, 202, 0.7) 10%, transparent 100%),
-              #0073E6; /* Base color */
+  background: radial-gradient(circle at 50% -220%, var(--ifm-color-primary-light), transparent 70%),
+              radial-gradient(circle at 50% 220%, var(--ifm-color-secondary-darker), transparent 100%),
+              var(--ifm-color-primary-dark);
 
-  box-shadow: 0 0 5px rgba(133, 121, 245, 0.3), /* Enhanced outer glow on hover */
-              0 0 5px rgba(133, 121, 245, 0.2), /* More diffuse glow */
-              inset 0 0 2px rgba(255, 255, 255, 0.3); /* Increased inner highlight */
-  /* transition: all  0.2s ease;
-  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.5); */
-
+  box-shadow: 0 0 5px var(--ifm-color-secondary-lightest),
+              0 0 5px var(--ifm-color-secondary-lighter),
+              inset 0 0 2px rgba(255, 255, 255, 0.3);
 }
 
 .docs-button.minimum {
@@ -296,35 +313,31 @@ pre code {
   margin: 10px;
 }
 
-
+/* Tutorial button */
 .tutorial-button {
   padding: 5px 10px;
-  border: 1px #0073E6 solid;
-  border-radius: 50px; /* Adjust as necessary for the roundness */
+  border: 1px solid var(--ifm-color-primary);
+  border-radius: 50px;
   
-  color: #0073E6; /* Text color */
-  font-size: 16px; /* Adjust as necessary */
+  color: var(--ifm-color-primary);
+  font-size: 16px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  font-family: RedditSans;
+  font-family: var(--ifm-font-family-base);
 }
 
 .tutorial-button:hover {
-  background-color: #0073E6;
-  color: white;
+  background-color: var(--ifm-color-primary);
+  color: var(--ifm-color-glow);
   text-decoration: none;
-
 }
 
 .tutorial-button img {
-  /* color: #0073E6; Text color */
-  filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);
-
+filter: brightness(0) saturate(100%) invert(6%) sepia(31%) saturate(5266%) hue-rotate(181deg) brightness(93%) contrast(52%);
 }
-
 
 .tutorial-button.minimum {
   min-width: 150px;
@@ -334,13 +347,14 @@ pre code {
   margin: 10px;
 }
 
+/* Orb font style */
 .orb-font {
-  font-family: RedditMono;
-  color: #003366;
+  font-family: 'Inter';
+  color: var(--ifm-color-text);
 }
 
 [data-theme='dark'] .orb-font {
-  color: #E6F7FF; /* Using the same color as your --ifm-color-text in dark mode */
+  color: var(--ifm-color-text);
 }
 
 /* 
@@ -369,20 +383,14 @@ pre code {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  
   height: 100%;
   width: 100% !important;
-  
-  
 }
 
-
-/*  background-image: conic-gradient(rgba(226, 151, 75, 0.75), rgba(126, 139, 201, 0.75) , rgba(133, 118, 112, 0.75));*/
 .hero__title {
   leading-trim: both;
-
   text-edge: cap;
-  font-family: Teko;
+  font-family: 'Inter';
   font-size: 115px;
   font-style: normal;
   font-weight: 700;
@@ -399,7 +407,7 @@ pre code {
   margin-top: -0.5rem;
   leading-trim: both;
   text-edge: cap;
-  font-family: Teko;
+  font-family: 'Inter';
   font-size: 54px;
   font-style: normal;
   font-weight: 100;
@@ -411,8 +419,10 @@ pre code {
   leading-trim: both;
   text-edge: cap;
   font-size: 20px;
-  line-height: 35px; /* 145.833% */
-  margin-top: -20px;
+  line-height: 1.35em;
+  margin-top: 8px;
+  margin-bottom: 32px;
+  max-width: 440px;
 }
 
 .button {
@@ -446,7 +456,7 @@ pre code {
 }
   
 .white-image {
-  filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);
+  filter: brightness(0) saturate(100%) invert(63%) sepia(86%) saturate(2203%) hue-rotate(135deg) brightness(106%) contrast(92%);
 }
 
 /* kind of a hack, but it works I think? */
@@ -519,11 +529,11 @@ pre code {
   display: flex;
   background: url('data:image/png;base64,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');
   background-size: cover;
-  filter: brightness(0) saturate(100%) invert(14%) sepia(100%) saturate(3774%) hue-rotate(202deg) brightness(19%) contrast(101%);
+  filter: brightness(0) saturate(100%) invert(14%) sepia(58%) saturate(2629%) hue-rotate(194deg) brightness(94%) contrast(101%);
 }
 
 html[data-theme='light'] .header-discord-link:before {
-  filter: brightness(0) saturate(100%) invert(14%) sepia(100%) saturate(3774%) hue-rotate(202deg) brightness(19%) contrast(101%);
+  filter: brightness(0) saturate(100%) invert(14%) sepia(58%) saturate(2629%) hue-rotate(194deg) brightness(94%) contrast(101%);
 }
 html[data-theme='dark'] .header-discord-link:before {
   filter: invert(100%);
@@ -541,7 +551,7 @@ html[data-theme='dark'] .header-discord-link:before {
   display: flex;
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z'/%3E%3C/svg%3E")
   no-repeat;
-  filter: brightness(0) saturate(100%) invert(14%) sepia(100%) saturate(3774%) hue-rotate(202deg) brightness(19%) contrast(101%);
+  filter: brightness(0) saturate(100%) invert(14%) sepia(58%) saturate(2629%) hue-rotate(194deg) brightness(94%) contrast(101%);
 }
 
 html[data-theme='dark'] .header-twitter-link:before {
@@ -567,7 +577,7 @@ html[data-theme='dark'] .header-twitter-link:before {
   display: flex;
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
   no-repeat;
-  filter: brightness(0) saturate(100%) invert(14%) sepia(100%) saturate(3774%) hue-rotate(202deg) brightness(19%) contrast(101%);
+  filter: brightness(0) saturate(100%) invert(14%) sepia(58%) saturate(2629%) hue-rotate(194deg) brightness(94%) contrast(101%);
 }
 
 html[data-theme='dark'] .header-github-link:before {
@@ -582,11 +592,12 @@ html[data-theme='dark'] .header-github-link:before {
 }
 
 .fhenix-logo  {
-  filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);
+  /*filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);*/
 }
 
 .page-cover-image {
   /*margin-top: 40px;*/
+  opacity: 0.2;
 }
 
 html[data-theme='light'] .page-cover-image  {
@@ -670,11 +681,11 @@ pre code:has(.code-block-diff-remove-line) {
 }
 
 .footer__title {
-  filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);
+  filter: brightness(0) saturate(100%) invert(8%) sepia(30%) saturate(1897%) hue-rotate(162deg) brightness(98%) contrast(105%);
 }
 
 [data-theme='dark'] .footer__title {
-  filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(5deg) brightness(105%) contrast(101%);
 }
 
 [data-theme='dark'] .navbar__item{
@@ -682,7 +693,12 @@ pre code:has(.code-block-diff-remove-line) {
 }
 
 .navbar__item{
-  filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);
+  filter: brightness(0) saturate(100%) invert(14%) sepia(58%) saturate(2629%) hue-rotate(194deg) brightness(94%) contrast(101%);
+}
+
+.navbar__logo {
+  width: 108px;
+  margin-right: 1rem;
 }
 
 .navbar__item:hover {
@@ -690,7 +706,7 @@ pre code:has(.code-block-diff-remove-line) {
 }
 
 .navbar__title{
-  filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);
+  filter: brightness(0) saturate(100%) invert(14%) sepia(58%) saturate(2629%) hue-rotate(194deg) brightness(94%) contrast(101%);
 }
 
 .navbar__title:hover {
@@ -701,24 +717,16 @@ pre code:has(.code-block-diff-remove-line) {
   filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
 }
 
-[data-theme='dark'] .navbar__logo{
-  filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
-}
-
-.navbar__logo{
-  filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);
-}
-
 .lightToggleIcon_EVe7 {
-  filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);
+  filter: brightness(0) saturate(100%) invert(14%) sepia(58%) saturate(2629%) hue-rotate(194deg) brightness(94%) contrast(101%);
 }
 
 .DocSearch-Button-Placeholder {
-  filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);
+  filter: brightness(0) saturate(100%) invert(14%) sepia(58%) saturate(2629%) hue-rotate(194deg) brightness(94%) contrast(101%);
 }
 
 .DocSearch-Search-Icon {
-  filter: brightness(0) saturate(100%) invert(28%) sepia(94%) saturate(1960%) hue-rotate(197deg) brightness(97%) contrast(101%);
+  filter: brightness(0) saturate(100%) invert(14%) sepia(58%) saturate(2629%) hue-rotate(194deg) brightness(94%) contrast(101%);
 }
 
 [data-theme='dark'] .DocSearch-Button-Placeholder {
@@ -729,3 +737,356 @@ pre code:has(.code-block-diff-remove-line) {
   filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
 }
 
+/* ---------- NEW Brandy code block card ---------- */
+:root{
+  --code-bg:#ffffff;
+  --code-border:#ebedee;
+  --code-text:#001623;
+  --code-radius:12px;
+  --code-shadow:0 6px 20px rgba(0,22,35,.06);
+
+  --title-bg:#fafafa;
+  --title-text:#122530;
+
+  --copy-bg:#001623;
+  --copy-text:#ffffff;
+}
+
+[data-theme='dark']{
+  --code-bg:#122530;
+  --code-border:rgba(250,250,250,.08);
+  --code-text:#fafafa;
+  --code-shadow:0 10px 28px rgba(0,0,0,.45);
+
+  --title-bg:#001623;
+  --title-text:#fafafa;
+
+  --copy-bg:#0ad9dc;
+  --copy-text:#001623;
+}
+
+/* Card */
+.theme-code-block{
+  position:relative;
+  margin:.9rem 0;                /* tighter outside */
+  border:1px solid var(--code-border);
+  border-radius:var(--code-radius);
+  background:var(--code-bg);
+  box-shadow:var(--code-shadow);
+  overflow:hidden;
+}
+
+/* Optional title (```js title="..." ) */
+.theme-code-block-title{
+  padding:.55rem .8rem;          /* tighter header */
+  background:var(--title-bg);
+  color:var(--title-text);
+  font-weight:600;
+  font-size:.9rem;
+  border-bottom:1px solid var(--code-border);
+}
+
+/* Code area */
+.theme-code-block pre{
+  margin:0;
+  padding:.75rem .9rem;          /* tighter inside */
+  background:transparent !important;
+}
+
+.theme-code-block .prism-code,
+pre code[class*="language-"]{
+  background:transparent !important;
+  color:var(--code-text);
+  /* Correct, modern mono stack (Geist/JetBrains first if present) */
+  font-family:"Inter", "Geist Mono","JetBrains Mono","Fira Code",
+               ui-monospace,SFMono-Regular,Menlo,Consolas,Monaco,monospace;
+  font-size:.9rem;               /* smaller text */
+  line-height:1.55;
+  letter-spacing:-.005em;
+  tab-size:2;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Ensure wrapping looks good */
+.theme-code-block .prism-code{ white-space:pre-wrap; word-break:break-word; }
+
+/* Remove line numbers completely (even if Docusaurus enables them) */
+.theme-code-block .token-line::before{ display:none !important; content:none !important; }
+.theme-code-block .codeBlockLines{ counter-reset:none !important; }
+
+/* Copy button: compact pill */
+.theme-code-block button[title="Copy"]{
+  position:absolute; top:.45rem; right:.45rem;
+  background:var(--copy-bg); 
+  color:var(--copy-text);
+  border:1px solid var(--code-border);
+  border-radius:9px;
+  padding:.28rem .5rem;
+  font-size:.75rem;
+  opacity:.1;
+  transition:transform .12s ease, opacity .12s ease, background .2s ease;
+}
+.theme-code-block button[title="Copy"]:hover{ transform:translateY(-1px); opacity:1; }
+
+/* Inline code outside blocks */
+:not(pre)>code{
+  background:var(--title-bg);
+  color:var(--title-text);
+  border:1px solid var(--code-border);
+  padding:.1rem .3rem;
+  border-radius:6px;
+  font-size:.88em;
+}
+/* notes styling */
+
+/* ===== Brand-style Admonitions (bubble card) ===== */
+:root{
+  /* tweak these if you want a different hue */
+  --admo-success: #20c997;            /* mint/teal */
+  --admo-info:    #0ad9dc;            /* brand cyan */
+  --admo-warn:    #ff703c;            /* brand orange */
+  --admo-danger:  #c886fe;            /* brand purple as "danger" placeholder */
+
+  --admo-radius:  14px;
+  --admo-text:    #001623;
+  --admo-bg:      #ffffff;
+}
+
+[data-theme='dark']{
+  --admo-text:    #fafafa;
+  --admo-bg:      #122530;
+}
+
+/* Base card polish */
+.theme-admonition{
+  border-radius: var(--admo-radius);
+  padding: 0;                          /* we’ll pad inner sections */
+  border-width: 1px;
+  overflow: hidden;
+}
+
+/* Header row (icon + label) */
+.theme-admonition :is([class^="admonitionHeading"]){
+  display: flex; align-items: center; gap: .5rem;
+  padding: .55rem .9rem .45rem .9rem;
+  font-weight: 600;
+  color: var(--admo-text);
+}
+
+/* Content */
+.theme-admonition :is([class^="admonitionContent"]){
+  padding: .25rem .9rem .8rem .9rem;
+  color: var(--admo-text);
+}
+
+/* Icon: tiny circle background + colored glyph */
+.theme-admonition :is([class^="admonitionIcon"]) svg{
+  width: 16px; height: 16px;
+  display: block;
+}
+.theme-admonition :is([class^="admonitionIcon"]){
+  display: inline-grid; place-items: center;
+  width: 22px; height: 22px; border-radius: 999px;
+}
+
+/* ---------- Variants ---------- */
+
+/* TIP / SUCCESS */
+.theme-admonition.alert--success{
+  border-color: color-mix(in srgb, var(--admo-success) 35%, transparent);
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--admo-success) 8%, var(--admo-bg)) 0%,
+      color-mix(in srgb, var(--admo-success) 4%, var(--admo-bg)) 100%);
+}
+.theme-admonition.alert--success :is([class^="admonitionIcon"]){
+  background: color-mix(in srgb, var(--admo-success) 12%, transparent);
+}
+.theme-admonition.alert--success :is([class^="admonitionIcon"]) svg{
+  fill: var(--admo-success);
+}
+
+/* INFO */
+.theme-admonition.alert--info{
+  border-color: color-mix(in srgb, var(--admo-info) 35%, transparent);
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--admo-info) 8%, var(--admo-bg)) 0%,
+      color-mix(in srgb, var(--admo-info) 4%, var(--admo-bg)) 100%);
+}
+.theme-admonition.alert--info :is([class^="admonitionIcon"]){
+  background: color-mix(in srgb, var(--admo-info) 12%, transparent);
+}
+.theme-admonition.alert--info :is([class^="admonitionIcon"]) svg{
+  fill: var(--admo-info);
+}
+
+/* WARNING */
+.theme-admonition.alert--warning{
+  border-color: color-mix(in srgb, var(--admo-warn) 35%, transparent);
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--admo-warn) 8%, var(--admo-bg)) 0%,
+      color-mix(in srgb, var(--admo-warn) 4%, var(--admo-bg)) 100%);
+}
+.theme-admonition.alert--warning :is([class^="admonitionIcon"]){
+  background: color-mix(in srgb, var(--admo-warn) 12%, transparent);
+}
+.theme-admonition.alert--warning :is([class^="admonitionIcon"]) svg{
+  fill: var(--admo-warn);
+}
+
+/* DANGER (swap to a true red if you like) */
+.theme-admonition.alert--danger{
+  border-color: color-mix(in srgb, var(--admo-danger) 35%, transparent);
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--admo-danger) 8%, var(--admo-bg)) 0%,
+      color-mix(in srgb, var(--admo-danger) 4%, var(--admo-bg)) 100%);
+}
+.theme-admonition.alert--danger :is([class^="admonitionIcon"]){
+  background: color-mix(in srgb, var(--admo-danger) 12%, transparent);
+}
+.theme-admonition.alert--danger :is([class^="admonitionIcon"]) svg{
+  fill: var(--admo-danger);
+}
+/* NOTE variant (purple tint) — works with Docusaurus' classes */
+.theme-admonition.theme-admonition-note,
+.theme-admonition.alert--secondary {
+  border-color: color-mix(in srgb, #c886fe 35%, transparent);
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, #c886fe 8%, var(--admo-bg)) 0%,
+      color-mix(in srgb, #c886fe 4%, var(--admo-bg)) 100%);
+  border-radius: var(--admo-radius);
+}
+
+.theme-admonition.theme-admonition-note :is([class^="admonitionIcon"]),
+.theme-admonition.alert--secondary :is([class^="admonitionIcon"]) {
+  background: color-mix(in srgb, #c886fe 12%, transparent);
+}
+
+.theme-admonition.theme-admonition-note :is([class^="admonitionIcon"]) svg,
+.theme-admonition.alert--secondary :is([class^="admonitionIcon"]) svg {
+  fill: #c886fe;
+}
+
+/* ===== Brand table styling ===== */
+:root{
+  --tbl-bg: #ffffff;
+  --tbl-text: #001623;
+  --tbl-border: #ebedee;
+  --tbl-head-bg: #fafafa;
+  --tbl-shadow: 0 6px 20px rgba(0,22,35,.06);
+  --tbl-accent: #0ad9dc; /* used for hovers/focus outlines */
+}
+[data-theme='dark']{
+  --tbl-bg: #122530;
+  --tbl-text: #fafafa;
+  --tbl-border: rgba(250,250,250,.12);
+  --tbl-head-bg: #001623;
+  --tbl-shadow: 0 10px 28px rgba(0,0,0,.45);
+}
+
+/* Base table look */
+.markdown table{
+  width: fit-content;
+  max-width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 4px solid var(--tbl-border);
+  border-radius: 8px;
+  background: var(--tbl-bg);
+  box-shadow: var(--tbl-shadow);
+  overflow: hidden;                /* round corners */
+  margin: 1rem 0;
+}
+
+/* Header */
+.markdown thead th{
+  background: var(--tbl-head-bg);
+  color: var(--tbl-text);
+  font-weight: 600;
+  text-align: left;
+  padding: .6rem .8rem;
+  border-bottom: 1px solid var(--tbl-border);
+  white-space: nowrap;
+}
+
+/* Cells */
+.markdown td{
+  color: var(--tbl-text);
+  padding: .55rem .8rem;
+  border-top: 1px solid var(--tbl-border);
+  vertical-align: top;
+}
+
+/* Zebra + hover */
+.markdown tbody tr:nth-child(odd){
+  background: color-mix(in srgb, var(--tbl-bg) 94%, var(--tbl-text) 6%);
+}
+.markdown tbody tr:hover{
+  background: color-mix(in srgb, var(--tbl-bg) 90%, var(--tbl-accent) 10%);
+}
+
+/* Code chips inside cells */
+.markdown td code{
+  background: var(--title-bg);
+  color: var(--title-text);
+  border: 1px solid var(--tbl-border);
+  padding: .05rem .35rem;
+  border-radius: 6px;
+  font-size: .9em;
+}
+
+/* Scroll on overflow (mobile) */
+.markdown table{ display: block; overflow-x: auto; }
+
+/* ===== Special fix: table-within-table layout ===== */
+/* Detect an outer table that only exists to place two inner tables side-by-side. */
+.markdown table:has(> tbody > tr > td > table){
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  padding: 0;
+}
+
+/* Make the inner tables look like two equal cards in a grid */
+.markdown table:has(> tbody > tr > td > table) > tbody > tr{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.markdown table:has(> tbody > tr > td > table) > tbody > tr > td{
+  border: none;
+  padding: 0;
+}
+
+/* Style the inner tables themselves (reapply the card look) */
+.markdown table:has(> tbody > tr > td > table) table{
+  width: 100%;
+  border: 1px solid var(--tbl-border);
+  border-radius: 12px;
+  background: var(--tbl-bg);
+  box-shadow: var(--tbl-shadow);
+  overflow: hidden;
+}
+
+/* Outer heading row like “Supported types” */
+.markdown table:has(> tbody > tr > td > table) th[colspan]{
+  background: var(--tbl-head-bg);
+  color: var(--tbl-text);
+  font-weight: 700;
+  padding: .7rem .9rem;
+  border: 1px solid var(--tbl-border);
+  border-radius: 12px;
+  margin-bottom: .75rem;
+  display: block;                  /* make it look like a section header */
+}
+
+/* Responsive: stack the two columns under 700px */
+@media (max-width: 700px){
+  .markdown table:has(> tbody > tr > td > table) > tbody > tr{
+    grid-template-columns: 1fr;
+  }
+}

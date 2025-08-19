@@ -24,7 +24,7 @@
 .custom__card {
   /* Rectangle 39 */
   height: 308px;
-  background: #D9F0FF;
+  background: #fff;
   /* box-sizing: border-box; */
   transition: box-shadow .3s, background .3s;
   width: 100%;
@@ -41,13 +41,13 @@
 }
 
 html[data-theme='dark'] .custom__card {
-  background: #1A1A1A;
+  background: #001623;
   color: #E6F7FF;
 }
 
 .custom__card_1 {
   /* Rectangle 39 */
-  background: #D9F0FF;
+  background: #fff;
   
   height: 308px;
   box-sizing: border-box;
@@ -68,16 +68,16 @@ html[data-theme='dark'] .custom__card {
 }
 
 html[data-theme='dark'] .custom__card_1 {
-  background: #1A1A1A;
+  background: #001623;
   color: #E6F7FF;
 }
 
 html[data-theme='light'] {
-  background: #E6F7FF;
+  background: #fafafa;
 }
 
 html[data-theme='dark'] {
-  background: #141414;
+  background: linear-gradient(270deg, #00253d, #001724);
 }
 
 
