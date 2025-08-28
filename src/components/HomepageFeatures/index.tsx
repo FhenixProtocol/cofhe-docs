@@ -69,16 +69,16 @@ function Feature({title, Svg, description, linkTo, buttonTitle}: FeatureItem) {
   const svgClassName = `${styles.featureSvg} white-image`;
 
   return (
-      <div className={clsx("card", styles.custom__card)} style={{ height: '100%' , color: colorMode === 'dark' ? '#E6F7FF' : '#001623'}}>  
+      <div className={clsx("card", styles.custom__card)} style={{ height: '100%' , color: colorMode === 'dark' ? '#E6F7FF' : '#003366'}}>  
           <div className="card__body custom__body_flex">
               <div>
-                <Svg className={svgClassName} role="img" style={{ color: colorMode === 'dark' ? '#E6F7FF' : '#001623' }}/>
+                <Svg className={svgClassName} role="img" style={{ color: colorMode === 'dark' ? '#E6F7FF' : '#003366' }}/>
               </div>
 
-              <Heading as="h2" className="" style={{ fontSize: 22 , color: colorMode === 'dark' ? '#E6F7FF' : '#001623'}} >{title}</Heading>
+              <Heading as="h2" className="" style={{ fontSize: 22 , color: '#0073E6'}} >{title}</Heading>
               <p>{description}</p>
-              <div className="row" style={{ flex: 1 , color: colorMode === 'dark' ? '#E6F7FF' : '#001623'}}></div>
-              <div style={{ width: '100%', display: 'flex', justifyContent: 'start' , color: colorMode === 'dark' ? '#E6F7FF' : '#001623'}}>
+              <div className="row" style={{ flex: 1 , color: '#0073E6'}}></div>
+              <div style={{ width: '100%', display: 'flex', justifyContent: 'center' , color: '#0073E6'}}>
                 <Link
                     className='tutorial-button minimum'
                     to={linkTo}>
@@ -141,7 +141,7 @@ export default function HomepageFeatures(): JSX.Element {
               </Heading>
           </div>
           {/* style={{ gap: "20px"}} */}
-          <div className="row feature_container" style={{ gap: "20px", justifyContent: "space-between" , color: colorMode === 'dark' ? '#E6F7FF' : '#001623'}}>
+          <div className="row feature_container" style={{ gap: "20px", justifyContent: "space-between" , color: colorMode === 'dark' ? '#E6F7FF' : '#003366'}}>
             {FeatureList.map((props, idx) => (
                 <div key={idx} style={{ padding: '0px' }} className="col col--3"> 
                     <Feature {...props} />
@@ -154,7 +154,7 @@ export default function HomepageFeatures(): JSX.Element {
                 <div style={{
                         position: 'absolute',
                         top: '-88px',
-                        left: '-82%',
+                        left: '-68%',
                         width: '800px',
                         height: '205px',
                         zIndex: -1,
@@ -173,9 +173,9 @@ export default function HomepageFeatures(): JSX.Element {
               </Heading>
           </div>
           <div className="row" style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: '40px', gap: '20px'}}>
-            <div className={clsx("card", styles.custom__card_1)} style={{ height: '200px', width: '500px', padding: '20px' , color: colorMode === 'dark' ? '#E6F7FF' : '#001623'}}>
-              <div className="orb-font" style={{ fontSize: 26, fontWeight: 'bold', color: colorMode === 'dark' ? '#E6F7FF' : '#001623' }}>Fhenix Developer Updates</div>
-              <div style={{ color: colorMode === 'dark' ? '#E6F7FF' : '#001623'}}>Stay up-to-date on the latest Fhenix developer news</div>
+            <div className={clsx("card", styles.custom__card_1)} style={{ height: '200px', width: '500px', padding: '20px' , color: '#0073E6'}}>
+              <div className="orb-font" style={{ fontSize: 26, fontWeight: 'bold', color: '#0073E6' }}>Fhenix Developer Updates</div>
+              <div style={{ color: colorMode === 'dark' ? '#E6F7FF' : '#003366'}}>Stay up-to-date on the latest Fhenix developer news</div>
               <div className="row" style={{ flex: 1 }}></div>
               <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '10px' }}>
                 <Link
@@ -186,9 +186,9 @@ export default function HomepageFeatures(): JSX.Element {
               </div>
 
             </div>
-            <div className={clsx("card", styles.custom__card_1)} style={{ height: '200px', width: '500px', padding: '20px', color: colorMode === 'dark' ? '#E6F7FF' : '#001623'}}>
-            <div className="orb-font" style={{ fontSize: 26, fontWeight: 'bold', color: colorMode === 'dark' ? '#E6F7FF' : '#001623' }}>Even More Resources</div>
-              <div style={{ color: colorMode === 'dark' ? '#E6F7FF' : '#001623'}}>Hear from Fhenix co-founders, engineering and research teams, ecosystem projects, and more. Join us!</div>
+            <div className={clsx("card", styles.custom__card_1)} style={{ height: '200px', width: '500px', padding: '20px', color: '#0073E6'}}>
+            <div className="orb-font" style={{ fontSize: 26, fontWeight: 'bold', color: '#0073E6' }}>Even More Resources</div>
+              <div style={{ color: colorMode === 'dark' ? '#E6F7FF' : '#003366'}}>Hear from Fhenix co-founders, engineering and research teams, ecosystem projects, and more. Join us!</div>
               <div className="row" style={{ flex: 1 }}></div>
               <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '10px' }}>
                 
