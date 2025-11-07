@@ -44,7 +44,7 @@ await cofhejs.initializeWithEthers({
 })
 ```
 
-After initialization, you'll need to manually call `cofhe.createPermit()` to generate user permits. It's recommended to inform users about the purpose of permits before requesting their signature.
+After initialization, you'll need to manually call `cofhejs.createPermit()` to generate user permits. It's recommended to inform users about the purpose of permits before requesting their signature.
 
 ### User Interface Example
 
@@ -81,6 +81,9 @@ const handleSignPermit = async () => {
 	// Permit created successfully
 }
 ```
+> 💡 **Permit Reuse is Automatic**  
+> Once signed, the permit is automatically cached and reused for all future `cofhejs.unseal()` operations — you don’t need to sign again unless the permit expires or is manually cleared.
+
 
 This will trigger the user's wallet to prompt for their signature. Once signed, the permit will be automatically stored and used for subsequent `cofhe.unseal` operations.
 
@@ -134,6 +137,34 @@ const activateReceivedPermit = async (sharingPermit: Permit) => {
 	return result.data
 }
 ```
+### Contract Requirements for Unsealing
+
+After a user signs a permit, they can unseal encrypted data that your contract returns — **but only if they have permission on the ciphertext handle**.
+
+If your contract returns encrypted data like a balance or score:
+
+```solidity
+function myBalance() public view returns (euint64) {
+    return _balances[msg.sender];
+}
+```
+You must explicitly grant the user access to that handle, or their unsealing will fail with an ACLNotAllowed error:
+
+```solidity
+FHE.allow(_balances[msg.sender], msg.sender);
+```
+Use ```FHE.allow(handle, userAddress)``` to grant the user permanent access to their ciphertext. This ensures that off-chain operations like cofhejs.unseal() can succeed.
+
+### Common Gotchas
+✅ You do not need to convert the return value to bytes or hash anything manually.
+
+🚫 You cannot rely solely on ```FHE.allowThis()``` — that only allows the contract itself to reuse the ciphertext.
+
+✅ If the user submitted the encrypted input and the contract immediately returned it, they might already have access — but it's safer to allow explicitly.
+
+❗ If you forget to call ```FHE.allow(handle, userAddress)```, cofhejs.unseal() will silently return null with ```SEAL_OUTPUT_RETURNED_NULL```. This usually means the user has no access to the ciphertext.
+
+For more details, see [Access Control](https://cofhe-docs.fhenix.zone/docs/devdocs/fhe-library/acl-mechanism) and [ACL Usage Examples](https://cofhe-docs.fhenix.zone/docs/devdocs/tutorials/acl-usage-examples).
 
 ## Advanced Features
 
