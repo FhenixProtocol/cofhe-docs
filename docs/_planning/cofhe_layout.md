@@ -16,12 +16,13 @@
 ### Internal Utilities
 - TaskManager
 - ACL
-- Aggregator
 - CTRegistry
+- Slim Listener
 - Verifier
 - FheOs - Server
 - Threshold Network
   - ZKPoK
+- Result Processor
 
 ### Data Flows
 ```mermaid

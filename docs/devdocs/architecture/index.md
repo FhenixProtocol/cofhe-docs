@@ -16,8 +16,9 @@ CoFHE (Co-processor for Fully Homomorphic Encryption) is designed as a modular, 
 
 #### Internal Utilities
 - **Task Manager**: Acts as the gateway for all FHE operation requests, validating requests and managing permissions through the Access Control Layer (ACL).
-- **Aggregator**: Coordinates request queues and manages communication between on-chain contracts and the off-chain execution environment.
+- **Slim Listener**: Listens to chain events from the Task Manager and forwards operation requests to the FheOS server.
 - **FHEOS Server**: Executes the actual FHE operations on encrypted data and maintains the encrypted state.
+- **Result Processor**: Receives results from FheOS and handles reliable transaction submission back to host chains with retry mechanisms.
 - **Threshold Network**: A distributed system that securely handles decryption requests through multi-party computation, ensuring no single entity can access the decryption key.
 - **Ciphertext Registry**: Maintains references to encrypted values and handles access control.
 
