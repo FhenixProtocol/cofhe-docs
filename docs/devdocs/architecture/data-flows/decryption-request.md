@@ -32,9 +32,9 @@ The FheOS server handles decryption requests:
    - Validate ciphertext hash integrity
    - Perform secure decryption
 
-### 📌 Step 7: FheOS Notifies the Aggregator with the decrypt result ![Bullet](../../../../static/img/assets/7.png)
-   - Call appropriate callback function on the Aggregator 
-   - The Aggregator calls the TaskManager with relevant result
+### 📌 Step 7: FheOS Notifies the Result Processor with the decrypt result ![Bullet](../../../../static/img/assets/7.png)
+   - Call appropriate callback function on the Result Processor
+   - The Result Processor publishes the result back to the TaskManager on the host chain
 
 ### 📌 Step 8: TaskManager emit event with decryption result ![Bullet](../../../../static/img/assets/8.png)
    - Provide decrypted result by emitting an event `DecryptionResult` 

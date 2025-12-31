@@ -11,7 +11,7 @@ sidebar_position: 6
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Type**             | Off-chain service, used by clients.                                                                                                                             |
 | **Function**         | Verifies the user's input, ensuring that it is safe to use.                                                                                                                     |
-| **Responsibilities** | • Receives a user's ZKPoK of their inputs.<br/>• Verifies said ZK proofs.<br/>• Generates a signature, allowing the user to use these inputs in a smart contract function call. |
+| **Responsibilities** | • Receives a user's ZKPoK of their inputs.<br/>• Verifies said ZK proofs.<br/>• Stores inputs and their proofs in GCS public bucket.<br/>• Communicates directly with FheOS.<br/>• Generates a signature, allowing the user to use these inputs in a smart contract function call. |
 
 ## ZKPoK - Why?
 

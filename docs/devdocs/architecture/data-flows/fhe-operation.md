@@ -17,7 +17,8 @@ This document outlines the complete flow of an FHE (Fully Homomorphic Encryption
 | **dApp** | The decentralized application that requests FHE operations |
 | **FHE.sol** | The library providing FHE operation functions |
 | **Task Manager** | Verifies and forwards operation requests |
-| **Aggregator** | Manages the request queue and communicates with the execution layer |
+| **Slim Listener** | Listens to chain events from Task Manager |
+| **Result Processor** | Gets results from FheOS and publishes them back to host chains |
 | **fheOS Server** | Executes the actual FHE operations |
 | **Threshold Network** | (When applicable) Handles secure decryption operations |
 
@@ -69,11 +70,11 @@ The Task Manager serves as the gateway for all FHE operation requests:
 2. **Verify access permissions** by checking if the caller has proper access to the encrypted inputs (using ACL.sol) ![Bullet](../../../../static/img/assets/3.png)
 3. **Generate a unique handle** that will be used to reference the future ciphertext result
 4. **Return the handle** to the calling dApp contract
-5. **Emit an event** containing the operation details for the Aggregator to process ![Bullet](../../../../static/img/assets/4.png)
+5. **Emit an event** containing the operation details for the Slim Listener to process ![Bullet](../../../../static/img/assets/4.png)
 
-### 📌 Step 4: Aggregator Processing
+### 📌 Step 4: Slim Listener Processing
 
-The Aggregator manages the queue of FHE operation requests:
+The Slim Listener monitors chain events and forwards requests:
 
 1. **Listen for events** from the Task Manager ![Bullet](../../../../static/img/assets/5.png)
 2. **Add the request** to a processing queue
@@ -89,7 +90,7 @@ The FheOS server handles requests:
 3. **Generate result ciphertext** containing the encrypted result
 4. **Map the handle** to the actual ciphertext hash in the private storage
 5. **Make result available** for subsequent operations
-6. **Notify the Aggregator** of operation completion
+6. **Notify the Result Processor** of operation completion
 
 ### 📌 Step 6: Result Handling (For Standard Operations)
 
