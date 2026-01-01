@@ -17,7 +17,7 @@ This document outlines the complete flow of an FHE (Fully Homomorphic Encryption
 | **dApp** | The decentralized application that requests FHE operations |
 | **FHE.sol** | The library providing FHE operation functions |
 | **Task Manager** | Verifies and forwards operation requests |
-| **Slim Listener** | Listens to chain events from Task Manager |
+| **Slim Listener** | Listens to chain events from the Task Manager Contract |
 | **Result Processor** | Gets results from FheOS and publishes them back to host chains |
 | **fheOS Server** | Executes the actual FHE operations |
 | **Threshold Network** | (When applicable) Handles secure decryption operations |
