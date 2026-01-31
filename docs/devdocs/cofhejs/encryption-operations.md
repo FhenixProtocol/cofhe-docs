@@ -101,6 +101,6 @@ The available states are:
 - Extract - Getting all the data ready for encryption (values to encrypt, chain information, etc.).
 - Pack - Preparing the data for the encryption process.
 - Prove - Signing the data.
-- Verify - Verifies the user's input, ensuring that it is safe to use (read more about this [here](/docs/devdocs/architecture/internal-utilities/verifier)).
+- Verify - Verifies the user's input, ensuring that it is safe to use (read more about this [here](https://cofhe-docs.fhenix.zone/deep-dive/cofhe-components/zk-verifier#zk-verifier)).
 - Replace - Preparing the result and replacing the old values with encrypted ones.
 - Done - Process is finished.

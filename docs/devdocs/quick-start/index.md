@@ -74,8 +74,7 @@ contract Counter {
 ```
 
 Key FHE Concepts & Documentation References
-- `euint32`, `ebool` - [Encrypted data types](../fhe-library/data-evaluation.md)
-- `FHE.add`, `FHE.sub` - [FHE Operations on encrypted values](../fhe-library/fhe-encrypted-operations.md)
+- `euint32`, `ebool` - [Encrypted data types](https://cofhe-docs.fhenix.zone/fhe-library/core-concepts/encrypted-operations#fhe-encrypted-operations)
 - `FHE.allowThis`, `FHE.allowSender` - [Access Control Management](../fhe-library/acl-mechanism.md)
 
 ### 2. Testing with Mock Environment
