@@ -126,9 +126,9 @@ async function initializeCoFHE() {
 		const signer = (await provider.getSigner()) as ethers.JsonRpcSigner
 
 		// initialize cofhejs Client with ethers (it also supports viem)
-		await cofhejs.initializeWithEthers({
-			provider: window.ethereum,
-			signer: wallet,
+		const result = await cofhejs.initializeWithEthers({
+			ethersProvider: provider,
+			ethersSigner: signer,
 			environment: 'TESTNET',
 		})
 
