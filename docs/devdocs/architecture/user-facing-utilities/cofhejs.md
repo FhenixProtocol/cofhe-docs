@@ -43,7 +43,7 @@ const { cofhejs } = require('cofhejs/node')
 const { ethers } = require('ethers')
 
 // initialize your web3 provider
-const provider = new ethers.JsonRpcProvider('http://127.0.0.1:42069')
+const provider = new ethers.JsonRpcProvider('https://cofhe-docs.fhenix.zone')
 const wallet = new ethers.Wallet(PRIVATE_KEY, provider)
 
 // initialize cofhejs Client with ethers (it also supports viem)
