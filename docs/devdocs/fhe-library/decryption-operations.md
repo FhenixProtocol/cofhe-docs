@@ -64,7 +64,7 @@ function safelyRevealWinner() external onlyAuctioneer {
   require(bidReady, "Bid not yet decrypted");
 
   winningBid = bidValue;
-  emit RevealedWinningBid(bidderValue, bidValue);
+  emit RevealedWinningBid(winningBidder, bidValue);
 }
 ```
 
@@ -97,7 +97,7 @@ function unsafeRevealWinner() external onlyAuctioneer {
   uint64 bidValue = FHE.getDecryptResult(highestBid);
 
   winningBid = bidValue;
-  emit RevealedWinningBid(bidderValue, bidValue);
+  emit RevealedWinningBid(winningBidder, bidValue);
 }
 ```
 
