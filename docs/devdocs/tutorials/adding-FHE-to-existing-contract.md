@@ -357,7 +357,7 @@ And its invocation:
         emit VoteCast(_proposalId, msg.sender, optionIndex);
 ```
 
-This event will be emitted with the encrypted `euint8 optionIndex`, this is important as in the future the FHE block explorer will be able to decrypt these variables and show the true event log, but only if we make one more change:
+This event is emitted with encrypted `euint8 optionIndex`. To make that value usable in real applications, you should explicitly grant access and then rely on the contract decrypt/read flow in your app logic.
 
 ### 8. Granting access with `FHE.allow`
 
@@ -396,7 +396,7 @@ function vote(uint256 _proposalId, InEuint8 memory _optionIndex) external {
     proposal.hasVoted[msg.sender] = true;
 
     // Grant msg.sender access to their votingIndex
-    // Without this, the msg.sender would not be able to see their vote in the explorer (coming soon)
+    // Without this, the voter cannot read/decrypt their selected option later
     // diff-add
     FHE.allowSender(optionIndex);
     emit VoteCast(_proposalId, msg.sender, optionIndex);
