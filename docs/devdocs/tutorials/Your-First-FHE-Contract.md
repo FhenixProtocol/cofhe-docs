@@ -139,6 +139,8 @@ In the `get_counter_value` function, we use the `FHE.getDecryptResultSafe` funct
 Since the decryption is asynchronous, we need to check if the result is ready by checking the `decrypted` boolean.   
 If the result is not ready, we revert the transaction with an error message.
 
+`getDecryptResultSafe` always returns the plaintext as `uint256`, even when the stored ciphertext is a narrower type such as `euint64`. That widening is intentional — the decrypt path normalizes every result to a 256-bit word — so cast or bound the value in your app if you need the original bit-width.
+
 ```solidity
     function get_counter_value() external view returns(uint256) {
         (uint256 value, bool decrypted) = FHE.getDecryptResultSafe(lastDecryptedCounter);

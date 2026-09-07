@@ -40,6 +40,18 @@ By default, newly created ciphertext handles are accessible to the contract that
 3. `FHE.allowTransient(CIPHERTEXT_HANDLE, ADDRESS)` - allows the specified address access to the handle for the duration of the transaction.
 4. `FHE.allowGlobal(CIPHERTEXT_HANDLE)` - allows any address access to the handle.
 
+### Access-control cheat sheet
+
+| Helper | Who gets access | How long | Typical use |
+| --- | --- | --- | --- |
+| `allowThis(handle)` | `address(this)` | Persisted | Keep using a value you just wrote to storage in later txs |
+| `allowSender(handle)` | `msg.sender` | Persisted | Let the caller decrypt / seal-output off-chain |
+| `allow(handle, addr)` | Arbitrary `addr` | Persisted | Grant a specific account or another contract |
+| `allowTransient(handle, addr)` | Arbitrary `addr` | **This transaction only** | Pass a ciphertext into an external call without leaving lasting ACL |
+| `allowGlobal(handle)` | Anyone | Persisted | Rare — public encrypted state |
+
+Grants are **additive**: calling `allowThis` does not remove prior allowances, and you usually need both `allowThis` (so the contract can keep computing) and `allowSender` (so the user can decrypt) after updating a stored ciphertext.
+
 :::note[Note]
 To decrypt a ciphertext off-chain using the decryption network, the issuer of the decryption request must have permission on the ciphertext handle. If not, the request will be denied by the access control system..
 :::

@@ -20,9 +20,10 @@ This document provides detailed compatibility information for all components in 
 
 ## Network Compatibility
 
-| Network | Compatible | API Version | Notes | Plugin name |
-|---------|------------|-------------|-------|-------|
-| **Sepolia** | ✅ | `v1` | Full support | eth-sepolia |
-| **Arbitrum Sepolia** | ✅ | `v1` | Full support | arb-sepolia |
+| Network | Chain ID | Compatible | API Version | Notes | Plugin name |
+|---------|----------|------------|-------------|-------|-------|
+| **Sepolia** | `11155111` | ✅ | `v1` | Full support | eth-sepolia |
+| **Arbitrum Sepolia** | `421614` | ✅ | `v1` | Full support | arb-sepolia |
+| **Base Sepolia** | `84532` | ✅ | `v1` | Full support via `@cofhe/sdk` / app tooling | base-sepolia |
 
 > 🚀 **More Networks Coming Soon!** We're actively working on expanding network support to bring CoFHE's powerful privacy features to even more chains. Stay tuned for exciting updates!

@@ -77,7 +77,11 @@ export type CoFheInItem = {
   utype: FheTypes;
   signature: string;
 };
+```
 
+`securityZone` defaults to `0` when you omit it from Encryptable helpers / encrypt options (the public / default zone). Pass a non-zero zone only when your contract was deployed to expect inputs in that zone.
+
+```typescript
 export type CoFheInUint8 extends CoFheInItem {
   utype: FheTypes.Uint8;
 }

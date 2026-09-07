@@ -191,9 +191,12 @@ interface PermitOptions {
 	type: 'self' | 'sharing' | 'recipient'
 	issuer: string
 	recipient?: string
+	/** Unix timestamp in **seconds** (not milliseconds) when the permit stops being valid. */
 	expiration?: number
 	validatorId?: number
 	validatorContract?: string
 	name?: string
 }
 ```
+
+`expiration` is compared against `Math.floor(Date.now() / 1000)`. Omit it only when you intentionally want a long-lived permit; most apps should set an explicit window (for example `nowSeconds + 60 * 60` for one hour).

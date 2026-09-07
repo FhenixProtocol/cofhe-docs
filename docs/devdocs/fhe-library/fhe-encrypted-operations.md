@@ -60,13 +60,15 @@ Here, lhs and rhs are your euint8 variables, and result will store the outcome o
 
 ### Using Library Bindings
 
-FHE.sol also provides library bindings, allowing for a more natural syntax. To use this, you first need to include the library for your specific data type. For euint8, the usage would look like this:
+FHE.sol also provides library bindings, allowing for a more natural syntax. Enable them with a `using FHE for …` directive for each encrypted type you call methods on:
 
-```javascript
+```solidity
+using FHE for euint8;
+
 euint8 result = lhs.add(rhs);
 ```
 
-In this example, lhs.add(rhs) performs the addition, using the library function implicitly.
+Without `using FHE for euint8;`, `lhs.add(rhs)` will not compile. Direct calls such as `FHE.add(lhs, rhs)` do not require the directive.
 
 :::tip
 The `ebool` type is not a real boolean type. It is implemented as a `euint8`
