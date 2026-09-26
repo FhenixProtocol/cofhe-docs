@@ -19,4 +19,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# pnpm is the package manager used by this repository and in CI.
+# A second, npm-specific lockfile must never be committed: it drifts from
+# pnpm-lock.yaml and makes `npm ci` resolve a different dependency tree.
+package-lock.json
+
 .idea/
