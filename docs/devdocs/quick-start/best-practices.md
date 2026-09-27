@@ -52,3 +52,16 @@ This guide outlines key best practices for developing with CoFHE, based on recom
 - **Implement loading indicators in your UI**: Due to CoFHE's asynchronous nature, operations may take time to complete.
 - **Use progress indicators**: Show spinners, progress bars, or status messages to inform users when operations are in progress.
 - **Consider state management**: Design your application to handle pending states gracefully.
+
+## Access Control Cheat Sheet
+
+| Call | Who gets access | Typical use |
+| --- | --- | --- |
+| `FHE.allowThis(ct)` | The calling contract | Required after most encrypted storage writes so later txs can read/update `ct` |
+| `FHE.allowSender(ct)` | `msg.sender` | Let the caller decrypt/view the value off-chain (permits) |
+| `FHE.allow(ct, addr)` | A specific address | Share access with another contract or user |
+| `FHE.allowTransient(ct, …)` | Temporary (same tx) | Short-lived access during a multi-step call |
+| `FHE.allowGlobal` / `allowPublic` | Broader / public decrypt paths | Only when the protocol intentionally reveals; required for some `withoutPermit` decrypt flows |
+
+`allowThis` and `allowSender` are additive — calling both is common after an update. Prefer the narrowest ACL that still lets your next transaction or client decrypt path succeed.
+
