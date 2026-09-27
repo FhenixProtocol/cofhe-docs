@@ -503,7 +503,7 @@ function getProposal(
     // If any of the results have not yet been decrypted, set `finalized` to false.
     // Store the decrypted result counts in the `votes` list to be returned.
     // diff-add
-    votes = new uint64[](proposal.options.length);
+    votes = new uint256[](proposal.options.length);
     // diff-add
     finalized = true;
     // diff-add
@@ -712,7 +712,7 @@ contract FHEVotingExample {
             options[i] = proposal.options[i].name;
         }
 
-        votes = new uint64[](proposal.options.length);
+        votes = new uint256[](proposal.options.length);
         finalized = true;
         for (uint8 i = 0; i < proposal.options.length; i++) {
             (uint256 result, bool decrypted) = FHE.getDecryptResultSafe(
